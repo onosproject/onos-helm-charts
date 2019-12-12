@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "onos-topo.fullname" . }}
+  labels:
+    app: {{ template "onos-topo.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+    {{- include "onos-topo.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    name: {{ template "onos-topo.fullname" . }}
+    app: onos
+    type: topo
+    resource: {{ template "onos-topo.fullname" . }}
+    {{- include "onos-topo.selectorLabels" . | nindent 4 }}
+  ports:
+    - name: grpc
+      port: 5150

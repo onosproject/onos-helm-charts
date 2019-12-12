@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "device-simulator.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    name: {{ template "device-simulator.fullname" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "device-simulator.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "device-simulator.selectorLabels" . | nindent 8 }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            {{- range $key, $port := .Values.ports.gnmi }}
+            - name: GNMI_{{ $key | upper }}_PORT
+              value: {{ $port | quote }}
+            {{- end}}
+          ports:
+            {{- range $key, $port := .Values.ports.gnmi }}
+            - name: gnmi{{ $key }}
+              containerPort: {{ $port }}
+            {{- end}}
+          readinessProbe:
+            tcpSocket:
+              port: {{ .Values.ports.gnmi.secure }}
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: {{ .Values.ports.gnmi.secure }}
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          volumeMounts:
+            - name: config
+              mountPath: /etc/simulator/configs
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: {{ template "device-simulator.fullname" . }}-config

@@ -1,0 +1,30 @@
+nameOverride: ""
+fullnameOverride: ""
+
+replicaCount: 1
+annotations: {}
+
+image:
+  repository: onosproject/device-simulator
+  tag: latest
+  pullPolicy: IfNotPresent
+  pullSecrets: []
+
+resources:
+  requests:
+    cpu: 0.5
+    memory: 512Mi
+
+service:
+  type: ClusterIP
+
+ports:
+  gnmi:
+    secure: 10161
+    insecure: 11161
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
