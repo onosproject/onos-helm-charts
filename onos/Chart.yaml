@@ -1,0 +1,5 @@
+apiVersion: v2
+name: onos
+description: A Helm chart to install the complete set of onos services.
+version: 0.1.0
+appVersion: 0.1.0

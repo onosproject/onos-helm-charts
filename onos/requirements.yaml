@@ -1,0 +1,13 @@
+dependencies:
+  - name: onos-config
+    version: 1.0.6
+    repository: https://charts.opencord.org
+  - name: onos-cli
+    version: 1.2.7
+    repository: https://charts.opencord.org
+  - name: onos-topo
+    version: 1.2.1
+    repository: https://charts.opencord.org
+  - name: onos-gui
+    version: 1.2.1
+    repository: https://charts.opencord.org
