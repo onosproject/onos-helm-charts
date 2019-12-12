@@ -1,0 +1,27 @@
+{{- if .Values.ingress.enabled }}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "onos-gui.fullname" . }}-ingress
+  namespace: {{ .Release.Namespace }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+spec:
+  tls:
+    - secretName: {{ template "onos-gui.fullname" . }}-secret
+      hosts:
+        - onos-gui.onosproject.org
+  rules:
+    - host: onos-gui.onosproject.org
+      http:
+        paths:
+          - backend:
+              serviceName: {{ template "onos-gui.fullname" . }}
+              servicePort: web
+  {{- end }}

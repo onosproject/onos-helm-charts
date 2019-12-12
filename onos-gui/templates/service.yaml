@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "onos-gui.fullname" . }}
+  labels:
+    app: {{ template "onos-gui.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+    {{- include "onos-gui.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    name: {{ template "onos-gui.fullname" . }}
+    app: onos
+    type: gui
+    resource: {{ template "onos-gui.fullname" . }}
+    {{- include "onos-gui.selectorLabels" . | nindent 4 }}
+  ports:
+    - name: web
+      port: 80
+    {{- range $key, $value := .Values.onosservices }}
+    - name: grpc-web-{{ $key }}
+      port: {{ $value.proxy }}
+    {{- end }}
+

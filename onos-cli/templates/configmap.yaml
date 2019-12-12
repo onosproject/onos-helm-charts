@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "onos-cli.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+# The followign shoudl be under the atomix.yaml key, see
+# https://github.com/onosproject/onos-test/blob/master/pkg/onit/k8s/onos-cli.go#L104
+data:
+  controller: {{ .Values.store.controller }}
+  namespace: {{ .Release.Namespace }}
+  group: {{ .Values.store.raftgroup }}
+  app: onos-config
