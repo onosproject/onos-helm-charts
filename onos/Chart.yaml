@@ -3,3 +3,14 @@ name: onos
 description: A Helm chart to install the complete set of onos services.
 version: 0.1.0
 appVersion: 0.1.0
+keywords:
+  - onos
+  - sdn
+home: https://onosproject.org
+maintainers:
+  - name: Andrea Campanella
+    email: andrea@opennetworking.org
+  - name: tomikazi
+    email: tom@opennetworking.org
+  - name: kuujo
+    email: jordan@opennetworking.org
