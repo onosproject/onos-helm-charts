@@ -13,6 +13,7 @@ spec:
   template:
     metadata:
       labels:
+        name: {{ template "device-simulator.fullname" . }}
         {{- include "device-simulator.selectorLabels" . | nindent 8 }}
     spec:
     {{- with .Values.imagePullSecrets }}
