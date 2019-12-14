@@ -1,13 +1,13 @@
 dependencies:
-  - name: onos-config
-    version: 0.0.1
-    repository: file://../onos-config
   - name: onos-cli
     version: 0.0.1
     repository: file://../onos-cli
   - name: onos-topo
     version: 0.0.1
     repository: file://../onos-topo
+  - name: onos-config
+    version: 0.0.1
+    repository: file://../onos-config
   - name: onos-gui
     version: 0.0.1
     repository: file://../onos-gui
