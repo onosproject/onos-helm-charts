@@ -1,0 +1,15 @@
+dependencies:
+- name: onos-config
+  repository: file://../onos-config
+  version: 0.0.1
+- name: onos-cli
+  repository: file://../onos-cli
+  version: 0.0.1
+- name: onos-topo
+  repository: file://../onos-topo
+  version: 0.0.1
+- name: onos-gui
+  repository: file://../onos-gui
+  version: 0.0.1
+digest: sha256:08e730485c568917d1194c0aa999da46726c3f227f4681b09db59fda257f424f
+generated: "2019-12-12T16:05:17.467084-08:00"
