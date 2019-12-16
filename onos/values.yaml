@@ -2,6 +2,6 @@
 # If no values are provided here all the default ones present in the .tgz of the chart are used.
 
 # Example on how to override the value of the ingress in onos-config values.yaml
-#onos-config:
-#  ingress:
-#    enabled: false
+# onos-config:
+#   ingress:
+#     enabled: false
