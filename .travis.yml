@@ -12,4 +12,4 @@ install:
 
 script:
 - ls -a
-- docker run -it --rm --name ct quay.io/helmpack/chart-testing:v2.4.0 sh -c "ct lint --chart-dirs onos-config,onos,onos-topo,onos-cli,onos-gui,device-simulator --all --chart-yaml-schema helm_default_chart_schema.yml --lint-conf helm_lint_config.yaml --debug"
+- docker run -it --rm --name ct --volume $(pwd):/charts quay.io/helmpack/chart-testing:v2.4.0 sh -c "ct lint --chart-dirs charts/onos-config,charts/onos,charts/onos-topo,charts/onos-cli,charts/onos-gui,charts/device-simulator --all --chart-yaml-schema helm_default_chart_schema.yml --lint-conf helm_lint_config.yaml --debug"
