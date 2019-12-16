@@ -1,0 +1,14 @@
+sudo: false
+
+branches:
+  only:
+    - master
+
+services:
+  - docker
+
+install:
+- docker pull quay.io/helmpack/chart-testing:v2.4.0
+
+script:
+- docker run -it --rm --name ct --volume $(pwd) sh -c "ct lint --chart-dirs onos-config,onos,onos-topo,onos-cli,onos-gui,device-simulator --all --chart-yaml-schema helm_default_chart_schema.yml --lint-conf helm_lint_config.yaml --debug"
