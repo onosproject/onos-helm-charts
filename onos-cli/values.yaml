@@ -4,7 +4,6 @@
 
 replicaCount: 1
 
-image:
   repository: onosproject/onos-cli
   tag: latest
   pullPolicy: IfNotPresent
