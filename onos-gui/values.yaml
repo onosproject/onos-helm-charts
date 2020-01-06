@@ -209,6 +209,7 @@ Envoy:
                         - name: envoy.grpc_web
                         - name: envoy.cors
                         - name: envoy.router
+                      stream_idle_timeout: 3600s
         {{- end }}
         clusters:
         {{- range $key, $value := .Values.onosservices }}
