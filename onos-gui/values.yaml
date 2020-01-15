@@ -19,7 +19,7 @@ service:
   enabled: true
   ## Service name is user-configurable for maximum service discovery flexibility.
   name: onos-gui
-  type: ClusterIP
+  type: LoadBalancer
 
 ingress:
   enabled: true
@@ -51,9 +51,11 @@ onosservices:
   topo:
     grpc: 5150
     proxy: 8080
+    streamTimeout: 3600
   config:
     grpc: 5150
     proxy: 8081
+    streamTimeout: 3600
 #  control:
 #    grpc: 5150
 #    proxy: 8082
@@ -228,3 +230,33 @@ Envoy:
                 validation_context:
                   trusted_ca: { filename: "/etc/envoy-proxy/certs/tls.cacrt" }
         {{- end }}
+
+Nginx:
+  templates:
+    server-block.conf: |-
+      server {
+          listen 80;
+          ssl_certificate /usr/share/certs/onos-gui.crt;
+          ssl_certificate_key /usr/share/certs/onos-gui.key;
+          location / {
+            root /usr/share/nginx/html;
+          }
+          location ~ \.(html|js|ico|map|css|png|woff|woff2)$ {
+            root /usr/share/nginx/html;
+          }
+          location /rs/nav/uiextensions {
+            root /usr/share/nginx/html;
+          }
+          {{- range $key, $value := .Values.onosservices }}
+          location /onos-{{ $key }}/ {
+              proxy_pass http://localhost:{{ $value.proxy }}/;
+              proxy_http_version 1.1;
+              proxy_set_header Upgrade $http_upgrade;
+              proxy_set_header Connection "Upgrade";
+              proxy_connect_timeout       {{ $value.streamTimeout }};
+              proxy_send_timeout          {{ $value.streamTimeout }};
+              proxy_read_timeout          {{ $value.streamTimeout }};
+              send_timeout                {{ $value.streamTimeout }};
+          }
+          {{ end }}
+      }

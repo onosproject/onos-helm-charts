@@ -12,3 +12,8 @@ data:
 {{ $valueWithDefault := default "" $value -}}
 {{ tpl $valueWithDefault $ | indent 4 }}
 {{- end -}}
+{{- range $key, $value := .Values.Nginx.templates }}
+  {{ $key }}: |-
+{{ $valueWithDefault := default "" $value -}}
+{{ tpl $valueWithDefault $ | indent 4 }}
+{{- end -}}

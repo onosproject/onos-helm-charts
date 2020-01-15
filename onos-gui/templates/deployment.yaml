@@ -53,6 +53,12 @@ spec:
             tcpSocket:
               port: web
             initialDelaySeconds: 30
+          volumeMounts:
+            - name: config
+              mountPath: /etc/nginx/conf.d
+            - name: secret
+              mountPath: /usr/share/certs
+              readOnly: true
         - name: onos-envoy
           image: "{{ .Values.Envoy.image.repository }}:{{ .Values.Envoy.image.tag }}"
           imagePullPolicy: {{ .Values.Envoy.image.pullPolicy }}
