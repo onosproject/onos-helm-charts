@@ -1,0 +1,127 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "sd-ran-gui.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "sd-ran-gui.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      name: {{ template "sd-ran-gui.fullname" . }}
+      app: onos
+      type: sdran
+      resource: {{ template "sd-ran-gui.fullname" . }}
+      {{- include "sd-ran-gui.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        name: {{ template "sd-ran-gui.fullname" . }}
+        app: onos
+        type: sdran
+        resource: {{ template "sd-ran-gui.fullname" . }}
+        {{- include "sd-ran-gui.selectorLabels" . | nindent 8 }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          stdin : true
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          ports:
+            {{- with .Values.ports }}
+            {{- range $key, $port := . }}
+            - name: {{ $key }}
+              {{ toYaml $port | nindent 14 }}
+            {{- end }}
+            {{- end }}
+          livenessProbe:
+            tcpSocket:
+              port: web
+            initialDelaySeconds: 30
+          readinessProbe:
+            tcpSocket:
+              port: web
+            initialDelaySeconds: 30
+          volumeMounts:
+            - name: config
+              mountPath: /etc/nginx/conf.d
+            - name: secret
+              mountPath: /usr/share/certs
+              readOnly: true
+        - name: onos-envoy
+          image: "{{ .Values.Envoy.image.repository }}:{{ .Values.Envoy.image.tag }}"
+          imagePullPolicy: {{ .Values.Envoy.image.pullPolicy }}
+          command:
+            {{ toYaml .Values.Envoy.command | nindent 12 }}
+          args:
+            {{- if $.Values.Envoy.argsTemplate }}
+              {{ tpl $.Values.Envoy.argsTemplate $ | nindent 12}}
+              {{- else }}
+              {{ toYaml .Values.Envoy.args | nindent 12 }}
+              {{- end }}
+          ports:
+            {{- with .Values.Envoy.ports }}
+            {{- range $key, $port := . }}
+            - name: {{ $key }}
+              {{ toYaml $port | nindent 14 }}
+            {{- end }}
+            {{- end }}
+            {{- range $key, $value := .Values.onosservices }}
+            - name: {{ $key }}-p
+              containerPort: {{ $value.proxy }}
+              protocol: TCP
+            {{- end }}
+
+          livenessProbe:
+            {{ toYaml .Values.Envoy.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{ toYaml .Values.Envoy.readinessProbe | nindent 12 }}
+          env:
+          {{- range $key, $value := .Values.Envoy.env }}
+          - name: {{ $key | upper | replace "." "_" }}
+            value: {{ $value | quote }}
+          {{- end }}
+          resources:
+            {{ toYaml .Values.Envoy.resources | nindent 12 }}
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: secret
+              mountPath: /etc/envoy-proxy/certs
+              readOnly: true
+            {{- if .Values.Envoy.volumeMounts }}
+            {{ toYaml .Values.Envoy.volumeMounts | nindent 12 }}
+            {{- end }}
+          lifecycle:
+            {{ toYaml .Values.Envoy.lifecyle | nindent 12 }}
+
+      volumes:
+        - name: config
+          configMap:
+            name: {{ template "sd-ran-gui.fullname" . }}
+        - name: secret
+          secret:
+            secretName: {{ template "sd-ran-gui.fullname" . }}-secret
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
