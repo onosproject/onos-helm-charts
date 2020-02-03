@@ -37,7 +37,7 @@ spec:
             - "-caPath=/etc/ran-simulator/certs/tls.cacrt"
             - "-keyPath=/etc/ran-simulator/certs/tls.key"
             - "-certPath=/etc/ran-simulator/certs/tls.crt"
-            - "-googleAPIKey=AIzaSyB4_SiTnfk2FkZNQNr3OhzOQQW_JC55vlw"
+            - "-googleAPIKey={{ .Values.googleApiKey }}"
           ports:
             - name: grpc
               containerPort: 5150

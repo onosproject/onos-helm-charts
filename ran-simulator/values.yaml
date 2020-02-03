@@ -10,6 +10,8 @@ image:
   pullPolicy: IfNotPresent
   pullSecrets: []
 
+googleApiKey: "YOUR_API_KEY_HERE"
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: "ran-simulator"
