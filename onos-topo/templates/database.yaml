@@ -15,6 +15,6 @@ spec:
       partitions: {{ .Values.store.raft.partitions }}
       backend:
         image: {{ .Values.store.raft.backend.image }}
-        replicas: {{ .Values.store.raft.replicas }}
+        replicas: {{ .Values.store.raft.backend.replicas }}
 
 {{- end }}
