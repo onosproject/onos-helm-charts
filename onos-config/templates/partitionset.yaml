@@ -13,8 +13,8 @@ spec:
   template:
     spec:
       partitions: {{ .Values.store.raft.partitions }}
-      replicas: {{ .Values.store.raft.replicas }}
       backend:
         image: {{ .Values.store.raft.backend.image }}
+        replicas: {{ .Values.store.raft.replicas }}
 
   {{- end }}
