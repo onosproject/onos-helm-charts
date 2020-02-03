@@ -1,6 +1,6 @@
 {{- if .Values.store.enabled }}
-apiVersion: k8s.atomix.io/v1alpha1
-kind: PartitionSet
+apiVersion: cloud.atomix.io/v1beta1
+kind: Database
 metadata:
   name: {{ .Values.store.raftgroup }}
   namespace: {{ .Release.Namespace }}
@@ -9,11 +9,12 @@ metadata:
      release: "{{ .Release.Name }}"
      heritage: "{{ .Release.Service }}"
 spec:
-  partitions: {{ .Values.store.raft.partitions }}
+  clusters: {{ .Values.store.raft.clusters }}
   template:
     spec:
-      size: {{ .Values.store.raft.partitionSize }}
-      raft:
-        electionTimeoutMillis: 5000
-        heartbeatPeriodMillis: 1000
+      partitions: {{ .Values.store.raft.partitions }}
+      replicas: {{ .Values.store.raft.replicas }}
+      backend:
+        image: {{ .Values.store.raft.backend.image }}
+
 {{- end }}

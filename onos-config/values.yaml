@@ -18,7 +18,7 @@ debug: false
 
 devices: []
 
-plugins: [devicesim.so.1.0.0, testdevice.so.1.0.0, testdevice.so.2.0.0, stratum.so.1.0.0]
+plugins: [testdevice.so.1.0.0, testdevice.so.2.0.0]
 
 # Variable to change to onos topo service endpoint for the default onos-topo:5150
 # topoEndpoint: onos-topo-classic:5150
@@ -29,7 +29,10 @@ store:
   controller: atomix-controller.kube-system.svc.cluster.local:5679
   raft:
     partitions: 1
-    partitionSize: 1
+    clusters: 1
+    replicas: 1
+    backend:
+      image: atomix/raft-replica:latest
 
 ingress:
   enabled: false
