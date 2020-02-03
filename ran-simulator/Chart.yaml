@@ -1,0 +1,15 @@
+apiVersion: v2
+name: ran-simulator
+description: ONOS RAN Simulator
+kubeVersion: ">=1.12.0"
+type: application
+version: 0.0.1
+appVersion: 1.0
+keywords:
+  - onos
+  - sdn
+  - ran
+home: https://onosproject.org
+maintainers:
+  - name: Sean Condon
+    email: sean@opennetworking.org

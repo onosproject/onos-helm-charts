@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "onos-ran.fullname" . }}
+  labels:
+    {{- include "onos-ran.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      name: {{ template "onos-ran.fullname" . }}
+      app: onos
+      type: ran
+      resource: {{ template "onos-ran.fullname" . }}
+      {{- include "onos-ran.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        name: {{ template "onos-ran.fullname" . }}
+        app: onos
+        type: ran
+        resource: {{ template "onos-ran.fullname" . }}
+        {{- include "onos-ran.selectorLabels" . | nindent 8 }}
+    spec:
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - "-caPath=/etc/onos-ran/certs/tls.cacrt"
+            - "-keyPath=/etc/onos-ran/certs/tls.key"
+            - "-certPath=/etc/onos-ran/certs/tls.crt"
+          ports:
+            - name: grpc
+              containerPort: 5150
+            {{- if .Values.debug }}
+            - name: debug
+              containerPort: 40000
+              protocol: TCP
+            {{- end }}
+          livenessProbe:
+            tcpSocket:
+              port: 5150
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          readinessProbe:
+            tcpSocket:
+              port: 5150
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          volumeMounts:
+            - name: secret
+              mountPath: /etc/onos-ran/certs
+              readOnly: true
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          # Enable ptrace for debugging
+          securityContext:
+            {{- if .Values.debug }}
+            capabilities:
+              add:
+                - SYS_PTRACE
+            {{- end }}
+      volumes:
+        - name: secret
+          secret:
+            secretName: {{ template "onos-ran.fullname" . }}-secret
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
