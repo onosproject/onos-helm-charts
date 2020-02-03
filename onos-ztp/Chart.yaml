@@ -1,0 +1,18 @@
+apiVersion: v2
+name: onos-ztp
+description: ONOS Zero Touch Provisioning Subsystem
+kubeVersion: ">=1.12.0"
+type: application
+version: 0.0.1
+appVersion: 1.0
+keywords:
+  - onos
+  - sdn
+home: https://onosproject.org
+maintainers:
+  - name: Andrea Campanella
+    email: andrea@opennetworking.org
+  - name: kuujo
+    email: jordan@opennetworking.org
+  - name: Adib
+    email: adib@opennetworking.org
