@@ -45,15 +45,7 @@ spec:
             - name: NODE_NAME
               valueFrom:
                 fieldRef:
-                  fieldPath: spec.nodeName
-            - name: ATOMIX_CONTROLLER
-              value: {{ .Values.store.controller | quote }}
-            - name: ATOMIX_APP
-              value: {{ include "onos-ztp.fullname" . }}
-            - name: ATOMIX_RAFT
-              value: {{ .Values.store.raftgroup }}
-            - name: ATOMIX_NAMESPACE
-              value: {{ .Release.Namespace }}
+                  fieldPath: spec.nodeName 
           args:
             - "-caPath=/etc/onos-ztp/certs/tls.cacrt"
             - "-keyPath=/etc/onos-ztp/certs/tls.key"
