@@ -1,0 +1,20 @@
+{{- if .Values.store.enabled }}
+apiVersion: cloud.atomix.io/v1beta1
+kind: Database
+metadata:
+  name: {{ .Values.store.raftgroup }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  clusters: {{ .Values.store.raft.clusters }}
+  template:
+    spec:
+      partitions: {{ .Values.store.raft.partitions }}
+      backend:
+        image: {{ .Values.store.raft.backend.image }}
+        replicas: {{ .Values.store.raft.backend.replicas }}
+
+  {{- end }}

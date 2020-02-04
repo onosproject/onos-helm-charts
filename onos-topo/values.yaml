@@ -22,7 +22,10 @@ store:
   controller: atomix-controller.kube-system.svc.cluster.local:5679
   raft:
     partitions: 1
-    partitionSize: 1
+    clusters: 1
+    backend:
+      image: atomix/raft-replica:latest
+      replicas: 1
 
 ingress:
   enabled: false
