@@ -18,7 +18,17 @@ debug: false
 
 devices: []
 
-plugins: [devicesim.so.1.0.0, testdevice.so.1.0.0, testdevice.so.2.0.0, stratum.so.1.0.0]
+plugins:
+  devicesim:
+    versions:
+      - 1.0.0
+  stratum:
+    versions:
+      - 1.0.0
+  testdevice:
+    versions:
+      - 1.0.0
+      - 2.0.0
 
 # Variable to change to onos topo service endpoint for the default onos-topo:5150
 # topoEndpoint: onos-topo-classic:5150
