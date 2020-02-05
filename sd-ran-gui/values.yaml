@@ -52,6 +52,7 @@ onosservices:
     grpc: 5150
     proxy: 8080
     streamTimeout: 3600
+    tls: false
 #  onos-ran:
 #    grpc: 5150
 #    proxy: 8081
@@ -219,6 +220,7 @@ Envoy:
             lb_policy: round_robin
             # win/mac hosts: Use address: host.docker.internal instead of address: localhost in the line below
             hosts: [{ socket_address: { address: {{$key}}, port_value: {{ $value.grpc }} }}]
+            {{- if $value.tls }}
             tls_context:
               common_tls_context:
                 tls_certificates:
@@ -226,6 +228,7 @@ Envoy:
                   private_key: { "filename": "/etc/envoy-proxy/certs/tls.key" }
                 validation_context:
                   trusted_ca: { filename: "/etc/envoy-proxy/certs/tls.cacrt" }
+            {{- end }}
         {{- end }}
 
 Nginx:
