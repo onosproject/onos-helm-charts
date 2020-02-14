@@ -63,8 +63,10 @@ spec:
             - "-caPath=/etc/onos-config/certs/tls.cacrt"
             - "-keyPath=/etc/onos-config/certs/tls.key"
             - "-certPath=/etc/onos-config/certs/tls.crt"
-            {{- range $i, $plugin := .Values.plugins }}
-            - {{ printf "-modelPlugin=/usr/local/lib/%s" $plugin }}
+            {{- range $key, $plugin := .Values.plugins }}
+              {{- range $j, $v := $plugin.versions }}
+            - {{ printf "-modelPlugin=/usr/local/lib/shared/%s.so.%s" $key $v }}
+              {{- end }}
             {{- end }}
             {{- if .Values.topoEndpoint }}
             - {{ printf "-topoEndpoint=%s" .Values.topoEndpoint }}
@@ -92,6 +94,8 @@ spec:
             - name: secret
               mountPath: /etc/onos-config/certs
               readOnly: true
+            - name: shared-data
+              mountPath: /usr/local/lib/shared
           # Enable ptrace for debugging
           securityContext:
             {{- if .Values.debug }}
@@ -99,12 +103,30 @@ spec:
               add:
                 - SYS_PTRACE
             {{- end }}
-      # Mount test volumes
-      # TODO: This should be removed when stores are added!
+        # Load model plugins as side car containers
+        {{- range $key, $plugin := .Values.plugins }}
+          {{- range $j, $v := $plugin.versions }}
+        - name: {{ printf "config-model-%s-%s" $key $v | replace "." "-" }}
+          image: {{ printf "onosproject/config-model-%s-%s:%s" $key $v $.Values.image.tag }}
+          imagePullPolicy: {{ $.Values.image.pullPolicy }}
+          command:
+            - "/copylibandstay"
+          args:
+            - {{ printf "%s.so.%s" $key $v }}
+            - {{ printf "/usr/local/lib/%s.so.%s" $key $v }}
+            - "stayrunning"
+          volumeMounts:
+            - name: shared-data
+              mountPath: /usr/local/lib
+          {{- end }}
+        {{- end }}
+      # Mount volumes
       volumes:
         - name: secret
           secret:
             secretName: {{ template "onos-config.fullname" . }}-secret
+        - name: shared-data
+          emptyDir: {}
     {{- with .Values.nodeSelector }}
     nodeSelector:
       {{- toYaml . | nindent 8 }}
