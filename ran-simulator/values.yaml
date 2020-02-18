@@ -10,7 +10,20 @@ image:
   pullPolicy: IfNotPresent
   pullSecrets: []
 
+fade: false
 googleApiKey: "YOUR_API_KEY_HERE"
+mapCenterLat: 52.52
+mapCenterLng: 13.405
+maxUEsPerTower: 5
+numLocations: 100
+numRoutes: 25
+showRoutes: true
+stepDelayMs: 1000
+towerCols: 3
+towerRows: 3
+towerSpacingHoriz: 0.02
+towerSpacingVert: 0.02
+zoom: 12
 
 imagePullSecrets: []
 nameOverride: ""

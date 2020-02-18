@@ -37,7 +37,20 @@ spec:
             - "-caPath=/etc/ran-simulator/certs/tls.cacrt"
             - "-keyPath=/etc/ran-simulator/certs/tls.key"
             - "-certPath=/etc/ran-simulator/certs/tls.crt"
+            - "-fade={{ .Values.fade }}"
             - "-googleAPIKey={{ .Values.googleApiKey }}"
+            - "-mapCenterLat={{ .Values.mapCenterLat }}"
+            - "-mapCenterLng={{ .Values.mapCenterLng }}"
+            - "-maxUEsPerTower={{ .Values.maxUEsPerTower }}"
+            - "-numLocations={{ .Values.numLocations }}"
+            - "-numRoutes={{ .Values.numRoutes }}"
+            - "-showRoutes={{ .Values.showRoutes }}"
+            - "-stepDelayMs={{ .Values.stepDelayMs }}"
+            - "-towerCols={{ .Values.towerCols }}"
+            - "-towerRows={{ .Values.towerRows }}"
+            - "-towerSpacingHoriz={{ .Values.towerSpacingHoriz }}"
+            - "-towerSpacingVert={{ .Values.towerSpacingVert }}"
+            - "-zoom={{ .Values.zoom }}"
           ports:
             - name: grpc
               containerPort: 5150

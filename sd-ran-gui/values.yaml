@@ -58,6 +58,8 @@ onosservices:
 #    proxy: 8081
 #    streamTimeout: 3600
 
+google_api_key: YOUR_API_KEY_HERE
+
 Envoy:
   # Inspired by https://github.com/helm/charts/blob/master/stable/envoy/values.yaml
   image:

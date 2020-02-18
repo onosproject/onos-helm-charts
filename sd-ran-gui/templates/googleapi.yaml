@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ template "sd-ran-gui.fullname" . }}-google-api-key
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+data:
+  google_api_key: {{ .Values.google_api_key | b64enc }}
+type: Opaque

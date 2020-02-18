@@ -38,6 +38,12 @@ spec:
           stdin : true
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            - name: "GOOGLE_API_KEY"
+              valueFrom:
+                secretKeyRef:
+                  key: google_api_key
+                  name: {{ template "sd-ran-gui.fullname" . }}-google-api-key
           ports:
             {{- with .Values.ports }}
             {{- range $key, $port := . }}
