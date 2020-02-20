@@ -1,0 +1,16 @@
+apiVersion: v2
+name: onos-ran-ho
+description: ONOS Radio Access Network Handover
+kubeVersion: ">=1.12.0"
+type: application
+version: 0.0.1
+appVersion: 1.0
+keywords:
+  - onos
+  - sdn
+  - ran
+  - handover
+home: https://onosproject.org
+maintainers:
+  - name: Sean Condon
+    email: sean@opennetworking.org
