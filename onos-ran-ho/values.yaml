@@ -5,19 +5,16 @@
 replicaCount: 1
 
 image:
-  repository: onosproject/onos-ran
+  repository: onosproject/onos-ran-ho
   tag: latest
   pullPolicy: IfNotPresent
   pullSecrets: []
 
 imagePullSecrets: []
 nameOverride: ""
-fullnameOverride: "onos-ran"
+fullnameOverride: "onos-ran-ho"
 
 store: {}
-
-service:
-  type: ClusterIP
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

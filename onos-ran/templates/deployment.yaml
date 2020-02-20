@@ -68,21 +68,6 @@ spec:
               add:
                 - SYS_PTRACE
             {{- end }}
-        - name: {{ .Chart.Name }}-ho
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command:
-            - onos-ran-ho
-          args:
-            - "-onosranaddr=localhost:5150"
-        - name: {{ .Chart.Name }}-mlb
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command:
-            - onos-ran-mlb
-          args:
-            - "-onosranaddr=localhost:5150"
-            - "-threshold=1"
       volumes:
         - name: secret
           secret:
