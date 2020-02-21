@@ -14,7 +14,18 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: "onos-ran"
 
-store: {}
+debug: false
+
+store:
+  enabled: true
+  raftgroup: onos-ran-raft
+  controller: atomix-controller.kube-system.svc.cluster.local:5679
+  raft:
+    partitions: 1
+    clusters: 1
+    backend:
+      image: atomix/raft-replica:latest
+      replicas: 1
 
 service:
   type: ClusterIP
