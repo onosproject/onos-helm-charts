@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "tlaplus-monitor.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    name: {{ template "tlaplus-monitor.fullname" . }}
+    model: {{ base .Values.model | quote }}
+    app: {{ template "tlaplus-monitor.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      model: {{ base .Values.model | quote }}
+  template:
+    metadata:
+      labels:
+        model: {{ base .Values.model | quote }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: onosproject/tlaplus-monitor:latest
+          imagePullPolicy: IfNotPresent
+          args:
+            - /opt/tlaplus/model/{{ .Values.model }}
+            - -metadir
+            - /opt/tlaplus/data
+            - -continue
+          env:
+            - name: KAFKA_GROUP
+              value: {{ template "tlaplus-monitor.fullname" . }}
+            - name: KAFKA_SERVERS
+              value: {{ include "tlaplus-monitor.join" .Values.kafka.servers }}
+          volumeMounts:
+            - name: models
+              mountPath: /opt/tlaplus/model
+              readOnly: true
+            - name: data
+              mountPath: /opt/tlaplus/data
+          readinessProbe:
+            exec:
+              command:
+                - /bin/sh
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+            initialDelaySeconds: 5
+            periodSeconds: 5
+      volumes:
+        - name: models
+          configMap:
+            name: {{ template "tlaplus-monitor.fullname" . }}-modules
+        - name: data
+          emptyDir: {}

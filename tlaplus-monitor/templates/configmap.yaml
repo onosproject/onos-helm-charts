@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "tlaplus-monitor.fullname" . }}-modules
+  labels:
+    name: {{ template "tlaplus-monitor.fullname" . }}-modules
+    model: {{ .Values.model }}
+    app: {{ template "tlaplus-monitor.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+data:
+  {{ base .Values.model | trimSuffix ".tla"  }}.cfg: |
+    {{ if .Values.config.spec }}
+    SPECIFICATION {{ .Values.config.spec }}
+    {{ end }}
+    {{ if .Values.config.init }}
+    INIT {{ .Values.config.init }}
+    {{ end }}
+    {{ if .Values.config.next }}
+    NEXT {{ .Values.config.next }}
+    {{ end }}
+    {{- range .Values.config.invariants }}
+    INVARIANT {{ . }}
+    {{- end }}
+    {{- range $key, $value := .Values.config.constants }}
+    CONSTANT {{ $key }}={{ $value }}
+    {{- end}}
+    {{- range .Values.config.constraints }}
+    CONSTRAINT {{ . }}
+    {{- end }}
+    {{- range .Values.config.properties }}
+    PROPERTY {{ . }}
+    {{- end }}
+  {{ $root := . }}
+  {{- range .Values.modules }}
+  {{ base . }}: '{{ $root.Files.Get . }}'
+  {{- end }}
