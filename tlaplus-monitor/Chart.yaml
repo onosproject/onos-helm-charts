@@ -1,0 +1,16 @@
+apiVersion: v2
+name: tlaplus-monitor
+kubeVersion: ">=1.12.0"
+type: application
+version: 0.0.1
+appVersion: 1.0
+description: TLA+ Conformance Monitor
+keywords:
+  - monitoring
+  - verification
+home: https://onosproject.org
+maintainers:
+  - name: kuujo
+    email: jordan@opennetworking.org
+  - name: Adib Rastegarnia
+    email: adib@opennetworking.org

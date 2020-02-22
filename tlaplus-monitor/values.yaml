@@ -1,0 +1,44 @@
+nameOverride: ""
+fullnameOverride: ""
+
+replicaCount: 1
+annotations: {}
+
+image:
+  repository: onosproject/tlaplus-monitor
+  tag: latest
+  pullPolicy: IfNotPresent
+  pullSecrets: []
+
+resources:
+  requests:
+    cpu: 0.5
+    memory: 512Mi
+
+# 'model' is the name of the model file to run
+model: ""
+
+# 'modules' is a list of module files to include. This should contain at least the 'model' file.
+modules: []
+
+# 'config' is the TLC configuration
+config:
+  # 'spec' is the specification expression
+  spec: Spec
+  # 'init' is the init predicate
+  init: ""
+  # 'next' is the next state relation
+  next: ""
+  # 'invariants' is an array of invariant names to check
+  invariants: []
+  # 'constants' is a mapping of constant names to values
+  constants: {}
+  # 'constraints' is an array of state constraints
+  constraints: []
+  # 'properties' is an array of model properties
+  properties: []
+
+# 'kafka' configures the monitor's Kafka connection
+kafka:
+  # 'servers' is the list of Kafka servers to which to connect
+  servers: ["kafka-headless:9092"]
