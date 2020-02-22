@@ -34,5 +34,6 @@ data:
     {{- end }}
   {{ $root := . }}
   {{- range .Values.modules }}
-  {{ base . }}: '{{ $root.Files.Get . }}'
+  {{ base . }}: |-
+{{ $root.Files.Get . | indent 4 }}
   {{- end }}
