@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "onos-ran-mlb.fullname" . }}
+  name: {{ include "onos-ric-mlb.fullname" . }}
   labels:
-    {{- include "onos-ran-mlb.labels" . | nindent 4 }}
+    {{- include "onos-ric-mlb.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      name: {{ template "onos-ran-mlb.fullname" . }}
+      name: {{ template "onos-ric-mlb.fullname" . }}
       app: onos
       type: mlb
-      resource: {{ template "onos-ran-mlb.fullname" . }}
-      {{- include "onos-ran-mlb.selectorLabels" . | nindent 6 }}
+      resource: {{ template "onos-ric-mlb.fullname" . }}
+      {{- include "onos-ric-mlb.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        name: {{ template "onos-ran-mlb.fullname" . }}
+        name: {{ template "onos-ric-mlb.fullname" . }}
         app: onos
         type: mlb
-        resource: {{ template "onos-ran-mlb.fullname" . }}
-        {{- include "onos-ran-mlb.selectorLabels" . | nindent 8 }}
+        resource: {{ template "onos-ric-mlb.fullname" . }}
+        {{- include "onos-ric-mlb.selectorLabels" . | nindent 8 }}
     spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
@@ -33,7 +33,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
-            - "-onosranaddr=onos-ran:5150"
+            - "-onosricaddr=onos-ric:5150"
             - "-threshold=1"
           livenessProbe:
             exec:

@@ -1,21 +1,21 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "onos-ran.fullname" . }}
+  name: {{ include "onos-ric.fullname" . }}
   labels:
-    app: {{ template "onos-ran.fullname" . }}
+    app: {{ template "onos-ric.fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
-    {{- include "onos-ran.labels" . | nindent 4 }}
+    {{- include "onos-ric.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   selector:
-    name: {{ template "onos-ran.fullname" . }}
+    name: {{ template "onos-ric.fullname" . }}
     app: onos
     type: ran
-    resource: {{ template "onos-ran.fullname" . }}
-    {{- include "onos-ran.selectorLabels" . | nindent 4 }}
+    resource: {{ template "onos-ric.fullname" . }}
+    {{- include "onos-ric.selectorLabels" . | nindent 4 }}
   ports:
     - name: grpc
       port: 5150

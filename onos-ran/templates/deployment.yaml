@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "onos-ran.fullname" . }}
+  name: {{ include "onos-ric.fullname" . }}
   labels:
-    {{- include "onos-ran.labels" . | nindent 4 }}
+    {{- include "onos-ric.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      name: {{ template "onos-ran.fullname" . }}
+      name: {{ template "onos-ric.fullname" . }}
       app: onos
       type: ran
-      resource: {{ template "onos-ran.fullname" . }}
-      {{- include "onos-ran.selectorLabels" . | nindent 6 }}
+      resource: {{ template "onos-ric.fullname" . }}
+      {{- include "onos-ric.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        name: {{ template "onos-ran.fullname" . }}
+        name: {{ template "onos-ric.fullname" . }}
         app: onos
         type: ran
-        resource: {{ template "onos-ran.fullname" . }}
-        {{- include "onos-ran.selectorLabels" . | nindent 8 }}
+        resource: {{ template "onos-ric.fullname" . }}
+        {{- include "onos-ric.selectorLabels" . | nindent 8 }}
     spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
@@ -48,15 +48,15 @@ spec:
             - name: ATOMIX_CONTROLLER
               value: {{ .Values.store.controller | quote }}
             - name: ATOMIX_APP
-              value: {{ include "onos-ran.fullname" . }}
+              value: {{ include "onos-ric.fullname" . }}
             - name: ATOMIX_RAFT
               value: {{ .Values.store.raftgroup }}
             - name: ATOMIX_NAMESPACE
               value: {{ .Release.Namespace }}
           args:
-            - "-caPath=/etc/onos-ran/certs/tls.cacrt"
-            - "-keyPath=/etc/onos-ran/certs/tls.key"
-            - "-certPath=/etc/onos-ran/certs/tls.crt"
+            - "-caPath=/etc/onos-ric/certs/tls.cacrt"
+            - "-keyPath=/etc/onos-ric/certs/tls.key"
+            - "-certPath=/etc/onos-ric/certs/tls.crt"
             - "-simulator=ran-simulator:5150"
           ports:
             - name: grpc
@@ -78,7 +78,7 @@ spec:
             periodSeconds: 10
           volumeMounts:
             - name: secret
-              mountPath: /etc/onos-ran/certs
+              mountPath: /etc/onos-ric/certs
               readOnly: true
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
@@ -92,7 +92,7 @@ spec:
       volumes:
         - name: secret
           secret:
-            secretName: {{ template "onos-ran.fullname" . }}-secret
+            secretName: {{ template "onos-ric.fullname" . }}-secret
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

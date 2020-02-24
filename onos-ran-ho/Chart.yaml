@@ -1,5 +1,5 @@
 apiVersion: v2
-name: onos-ran-ho
+name: onos-ric-ho
 description: ONOS Radio Access Network Handover
 kubeVersion: ">=1.12.0"
 type: application
@@ -8,7 +8,7 @@ appVersion: 1.0
 keywords:
   - onos
   - sdn
-  - ran
+  - ric
   - handover
 home: https://onosproject.org
 maintainers:

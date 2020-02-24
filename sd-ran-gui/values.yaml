@@ -53,7 +53,7 @@ onosservices:
     proxy: 8080
     streamTimeout: 3600
     tls: false
-  onos-ran:
+  onos-ric:
     grpc: 5150
     proxy: 8081
     streamTimeout: 3600
