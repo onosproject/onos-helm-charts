@@ -1,20 +1,34 @@
-# Default values for onos-ran.
+# Default values for onos-ric.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
 image:
-  repository: onosproject/onos-ran-ho
+  repository: onosproject/onos-ric
   tag: latest
   pullPolicy: IfNotPresent
   pullSecrets: []
 
 imagePullSecrets: []
 nameOverride: ""
-fullnameOverride: "onos-ran-ho"
+fullnameOverride: "onos-ric"
 
-store: {}
+debug: false
+
+store:
+  enabled: true
+  raftgroup: onos-ric-raft
+  controller: atomix-controller.kube-system.svc.cluster.local:5679
+  raft:
+    partitions: 1
+    clusters: 1
+    backend:
+      image: atomix/raft-replica:latest
+      replicas: 1
+
+service:
+  type: ClusterIP
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
