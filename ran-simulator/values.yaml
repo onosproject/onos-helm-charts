@@ -15,8 +15,8 @@ googleApiKey: "YOUR_API_KEY_HERE"
 mapCenterLat: 52.52
 mapCenterLng: 13.405
 maxUEsPerTower: 5
-numLocations: 100
-numRoutes: 25
+numLocations: 600
+numRoutes: 3
 showRoutes: true
 stepDelayMs: 1000
 towerCols: 3
