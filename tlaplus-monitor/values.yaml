@@ -40,5 +40,13 @@ config:
 
 # 'kafka' configures the monitor's Kafka connection
 kafka:
-  # 'servers' is the list of Kafka servers to which to connect
-  servers: ["kafka-headless:9092"]
+  # 'service' is the Kafka service to which to connect
+  service: kafka-headless
+  # 'port' is the Kafka port
+  port: 9092
+  # 'topics' is the Kafka topic configuration
+  topics:
+    # 'trace' is the name of the traces topic
+    traces: traces
+    # 'alerts' is the name of the alerts topic
+    alerts: alerts

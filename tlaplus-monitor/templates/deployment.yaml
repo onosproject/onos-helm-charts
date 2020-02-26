@@ -32,12 +32,11 @@ spec:
             - /opt/tlaplus/model/{{ .Values.model }}
             - -metadir
             - /opt/tlaplus/data
-            - -continue
-          env:
-            - name: KAFKA_GROUP
-              value: {{ template "tlaplus-monitor.fullname" . }}
-            - name: KAFKA_SERVERS
-              value: {{ include "tlaplus-monitor.join" .Values.kafka.servers }}
+            - -monitor
+            - -trace
+            - "kafka://{{ .Values.kafka.service }}:{{ .Values.kafka.port }}/{{ .Values.kafka.topics.traces }}"
+            - -alert
+            - "kafka://{{ .Values.kafka.service }}:{{ .Values.kafka.port }}/{{ .Values.kafka.topics.alerts }}"
           volumeMounts:
             - name: models
               mountPath: /opt/tlaplus/model
