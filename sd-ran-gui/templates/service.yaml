@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -13,7 +14,7 @@ spec:
   selector:
     name: {{ template "sd-ran-gui.fullname" . }}
     app: onos
-    type: gui
+    type: sdran
     resource: {{ template "sd-ran-gui.fullname" . }}
     {{- include "sd-ran-gui.selectorLabels" . | nindent 4 }}
   ports:
@@ -24,3 +25,27 @@ spec:
       port: {{ $value.proxy }}
     {{- end }}
 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "sd-ran-gui.fullname" . }}-external
+  labels:
+    app: {{ template "sd-ran-gui.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+    {{- include "sd-ran-gui.labels" . | nindent 4 }}
+spec:
+  type: NodePort
+  selector:
+    name: {{ template "sd-ran-gui.fullname" . }}
+    app: onos
+    type: sdran
+    resource: {{ template "sd-ran-gui.fullname" . }}
+    {{- include "sd-ran-gui.selectorLabels" . | nindent 4 }}
+  ports:
+    - name: web
+      port: 80
+      nodePort: 33080
+      protocol: TCP
