@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -19,3 +20,30 @@ spec:
   ports:
     - name: grpc
       port: 5150
+    - name: exporter
+      port: 7000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "onos-ric.fullname" . }}-external
+  labels:
+    app: {{ template "onos-ric.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+    {{- include "onos-ric.labels" . | nindent 4 }}
+spec:
+  type: NodePort
+  selector:
+    name: {{ template "onos-ric.fullname" . }}
+    app: onos
+    type: ran
+    resource: {{ template "onos-ric.fullname" . }}
+    {{- include "onos-ric.selectorLabels" . | nindent 4 }}
+  ports:
+    - name: exporter
+      port: 7000
+      nodePort: 31700
+      protocol: TCP

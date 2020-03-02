@@ -43,5 +43,5 @@ spec:
   ports:
     - name: exporter
       port: 7001
-      nodePort: 33701
+      nodePort: 31701
       protocol: TCP
