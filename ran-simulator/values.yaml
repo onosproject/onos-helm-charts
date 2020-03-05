@@ -12,18 +12,21 @@ image:
 
 fade: false
 googleApiKey: "YOUR_API_KEY_HERE"
+locationsScale: 1.0
 mapCenterLat: 52.52
 mapCenterLng: 13.405
 maxUEsPerTower: 5
-numLocations: 600
-numRoutes: 3
+maxUEs: 300
+metricsPort: 9090
+minUEs: 3
+showPower: true
 showRoutes: true
 stepDelayMs: 1000
 towerCols: 3
 towerRows: 3
 towerSpacingHoriz: 0.02
 towerSpacingVert: 0.02
-zoom: 12
+zoom: 13
 
 imagePullSecrets: []
 nameOverride: ""
