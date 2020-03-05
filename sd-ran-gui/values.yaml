@@ -57,7 +57,7 @@ onosservices:
     grpc: 5150
     proxy: 8081
     streamTimeout: 3600
-    tls: false
+    tls: true
 
 google_api_key: YOUR_API_KEY_HERE
 
