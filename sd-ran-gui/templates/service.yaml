@@ -47,5 +47,5 @@ spec:
   ports:
     - name: web
       port: 80
-      nodePort: 33080
+      nodePort: 31180
       protocol: TCP
