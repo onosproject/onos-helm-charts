@@ -11,13 +11,13 @@ metadata:
     heritage: "{{ .Release.Service }}"
 data:
   {{ base .Values.model | trimSuffix ".tla"  }}.cfg: |
-    {{ if .Values.config.spec }}
+    {{- if .Values.config.spec }}
     SPECIFICATION {{ .Values.config.spec }}
     {{ end }}
-    {{ if .Values.config.init }}
+    {{- if .Values.config.init }}
     INIT {{ .Values.config.init }}
     {{ end }}
-    {{ if .Values.config.next }}
+    {{- if .Values.config.next }}
     NEXT {{ .Values.config.next }}
     {{ end }}
     {{- range .Values.config.invariants }}
