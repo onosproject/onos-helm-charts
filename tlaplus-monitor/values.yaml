@@ -21,6 +21,9 @@ model: ""
 # 'modules' is a list of module files to include. This should contain at least the 'model' file.
 modules: []
 
+# 'window' is the size of the sliding window within which to process traces
+window: "5m"
+
 # 'config' is the TLC configuration
 config:
   # 'spec' is the specification expression

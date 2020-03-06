@@ -30,13 +30,15 @@ spec:
           imagePullPolicy: IfNotPresent
           args:
             - /opt/tlaplus/model/{{ .Values.model }}
+            - -monitor
+            - -source
+            - "kafka://{{ .Values.kafka.service }}:{{ .Values.kafka.port }}/{{ .Values.kafka.topics.traces }}"
+            - -sink
+            - "kafka://{{ .Values.kafka.service }}:{{ .Values.kafka.port }}/{{ .Values.kafka.topics.alerts }}"
+            - -window
+            - {{ .Values.window }}
             - -metadir
             - /opt/tlaplus/data
-            - -monitor
-            - -trace
-            - "kafka://{{ .Values.kafka.service }}:{{ .Values.kafka.port }}/{{ .Values.kafka.topics.traces }}"
-            - -alert
-            - "kafka://{{ .Values.kafka.service }}:{{ .Values.kafka.port }}/{{ .Values.kafka.topics.alerts }}"
           volumeMounts:
             - name: models
               mountPath: /opt/tlaplus/model
