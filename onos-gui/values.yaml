@@ -48,14 +48,22 @@ tolerations: []
 affinity: {}
 
 onosservices:
-  topo:
-    grpc: 5150
-    proxy: 8080
-    streamTimeout: 3600
-  config:
+  onos-topo:
     grpc: 5150
     proxy: 8081
     streamTimeout: 3600
+  onos-config:
+    grpc: 5150
+    proxy: 8082
+    streamTimeout: 3600
+  onos-ric:
+    grpc: 5150
+    proxy: 8083
+    streamTimeout: 360
+  ran-simulator:
+    grpc: 5150
+    proxy: 8084
+    streamTimeout: 360
 #  control:
 #    grpc: 5150
 #    proxy: 8082
@@ -198,7 +206,7 @@ Envoy:
                             routes:
                               - match: { prefix: "/" }
                                 route:
-                                  cluster: onos_{{ $key }}_service
+                                  cluster: {{ $key }}_service
                                   max_grpc_timeout: 0s
                             cors:
                               allow_origin:
@@ -215,13 +223,13 @@ Envoy:
         {{- end }}
         clusters:
         {{- range $key, $value := .Values.onosservices }}
-          - name: onos_{{ $key }}_service
+          - name: {{ $key }}_service
             connect_timeout: 0.25s
             type: logical_dns
             http2_protocol_options: {}
             lb_policy: round_robin
             # win/mac hosts: Use address: host.docker.internal instead of address: localhost in the line below
-            hosts: [{ socket_address: { address: onos-{{$key}}, port_value: {{ $value.grpc }} }}]
+            hosts: [{ socket_address: { address: {{$key}}, port_value: {{ $value.grpc }} }}]
             tls_context:
               common_tls_context:
                 tls_certificates:
@@ -247,8 +255,12 @@ Nginx:
           location /rs/nav/uiextensions {
             root /usr/share/nginx/html;
           }
+          location /kubernetes-api/ {
+              proxy_pass http://localhost:8001/;
+              proxy_http_version 1.1;
+          }
           {{- range $key, $value := .Values.onosservices }}
-          location /onos-{{ $key }}/ {
+          location /{{ $key }}/ {
               proxy_pass http://localhost:{{ $value.proxy }}/;
               proxy_http_version 1.1;
               proxy_set_header Upgrade $http_upgrade;
