@@ -17,7 +17,8 @@ spec:
     resource: {{ template "ran-simulator.fullname" . }}
     {{- include "ran-simulator.selectorLabels" . | nindent 4 }}
   ports:
-    - name: grpc
+    - name: trafficsim
       port: 5150
     - name: exporter
       port: 9090
+# Other ports will be added here dynamically by the application for E2 interface
