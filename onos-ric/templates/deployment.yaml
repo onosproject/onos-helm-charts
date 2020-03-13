@@ -57,7 +57,6 @@ spec:
             - "-caPath=/etc/onos-ric/certs/tls.cacrt"
             - "-keyPath=/etc/onos-ric/certs/tls.key"
             - "-certPath=/etc/onos-ric/certs/tls.crt"
-            - "-simulator=ran-simulator:5150"
           ports:
             - name: grpc
               containerPort: 5150
