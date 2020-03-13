@@ -1,0 +1,7 @@
+replicas: 1
+namespace: ""
+image:
+  repository: atomix/kubernetes-controller
+  tag: latest
+  pullPolicy: IfNotPresent
+  pullSecrets: []
