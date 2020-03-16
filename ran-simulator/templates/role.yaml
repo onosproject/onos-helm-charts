@@ -1,0 +1,10 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: {{ .Release.Namespace }}
+  name: {{ template "ran-simulator.fullname" . }}-service-role
+rules:
+  - apiGroups: [""] # "" indicates the core API group
+    resources: ["services"]
+    resourceNames: [{{ template "ran-simulator.fullname" . }}]
+    verbs: ["get", "watch", "list", "update"]
