@@ -22,9 +22,9 @@ spec:
               name: metrics
             - containerPort: 5679
               name: control
-          {{- if .Values.namespace }}
+          {{- if eq (.Values.scope | lower) "namespace" }}
           args:
-            - {{ .Values.namespace }}
+            - {{ .Release.Namespace }}
           {{- end }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           readinessProbe:
