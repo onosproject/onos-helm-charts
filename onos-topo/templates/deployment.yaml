@@ -85,8 +85,6 @@ spec:
             - name: secret
               mountPath: /etc/onos/certs
               readOnly: true
-            - name: shared-data
-              mountPath: /usr/local/lib/shared
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           # Enable ptrace for debugging
