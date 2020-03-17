@@ -1,5 +1,5 @@
 replicas: 1
-namespace: ""
+scope: Cluster
 image:
   repository: atomix/kubernetes-controller
   tag: latest
