@@ -54,9 +54,9 @@ spec:
             - name: ATOMIX_NAMESPACE
               value: {{ .Release.Namespace }}
           args:
-            - "-caPath=/etc/onos-ric/certs/tls.cacrt"
-            - "-keyPath=/etc/onos-ric/certs/tls.key"
-            - "-certPath=/etc/onos-ric/certs/tls.crt"
+            - "-caPath=/etc/onos/certs/tls.cacrt"
+            - "-keyPath=/etc/onos/certs/tls.key"
+            - "-certPath=/etc/onos/certs/tls.crt"
           ports:
             - name: grpc
               containerPort: 5150
@@ -76,9 +76,14 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 10
           volumeMounts:
-            - name: secret
-              mountPath: /etc/onos-ric/certs
+            - name: config
+              mountPath: /etc/onos/config
               readOnly: true
+            - name: secret
+              mountPath: /etc/onos/certs
+              readOnly: true
+            - name: shared-data
+              mountPath: /usr/local/lib/shared
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           # Enable ptrace for debugging
@@ -89,6 +94,9 @@ spec:
                 - SYS_PTRACE
             {{- end }}
       volumes:
+        - name: config
+          configMap:
+            name: {{ template "onos-ric.fullname" . }}-config
         - name: secret
           secret:
             secretName: {{ template "onos-ric.fullname" . }}-secret
