@@ -17,10 +17,10 @@ fullnameOverride: "onos-ric"
 debug: false
 
 store:
-  enabled: true
-  raftgroup: onos-ric-raft
-  controller: atomix-controller.kube-system.svc.cluster.local:5679
-  raft:
+  controller: "atomix-controller.kube-system.svc.cluster.local:5679"
+  consensus:
+    enabled: true
+    database: {{ template "onos-ric.fullname" . }}-consensus
     partitions: 1
     clusters: 1
     backend:
@@ -48,4 +48,4 @@ tolerations: []
 
 affinity: {}
 
-config: {}
+logging: {}

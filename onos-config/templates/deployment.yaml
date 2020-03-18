@@ -39,6 +39,8 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            # *_NAMESPACE and *_NAME environment variables are recognized by onos-lib-go utilities.
+            # These variables should always be defined.
             - name: POD_NAMESPACE
               valueFrom:
                 fieldRef:
@@ -47,10 +49,18 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
+            - name: SERVICE_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: SERVICE_NAME
+              value: {{ template "onos-topo.fullname" . }}
             - name: NODE_NAME
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
+            # Note: Atomix environment variables remain for backwards compatibility.
+            # TODO: Remove Atomix environment variables once images have be updated to use new configuration file format
             - name: ATOMIX_CONTROLLER
               value: {{ .Values.store.controller | quote }}
             - name: ATOMIX_APP
