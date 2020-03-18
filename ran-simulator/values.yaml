@@ -10,7 +10,7 @@ image:
   pullPolicy: IfNotPresent
   pullSecrets: []
 
-fade: false
+fade: true
 googleApiKey: "YOUR_API_KEY_HERE"
 locationsScale: 1.0
 mapCenterLat: 52.52
