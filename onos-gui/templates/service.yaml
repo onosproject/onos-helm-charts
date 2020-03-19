@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -24,3 +25,27 @@ spec:
       port: {{ $value.proxy }}
     {{- end }}
 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "onos-gui.fullname" . }}-external
+  labels:
+    app: {{ template "onos-gui.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+    {{- include "onos-gui.labels" . | nindent 4 }}
+spec:
+  type: NodePort
+  selector:
+    name: {{ template "onos-gui.fullname" . }}
+    app: onos
+    type: gui
+    resource: {{ template "onos-gui.fullname" . }}
+    {{- include "onos-gui.selectorLabels" . | nindent 4 }}
+  ports:
+    - name: web
+      port: 80
+      nodePort: 31180
+      protocol: TCP
