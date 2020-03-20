@@ -63,7 +63,7 @@ onosservices:
   ran-simulator:
     grpc: 5150
     proxy: 8084
-    streamTimeout: 360
+    streamTimeout: 3600
 #  control:
 #    grpc: 5150
 #    proxy: 8082

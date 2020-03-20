@@ -49,6 +49,7 @@ spec:
             - "-mapCenterLng={{ .Values.mapCenterLng }}"
             - "-maxUEsPerTower={{ .Values.maxUEsPerTower }}"
             - "-maxUEs={{ .Values.maxUEs }}"
+            - "-metricsAllHoEvents={{ .Values.metricsAllHoEvents }}"
             - "-metricsPort={{ .Values.metricsPort }}"
             - "-minUEs={{ .Values.minUEs }}"
             - "-showPower={{ .Values.showPower }}"
