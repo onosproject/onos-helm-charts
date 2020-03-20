@@ -17,7 +17,7 @@ mapCenterLat: 52.52
 mapCenterLng: 13.405
 maxUEsPerTower: 5
 maxUEs: 300
-metricsAllHoEvents: true
+metricsAllHoEvents: false
 metricsPort: 9090
 minUEs: 3
 showPower: true
