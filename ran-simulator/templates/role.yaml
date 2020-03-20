@@ -1,3 +1,4 @@
+---
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
@@ -8,3 +9,30 @@ rules:
     resources: ["services"]
     resourceNames: [{{ template "ran-simulator.fullname" . }}]
     verbs: ["get", "watch", "list", "update"]
+
+# for dependency check
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: Role
+metadata:
+  name: ran-simulator
+  namespace: {{ .Release.Namespace }}
+rules:
+  - apiGroups:
+      - ""
+      - extensions
+      - batch
+      - apps
+    verbs:
+      - get
+      - list
+      - patch
+    resources:
+      - deployments
+      - statefulsets
+      - daemonsets
+      - jobs
+      - pods
+      - services
+      - endpoints
+      - configmaps
