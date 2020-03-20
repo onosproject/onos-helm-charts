@@ -48,7 +48,7 @@ spec:
                 fieldRef:
                   fieldPath: metadata.namespace
             - name: SERVICE_NAME
-              value: {{ template "onos-topo.fullname" . }}
+              value: {{ template "onos-ric.fullname" . }}
             - name: NODE_NAME
               valueFrom:
                 fieldRef:
@@ -60,7 +60,11 @@ spec:
             - name: ATOMIX_APP
               value: {{ include "onos-ric.fullname" . }}
             - name: ATOMIX_RAFT
-              value: {{ .Values.store.raftgroup }}
+              {{- if .Values.store.consensus.database }}
+              value: {{ .Values.store.consensus.database }}
+              {{- else }}
+              value: {{ template "onos-ric.fullname" . }}-consensus
+              {{- end }}
             - name: ATOMIX_NAMESPACE
               value: {{ .Release.Namespace }}
           args:

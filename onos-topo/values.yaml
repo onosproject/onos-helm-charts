@@ -20,7 +20,7 @@ store:
   controller: "atomix-controller.kube-system.svc.cluster.local:5679"
   consensus:
     enabled: true
-    database: {{ template "onos-topo.fullname" . }}-consensus
+    database: ""
     partitions: 1
     clusters: 1
     backend:

@@ -65,7 +65,11 @@ spec:
             - name: ATOMIX_APP
               value: {{ include "onos-topo.fullname" . }}
             - name: ATOMIX_RAFT
+              {{- if .Values.store.consensus.database }}
               value: {{ .Values.store.consensus.database }}
+              {{- else }}
+              value: {{ template "onos-topo.fullname" . }}-consensus
+              {{- end }}
           args:
             - "-caPath=/etc/onos/certs/tls.cacrt"
             - "-keyPath=/etc/onos/certs/tls.key"

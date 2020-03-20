@@ -2,7 +2,11 @@
 apiVersion: cloud.atomix.io/v1beta1
 kind: Database
 metadata:
-  name: {{ tpl (.Values.store.consensus.database | toString) $ }}
+  {{- if .Values.store.database }}
+  name: {{ .Values.store.database }}
+  {{- else }}
+  name: {{ template "onos-topo.fullname" . }}-consensus
+  {{- end }}
   namespace: {{ .Release.Namespace }}
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"

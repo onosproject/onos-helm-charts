@@ -14,7 +14,11 @@ data:
       namespace: {{ .Release.Namespace }}
       scope: {{ template "onos-ric.fullname" . }}
       protocols:
-        consensus: {{ tpl (.Values.store.consensus.database | toString) $ }}
+        {{- if .Values.store.consensus.database }}
+        consensus: {{ .Values.store.database }}
+        {{- else }}
+        consensus: {{ template "onos-ric.fullname" . }}-consensus
+        {{- end }}
 {{- if .Values.logging }}
     logging:
 {{ toYaml .Values.logging | indent 6 }}
