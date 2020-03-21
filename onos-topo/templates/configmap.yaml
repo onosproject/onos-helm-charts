@@ -13,7 +13,7 @@ data:
       controller: {{ .Values.store.controller }}
       namespace: {{ .Release.Namespace }}
       scope: {{ template "onos-topo.fullname" . }}
-      protocols:
+      databases:
         {{- if .Values.store.consensus.database }}
         consensus: {{ .Values.store.database }}
         {{- else }}
