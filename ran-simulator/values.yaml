@@ -29,10 +29,6 @@ towerSpacingHoriz: 0.02
 towerSpacingVert: 0.02
 zoom: 13
 
-towerPort:
-  numTowers: 9
-  startPort: 5152
-
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: "ran-simulator"

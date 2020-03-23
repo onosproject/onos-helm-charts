@@ -21,8 +21,4 @@ spec:
       port: 5150
     - name: exporter
       port: 9090
-    {{- range $i, $j := until (int .Values.towerPort.numTowers) }}
-    - name: tower-{{ $i }}
-      port: {{ add (int $.Values.towerPort.startPort) $i }}
-    {{- end }}
 # Other ports will be added here dynamically by the application for E2 interface

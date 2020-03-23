@@ -27,3 +27,7 @@ dependencies:
   condition: import.ran-simulator.enabled
   repository: file://../ran-simulator
   version: 0.0.1
+- name: onos-cli
+  condition: import.onos-cli.enabled
+  repository: file://../onos-cli
+  version: 0.0.1

@@ -17,6 +17,8 @@ import:
     enabled: true
   ran-simulator:
     enabled: true
+  onos-cli:
+    enabled: true
 
 # NEM-Monitoring
 nem-monitoring:
@@ -71,10 +73,10 @@ onos-ric:
     pullPolicy: IfNotPresent
   debug: false
   store:
-    enabled: true
-    raftgroup: onos-ric-raft
-    controller: atomix-controller.micro-onos.svc.cluster.local:5679
-    raft:
+    controller: "atomix-controller.kube-system.svc.cluster.local:5679"
+    consensus:
+      enabled: true
+      database: ""
       partitions: 1
       clusters: 1
       backend:

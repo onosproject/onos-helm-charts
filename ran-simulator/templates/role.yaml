@@ -27,6 +27,8 @@ rules:
       - get
       - list
       - patch
+      - watch
+      - update
     resources:
       - deployments
       - statefulsets
