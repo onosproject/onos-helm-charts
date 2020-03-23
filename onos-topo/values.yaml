@@ -17,10 +17,10 @@ fullnameOverride: "onos-topo"
 debug: false
 
 store:
-  enabled: true
-  raftgroup: onos-topo-raft
-  controller: atomix-controller.kube-system.svc.cluster.local:5679
-  raft:
+  controller: "atomix-controller.kube-system.svc.cluster.local:5679"
+  consensus:
+    enabled: true
+    database: ""
     partitions: 1
     clusters: 1
     backend:
@@ -41,4 +41,4 @@ tolerations: []
 
 affinity: {}
 
-config: {}
+logging: {}

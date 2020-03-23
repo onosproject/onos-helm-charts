@@ -1,0 +1,23 @@
+{{- if .Values.store.consensus.enabled }}
+apiVersion: cloud.atomix.io/v1beta1
+kind: Database
+metadata:
+  {{- if .Values.store.database }}
+  name: {{ .Values.store.database }}
+  {{- else }}
+  name: {{ template "onos-topo.fullname" . }}-consensus
+  {{- end }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  clusters: {{ .Values.store.consensus.clusters }}
+  template:
+    spec:
+      partitions: {{ .Values.store.consensus.partitions }}
+      backend:
+        image: {{ .Values.store.consensus.backend.image }}
+        replicas: {{ .Values.store.consensus.backend.replicas }}
+{{- end }}

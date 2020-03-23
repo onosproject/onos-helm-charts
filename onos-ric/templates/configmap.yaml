@@ -9,4 +9,17 @@ metadata:
     heritage: "{{ .Release.Service }}"
 data:
   onos.yaml: |-
-{{ toYaml .Values.config | indent 4 }}
+    atomix:
+      controller: {{ .Values.store.controller }}
+      namespace: {{ .Release.Namespace }}
+      scope: {{ template "onos-ric.fullname" . }}
+      databases:
+        {{- if .Values.store.consensus.database }}
+        consensus: {{ .Values.store.database }}
+        {{- else }}
+        consensus: {{ template "onos-ric.fullname" . }}-consensus
+        {{- end }}
+{{- if .Values.logging }}
+    logging:
+{{ toYaml .Values.logging | indent 6 }}
+{{- end}}
