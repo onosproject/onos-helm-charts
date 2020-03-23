@@ -129,7 +129,7 @@ ran-simulator:
     pullPolicy: IfNotPresent
   fade: true
   googleApiKey: "YOUR_API_KEY_HERE"
-  locationsScale: 1.0
+  locationsScale: 1.25
   mapCenterLat: 52.52
   mapCenterLng: 13.405
   maxUEsPerTower: 5
@@ -141,6 +141,15 @@ ran-simulator:
   stepDelayMs: 1000
   towerCols: 3
   towerRows: 3
-  towerSpacingHoriz: 0.02
+  towerSpacingHoriz: 0.033
   towerSpacingVert: 0.02
   zoom: 13
+
+onos-cli:
+  image:
+    repository: onosproject/onos-cli
+    tag: latest
+    pullPolicy: IfNotPresent
+  store:
+    raftgroup: onos-cli
+    controller: atomix-controller.micro-onos.svc.cluster.local:5679
