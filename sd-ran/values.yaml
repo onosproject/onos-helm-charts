@@ -52,6 +52,16 @@ nem-monitoring:
     nodeExporter: false
   kpi_exporter: 
     enabled: false
+  grafana:
+    datasources:
+      datasources.yaml:
+        apiVersion: 1
+        datasources:
+          - name: Prometheus
+            type: prometheus
+            url: http://sd-ran-prometheus-server
+            access: proxy
+            isDefault: true
 
 # ONOS-RIC
 onos-ric:
