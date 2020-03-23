@@ -13,7 +13,7 @@ image:
 
 fade: true
 googleApiKey: "YOUR_API_KEY_HERE"
-locationsScale: 1.0
+locationsScale: 1.25
 mapCenterLat: 52.52
 mapCenterLng: 13.405
 maxUEsPerTower: 5
@@ -26,7 +26,7 @@ showRoutes: true
 stepDelayMs: 1000
 towerCols: 3
 towerRows: 3
-towerSpacingHoriz: 0.02
+towerSpacingHoriz: 0.033
 towerSpacingVert: 0.02
 zoom: 13
 
