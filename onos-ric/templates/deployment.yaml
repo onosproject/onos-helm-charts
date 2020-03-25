@@ -71,6 +71,8 @@ spec:
             - "-caPath=/etc/onos/certs/tls.cacrt"
             - "-keyPath=/etc/onos/certs/tls.key"
             - "-certPath=/etc/onos/certs/tls.crt"
+            - "-topoEndpoint={{ .Values.topoEndpoint }}"
+            - "-enableMetrics={{ .Values.enableMetrics }}"
           ports:
             - name: grpc
               containerPort: 5150
