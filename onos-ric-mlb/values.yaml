@@ -15,7 +15,7 @@ nameOverride: ""
 fullnameOverride: "onos-ric-mlb"
 
 onosricaddr: "onos-ric:5150"
-enableMetrics: true
+enableMetrics: false
 
 store: {}
 

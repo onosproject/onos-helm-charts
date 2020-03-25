@@ -16,7 +16,7 @@ fullnameOverride: "onos-ric"
 
 debug: false
 topoEndpoint: "onos-topo:5150"
-enableMetrics: true
+enableMetrics: false
 
 store:
   controller: "atomix-controller.kube-system.svc.cluster.local:5679"
