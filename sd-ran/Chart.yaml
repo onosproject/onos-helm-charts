@@ -1,0 +1,15 @@
+apiVersion: v2
+name: sd-ran
+description: Umbrella chart to deploy all ONOS-RIC and simulator
+kubeVersion: ">=1.12.0"
+type: application
+version: 0.0.1
+appVersion: 0.1
+keywords:
+  - onos
+  - sdn
+  - ran
+home: https://onosproject.org
+maintainers:
+  - name: Woojoong Kim
+  - email: woojoong@opennetworking.org
