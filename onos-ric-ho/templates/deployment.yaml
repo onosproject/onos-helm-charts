@@ -33,7 +33,8 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
-            - "-onosricaddr=onos-ric:5150"
+            - "-onosricaddr={{ .Values.onosricaddr }}"
+            - "-enableMetrics={{ .Values.enableMetrics }}"
           livenessProbe:
             exec:
               command:
