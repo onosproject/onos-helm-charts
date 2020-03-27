@@ -1,16 +1,10 @@
-export CGO_ENABLED=0
-export GO111MODULE=on
+.PHONY: all test clean
 
-.PHONY: build
+all: test
 
-ONOS_HELM_CHARTS_TESTS_VERSION := latest
-
-test: # @HELP run the unit tests and source code validation
+test: # @HELP run the integration tests
 test:
-	helmit test ./test
-
-clean: # @HELP remove all the build artifacts
-	rm -rf ./build/_output
+	helmit test ./test -c .
 
 help:
 	@grep -E '^.*: *# *@HELP' $(MAKEFILE_LIST) \

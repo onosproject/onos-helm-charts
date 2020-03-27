@@ -29,7 +29,7 @@ type AtomixControllerSuite struct {
 
 // TestInstallClusterScoped tests installing the atomix-controller chart at the cluster scope
 func (s *AtomixControllerSuite) TestInstallClusterScoped(t *testing.T) {
-	atomix := helm.Chart("/etc/onos-helm-charts/atomix-controller").
+	atomix := helm.Chart("atomix-controller").
 		Release("atomix-controller-cluster").
 		Set("scope", "Cluster")
 	assert.NoError(t, atomix.Install(true))
@@ -51,7 +51,7 @@ func (s *AtomixControllerSuite) TestInstallClusterScoped(t *testing.T) {
 
 // TestInstallNamespaceScoped tests installing the atomix-controller chart at the namespace scope
 func (s *AtomixControllerSuite) TestInstallNamespaceScoped(t *testing.T) {
-	atomix := helm.Chart("/etc/onos-helm-charts/atomix-controller").
+	atomix := helm.Chart("atomix-controller").
 		Release("atomix-controller-namespace").
 		Set("scope", "Namespace")
 	assert.NoError(t, atomix.Install(true))
