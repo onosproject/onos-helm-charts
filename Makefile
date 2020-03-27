@@ -6,7 +6,7 @@ export GO111MODULE=on
 ONOS_HELM_CHARTS_TESTS_VERSION := latest
 
 test: # @HELP run the unit tests and source code validation
-test: images
+test:
 	helmit test ./test
 
 clean: # @HELP remove all the build artifacts
