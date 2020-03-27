@@ -15,8 +15,8 @@
 package tests
 
 import (
-	"github.com/onosproject/onos-test/pkg/helm"
-	"github.com/onosproject/onos-test/pkg/test"
+	"github.com/onosproject/helmit/pkg/helm"
+	"github.com/onosproject/helmit/pkg/test"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -28,20 +28,17 @@ type ONOSRICSuite struct {
 
 // TestInstall tests installing the onos-ric chart
 func (s *ONOSRICSuite) TestInstall(t *testing.T) {
-	atomix := helm.Helm().
-		Chart("/etc/onos-helm-charts/atomix-controller").
+	atomix := helm.Chart("/etc/onos-helm-charts/atomix-controller").
 		Release("atomix-controller").
 		Set("scope", "Namespace")
 	assert.NoError(t, atomix.Install(true))
 
-	topo := helm.Helm().
-		Chart("/etc/onos-helm-charts/onos-topo").
+	topo := helm.Chart("/etc/onos-helm-charts/onos-topo").
 		Release("onos-topo").
 		Set("store.controller", "atomix-controller:5679")
 	assert.NoError(t, topo.Install(false))
 
-	ric := helm.Helm().
-		Chart("/etc/onos-helm-charts/onos-ric").
+	ric := helm.Chart("/etc/onos-helm-charts/onos-ric").
 		Release("onos-ric").
 		Set("store.controller", "atomix-controller:5679")
 	assert.NoError(t, ric.Install(true))
