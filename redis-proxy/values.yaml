@@ -1,0 +1,15 @@
+clusters: 1
+partitions: 3
+
+proxy:
+  repository: atomix/redis-proxy
+  tag: latest
+  pullPolicy: IfNotPresent
+  pullSecrets: []
+
+backend:
+  repository: redis
+  tag: latest
+  pullPolicy: IfNotPresent
+  pullSecrets: []
+  replicaCount: 1

@@ -1,0 +1,16 @@
+apiVersion: v2
+name: redis-proxy
+description: A Helm chart for redis proxy
+
+type: application
+version: 0.0.1
+appVersion: 1.0
+keywords:
+  - redis
+  - atomix
+home: https://onosproject.org
+maintainers:
+  - name: kuujo
+    email: jordan@opennetworking.org
+  - name: Adib
+    email: adib@opennetworking.org

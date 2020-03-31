@@ -1,0 +1,37 @@
+apiVersion: cloud.atomix.io/v1beta1
+kind: Database
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  clusters: {{.Values.clusters}}
+  template:
+    spec:
+      partitions: {{ .Values.partitions}}
+      proxy:
+        image: {{ .Values.proxy.repository }}:{{ .Values.proxy.tag }}
+        livenessProbe:
+          tcpSocket:
+            port: 5678
+            initialDelaySeconds: 15
+            periodSeconds: 20
+      backend:
+        image: {{ .Values.backend.repository }}:{{ .Values.backend.tag }}
+        replicas: {{.Values.backend.replicaCount}}
+        livenessProbe:
+          tcpSocket:
+            port: 6379
+            initialDelaySeconds: 15
+            periodSeconds: 20
+        readinessProbe:
+          exec:
+            command:
+              - redis-cli
+            initialDelaySeconds: 5
+            periodSeconds: 5
+
+
