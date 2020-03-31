@@ -15,8 +15,9 @@
 package tests
 
 import (
-	"github.com/onosproject/onos-test/pkg/helm"
-	"github.com/onosproject/onos-test/pkg/test"
+	"github.com/onosproject/helmit/pkg/helm"
+	"github.com/onosproject/helmit/pkg/kubernetes"
+	"github.com/onosproject/helmit/pkg/test"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -28,17 +29,19 @@ type AtomixControllerSuite struct {
 
 // TestInstallClusterScoped tests installing the atomix-controller chart at the cluster scope
 func (s *AtomixControllerSuite) TestInstallClusterScoped(t *testing.T) {
-	atomix := helm.Helm().
-		Chart("/etc/onos-helm-charts/atomix-controller").
+	atomix := helm.Chart("atomix-controller").
 		Release("atomix-controller-cluster").
 		Set("scope", "Cluster")
 	assert.NoError(t, atomix.Install(true))
 
-	clusterRoles, err := atomix.RbacV1().ClusterRoles().List()
+	client, err := kubernetes.NewForRelease(atomix)
+	assert.NoError(t, err)
+
+	clusterRoles, err := client.RbacV1().ClusterRoles().List()
 	assert.NoError(t, err)
 	assert.Len(t, clusterRoles, 1)
 
-	clusterRoleBindings, err := atomix.RbacV1().ClusterRoleBindings().List()
+	clusterRoleBindings, err := client.RbacV1().ClusterRoleBindings().List()
 	assert.NoError(t, err)
 	assert.Len(t, clusterRoleBindings, 1)
 
@@ -48,17 +51,19 @@ func (s *AtomixControllerSuite) TestInstallClusterScoped(t *testing.T) {
 
 // TestInstallNamespaceScoped tests installing the atomix-controller chart at the namespace scope
 func (s *AtomixControllerSuite) TestInstallNamespaceScoped(t *testing.T) {
-	atomix := helm.Helm().
-		Chart("/etc/onos-helm-charts/atomix-controller").
+	atomix := helm.Chart("atomix-controller").
 		Release("atomix-controller-namespace").
 		Set("scope", "Namespace")
 	assert.NoError(t, atomix.Install(true))
 
-	roles, err := atomix.RbacV1().Roles().List()
+	client, err := kubernetes.NewForRelease(atomix)
+	assert.NoError(t, err)
+
+	roles, err := client.RbacV1().Roles().List()
 	assert.NoError(t, err)
 	assert.Len(t, roles, 1)
 
-	roleBindings, err := atomix.RbacV1().RoleBindings().List()
+	roleBindings, err := client.RbacV1().RoleBindings().List()
 	assert.NoError(t, err)
 	assert.Len(t, roleBindings, 1)
 
