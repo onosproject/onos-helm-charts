@@ -5,7 +5,6 @@
 replicaCount: 1
 
 image:
-  depCheck: quay.io/stackanetes/kubernetes-entrypoint:v0.3.1
   repository: onosproject/ran-simulator
   tag: latest
   pullPolicy: IfNotPresent
@@ -29,6 +28,7 @@ towerRows: 3
 towerSpacingHoriz: 0.033
 towerSpacingVert: 0.02
 zoom: 13
+loglevel: warn
 
 imagePullSecrets: []
 nameOverride: ""
