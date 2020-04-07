@@ -19,6 +19,10 @@ dependencies:
   condition: import.onos-topo.enabled
   repository: file://../onos-topo
   version: 0.0.1
+- name: onos-config
+  condition: import.onos-config.enabled
+  repository: file://../onos-config
+  version: 0.0.1
 - name: onos-gui
   condition: import.onos-gui.enabled
   repository: file://../onos-gui
