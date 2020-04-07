@@ -1,0 +1,22 @@
+{{- if .Values.store.cache.enabled }}
+apiVersion: cloud.atomix.io/v1beta1
+kind: Database
+metadata:
+  {{- if .Values.store.cache.database }}
+  name: {{ .Values.store.cache.database }}
+  {{- else }}
+  name: {{ template "onos-ric.fullname" . }}-cache
+  {{- end }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  clusters: {{ .Values.store.cache.clusters }}
+  template:
+    spec:
+      partitions: {{ .Values.store.cache.partitions }}
+      backend:
+        image: {{ .Values.store.cache.backend.image }}
+{{- end }}

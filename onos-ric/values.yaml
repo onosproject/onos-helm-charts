@@ -21,6 +21,13 @@ enableMetrics: false
 
 store:
   controller: "atomix-controller.kube-system.svc.cluster.local:5679"
+  cache:
+    enabled: true
+    database: ""
+    partitions: 1
+    clusters: 1
+    backend:
+      image: atomix/local-replica:latest
   consensus:
     enabled: true
     database: ""

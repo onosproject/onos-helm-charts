@@ -14,8 +14,13 @@ data:
       namespace: {{ .Release.Namespace }}
       scope: {{ template "onos-ric.fullname" . }}
       databases:
+        {{- if .Values.store.cache.database }}
+        cache: {{ .Values.store.cache.database }}
+        {{- else }}
+        cache: {{ template "onos-ric.fullname" . }}-cache
+        {{- end }}
         {{- if .Values.store.consensus.database }}
-        consensus: {{ .Values.store.database }}
+        consensus: {{ .Values.store.consensus.database }}
         {{- else }}
         consensus: {{ template "onos-ric.fullname" . }}-consensus
         {{- end }}
