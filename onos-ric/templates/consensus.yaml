@@ -2,8 +2,8 @@
 apiVersion: cloud.atomix.io/v1beta1
 kind: Database
 metadata:
-  {{- if .Values.store.database }}
-  name: {{ .Values.store.database }}
+  {{- if .Values.store.consensus.database }}
+  name: {{ .Values.store.consensus.database }}
   {{- else }}
   name: {{ template "onos-ric.fullname" . }}-consensus
   {{- end }}
