@@ -13,6 +13,8 @@ import:
     enabled: true
   onos-topo:
     enabled: true
+  onos-config:
+    enabled: false
   onos-gui:
     enabled: true
   ran-simulator:
@@ -114,6 +116,23 @@ onos-topo:
         image: atomix/raft-replica:latest
         replicas: 1
 
+# ONOS-CONFIG
+onos-config:
+  image:
+    repository: onosproject/onos-config
+    tag: latest
+    pullPolicy: IfNotPresent
+  store:
+    controller: atomix-controller.micro-onos.svc.cluster.local:5679
+    consensus:
+      enabled: true
+      database: ""
+      partitions: 1
+      clusters: 1
+      backend:
+        image: atomix/raft-replica:latest
+        replicas: 1
+
 # ONOS-GUI
 onos-gui:
   image:
@@ -150,6 +169,3 @@ onos-cli:
     repository: onosproject/onos-cli
     tag: latest
     pullPolicy: IfNotPresent
-  store:
-    raftgroup: onos-cli
-    controller: atomix-controller.micro-onos.svc.cluster.local:5679
