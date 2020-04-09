@@ -483,6 +483,8 @@ github.com/onosproject/helmit v0.0.0-20200327194858-83f4463259da h1:ynFY+Ya4mfbb
 github.com/onosproject/helmit v0.0.0-20200327194858-83f4463259da/go.mod h1:n5Cx+l/S/d+V3DStbpfbo16eGeZ/G3Nbl7u2nY4Ofxc=
 github.com/onosproject/helmit v0.0.0-20200407154219-01143f65f143 h1:QdQ6HdDVqZFz7jAaog0gx6RHFqFetGruNOpWwHregd4=
 github.com/onosproject/helmit v0.0.0-20200407154219-01143f65f143/go.mod h1:GwfwgPCBykeIOQJnii780T7J114+s4DLP8D/HUTdflk=
+github.com/onosproject/helmit v0.5.0 h1:qHHhbrC1aESpQI9R2XMHWwxX5gLSVeKsmdN2zeXs6Wc=
+github.com/onosproject/helmit v0.5.0/go.mod h1:GwfwgPCBykeIOQJnii780T7J114+s4DLP8D/HUTdflk=
 github.com/onosproject/onos-cli v0.0.0-20200205222355-b174234b2ffa/go.mod h1:aUcsRKvZxiJOoT1KCUgp4iiDe71pvawPqPrXWoPmKjI=
 github.com/onosproject/onos-config v0.0.0-20191116095118-2ca4b5f98ae2/go.mod h1:KqXDEuf9d/uiHCL1iso0s8j3UUofZjCHUhs5pVWwJ0E=
 github.com/onosproject/onos-config v0.0.0-20200124182344-6c3f5eb1e6ed/go.mod h1:rQfBju27qOGvL7Qtvxo6H9TlvU0oEw91emQzS14hmnE=
