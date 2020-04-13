@@ -59,20 +59,6 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
-            # Note: Atomix environment variables remain for backwards compatibility.
-            # TODO: Remove Atomix environment variables once images have be updated to use new configuration file format
-            - name: ATOMIX_CONTROLLER
-              value: {{ .Values.store.controller | quote }}
-            - name: ATOMIX_APP
-              value: {{ include "onos-config.fullname" . }}
-            - name: ATOMIX_RAFT
-              {{- if .Values.store.consensus.database }}
-              value: {{ .Values.store.consensus.database }}
-              {{- else }}
-              value: {{ template "onos-config.fullname" . }}-consensus
-              {{- end }}
-            - name: ATOMIX_NAMESPACE
-              value: {{ .Release.Namespace }}
           args:
             - "-caPath=/etc/onos/certs/tls.cacrt"
             - "-keyPath=/etc/onos/certs/tls.key"
