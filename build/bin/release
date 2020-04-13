@@ -34,11 +34,12 @@ cr index \
     --charts-repo https://onosproject.github.io/onos-helm-charts \
     --package-path build/release
 
-# Switch to the gh-pages branch and commit the updated index.yaml
+# Branch off the gh-pages branch and commit the updated index.yaml to a development branch
 git checkout gh-pages
+git checkout -b release-$chart
 mv build/release/index.yaml index.yaml
 git add index.yaml
 git commit -a -m "Add $chart release to index.yaml"
-git push origin gh-pages
+git push origin release-$chart
 
 git checkout $branch
