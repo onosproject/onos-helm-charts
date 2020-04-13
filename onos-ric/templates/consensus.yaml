@@ -1,12 +1,13 @@
 {{- if .Values.store.consensus.enabled }}
-apiVersion: cloud.atomix.io/v1beta1
+{{- if .Values.store.consensus.database }}
+{{- $name := .Values.store.consensus.database }}
+{{- else }}
+{{- $name := printf "%s-consensus" (template "onos-ric.fullname" .) }}
+{{- end }}
+apiVersion: cloud.atomix.io/v1beta2
 kind: Database
 metadata:
-  {{- if .Values.store.consensus.database }}
-  name: {{ .Values.store.consensus.database }}
-  {{- else }}
-  name: {{ template "onos-ric.fullname" . }}-consensus
-  {{- end }}
+  name: {{ $name }}
   namespace: {{ .Release.Namespace }}
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
@@ -17,7 +18,19 @@ spec:
   template:
     spec:
       partitions: {{ .Values.store.consensus.partitions }}
-      backend:
-        image: {{ .Values.store.consensus.backend.image }}
-        replicas: {{ .Values.store.consensus.backend.replicas }}
+      storage:
+        group: storage.cloud.atomix.io
+        version: v1beta1
+        kind: RaftStorageClass
+        name: {{ $name }}
+---
+apiVersion: storage.cloud.atomix.io/v1beta1
+kind: RaftStorageClass
+metadata:
+  name: {{ $name }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec: {}
 {{- end }}
