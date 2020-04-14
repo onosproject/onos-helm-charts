@@ -14,6 +14,7 @@ rm -r build/release
 owner=${GITHUB_USER:-onosproject}
 repo=${GITHUB_REPO:-onos-helm-charts}
 remote=${GIT_REMOTE:-origin}
+token=${GITHUB_TOKEN}
 branch=$(git branch --show-current)
 
 # Package the Helm chart
@@ -25,7 +26,8 @@ cr upload \
     --git-upload-url https://uploads.github.com/ \
     --owner $owner \
     --git-repo $repo \
-    --package-path build/release
+    --package-path build/release \
+    --token $token
 
 # Switch to the gh-pages branch
 git checkout gh-pages
@@ -38,7 +40,8 @@ cr index \
     --owner $owner \
     --git-repo $repo \
     --charts-repo https://$owner.github.io/$repo \
-    --package-path build/release
+    --package-path build/release \
+    --token $token
 
 # Commit the updated index.yaml
 git commit -a -m "Add $chart release to index.yaml"
