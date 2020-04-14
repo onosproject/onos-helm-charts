@@ -11,6 +11,9 @@ chart=$1
 
 rm -r build/release
 
+owner=${GITHUB_USER:-onosproject}
+repo=${GITHUB_REPO:-onos-helm-charts}
+remote=${GIT_REMOTE:-origin}
 branch=$(git branch --show-current)
 
 # Package the Helm chart
@@ -20,26 +23,25 @@ helm package $chart --destination build/release
 cr upload \
     --git-base-url https://api.github.com/ \
     --git-upload-url https://uploads.github.com/ \
-    --owner onosproject \
-    --git-repo onos-helm-charts \
+    --owner $owner \
+    --git-repo $repo \
     --package-path build/release
+
+# Switch to the gh-pages branch
+git checkout gh-pages
 
 # Update the repository index
 cr index \
-    --index-path build/release/index.yaml \
+    --index-path index.yaml \
     --git-base-url https://api.github.com/ \
     --git-upload-url https://uploads.github.com/ \
-    --owner onosproject \
-    --git-repo onos-helm-charts \
-    --charts-repo https://onosproject.github.io/onos-helm-charts \
+    --owner $owner \
+    --git-repo $repo \
+    --charts-repo https://$owner.github.io/$repo \
     --package-path build/release
 
-# Branch off the gh-pages branch and commit the updated index.yaml to a development branch
-git checkout gh-pages
-git checkout -b release-$chart
-mv build/release/index.yaml index.yaml
-git add index.yaml
+# Commit the updated index.yaml
 git commit -a -m "Add $chart release to index.yaml"
-git push origin release-$chart
+git push $remote gh-pages
 
 git checkout $branch
