@@ -44,7 +44,8 @@ cr index \
     --token $token
 
 # Commit the updated index.yaml
-git commit -a -m "Add $chart release to index.yaml"
+git add index.yaml
+git commit -m "Add $chart release to index.yaml" index.yaml
 git push $remote gh-pages
 
 git checkout $branch
