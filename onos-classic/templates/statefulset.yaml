@@ -1,0 +1,130 @@
+# This template provides a StatefulSet for ONOS nodes.
+# The StatefulSet is used to ensure that nodes are assigned a persistent identity.
+# The StatefulSet must be used with a headless service to ensure pods can communicate with each other through
+# their persistent identities.
+# The StatefulSet supports upgrades through a simple RollingUpdate strategy.
+# An anti-affinity policy is used to ensure pods are scheduled on distinct hosts when enabled.
+# To configure the pods, an init container is used to populate a properties file on an ephemeral volume. The
+# configuration volume is shared with the primary container for configuration purposes.
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  serviceName: {{ template "fullname" . }}-hs
+  selector:
+    matchLabels:
+      app: {{ template "fullname" . }}
+  replicas: {{ .Values.replicas }}
+  updateStrategy:
+    type: RollingUpdate
+  podManagementPolicy: Parallel
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}
+    spec:
+      {{- if .Values.podAntiAffinity.enabled }}
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - {{ template "fullname" . }}
+            topologyKey: kubernetes.io/hostname
+      {{- end }}
+      initContainers:
+        - name: {{ .Chart.Name }}-init
+          image: tutum/dnsutils:latest
+          env:
+            - name: ATOMIX_SERVICE
+              value: {{ template "atomix.fullname" . }}
+            - name: ATOMIX_REPLICAS
+              value: {{ .Values.atomix.replicas | quote }}
+          command:
+            - sh
+            - -c
+            - "/scripts/configure-onos.sh $ATOMIX_SERVICE $ATOMIX_REPLICAS > /config/cluster.json && touch /config/active"
+          volumeMounts:
+            - name: init-scripts
+              mountPath: /scripts
+            - name: config
+              mountPath: /config
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        resources:
+          requests:
+            memory: {{ .Values.resources.requests.memory }}
+            cpu: {{ .Values.resources.requests.cpu }}
+        env:
+          - name: JAVA_OPTS
+            value: -Xmx{{ .Values.heap }}
+        ports:
+          - name: openflow
+            containerPort: 6653
+          - name: ovsdb
+            containerPort: 6640
+          - name: east-west
+            containerPort: 9876
+          - name: cli
+            containerPort: 8101
+          - name: ui
+            containerPort: 8181
+        readinessProbe:
+          exec:
+            command:
+              - sh
+              - -c
+              - /root/onos/bin/check-onos-status
+          initialDelaySeconds: 30
+          periodSeconds: 15
+          failureThreshold: 10
+        livenessProbe:
+          exec:
+            command:
+              - sh
+              - -c
+              - /root/onos/bin/check-onos-status
+          initialDelaySeconds: 300
+          periodSeconds: 15
+          timeoutSeconds: 5
+        volumeMounts:
+          - name: probe-scripts
+            mountPath: /root/onos/bin/check-onos-status
+            subPath: check-onos-status
+          - name: config
+            mountPath: /root/onos/config/cluster.json
+            subPath: cluster.json
+          {{- range .Values.apps }}
+          - name: config
+            mountPath: /root/onos/apps/{{ . }}/active
+            subPath: active
+          {{- end }}
+      {{- if .Values.image.pullSecrets }}
+      imagePullSecrets:
+        {{- range .Values.image.pullSecrets }}
+        - name: {{ . | quote }}
+        {{- end }}
+      {{- end }}
+      volumes:
+        - name: init-scripts
+          configMap:
+            name: {{ template "fullname" . }}-init-scripts
+            defaultMode: 0744
+        - name: probe-scripts
+          configMap:
+            name: {{ template "fullname" . }}-probe-scripts
+            defaultMode: 0744
+        - name: config
+          emptyDir: {}

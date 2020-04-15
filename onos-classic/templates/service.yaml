@@ -1,0 +1,29 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "fullname" . }}-hs
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+  annotations:
+      service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+spec:
+  ports:
+  - name: openflow
+    port: 6653
+  - name: ovsdb
+    port: 6640
+  - name: east-west
+    port: 9876
+  - name: cli
+    port: 8101
+  - name: ui
+    port: 8181
+  # ONOS and Atomix need to be able to talk to each other for ONOS to become ready
+  publishNotReadyAddresses: true
+  clusterIP: None
+  selector:
+    app: {{ template "fullname" . }}

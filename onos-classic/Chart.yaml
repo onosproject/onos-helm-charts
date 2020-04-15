@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+name: onos-classic
+version: 0.1.0
+kubeVersion: ">=1.10.0"
+appVersion: 2.2.2
+description: ONOS cluster
+keywords:
+- onos
+- sdn
+- networking
+home: http://onosproject.org
+icon: https://guide.opencord.org/logos/onos.svg
+maintainers:
+- name: Jordan Halterman
+  email: jordan@opennetworking.org
