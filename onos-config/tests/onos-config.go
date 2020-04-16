@@ -28,7 +28,7 @@ type ONOSConfigSuite struct {
 
 // TestInstall tests installing the onos-config chart
 func (s *ONOSConfigSuite) TestInstall(t *testing.T) {
-	atomix := helm.Chart("atomix-controller").
+	atomix := helm.Chart("atomix-controller", "https://charts.atomix.io").
 		Release("atomix-controller").
 		Set("scope", "Namespace")
 	assert.NoError(t, atomix.Install(true))

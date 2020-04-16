@@ -28,7 +28,7 @@ type ONOSTopoSuite struct {
 
 // TestInstall tests installing the onos-topo chart
 func (s *ONOSTopoSuite) TestInstall(t *testing.T) {
-	atomix := helm.Chart("atomix-controller").
+	atomix := helm.Chart("atomix-controller", "https://charts.atomix.io").
 		Release("atomix-controller").
 		Set("scope", "Namespace")
 	assert.NoError(t, atomix.Install(true))
