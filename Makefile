@@ -6,6 +6,9 @@ test: # @HELP run the integration tests
 test:
 	helmit test ./test -c .
 
+publish: # @HELP publish version on github
+	./../build-tools/publish-version ${VERSION}
+
 bumponosdeps: # @HELP update "onosproject" go dependencies and push patch to git.
 	./../build-tools/bump-onos-deps ${VERSION}
 
