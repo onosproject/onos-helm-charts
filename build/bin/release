@@ -6,6 +6,7 @@ if [ "$#" -lt "1" ]; then
 fi
 
 set -x
+set -e
 
 chart=$1
 
