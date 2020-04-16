@@ -1,9 +1,5 @@
 {{- if .Values.store.cache.enabled }}
-{{- if .Values.store.cache.database }}
-{{- $name := .Values.store.cache.database }}
-{{- else }}
-{{- $name := printf "%s-cache" (template "onos-ric.fullname" .) }}
-{{- end }}
+{{- $name := ternary .Values.store.cache.database (printf "%s-cache" (include "onos-topo.fullname" .)) (not (eq .Values.store.cache.database "")) }}
 apiVersion: cloud.atomix.io/v1beta2
 kind: Database
 metadata:

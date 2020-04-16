@@ -1,9 +1,5 @@
 {{- if .Values.store.consensus.enabled }}
-  {{- if .Values.store.consensus.database }}
-  {{- $name := .Values.store.consensus.database }}
-  {{- else }}
-  {{- $name := printf "%s-consensus" (template "onos-topo.fullname" .) }}
-  {{- end }}
+{{- $name := ternary .Values.store.consensus.database (printf "%s-consensus" (include "onos-topo.fullname" .)) (not (eq .Values.store.consensus.database "")) }}
 apiVersion: cloud.atomix.io/v1beta2
 kind: Database
 metadata:
@@ -35,4 +31,4 @@ metadata:
 spec:
   image: {{ .Values.store.consensus.image }}
   replicas: {{ .Values.store.consensus.replicas }}
-  {{- end }}
+{{- end }}
