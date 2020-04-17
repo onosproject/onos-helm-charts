@@ -1,7 +1,0 @@
-replicas: 1
-scope: Cluster
-image:
-  repository: atomix/kubernetes-controller
-  tag: latest
-  pullPolicy: IfNotPresent
-  pullSecrets: []
