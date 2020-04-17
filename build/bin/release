@@ -10,7 +10,7 @@ set -e
 
 chart=$1
 
-rm -r build/release
+rm -rf build/release
 
 owner=${GITHUB_USER:-onosproject}
 repo=${GITHUB_REPO:-onos-helm-charts}
