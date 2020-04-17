@@ -17,7 +17,6 @@ package main
 import (
 	"github.com/onosproject/helmit/pkg/registry"
 	"github.com/onosproject/helmit/pkg/test"
-	atomix "github.com/onosproject/onos-helm-charts/atomix-controller/tests"
 	config "github.com/onosproject/onos-helm-charts/onos-config/tests"
 	ric "github.com/onosproject/onos-helm-charts/onos-ric/tests"
 	topo "github.com/onosproject/onos-helm-charts/onos-topo/tests"
@@ -25,7 +24,6 @@ import (
 )
 
 func main() {
-	registry.RegisterTestSuite("atomix-controller", &atomix.AtomixControllerSuite{})
 	registry.RegisterTestSuite("onos-topo", &topo.ONOSTopoSuite{})
 	registry.RegisterTestSuite("onos-config", &config.ONOSConfigSuite{})
 	registry.RegisterTestSuite("onos-ric", &ric.ONOSRICSuite{})
