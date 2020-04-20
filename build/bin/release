@@ -12,7 +12,6 @@ chart=$1
 
 owner=${GITHUB_USER:-onosproject}
 repo=${GITHUB_REPO:-onos-helm-charts}
-remote=${GIT_REMOTE:-origin}
 token=${GITHUB_TOKEN}
 
 rm -rf build/release
@@ -51,7 +50,7 @@ cr index \
 # Commit the updated index.yaml
 git add index.yaml
 git commit -m "Add $chart release to index.yaml" index.yaml
-git push $remote gh-pages
+git push origin gh-pages
 
 git checkout master
 
