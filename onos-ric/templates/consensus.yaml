@@ -1,5 +1,5 @@
 {{- if .Values.store.consensus.enabled }}
-{{- $name := ternary .Values.store.consensus.database (printf "%s-consensus" (include "onos-topo.fullname" .)) (not (eq .Values.store.consensus.database "")) }}
+{{- $name := ternary .Values.store.consensus.database (printf "%s-consensus" (include "onos-ric.fullname" .)) (not (eq .Values.store.consensus.database "")) }}
 apiVersion: cloud.atomix.io/v1beta2
 kind: Database
 metadata:
