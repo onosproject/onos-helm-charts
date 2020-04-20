@@ -18,7 +18,7 @@ token=${GITHUB_TOKEN}
 rm -rf build/release
 
 # Create a fresh clone of the repository
-git clone --branch master git@github.com:onosproject/onos-helm-charts.git build/release
+git clone --branch master git@github.com:$owner/$repo.git build/release
 
 cd build/release
 
