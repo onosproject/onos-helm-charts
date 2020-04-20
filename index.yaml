@@ -1,0 +1,25 @@
+apiVersion: v1
+entries:
+  onos-config:
+  - apiVersion: v2
+    appVersion: "1"
+    created: "2020-04-20T16:43:16.328204-07:00"
+    description: ONOS Config Manager
+    digest: 1a042bf26f66547d92ffd4fb1f27cb52a9df5aca440db486327bdf5090128db7
+    home: https://onosproject.org
+    keywords:
+    - onos
+    - sdn
+    kubeVersion: '>=1.12.0'
+    maintainers:
+    - email: tom@opennetworking.org
+      name: tomikazi
+    - email: jordan@opennetworking.org
+      name: kuujo
+    - email: andrea@opennetworking.org
+      name: Andrea Campanella
+    name: onos-config
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-config-0.0.1/onos-config-0.0.1.tgz
+    version: 0.0.1
+generated: "2020-04-20T16:43:16.072545-07:00"
