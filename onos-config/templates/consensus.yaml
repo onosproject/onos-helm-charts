@@ -31,5 +31,6 @@ metadata:
     heritage: "{{ .Release.Service }}"
 spec:
   image: {{ .Values.store.consensus.image }}
+  imagePullPolicy: {{ .Values.store.consensus.imagePullPolicy }}
   replicas: {{ .Values.store.consensus.replicas }}
   {{- end }}

@@ -31,4 +31,5 @@ metadata:
     heritage: "{{ .Release.Service }}"
 spec:
   image: {{ .Values.store.cache.image }}
+  imagePullPolicy: {{ .Values.store.cache.imagePullPolicy }}
 {{- end }}
