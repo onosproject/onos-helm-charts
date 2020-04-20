@@ -3,18 +3,18 @@ dependencies:
   condition: import.nem-monitoring.enabled
   repository: https://charts.opencord.org
   version: 1.3.0
-- name: atomix-controller
+- name: kubernetes-controller
   condition: import.atomix-controller.enabled
   repository: https://charts.atomix.io
-  version: 0.2.0
+  version: 0.3.4
 - name: raft-storage-controller
   condition: import.atomix-raft-storage-controller.enabled
   repository: https://charts.atomix.io
-  version: 0.1.0
+  version: 0.2.3
 - name: cache-storage-controller
   condition: import.atomix-cache-storage-controller.enabled
   repository: https://charts.atomix.io
-  version: 0.1.0
+  version: 0.2.3
 - name: onos-ric
   condition: import.onos-ric.enabled
   repository: file://../onos-ric
