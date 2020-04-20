@@ -1,0 +1,29 @@
+---
+nameOverride: ""
+
+image:
+  repository: onosproject/onos
+  tag: 2.2.2
+  pullPolicy: IfNotPresent
+  pullSecrets: []
+
+replicas: 3
+heap: 4G
+apps:
+- org.onosproject.openflow-base
+
+atomix:
+  replicas: 3
+
+podAntiAffinity:
+  enabled: true
+
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 10
+
+resources:
+  requests:
+    cpu: 0.5
+    memory: 512Mi
