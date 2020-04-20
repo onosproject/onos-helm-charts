@@ -28,10 +28,15 @@ type ONOSTopoSuite struct {
 
 // TestInstall tests installing the onos-topo chart
 func (s *ONOSTopoSuite) TestInstall(t *testing.T) {
-	atomix := helm.Chart("atomix-controller").
+	atomix := helm.Chart("kubernetes-controller", "https://charts.atomix.io").
 		Release("atomix-controller").
 		Set("scope", "Namespace")
 	assert.NoError(t, atomix.Install(true))
+
+	raft := helm.Chart("raft-storage-controller", "https://charts.atomix.io").
+		Release("raft-storage-controller").
+		Set("scope", "Namespace")
+	assert.NoError(t, raft.Install(true))
 
 	topo := helm.Chart("onos-topo").
 		Release("onos-topo").

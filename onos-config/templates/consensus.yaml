@@ -1,12 +1,9 @@
 {{- if .Values.store.consensus.enabled }}
-apiVersion: cloud.atomix.io/v1beta1
+{{- $name := ternary .Values.store.consensus.database (printf "%s-consensus" (include "onos-config.fullname" .)) (not (eq .Values.store.consensus.database "")) }}
+apiVersion: cloud.atomix.io/v1beta2
 kind: Database
 metadata:
-  {{- if .Values.store.database }}
-  name: {{ .Values.store.database }}
-  {{- else }}
-  name: {{ template "onos-config.fullname" . }}-consensus
-  {{- end }}
+  name: {{ $name }}
   namespace: {{ .Release.Namespace }}
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
@@ -17,7 +14,23 @@ spec:
   template:
     spec:
       partitions: {{ .Values.store.consensus.partitions }}
-      backend:
-        image: {{ .Values.store.consensus.backend.image }}
-        replicas: {{ .Values.store.consensus.backend.replicas }}
-{{- end }}
+      storage:
+        group: storage.cloud.atomix.io
+        version: v1beta1
+        kind: RaftStorageClass
+        name: {{ $name }}
+---
+apiVersion: storage.cloud.atomix.io/v1beta1
+kind: RaftStorageClass
+metadata:
+  name: {{ $name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  image: {{ .Values.store.consensus.image }}
+  imagePullPolicy: {{ .Values.store.consensus.imagePullPolicy }}
+  replicas: {{ .Values.store.consensus.replicas }}
+  {{- end }}

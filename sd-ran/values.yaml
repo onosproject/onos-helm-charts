@@ -3,6 +3,12 @@
 # Declare variables to be passed into your templates.
 
 import:
+  atomix-controller:
+    enabled: true
+  atomix-raft-storage-controller:
+    enabled: true
+  atomix-cache-storage-controller:
+    enabled: true
   nem-monitoring:
     enabled: true
   onos-ric:
