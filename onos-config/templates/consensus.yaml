@@ -24,6 +24,7 @@ apiVersion: storage.cloud.atomix.io/v1beta1
 kind: RaftStorageClass
 metadata:
   name: {{ $name }}
+  namespace: {{ .Release.Namespace }}
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: "{{ .Release.Name }}"
