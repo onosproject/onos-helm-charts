@@ -21,7 +21,7 @@ store:
   consensus:
     enabled: true
     database: ""
-    image: atomix/raft-replica:latest
+    image: atomix/raft-storage-node:v0.1.0
     partitions: 1
     clusters: 1
     replicas: 1
