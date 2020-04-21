@@ -26,8 +26,6 @@ helm package $chart --destination package
 
 # Upload the Helm chart release
 cr upload \
-    --git-base-url https://api.github.com/ \
-    --git-upload-url https://uploads.github.com/ \
     --owner $owner \
     --git-repo $repo \
     --package-path package \
@@ -39,8 +37,6 @@ git checkout gh-pages
 # Update the repository index
 cr index \
     --index-path index.yaml \
-    --git-base-url https://api.github.com/ \
-    --git-upload-url https://uploads.github.com/ \
     --owner $owner \
     --git-repo $repo \
     --charts-repo https://$owner.github.io/$repo \
