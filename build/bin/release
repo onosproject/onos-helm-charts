@@ -22,7 +22,7 @@ git clone --branch master git@github.com:$owner/$repo.git build/release
 cd build/release
 
 # Package the Helm chart
-helm package $chart --destination package
+helm package $chart --dependency-update --destination package
 
 # Upload the Helm chart release
 cr upload \
