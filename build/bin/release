@@ -1,0 +1,55 @@
+#!/bin/bash
+
+if [ "$#" -lt "1" ]; then
+    echo "must specify chart directory"
+    exit 1
+fi
+
+set -x
+set -e
+
+chart=$1
+
+owner=${GITHUB_USER:-onosproject}
+repo=${GITHUB_REPO:-onos-helm-charts}
+token=${GITHUB_TOKEN}
+
+rm -rf build/release
+
+# Create a fresh clone of the repository
+git clone --branch master git@github.com:$owner/$repo.git build/release
+
+cd build/release
+
+# Package the Helm chart
+helm package $chart --destination package
+
+# Upload the Helm chart release
+cr upload \
+    --owner $owner \
+    --git-repo $repo \
+    --package-path package \
+    --token $token
+
+# Switch to the gh-pages branch
+git checkout gh-pages
+
+# Update the repository index
+cr index \
+    --index-path index.yaml \
+    --owner $owner \
+    --git-repo $repo \
+    --charts-repo https://$owner.github.io/$repo \
+    --package-path package \
+    --token $token
+
+# Commit the updated index.yaml
+git add index.yaml
+git commit -m "Add $chart release to index.yaml" index.yaml
+git push origin gh-pages
+
+git checkout master
+
+cd ../..
+
+rm -rf build/release
