@@ -161,4 +161,26 @@ entries:
     urls:
     - https://github.com/onosproject/onos-helm-charts/releases/download/onos-topo-0.0.1/onos-topo-0.0.1.tgz
     version: 0.0.1
+  onos-ztp:
+  - apiVersion: v2
+    appVersion: v0.6.0
+    created: "2020-04-22T12:53:10.60672-07:00"
+    description: ONOS Zero Touch Provisioning Subsystem
+    digest: 22df59660324a398f43a8185b6f3808bc89aea09b0df29ddabd03d588c305b9e
+    home: https://onosproject.org
+    keywords:
+    - onos
+    - sdn
+    kubeVersion: '>=1.17.0'
+    maintainers:
+    - email: andrea@opennetworking.org
+      name: Andrea Campanella
+    - email: jordan@opennetworking.org
+      name: kuujo
+    - email: adib@opennetworking.org
+      name: Adib
+    name: onos-ztp
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-ztp-0.0.1/onos-ztp-0.0.1.tgz
+    version: 0.0.1
 generated: "2020-04-20T16:43:16.072545-07:00"
