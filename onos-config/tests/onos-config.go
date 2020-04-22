@@ -29,22 +29,22 @@ type ONOSConfigSuite struct {
 // TestInstall tests installing the onos-config chart
 func (s *ONOSConfigSuite) TestInstall(t *testing.T) {
 	atomix := helm.Chart("kubernetes-controller", "https://charts.atomix.io").
-		Release("atomix-controller").
+		Release("onos-config-atomix").
 		Set("scope", "Namespace")
 	assert.NoError(t, atomix.Install(true))
 
 	raft := helm.Chart("raft-storage-controller", "https://charts.atomix.io").
-		Release("raft-storage-controller").
+		Release("onos-config-raft").
 		Set("scope", "Namespace")
 	assert.NoError(t, raft.Install(true))
 
 	topo := helm.Chart("onos-topo").
 		Release("onos-topo").
-		Set("store.controller", "atomix-controller:5679")
+		Set("store.controller", "onos-config-atomix-kubernetes-controller:5679")
 	assert.NoError(t, topo.Install(false))
 
 	config := helm.Chart("onos-config").
 		Release("onos-config").
-		Set("store.controller", "atomix-controller:5679")
+		Set("store.controller", "onos-config-atomix-kubernetes-controller:5679")
 	assert.NoError(t, config.Install(true))
 }

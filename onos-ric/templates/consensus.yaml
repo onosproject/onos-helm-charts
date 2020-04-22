@@ -1,6 +1,6 @@
 {{- if .Values.store.consensus.enabled }}
 {{- $name := ternary .Values.store.consensus.database (printf "%s-consensus" (include "onos-ric.fullname" .)) (not (eq .Values.store.consensus.database "")) }}
-apiVersion: cloud.atomix.io/v1beta2
+apiVersion: cloud.atomix.io/v1beta3
 kind: Database
 metadata:
   name: {{ $name }}
@@ -10,15 +10,12 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 spec:
-  clusters: {{ .Values.store.consensus.clusters }}
-  template:
-    spec:
-      partitions: {{ .Values.store.consensus.partitions }}
-      storage:
-        group: storage.cloud.atomix.io
-        version: v1beta1
-        kind: RaftStorageClass
-        name: {{ $name }}
+  partitions: {{ .Values.store.consensus.partitions }}
+  storageClass:
+    group: storage.cloud.atomix.io
+    version: v1beta1
+    kind: RaftStorageClass
+    name: {{ $name }}
 ---
 apiVersion: storage.cloud.atomix.io/v1beta1
 kind: RaftStorageClass
@@ -33,4 +30,5 @@ spec:
   image: {{ .Values.store.consensus.image }}
   imagePullPolicy: {{ .Values.store.consensus.imagePullPolicy }}
   replicas: {{ .Values.store.consensus.replicas }}
+  partitionsPerCluster: {{ .Values.store.consensus.partitionsPerCluster }}
 {{- end }}

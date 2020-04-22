@@ -41,8 +41,8 @@ store:
     image: atomix/raft-storage-node:v0.1.0
     imagePullPolicy: IfNotPresent
     partitions: 1
-    clusters: 1
     replicas: 1
+    partitionsPerCluster: 1
 
 ingress:
   enabled: false

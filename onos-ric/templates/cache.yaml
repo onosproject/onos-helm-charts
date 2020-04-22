@@ -1,6 +1,6 @@
 {{- if .Values.store.cache.enabled }}
 {{- $name := ternary .Values.store.cache.database (printf "%s-cache" (include "onos-ric.fullname" .)) (not (eq .Values.store.cache.database "")) }}
-apiVersion: cloud.atomix.io/v1beta2
+apiVersion: cloud.atomix.io/v1beta3
 kind: Database
 metadata:
   name: {{ $name }}
@@ -10,15 +10,12 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 spec:
-  clusters: {{ .Values.store.cache.clusters }}
-  template:
-    spec:
-      partitions: {{ .Values.store.cache.partitions }}
-      storage:
-        group: storage.cloud.atomix.io
-        version: v1beta1
-        kind: CacheStorageClass
-        name: {{ $name }}
+  partitions: {{ .Values.store.cache.partitions }}
+  storageClass:
+    group: storage.cloud.atomix.io
+    version: v1beta1
+    kind: CacheStorageClass
+    name: {{ $name }}
 ---
 apiVersion: storage.cloud.atomix.io/v1beta1
 kind: CacheStorageClass
