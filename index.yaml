@@ -20,6 +20,26 @@ entries:
     urls:
     - https://github.com/onosproject/onos-helm-charts/releases/download/onos-classic-0.1.0/onos-classic-0.1.0.tgz
     version: 0.1.0
+  onos-cli:
+  - apiVersion: v2
+    appVersion: v0.6.0
+    created: "2020-04-22T12:25:37.87784-07:00"
+    description: ONOS Command Line Interface
+    digest: ce8cb7d2b80eb0dc8bcf0cdc4a3dcb022fb0e15fe4b013593387183d9620e766
+    home: https://onosproject.org
+    keywords:
+    - onos
+    - sdn
+    kubeVersion: '>=1.17.0'
+    maintainers:
+    - email: andrea@opennetworking.org
+      name: Andrea Campanella
+    - email: jordan@opennetworking.org
+      name: kuujo
+    name: onos-cli
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-cli-0.0.1/onos-cli-0.0.1.tgz
+    version: 0.0.1
   onos-config:
   - apiVersion: v2
     appVersion: v0.6.0
