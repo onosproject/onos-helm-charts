@@ -4,11 +4,11 @@
 
 import:
   atomix-controller:
-    enabled: true
+    enabled: false
   atomix-raft-storage-controller:
-    enabled: true
+    enabled: false
   atomix-cache-storage-controller:
-    enabled: true
+    enabled: false
   nem-monitoring:
     enabled: true
   onos-ric:

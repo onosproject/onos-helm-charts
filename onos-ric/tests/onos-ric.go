@@ -29,27 +29,27 @@ type ONOSRICSuite struct {
 // TestInstall tests installing the onos-ric chart
 func (s *ONOSRICSuite) TestInstall(t *testing.T) {
 	atomix := helm.Chart("kubernetes-controller", "https://charts.atomix.io").
-		Release("atomix-controller").
+		Release("onos-ric-atomix").
 		Set("scope", "Namespace")
 	assert.NoError(t, atomix.Install(true))
 
 	raft := helm.Chart("raft-storage-controller", "https://charts.atomix.io").
-		Release("raft-storage-controller").
+		Release("onos-ric-raft").
 		Set("scope", "Namespace")
 	assert.NoError(t, raft.Install(true))
 
 	cache := helm.Chart("cache-storage-controller", "https://charts.atomix.io").
-		Release("cache-storage-controller").
+		Release("onos-ric-cache").
 		Set("scope", "Namespace")
 	assert.NoError(t, cache.Install(true))
 
 	topo := helm.Chart("onos-topo").
 		Release("onos-topo").
-		Set("store.controller", "atomix-controller:5679")
+		Set("store.controller", "onos-ric-atomix-kubernetes-controller:5679")
 	assert.NoError(t, topo.Install(false))
 
 	ric := helm.Chart("onos-ric").
 		Release("onos-ric").
-		Set("store.controller", "atomix-controller:5679")
+		Set("store.controller", "onos-ric-atomix-kubernetes-controller:5679")
 	assert.NoError(t, ric.Install(true))
 }

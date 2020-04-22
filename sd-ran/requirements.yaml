@@ -6,15 +6,15 @@ dependencies:
 - name: kubernetes-controller
   condition: import.atomix-controller.enabled
   repository: https://charts.atomix.io
-  version: 0.3.4
+  version: 0.4.1
 - name: raft-storage-controller
   condition: import.atomix-raft-storage-controller.enabled
   repository: https://charts.atomix.io
-  version: 0.2.3
+  version: 0.3.1
 - name: cache-storage-controller
   condition: import.atomix-cache-storage-controller.enabled
   repository: https://charts.atomix.io
-  version: 0.2.3
+  version: 0.3.1
 - name: onos-ric
   condition: import.onos-ric.enabled
   repository: file://../onos-ric
