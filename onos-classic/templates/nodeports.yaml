@@ -1,0 +1,45 @@
+---
+{{- if .Values.onosOfPort }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: onos-of
+spec:
+  type: NodePort
+  ports:
+  - name: onos-of
+    port: 6653
+    nodePort: {{ .Values.onosOfPort }}
+  selector:
+    app: {{ template "fullname" . }}
+{{- end}}
+---
+{{- if .Values.onosApiPort }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: onos-api
+spec:
+  type: NodePort
+  ports:
+  - name: onos-api
+    port: 8181
+    nodePort: {{ .Values.onosApiPort }}
+  selector:
+    app: {{ template "fullname" . }}
+{{- end}}
+---
+{{- if .Values.onosSshPort }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: onos-ssh
+spec:
+  type: NodePort
+  ports:
+  - name: onos-ssh
+    port: 8101
+    nodePort: {{ .Values.onosSshPort }}
+  selector:
+    app: {{ template "fullname" . }}
+{{- end}}
