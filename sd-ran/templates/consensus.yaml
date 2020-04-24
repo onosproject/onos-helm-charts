@@ -1,0 +1,32 @@
+{{- $name := ternary .Values.global.store.consensus.database (printf "%s-consensus" (include "global.fullname" .)) (not (eq .Values.global.store.consensus.database "")) }}
+apiVersion: cloud.atomix.io/v1beta3
+kind: Database
+metadata:
+  name: {{ $name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  partitions: {{ .Values.global.store.consensus.partitions }}
+  storageClass:
+    group: storage.cloud.atomix.io
+    version: v1beta1
+    kind: RaftStorageClass
+    name: {{ $name }}
+---
+apiVersion: storage.cloud.atomix.io/v1beta1
+kind: RaftStorageClass
+metadata:
+  name: {{ $name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  image: {{ .Values.global.store.consensus.image }}
+  imagePullPolicy: {{ .Values.global.store.consensus.imagePullPolicy }}
+  replicas: {{ .Values.global.store.consensus.replicas }}
+  partitionsPerCluster: {{ .Values.global.store.consensus.partitionsPerCluster }}
