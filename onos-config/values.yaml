@@ -2,6 +2,12 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+global:
+  store:
+    controller: ""
+    consensus:
+      database: ""
+
 replicaCount: 1
 
 image:
@@ -34,7 +40,7 @@ plugins:
 # topoEndpoint: onos-topo-classic:5150
 
 store:
-  controller: "atomix-controller.kube-system.svc.cluster.local:5679"
+  controller: "atomix-controller:5679"
   consensus:
     enabled: true
     database: ""
