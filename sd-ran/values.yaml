@@ -2,6 +2,27 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+global:
+  fullnameOverride: "onos"
+  nameOverride: ""
+  store:
+    controller: atomix-controller:5679
+    cache:
+      enabled: true
+      database: ""
+      partitions: 1
+      clusters: 1
+      image: atomix/cache-storage-node:v0.1.0
+      imagePullPolicy: IfNotPresent
+    consensus:
+      enabled: true
+      database: ""
+      image: atomix/raft-storage-node:v0.1.0
+      imagePullPolicy: IfNotPresent
+      partitions: 1
+      replicas: 1
+      partitionsPerCluster: 1
+
 import:
   atomix-controller:
     enabled: false
@@ -81,15 +102,11 @@ onos-ric:
     pullPolicy: IfNotPresent
   debug: false
   store:
-    controller: "atomix-controller.micro-onos.svc.cluster.local:5679"
+    controller: ""
     consensus:
-      enabled: true
-      database: ""
-      partitions: 1
-      clusters: 1
-      backend:
-        image: atomix/raft-replica:latest
-        replicas: 1
+      enabled: false
+    cache:
+      enabled: false
 
 # ONOS-RIC-HO
 onos-ric-ho:
@@ -112,15 +129,9 @@ onos-topo:
     tag: latest
     pullPolicy: IfNotPresent
   store:
-    controller: atomix-controller.micro-onos.svc.cluster.local:5679
+    controller: ""
     consensus:
-      enabled: true
-      database: ""
-      partitions: 1
-      clusters: 1
-      backend:
-        image: atomix/raft-replica:latest
-        replicas: 1
+      enabled: false
 
 # ONOS-CONFIG
 onos-config:
@@ -129,15 +140,9 @@ onos-config:
     tag: latest
     pullPolicy: IfNotPresent
   store:
-    controller: atomix-controller.micro-onos.svc.cluster.local:5679
+    controller: ""
     consensus:
-      enabled: true
-      database: ""
-      partitions: 1
-      clusters: 1
-      backend:
-        image: atomix/raft-replica:latest
-        replicas: 1
+      enabled: false
 
 # ONOS-GUI
 onos-gui:

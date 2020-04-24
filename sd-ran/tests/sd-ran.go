@@ -21,25 +21,30 @@ import (
 	"testing"
 )
 
-// ONOSTopoSuite is the onos-topo chart test suite
-type ONOSTopoSuite struct {
+// SDRANSuite is the sd-ran chart test suite
+type SDRANSuite struct {
 	test.Suite
 }
 
-// TestInstall tests installing the onos-topo chart
-func (s *ONOSTopoSuite) TestInstall(t *testing.T) {
+// TestInstall tests installing the sd-ran chart
+func (s *SDRANSuite) TestInstall(t *testing.T) {
 	atomix := helm.Chart("kubernetes-controller", "https://charts.atomix.io").
-		Release("onos-topo-atomix").
+		Release("sd-ran-atomix").
 		Set("scope", "Namespace")
 	assert.NoError(t, atomix.Install(true))
 
 	raft := helm.Chart("raft-storage-controller", "https://charts.atomix.io").
-		Release("onos-topo-raft").
+		Release("sd-ran-raft").
 		Set("scope", "Namespace")
 	assert.NoError(t, raft.Install(true))
 
-	topo := helm.Chart("onos-topo").
-		Release("onos-topo").
-		Set("global.store.controller", "onos-topo-atomix-kubernetes-controller:5679")
-	assert.NoError(t, topo.Install(true))
+	cache := helm.Chart("cache-storage-controller", "https://charts.atomix.io").
+		Release("sd-ran-cache").
+		Set("scope", "Namespace")
+	assert.NoError(t, cache.Install(true))
+
+	sdran := helm.Chart("sd-ran").
+		Release("sd-ran").
+		Set("global.store.controller", "sd-ran-atomix-kubernetes-controller:5679")
+	assert.NoError(t, sdran.Install(true))
 }

@@ -20,6 +20,7 @@ import (
 	config "github.com/onosproject/onos-helm-charts/onos-config/tests"
 	ric "github.com/onosproject/onos-helm-charts/onos-ric/tests"
 	topo "github.com/onosproject/onos-helm-charts/onos-topo/tests"
+	sdran "github.com/onosproject/onos-helm-charts/sd-ran/tests"
 	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
 )
 
@@ -27,5 +28,6 @@ func main() {
 	registry.RegisterTestSuite("onos-topo", &topo.ONOSTopoSuite{})
 	registry.RegisterTestSuite("onos-config", &config.ONOSConfigSuite{})
 	registry.RegisterTestSuite("onos-ric", &ric.ONOSRICSuite{})
+	registry.RegisterTestSuite("sd-ran", &sdran.SDRANSuite{})
 	test.Main()
 }

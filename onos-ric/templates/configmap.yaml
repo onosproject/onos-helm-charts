@@ -10,17 +10,29 @@ metadata:
 data:
   onos.yaml: |-
     atomix:
+      {{- if .Values.global.store.controller }}
+      controller: {{ .Values.global.store.controller }}
+      {{- else }}
       controller: {{ .Values.store.controller }}
+      {{- end }}
       namespace: {{ .Release.Namespace }}
       scope: {{ template "onos-ric.fullname" . }}
       databases:
-        {{- if .Values.store.cache.database }}
+        {{- if .Values.global.store.cache.database }}
+        cache: {{ .Values.global.store.cache.database }}
+        {{- else if .Values.store.cache.database }}
         cache: {{ .Values.store.cache.database }}
+        {{- else if .Values.global.store.controller }}
+        cache: {{ template "global.fullname" . }}-cache
         {{- else }}
         cache: {{ template "onos-ric.fullname" . }}-cache
         {{- end }}
-        {{- if .Values.store.consensus.database }}
+        {{- if .Values.global.store.consensus.database }}
+        consensus: {{ .Values.global.store.consensus.database }}
+        {{- else if .Values.store.consensus.database }}
         consensus: {{ .Values.store.consensus.database }}
+        {{- else if .Values.global.store.controller }}
+        consensus: {{ template "global.fullname" . }}-consensus
         {{- else }}
         consensus: {{ template "onos-ric.fullname" . }}-consensus
         {{- end }}
