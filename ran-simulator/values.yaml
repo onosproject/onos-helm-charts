@@ -6,16 +6,13 @@ replicaCount: 1
 
 image:
   repository: onosproject/ran-simulator
-  tag: v0.6.0
+  tag: latest
   pullPolicy: IfNotPresent
   pullSecrets: []
 
 fade: true
 googleApiKey: "YOUR_API_KEY_HERE"
 locationsScale: 1.25
-mapCenterLat: 52.52
-mapCenterLng: 13.405
-maxUEsPerTower: 5
 maxUEs: 300
 metricsAllHoEvents: false
 metricsPort: 9090
@@ -23,12 +20,8 @@ minUEs: 3
 showPower: true
 showRoutes: true
 stepDelayMs: 1000
-towerCols: 3
-towerRows: 3
-towerSpacingHoriz: 0.033
-towerSpacingVert: 0.02
 zoom: 13
-loglevel: warn
+towerConfigName: berlin-honeycomb-4-3.yaml
 
 imagePullSecrets: []
 nameOverride: ""
