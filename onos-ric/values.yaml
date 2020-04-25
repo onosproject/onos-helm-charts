@@ -46,7 +46,9 @@ store:
     partitionsPerCluster: 1
 
 service:
-  type: ClusterIP
+  # TODO: External NodePort service should be disabled by default
+  external:
+    nodePort: 31700
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
