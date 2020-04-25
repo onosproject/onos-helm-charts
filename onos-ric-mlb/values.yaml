@@ -20,6 +20,11 @@ enableMetrics: false
 
 store: {}
 
+service:
+  # TODO: External NodePort service should be disabled by default
+  external:
+    nodePort: 31702
+
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little

@@ -20,8 +20,8 @@ spec:
   ports:
     - name: exporter
       port: 7002
-
 ---
+{{- if .Values.service.external.nodePort }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -43,5 +43,6 @@ spec:
   ports:
     - name: exporter
       port: 7002
-      nodePort: 31702
+      nodePort: {{ .Values.service.external.nodePort }}
       protocol: TCP
+{{- end }}
