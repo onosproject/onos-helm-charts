@@ -45,11 +45,11 @@ func (s *ONOSRICSuite) TestInstall(t *testing.T) {
 
 	topo := helm.Chart("onos-topo").
 		Release("onos-topo").
-		Set("global.store.controller", "onos-ric-atomix-kubernetes-controller:5679")
+		Set("store.controller", "onos-ric-atomix-kubernetes-controller:5679")
 	assert.NoError(t, topo.Install(false))
 
 	ric := helm.Chart("onos-ric").
 		Release("onos-ric").
-		Set("global.store.controller", "onos-ric-atomix-kubernetes-controller:5679")
+		Set("store.controller", "onos-ric-atomix-kubernetes-controller:5679")
 	assert.NoError(t, ric.Install(true))
 }
