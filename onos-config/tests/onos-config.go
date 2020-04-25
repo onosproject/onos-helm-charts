@@ -40,11 +40,11 @@ func (s *ONOSConfigSuite) TestInstall(t *testing.T) {
 
 	topo := helm.Chart("onos-topo").
 		Release("onos-topo").
-		Set("global.store.controller", "onos-config-atomix-kubernetes-controller:5679")
+		Set("store.controller", "onos-config-atomix-kubernetes-controller:5679")
 	assert.NoError(t, topo.Install(false))
 
 	config := helm.Chart("onos-config").
 		Release("onos-config").
-		Set("global.store.controller", "onos-config-atomix-kubernetes-controller:5679")
+		Set("store.controller", "onos-config-atomix-kubernetes-controller:5679")
 	assert.NoError(t, config.Install(true))
 }
