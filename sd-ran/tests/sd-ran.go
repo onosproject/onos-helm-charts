@@ -45,6 +45,7 @@ func (s *SDRANSuite) TestInstall(t *testing.T) {
 
 	sdran := helm.Chart("sd-ran").
 		Release("sd-ran").
-		Set("global.store.controller", "sd-ran-atomix-kubernetes-controller:5679")
+		Set("global.store.controller", "sd-ran-atomix-kubernetes-controller:5679").
+		Set("import.onos-gui.enabled", false)
 	assert.NoError(t, sdran.Install(true))
 }
