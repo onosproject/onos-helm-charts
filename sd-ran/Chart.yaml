@@ -39,11 +39,11 @@ dependencies:
   - name: onos-ric-ho
     condition: import.onos-ric-ho.enabled
     repository: file://../onos-ric-ho
-    version: 0.0.1
+    version: 0.0.2
   - name: onos-ric-mlb
     condition: import.onos-ric-mlb.enabled
     repository: file://../onos-ric-mlb
-    version: 0.0.1
+    version: 0.0.2
   - name: onos-topo
     condition: import.onos-topo.enabled
     repository: file://../onos-topo
@@ -55,7 +55,7 @@ dependencies:
   - name: onos-gui
     condition: import.onos-gui.enabled
     repository: file://../onos-gui
-    version: 0.0.1
+    version: 0.0.2
   - name: ran-simulator
     condition: import.ran-simulator.enabled
     repository: file://../ran-simulator
