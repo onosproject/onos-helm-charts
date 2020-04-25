@@ -46,9 +46,6 @@ spec:
             - "-fade={{ .Values.fade }}"
             - "-googleAPIKey={{ .Values.googleApiKey }}"
             - "-locationsScale={{ .Values.locationsScale }}"
-            - "-mapCenterLat={{ .Values.mapCenterLat }}"
-            - "-mapCenterLng={{ .Values.mapCenterLng }}"
-            - "-maxUEsPerTower={{ .Values.maxUEsPerTower }}"
             - "-maxUEs={{ .Values.maxUEs }}"
             - "-metricsAllHoEvents={{ .Values.metricsAllHoEvents }}"
             - "-metricsPort={{ .Values.metricsPort }}"
@@ -56,12 +53,8 @@ spec:
             - "-showPower={{ .Values.showPower }}"
             - "-showRoutes={{ .Values.showRoutes }}"
             - "-stepDelayMs={{ .Values.stepDelayMs }}"
-            - "-towerCols={{ .Values.towerCols }}"
-            - "-towerRows={{ .Values.towerRows }}"
-            - "-towerSpacingHoriz={{ .Values.towerSpacingHoriz }}"
-            - "-towerSpacingVert={{ .Values.towerSpacingVert }}"
             - "-zoom={{ .Values.zoom }}"
-            - "-loglevel={{ .Values.loglevel }}"
+            - "-towerConfigName={{ .Values.towerConfigName }}"
           ports:
             - name: grpc
               containerPort: 5150
