@@ -106,6 +106,24 @@ entries:
   onos-ric:
   - apiVersion: v2
     appVersion: v0.6.0
+    created: "2020-04-26T13:02:09.74327-07:00"
+    description: ONOS Radio Access Network Intelligent Controller
+    digest: caa6f95510a1183854ef18d82d1a93591c239b1c93d0264fe354f3aed4d8edde
+    home: https://onosproject.org
+    keywords:
+    - onos
+    - sdn
+    - ric
+    kubeVersion: '>=1.17.0'
+    maintainers:
+    - email: sean@opennetworking.org
+      name: Sean Condon
+    name: onos-ric
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-ric-0.0.2/onos-ric-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: v0.6.0
     created: "2020-04-22T12:22:26.643548-07:00"
     description: ONOS Radio Access Network Intelligent Controller
     digest: ea59579fc36f73671ae10a9dc70a0e043fe53087832a998ab2d01a575ddde77c
