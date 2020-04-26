@@ -13,6 +13,14 @@ notifications:
 install:
 - docker pull quay.io/helmpack/chart-testing:v2.4.0
 
-script:
-- ls -a
-- docker run -it --rm --name ct --volume $(pwd):/charts quay.io/helmpack/chart-testing:v3.0.0-beta.1 sh -c "ct lint --charts charts/onos-config,charts/onos-topo,charts/onos-cli,charts/onos-gui,charts/device-simulator --debug --validate-maintainers=false"
+
+jobs:
+  include:
+    - stage: chart tests
+      script:
+        - ls -a
+        - docker run -it --rm --name ct --volume $(pwd):/charts quay.io/helmpack/chart-testing:v3.0.0-beta.1 sh -c "ct lint --charts charts/onos-config,charts/onos-topo,charts/onos-cli,charts/onos-gui,charts/device-simulator --debug --validate-maintainers=false"
+    - stage: integration tests
+      if: type != pull_request
+      script:
+        - sh build/bin/trigger-tests-travis $TRAVIS_ACCESS_TOKEN
