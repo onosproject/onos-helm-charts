@@ -34,33 +34,33 @@ dependencies:
     version: 0.3.1
   - name: onos-ric
     condition: import.onos-ric.enabled
-    repository: file://../onos-ric
+    repository: https://charts.onosproject.org
     version: 0.0.2
   - name: onos-ric-ho
     condition: import.onos-ric-ho.enabled
-    repository: file://../onos-ric-ho
+    repository: https://charts.onosproject.org
     version: 0.0.2
   - name: onos-ric-mlb
     condition: import.onos-ric-mlb.enabled
-    repository: file://../onos-ric-mlb
+    repository: https://charts.onosproject.org
     version: 0.0.2
   - name: onos-topo
     condition: import.onos-topo.enabled
-    repository: file://../onos-topo
+    repository: https://charts.onosproject.org
     version: 0.0.2
   - name: onos-config
     condition: import.onos-config.enabled
-    repository: file://../onos-config
+    repository: https://charts.onosproject.org
     version: 0.0.2
   - name: onos-gui
     condition: import.onos-gui.enabled
-    repository: file://../onos-gui
+    repository: https://charts.onosproject.org
     version: 0.0.2
   - name: ran-simulator
     condition: import.ran-simulator.enabled
-    repository: file://../ran-simulator
+    repository: https://charts.onosproject.org
     version: 0.0.1
   - name: onos-cli
     condition: import.onos-cli.enabled
-    repository: file://../onos-cli
+    repository: https://charts.onosproject.org
     version: 0.0.1
