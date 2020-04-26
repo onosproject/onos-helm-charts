@@ -86,6 +86,25 @@ entries:
   onos-gui:
   - apiVersion: v2
     appVersion: v0.6.0
+    created: "2020-04-26T13:06:05.255337-07:00"
+    description: ONOS Graphical User Interface
+    digest: d8ac02403920f79320ef06301b1825b2a631e5522ad3d2cf2d2bd7c76c3af731
+    home: https://onosproject.org
+    keywords:
+    - onos
+    - sdn
+    kubeVersion: '>=1.17.0'
+    maintainers:
+    - email: sean@opennetworking.org
+      name: Sean Condon
+    - email: andrea@opennetworking.org
+      name: Andrea Campanella
+    name: onos-gui
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-gui-0.0.2/onos-gui-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: v0.6.0
     created: "2020-04-22T12:51:55.905883-07:00"
     description: ONOS Graphical User Interface
     digest: 7945681260830d6d39e749dfd87177a10b712cd9b9a8bb1b86f1ba830da6256b
