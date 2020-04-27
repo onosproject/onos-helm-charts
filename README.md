@@ -1,4 +1,7 @@
 # ONOS Helm charts
+[![Build Status](https://travis-ci.org/onosproject/onos-helm-charts.svg?branch=master)](https://travis-ci.org/onosproject/onos-helm-charts)
+[![Integration Test Status](https://img.shields.io/travis/onosproject/onos-helm-charts?label=Integration%20Tests&logo=Integration)](https://travis-ci.org/onosproject/onos-test)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/gojp/goreportcard/blob/master/LICENSE)
 
 This repository contains helm charts for the different µONOS services and
 overarching helm charts for a set of microservices yielding a full control
