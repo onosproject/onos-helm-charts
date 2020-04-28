@@ -4,7 +4,7 @@ description: ONOS RAN Simulator
 kubeVersion: ">=1.17.0"
 type: application
 version: 0.0.1
-appVersion: v0.6.0
+appVersion: v0.6.1
 keywords:
   - onos
   - sdn

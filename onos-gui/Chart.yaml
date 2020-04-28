@@ -4,7 +4,7 @@ description: ONOS Graphical User Interface
 kubeVersion: ">=1.17.0"
 type: application
 version: 0.0.2
-appVersion: v0.6.0
+appVersion: v0.6.1
 keywords:
   - onos
   - sdn
