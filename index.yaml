@@ -300,6 +300,24 @@ entries:
     version: 0.0.1
   ran-simulator:
   - apiVersion: v2
+    appVersion: v0.6.1
+    created: "2020-04-28T19:05:59.973850009+01:00"
+    description: ONOS RAN Simulator
+    digest: 06bc9c3da92037ea87e7f8449ee218f39ed799e26f173d88d3db0b23e5154264
+    home: https://onosproject.org
+    keywords:
+    - onos
+    - sdn
+    - ran
+    kubeVersion: '>=1.15.0'
+    maintainers:
+    - email: sean@opennetworking.org
+      name: Sean Condon
+    name: ran-simulator
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/ran-simulator-0.0.2/ran-simulator-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
     appVersion: v0.6.0
     created: "2020-04-22T12:54:34.56784-07:00"
     description: ONOS RAN Simulator
