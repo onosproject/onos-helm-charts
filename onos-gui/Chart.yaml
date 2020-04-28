@@ -1,9 +1,9 @@
 apiVersion: v2
 name: onos-gui
 description: ONOS Graphical User Interface
-kubeVersion: ">=1.17.0"
+kubeVersion: ">=1.15.0"
 type: application
-version: 0.0.2
+version: 0.0.3
 appVersion: v0.6.1
 keywords:
   - onos

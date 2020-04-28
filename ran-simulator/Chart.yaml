@@ -1,9 +1,9 @@
 apiVersion: v2
 name: ran-simulator
 description: ONOS RAN Simulator
-kubeVersion: ">=1.17.0"
+kubeVersion: ">=1.15.0"
 type: application
-version: 0.0.1
+version: 0.0.2
 appVersion: v0.6.1
 keywords:
   - onos
