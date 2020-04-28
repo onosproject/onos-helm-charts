@@ -81,6 +81,7 @@ nem-monitoring:
                   - ran-simulator.micro-onos.svc.cluster.local:9090
   dashboards:
     nodeExporter: false
+    sdran: true
   kpi_exporter: 
     enabled: false
   grafana:
