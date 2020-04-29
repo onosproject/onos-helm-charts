@@ -70,6 +70,14 @@ App Version **v0.6.0**
 
 ## onos-ric
 
+#### Version **0.0.4**
+> Generated 2020-04-29T22:40:40.37315757Z
+
+App Version **v0.6.3**
+
+[https://github.com/onosproject/onos-helm-charts/releases/download/onos-ric-0.0.4/onos-ric-0.0.4.tgz](https://github.com/onosproject/onos-helm-charts/releases/download/onos-ric-0.0.4/onos-ric-0.0.4.tgz)
+
+
 #### Version **0.0.3**
 > Generated 2020-04-29T08:26:08.89966469+01:00
 
