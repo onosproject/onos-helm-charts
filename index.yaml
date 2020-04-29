@@ -276,6 +276,26 @@ entries:
     version: 0.0.1
   onos-ric-mlb:
   - apiVersion: v2
+    appVersion: v0.6.3
+    created: "2020-04-29T22:42:25.152109866Z"
+    description: ONOS Radio Access Network Load Balancer
+    digest: ad0953273fa003662ed1c7a997d6a9e5aae31455e7c6f2eed860ab145f4b9412
+    home: https://onosproject.org
+    keywords:
+    - onos
+    - sdn
+    - ric
+    - mlb
+    kubeVersion: '>=1.17.0'
+    maintainers:
+    - email: sean@opennetworking.org
+      name: Sean Condon
+    name: onos-ric-mlb
+    type: application
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-ric-mlb-0.0.4/onos-ric-mlb-0.0.4.tgz
+    version: 0.0.4
+  - apiVersion: v2
     appVersion: v0.6.1
     created: "2020-04-29T08:27:05.703103777+01:00"
     description: ONOS Radio Access Network Load Balancer
