@@ -99,7 +99,7 @@ nem-monitoring:
 onos-ric:
   image:
     repository: onosproject/onos-ric
-    tag: v0.6.1
+    tag: v0.6.3
     pullPolicy: IfNotPresent
   debug: false
   store:
@@ -156,7 +156,7 @@ onos-gui:
 ran-simulator:
   image:
     repository: onosproject/ran-simulator
-    tag: v0.6.1
+    tag: v0.6.2
     pullPolicy: IfNotPresent
   fade: true
   googleApiKey: "YOUR_API_KEY_HERE"
