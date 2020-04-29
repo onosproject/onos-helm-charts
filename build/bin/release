@@ -12,6 +12,7 @@ chart=$1
 
 owner=${GITHUB_USER:-onosproject}
 repo=${GITHUB_REPO:-onos-helm-charts}
+branch=${GITHUB_BRANCH:-gh-pages}
 token=${GITHUB_TOKEN}
 
 rm -rf build/release
@@ -39,7 +40,7 @@ cr index \
     --index-path index.yaml \
     --owner $owner \
     --git-repo $repo \
-    --charts-repo https://$owner.github.io/$repo \
+    --charts-repo https://raw.githubusercontent.com/$owner/$repo/$branch \
     --package-path package \
     --token $token
 
