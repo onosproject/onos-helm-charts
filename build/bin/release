@@ -43,8 +43,9 @@ cr index \
     --package-path package \
     --token $token
 
-# Commit the updated index.yaml
-git add index.yaml
+# Commit the updated index.yaml and on to README
+go run github.com/onosproject/onos-helm-charts/build/cmd/index2md > README.md
+git add index.yaml README.md
 git commit -m "Add $chart release to index.yaml" index.yaml
 git push origin gh-pages
 
