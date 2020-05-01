@@ -524,7 +524,7 @@ entries:
     name: ran-simulator
     urls:
     - https://github.com/onosproject/onos-helm-charts/releases/download/ran-simulator-0.0.5/ran-simulator-0.0.5.tgz
-    version: 0.0.5  
+    version: 0.0.5
   - apiVersion: v2
     appVersion: v0.6.2
     created: "2020-04-29T19:40:47.79973912+01:00"
@@ -598,6 +598,26 @@ entries:
     - https://github.com/onosproject/onos-helm-charts/releases/download/ran-simulator-0.0.1/ran-simulator-0.0.1.tgz
     version: 0.0.1
   sd-ran:
+  - apiVersion: v2
+    appVersion: v0.6.4
+    created: "2020-05-01T21:06:49.655057488+01:00"
+    description: Umbrella chart to deploy all ONOS-RIC and simulator
+    digest: 7e020f344d7dee10257b0dbfa1a38b7cb979a02f2fead739dc4dc6b9466f4797
+    home: https://onosproject.org
+    keywords:
+    - onos
+    - sdn
+    - ran
+    kubeVersion: '>=1.17.0'
+    maintainers:
+    - email: woojoong@opennetworking.org
+      name: Woojoong Kim
+    - email: jordan@opennetworking.org
+      name: Jordan Halterman
+    name: sd-ran
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/sd-ran-0.0.7/sd-ran-0.0.7.tgz
+    version: 0.0.7
   - apiVersion: v2
     appVersion: v0.6.3
     created: "2020-04-30T00:09:29.657955589Z"
