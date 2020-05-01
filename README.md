@@ -2,6 +2,14 @@
 
 ## onos-classic
 
+#### Version **0.1.1**
+> Generated 2020-05-01T15:31:30.513221-07:00
+
+App Version **2.2.2**
+
+[https://github.com/onosproject/onos-helm-charts/releases/download/onos-classic-0.1.1/onos-classic-0.1.1.tgz](https://github.com/onosproject/onos-helm-charts/releases/download/onos-classic-0.1.1/onos-classic-0.1.1.tgz)
+
+
 #### Version **0.1.0**
 > Generated 2020-04-21T00:26:33.47819-07:00
 
