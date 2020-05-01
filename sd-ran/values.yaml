@@ -41,7 +41,7 @@ import:
   onos-topo:
     enabled: true
   onos-config:
-    enabled: false
+    enabled: true
   onos-gui:
     enabled: true
   ran-simulator:
@@ -138,13 +138,22 @@ onos-topo:
 onos-config:
   image:
     repository: onosproject/onos-config
-    tag: v0.6.0
+    tag: v0.6.1
     pullPolicy: IfNotPresent
   store:
     controller: ""
     consensus:
       enabled: false
-
+  plugins:
+    e2node:
+      versions:
+        - 1.0.0
+    devicesim:
+      versions: []
+    stratum:
+      versions: []
+    testdevice:
+      versions: []
 # ONOS-GUI
 onos-gui:
   image:

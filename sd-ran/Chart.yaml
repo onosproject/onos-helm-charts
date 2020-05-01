@@ -51,7 +51,7 @@ dependencies:
   - name: onos-config
     condition: import.onos-config.enabled
     repository: https://charts.onosproject.org
-    version: 0.0.2
+    version: 0.0.3
   - name: onos-gui
     condition: import.onos-gui.enabled
     repository: https://charts.onosproject.org
