@@ -213,6 +213,14 @@ App Version **v0.6.0**
 
 ## ran-simulator
 
+#### Version **0.0.5**
+> Generated 2020-05-01T20:20:40.954729736+01:00
+
+App Version **v0.6.3**
+
+[https://github.com/onosproject/onos-helm-charts/releases/download/ran-simulator-0.0.5/ran-simulator-0.0.5.tgz](https://github.com/onosproject/onos-helm-charts/releases/download/ran-simulator-0.0.5/ran-simulator-0.0.5.tgz)
+
+
 #### Version **0.0.4**
 > Generated 2020-04-29T19:40:47.79973912+01:00
 
