@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   depCheck: quay.io/stackanetes/kubernetes-entrypoint:v0.3.1
   repository: onosproject/onos-ric-mlb
-  tag: v0.6.3
+  tag: v0.6.4
   pullPolicy: IfNotPresent
   pullSecrets: []
 
