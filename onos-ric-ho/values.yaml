@@ -18,6 +18,11 @@ fullnameOverride: "onos-ric-ho"
 onosricaddr: "onos-ric:5150"
 enableMetrics: false
 
+hoParams:
+  hystCqi: 0
+  a3OffsetCqi: 0
+  timeToTriggerMs: 0
+
 store: {}
 
 service:

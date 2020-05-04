@@ -6,7 +6,7 @@ global:
   fullnameOverride: "onos"
   nameOverride: ""
   store:
-    controller: atomix-controller:5679
+    controller: atomix-controller-kubernetes-controller:5679
     cache:
       enabled: true
       database: ""
