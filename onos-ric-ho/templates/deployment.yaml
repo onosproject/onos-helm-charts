@@ -61,6 +61,9 @@ spec:
           args:
             - "-onosricaddr={{ .Values.onosricaddr }}"
             - "-enableMetrics={{ .Values.enableMetrics }}"
+            - "-hystCqi={{ .Values.hoParams.hystCqi }}"
+            - "-a3offsetCqi={{ .Values.hoParams.a3OffsetCqi }}"
+            - "-timeToTrigger={{ .Values.hoParams.timeToTriggerMs }}"
           livenessProbe:
             exec:
               command:
