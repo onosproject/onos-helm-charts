@@ -45,6 +45,7 @@ spec:
       initContainers:
         - name: {{ .Chart.Name }}-init
           image: tutum/dnsutils:latest
+          imagePullPolicy: IfNotPresent
           env:
             - name: ATOMIX_SERVICE
               value: {{ template "atomix.fullname" . }}
