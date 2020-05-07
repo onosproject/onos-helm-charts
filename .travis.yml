@@ -13,6 +13,9 @@ notifications:
 install:
 - docker pull quay.io/helmpack/chart-testing:v2.4.0
 
+before_script:
+  - pushd .. && git clone https://github.com/onosproject/build-tools.git && popd
+
 
 jobs:
   include:
@@ -23,4 +26,4 @@ jobs:
     - stage: integration tests
       if: type != pull_request
       script:
-        - sh build/bin/trigger-tests-travis $TRAVIS_ACCESS_TOKEN
+        - sh ../build-tools/build/travis/trigger-travis onosproject onos-test master "`git rev-parse --short HEAD`" $TRAVIS_ACCESS_TOKEN
