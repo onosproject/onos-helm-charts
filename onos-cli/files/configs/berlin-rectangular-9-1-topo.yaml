@@ -1,0 +1,136 @@
+topodevices:
+  - id: 315010-0001420
+    address: ran-simulator:5152
+    version: 1.0.0
+    tls:
+      insecure: true
+    type: E2Node
+    attributes:
+      arc: "360"
+      azimuth: "0"
+      ecid: "0001420"
+      grpcport: "5152"
+      latitude: "52.5350"
+      longitude: "13.3885"
+      plmnid: "315010"
+    displayname: Tower 1 Cell 0
+  - id: 315010-0001421
+    address: ran-simulator:5153
+    version: 1.0.0
+    tls:
+      insecure: true
+    type: E2Node
+    attributes:
+      arc: "360"
+      azimuth: "0"
+      ecid: "0001421"
+      grpcport: "5153"
+      latitude: "52.5350"
+      longitude: "13.4215"
+      plmnid: "315010"
+    displayname: Tower 2
+  - id: 315010-0001422
+    address: ran-simulator:5154
+    version: 1.0.0
+    tls:
+      insecure: true
+    type: E2Node
+    attributes:
+      arc: "360"
+      azimuth: "0"
+      ecid: "0001422"
+      grpcport: "5154"
+      latitude: "52.5350"
+      longitude: "13.4545"
+      plmnid: "315010"
+    displayname: Tower 3
+  - id: 315010-0001423
+    address: ran-simulator:5155
+    version: 1.0.0
+    tls:
+      insecure: true
+    type: E2Node
+    attributes:
+      arc: "360"
+      azimuth: "0"
+      ecid: "0001423"
+      grpcport: "5155"
+      latitude: "52.5150"
+      longitude: "13.3885"
+      plmnid: "315010"
+    displayname: Tower 4
+  - id: 315010-0001424
+    address: ran-simulator:5156
+    version: 1.0.0
+    tls:
+      insecure: true
+    type: E2Node
+    attributes:
+      arc: "360"
+      azimuth: "0"
+      ecid: "0001424"
+      grpcport: "5156"
+      latitude: "52.5150"
+      longitude: "13.4215"
+      plmnid: "315010"
+    displayname: Tower 5
+  - id: 315010-0001425
+    address: ran-simulator:5157
+    version: 1.0.0
+    tls:
+      insecure: true
+    type: E2Node
+    attributes:
+      arc: "360"
+      azimuth: "0"
+      ecid: "0001425"
+      grpcport: "5157"
+      latitude: "52.5150"
+      longitude: "13.4545"
+      plmnid: "315010"
+    displayname: Tower 6
+  - id: 315010-0001426
+    address: ran-simulator:5158
+    version: 1.0.0
+    tls:
+      insecure: true
+    type: E2Node
+    attributes:
+      arc: "360"
+      azimuth: "0"
+      ecid: "0001426"
+      grpcport: "5158"
+      latitude: "52.4950"
+      longitude: "13.3885"
+      plmnid: "315010"
+    displayname: Tower 7
+  - id: 315010-0001427
+    address: ran-simulator:5159
+    version: 1.0.0
+    tls:
+      insecure: true
+    type: E2Node
+    attributes:
+      arc: "360"
+      azimuth: "0"
+      ecid: "0001427"
+      grpcport: "5159"
+      latitude: "52.4950"
+      longitude: "13.4215"
+      plmnid: "315010"
+    displayname: Tower 8
+  - id: 315010-0001428
+    address: ran-simulator:5160
+    version: 1.0.0
+    tls:
+      insecure: true
+    type: E2Node
+    attributes:
+      arc: "360"
+      azimuth: "0"
+      ecid: "0001428"
+      grpcport: "5160"
+      latitude: "52.4950"
+      longitude: "13.4545"
+      plmnid: "315010"
+    displayname: Tower 9

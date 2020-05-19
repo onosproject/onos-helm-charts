@@ -37,9 +37,8 @@ spec:
           stdin : true
           volumeMounts:
             - name: config
-              mountPath: /home/onos/.atomix/config.yaml
-              subPath:   atomix.yaml
-              readOnly: false
+              mountPath: /home/onos
+              readOnly: true
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           livenessProbe:
