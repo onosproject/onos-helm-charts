@@ -1,0 +1,31 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "fullname" . }}live-probe-scripts
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+data:
+  check-onos-app-status: |
+    #!/bin/bash
+    set -e
+    live_probe () {
+        apps=$ONOS_APPS
+        IFS=',' read -ra app_array <<< "$apps"
+        for i in "${app_array[@]}"
+            do
+            file="/root/onos/apps/$i/active"
+            if [ -f "$file" ]
+            then
+                echo "app $i found"
+            else
+                echo "failed reason : app $i not found"
+                return 1
+            fi
+        done
+        return 0
+    }
+    live_probe

@@ -71,6 +71,8 @@ spec:
         env:
           - name: JAVA_OPTS
             value: -Xmx{{ .Values.heap }}
+          - name: ONOS_APPS
+            value: {{ .Values.apps | quote }}
         ports:
           - name: openflow
             containerPort: 6653
@@ -96,7 +98,7 @@ spec:
             command:
               - sh
               - -c
-              - /root/onos/bin/check-onos-status
+              - /root/onos/bin/check-onos-app-status
           initialDelaySeconds: 300
           periodSeconds: 15
           timeoutSeconds: 5
@@ -104,6 +106,9 @@ spec:
           - name: probe-scripts
             mountPath: /root/onos/bin/check-onos-status
             subPath: check-onos-status
+          - name: live-probe-scripts
+            mountPath: /root/onos/bin/check-onos-app-status
+            subPath: check-onos-app-status
           - name: config
             mountPath: /root/onos/config/cluster.json
             subPath: cluster.json
@@ -126,6 +131,10 @@ spec:
         - name: probe-scripts
           configMap:
             name: {{ template "fullname" . }}-probe-scripts
+            defaultMode: 0744
+        - name: live-probe-scripts
+          configMap:
+            name: {{ template "fullname" . }}live-probe-scripts
             defaultMode: 0744
         - name: config
           emptyDir: {}
