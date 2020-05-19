@@ -185,3 +185,6 @@ onos-cli:
     repository: onosproject/onos-cli
     tag: v0.6.0
     pullPolicy: IfNotPresent
+    postInstall:
+      - topo: berlin-honeycomb-4-3-topo.yaml
+        config: berlin-honeycomb-4-3-gnmi.yaml

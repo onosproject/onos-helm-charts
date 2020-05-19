@@ -1,0 +1,5308 @@
+setrequest:
+  prefix:
+    elem:
+    - name: e2node
+  delete: []
+  replace: []
+  update:
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016b6
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016b6
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016b7
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016b7
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016b8
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016b8
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016b9
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016b9
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016ba
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016ba
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016bb
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016bb
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016bc
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016bc
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016bd
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016bd
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016be
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016be
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016bf
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016bf
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016c0
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016c0
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016c1
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016c1
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016c2
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016c2
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016c3
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016c3
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016c4
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016c4
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016c5
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016c5
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016c6
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016c6
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016c7
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016c7
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016c8
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016c8
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016c9
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016c9
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016ca
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016ca
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016cb
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016cb
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016cc
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016cc
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016cd
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016cd
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016ce
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016ce
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016cf
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016cf
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016d0
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016d0
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016d1
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016d1
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016d2
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016d2
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016d3
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016d3
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016d4
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016d4
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016d5
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016d5
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016d6
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016d6
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016d7
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016d7
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016d8
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016d8
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016d9
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016d9
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016da
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016da
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016db
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016db
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016dc
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016dc
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016dd
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016dd
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016de
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016de
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016df
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016df
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016e0
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016e0
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016e1
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016e1
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016e2
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016e2
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016e3
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016e3
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016e4
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016e4
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016e5
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016e5
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016e6
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016e6
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016e7
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016e7
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016e8
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016e8
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016e9
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016e9
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016ea
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016ea
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016eb
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016eb
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016ec
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016ec
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016ed
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016ed
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016ee
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016ee
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016ef
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016ef
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016f0
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016f0
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016f1
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016f1
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016f2
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016f2
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016f3
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016f3
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016f4
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016f4
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016f5
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016f5
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016f6
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016f6
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016f7
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016f7
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016f8
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016f8
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016f9
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016f9
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016fa
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016fa
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016fb
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016fb
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016fc
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016fc
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016fd
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016fd
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016fe
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016fe
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00016ff
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00016ff
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001700
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001700
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001701
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001701
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001702
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001702
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001703
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001703
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001704
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001704
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001705
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001705
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001706
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001706
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001707
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001707
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001708
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001708
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001709
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001709
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000170a
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000170a
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000170b
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000170b
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000170c
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000170c
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000170d
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000170d
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000170e
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000170e
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000170f
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000170f
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001710
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001710
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001711
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001711
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001712
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001712
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001713
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001713
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001714
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001714
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001715
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001715
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001716
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001716
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001717
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001717
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001718
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001718
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001719
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001719
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000171a
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000171a
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000171b
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000171b
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000171c
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000171c
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000171d
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000171d
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000171e
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000171e
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000171f
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000171f
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001720
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001720
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001721
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001721
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001722
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001722
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001723
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001723
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001724
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001724
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001725
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001725
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001726
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001726
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001727
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001727
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001728
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001728
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001729
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001729
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000172a
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000172a
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000172b
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000172b
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000172c
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000172c
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000172d
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000172d
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000172e
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000172e
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000172f
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000172f
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001730
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001730
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001731
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001731
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001732
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001732
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001733
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001733
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001734
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001734
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001735
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001735
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001736
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001736
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001737
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001737
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001738
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001738
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001739
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001739
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000173a
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000173a
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000173b
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000173b
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000173c
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000173c
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000173d
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000173d
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000173e
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000173e
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000173f
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000173f
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001740
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001740
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001741
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001741
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001742
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001742
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001743
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001743
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001744
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001744
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001745
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001745
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001746
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001746
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001747
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001747
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001748
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001748
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001749
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001749
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000174a
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000174a
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000174b
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000174b
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000174c
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000174c
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000174d
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000174d
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000174e
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000174e
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000174f
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000174f
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001750
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001750
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001751
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001751
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001752
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001752
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001753
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001753
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001754
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001754
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001755
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001755
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001756
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001756
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001757
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001757
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001758
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001758
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001759
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001759
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000175a
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000175a
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000175b
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000175b
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000175c
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000175c
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000175d
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000175d
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000175e
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000175e
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000175f
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000175f
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001760
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001760
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001761
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001761
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001762
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001762
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001763
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001763
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001764
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001764
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001765
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001765
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001766
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001766
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001767
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001767
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001768
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001768
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001769
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001769
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000176a
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000176a
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000176b
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000176b
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000176c
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000176c
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000176d
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000176d
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000176e
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000176e
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000176f
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000176f
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001770
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001770
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001771
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001771
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001772
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001772
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001773
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001773
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001774
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001774
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001775
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001775
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001776
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001776
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001777
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001777
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001778
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001778
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001779
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001779
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000177a
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000177a
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000177b
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000177b
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000177c
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000177c
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000177d
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000177d
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000177e
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000177e
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000177f
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000177f
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001780
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001780
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001781
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001781
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001782
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001782
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001783
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001783
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001784
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001784
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001785
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001785
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001786
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001786
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001787
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001787
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001788
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001788
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001789
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001789
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000178a
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000178a
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000178b
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000178b
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000178c
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000178c
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000178d
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000178d
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000178e
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000178e
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000178f
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000178f
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001790
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001790
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001791
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001791
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001792
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001792
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001793
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001793
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001794
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001794
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001795
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001795
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001796
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001796
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001797
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001797
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001798
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001798
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001799
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001799
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000179a
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000179a
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000179b
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000179b
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000179c
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000179c
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000179d
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000179d
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000179e
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000179e
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000179f
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000179f
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017a0
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017a0
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017a1
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017a1
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017a2
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017a2
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017a3
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017a3
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017a4
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017a4
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017a5
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017a5
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017a6
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017a6
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017a7
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017a7
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017a8
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017a8
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017a9
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017a9
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017aa
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017aa
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017ab
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017ab
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017ac
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017ac
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017ad
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017ad
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017ae
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017ae
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017af
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017af
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017b0
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017b0
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017b1
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017b1
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017b2
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017b2
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017b3
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017b3
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017b4
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017b4
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017b5
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017b5
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017b6
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017b6
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017b7
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017b7
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017b8
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017b8
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017b9
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017b9
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017ba
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017ba
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017bb
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017bb
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017bc
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017bc
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017bd
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017bd
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017be
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017be
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017bf
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017bf
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017c0
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017c0
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017c1
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017c1
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017c2
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017c2
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017c3
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017c3
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017c4
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017c4
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017c5
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017c5
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017c6
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017c6
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017c7
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017c7
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017c8
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017c8
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017c9
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017c9
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017ca
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017ca
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017cb
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017cb
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017cc
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017cc
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017cd
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017cd
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017ce
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017ce
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017cf
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017cf
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017d0
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017d0
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017d1
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017d1
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017d2
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017d2
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017d3
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017d3
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017d4
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017d4
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017d5
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017d5
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017d6
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017d6
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017d7
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017d7
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017d8
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017d8
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017d9
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017d9
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017da
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017da
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017db
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017db
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017dc
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017dc
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017dd
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017dd
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017de
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017de
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017df
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017df
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017e0
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017e0
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017e1
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017e1
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017e2
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017e2
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017e3
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017e3
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017e4
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017e4
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017e5
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017e5
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017e6
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017e6
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017e7
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017e7
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017e8
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017e8
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017e9
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017e9
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017ea
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017ea
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017eb
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017eb
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017ec
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017ec
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017ed
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017ed
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017ee
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017ee
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017ef
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017ef
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017f0
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017f0
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017f1
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017f1
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017f2
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017f2
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017f3
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017f3
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017f4
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017f4
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017f5
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017f5
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017f6
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017f6
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017f7
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017f7
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017f8
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017f8
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017f9
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017f9
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017fa
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017fa
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017fb
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017fb
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017fc
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017fc
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017fd
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017fd
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017fe
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017fe
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-00017ff
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-00017ff
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001800
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001800
+    val:
+      uintvalue:
+        uintval: 21
+  extension:
+    - id: 101
+      value: 1.0.0
+    - id: 102
+      value: E2Node
