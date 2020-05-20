@@ -137,14 +137,6 @@ App Version **v0.6.0**
 
 ## onos-ric-ho
 
-#### Version **0.0.6**
-> Generated 2020-05-20T14:29:21.111670127+01:00
-
-App Version **v0.6.5**
-
-[https://github.com/onosproject/onos-helm-charts/releases/download/onos-ric-ho-0.0.6/onos-ric-ho-0.0.6.tgz](https://github.com/onosproject/onos-helm-charts/releases/download/onos-ric-ho-0.0.6/onos-ric-ho-0.0.6.tgz)
-
-
 #### Version **0.0.5**
 > Generated 2020-05-01T20:24:29.744085914+01:00
 
@@ -187,6 +179,14 @@ App Version **v0.6.0**
 
 
 ## onos-ric-mlb
+
+#### Version **0.0.6**
+> Generated 2020-05-20T14:31:26.071524869+01:00
+
+App Version **v0.6.5**
+
+[https://github.com/onosproject/onos-helm-charts/releases/download/onos-ric-mlb-0.0.6/onos-ric-mlb-0.0.6.tgz](https://github.com/onosproject/onos-helm-charts/releases/download/onos-ric-mlb-0.0.6/onos-ric-mlb-0.0.6.tgz)
+
 
 #### Version **0.0.5**
 > Generated 2020-05-01T20:25:51.710016787+01:00

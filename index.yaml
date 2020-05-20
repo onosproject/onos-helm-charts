@@ -295,25 +295,6 @@ entries:
     version: 0.0.1
   onos-ric-ho:
   - apiVersion: v2
-    appVersion: v0.6.5
-    created: "2020-05-20T14:29:21.111670127+01:00"
-    description: ONOS Radio Access Network Handover
-    digest: 7cda4cccceee9e01dd0a8f59a7a22814f922486f43b2690c63544bb9d5a37332
-    home: https://onosproject.org
-    keywords:
-    - onos
-    - sdn
-    - ric
-    - handover
-    kubeVersion: '>=1.17.0'
-    maintainers:
-    - email: sean@opennetworking.org
-      name: Sean Condon
-    name: onos-ric-ho
-    urls:
-    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-ric-ho-0.0.6/onos-ric-ho-0.0.6.tgz
-    version: 0.0.6
-  - apiVersion: v2
     appVersion: v0.6.4
     created: "2020-05-01T20:24:29.744085914+01:00"
     description: ONOS Radio Access Network Handover
@@ -409,6 +390,25 @@ entries:
     - https://github.com/onosproject/onos-helm-charts/releases/download/onos-ric-ho-0.0.1/onos-ric-ho-0.0.1.tgz
     version: 0.0.1
   onos-ric-mlb:
+  - apiVersion: v2
+    appVersion: v0.6.5
+    created: "2020-05-20T14:31:26.071524869+01:00"
+    description: ONOS Radio Access Network Load Balancer
+    digest: 15b62707d1643f86ce889dca723b3031fd452a569327a722a4dac47b33d89848
+    home: https://onosproject.org
+    keywords:
+    - onos
+    - sdn
+    - ric
+    - mlb
+    kubeVersion: '>=1.17.0'
+    maintainers:
+    - email: sean@opennetworking.org
+      name: Sean Condon
+    name: onos-ric-mlb
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-ric-mlb-0.0.6/onos-ric-mlb-0.0.6.tgz
+    version: 0.0.6
   - apiVersion: v2
     appVersion: v0.6.4
     created: "2020-05-01T20:25:51.710016787+01:00"
