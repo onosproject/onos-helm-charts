@@ -99,7 +99,7 @@ nem-monitoring:
 onos-ric:
   image:
     repository: onosproject/onos-ric
-    tag: v0.6.4
+    tag: v0.6.5
     pullPolicy: IfNotPresent
   debug: false
   store:
@@ -113,21 +113,21 @@ onos-ric:
 onos-ric-ho:
   image:
     repository: onosproject/onos-ric-ho
-    tag: v0.6.4
+    tag: v0.6.5
     pullPolicy: IfNotPresent
 
 # ONOS-RIC-MLB
 onos-ric-mlb:
   image:
     repository: onosproject/onos-ric-mlb
-    tag: v0.6.4
+    tag: v0.6.5
     pullPolicy: IfNotPresent
 
 # ONOS-TOPO
 onos-topo:
   image:
     repository: onosproject/onos-topo
-    tag: v0.6.0
+    tag: v0.6.3
     pullPolicy: IfNotPresent
   store:
     controller: ""
@@ -138,7 +138,7 @@ onos-topo:
 onos-config:
   image:
     repository: onosproject/onos-config
-    tag: v0.6.1
+    tag: v0.6.3
     pullPolicy: IfNotPresent
   store:
     controller: ""
@@ -158,14 +158,14 @@ onos-config:
 onos-gui:
   image:
     repository: onosproject/onos-gui
-    tag: v0.6.1
+    tag: v0.6.5
     pullPolicy: IfNotPresent
 
 # RAN-Simulator
 ran-simulator:
   image:
     repository: onosproject/ran-simulator
-    tag: v0.6.3
+    tag: v0.6.5
     pullPolicy: IfNotPresent
   fade: true
   googleApiKey: "YOUR_API_KEY_HERE"
@@ -183,7 +183,7 @@ ran-simulator:
 onos-cli:
   image:
     repository: onosproject/onos-cli
-    tag: v0.6.0
+    tag: v0.6.5
     pullPolicy: IfNotPresent
     postInstall:
       - topo: berlin-honeycomb-4-3-topo.yaml
