@@ -41,6 +41,25 @@ entries:
     version: 0.1.0
   onos-cli:
   - apiVersion: v2
+    appVersion: v0.6.5
+    created: "2020-05-20T14:33:18.816381007+01:00"
+    description: ONOS Command Line Interface
+    digest: 0f5ab05d6f65f1f2a8332bd6f5a89ff88e5fe4cdd774e159946647e13e15b5b9
+    home: https://onosproject.org
+    keywords:
+    - onos
+    - sdn
+    kubeVersion: '>=1.17.0'
+    maintainers:
+    - email: andrea@opennetworking.org
+      name: Andrea Campanella
+    - email: jordan@opennetworking.org
+      name: kuujo
+    name: onos-cli
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-cli-0.0.2/onos-cli-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
     appVersion: v0.6.0
     created: "2020-04-22T12:25:37.87784-07:00"
     description: ONOS Command Line Interface
@@ -223,6 +242,24 @@ entries:
     version: 0.0.1
   onos-ric:
   - apiVersion: v2
+    appVersion: v0.6.5
+    created: "2020-05-20T14:27:38.041889587+01:00"
+    description: ONOS Radio Access Network Intelligent Controller
+    digest: 001beb00c0a94d8b1cc20a04e138ba4d61fa1592f13057adec25cf67e2a5692e
+    home: https://onosproject.org
+    keywords:
+    - onos
+    - sdn
+    - ric
+    kubeVersion: '>=1.17.0'
+    maintainers:
+    - email: sean@opennetworking.org
+      name: Sean Condon
+    name: onos-ric
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-ric-0.0.6/onos-ric-0.0.6.tgz
+    version: 0.0.6
+  - apiVersion: v2
     appVersion: v0.6.4
     created: "2020-05-01T20:23:09.741395246+01:00"
     description: ONOS Radio Access Network Intelligent Controller
@@ -313,6 +350,25 @@ entries:
     - https://github.com/onosproject/onos-helm-charts/releases/download/onos-ric-0.0.1/onos-ric-0.0.1.tgz
     version: 0.0.1
   onos-ric-ho:
+  - apiVersion: v2
+    appVersion: v0.6.5
+    created: "2020-05-20T14:29:21.111670127+01:00"
+    description: ONOS Radio Access Network Handover
+    digest: 7cda4cccceee9e01dd0a8f59a7a22814f922486f43b2690c63544bb9d5a37332
+    home: https://onosproject.org
+    keywords:
+    - onos
+    - sdn
+    - ric
+    - handover
+    kubeVersion: '>=1.17.0'
+    maintainers:
+    - email: sean@opennetworking.org
+      name: Sean Condon
+    name: onos-ric-ho
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-ric-ho-0.0.6/onos-ric-ho-0.0.6.tgz
+    version: 0.0.6
   - apiVersion: v2
     appVersion: v0.6.4
     created: "2020-05-01T20:24:29.744085914+01:00"
@@ -409,6 +465,25 @@ entries:
     - https://github.com/onosproject/onos-helm-charts/releases/download/onos-ric-ho-0.0.1/onos-ric-ho-0.0.1.tgz
     version: 0.0.1
   onos-ric-mlb:
+  - apiVersion: v2
+    appVersion: v0.6.5
+    created: "2020-05-20T14:31:26.071524869+01:00"
+    description: ONOS Radio Access Network Load Balancer
+    digest: 15b62707d1643f86ce889dca723b3031fd452a569327a722a4dac47b33d89848
+    home: https://onosproject.org
+    keywords:
+    - onos
+    - sdn
+    - ric
+    - mlb
+    kubeVersion: '>=1.17.0'
+    maintainers:
+    - email: sean@opennetworking.org
+      name: Sean Condon
+    name: onos-ric-mlb
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-ric-mlb-0.0.6/onos-ric-mlb-0.0.6.tgz
+    version: 0.0.6
   - apiVersion: v2
     appVersion: v0.6.4
     created: "2020-05-01T20:25:51.710016787+01:00"
