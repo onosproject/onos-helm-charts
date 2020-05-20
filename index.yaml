@@ -391,25 +391,6 @@ entries:
     version: 0.0.1
   onos-ric-mlb:
   - apiVersion: v2
-    appVersion: v0.6.5
-    created: "2020-05-20T14:31:26.071524869+01:00"
-    description: ONOS Radio Access Network Load Balancer
-    digest: 15b62707d1643f86ce889dca723b3031fd452a569327a722a4dac47b33d89848
-    home: https://onosproject.org
-    keywords:
-    - onos
-    - sdn
-    - ric
-    - mlb
-    kubeVersion: '>=1.17.0'
-    maintainers:
-    - email: sean@opennetworking.org
-      name: Sean Condon
-    name: onos-ric-mlb
-    urls:
-    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-ric-mlb-0.0.6/onos-ric-mlb-0.0.6.tgz
-    version: 0.0.6
-  - apiVersion: v2
     appVersion: v0.6.4
     created: "2020-05-01T20:25:51.710016787+01:00"
     description: ONOS Radio Access Network Load Balancer
@@ -585,6 +566,24 @@ entries:
     - https://github.com/onosproject/onos-helm-charts/releases/download/onos-ztp-0.0.1/onos-ztp-0.0.1.tgz
     version: 0.0.1
   ran-simulator:
+  - apiVersion: v2
+    appVersion: v0.6.5
+    created: "2020-05-20T14:32:23.034114927+01:00"
+    description: ONOS RAN Simulator
+    digest: c0622f80728f021447cc31365d9be349be34dc86fea6485126ea02fa9120d71d
+    home: https://onosproject.org
+    keywords:
+    - onos
+    - sdn
+    - ran
+    kubeVersion: '>=1.15.0'
+    maintainers:
+    - email: sean@opennetworking.org
+      name: Sean Condon
+    name: ran-simulator
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/ran-simulator-0.0.6/ran-simulator-0.0.6.tgz
+    version: 0.0.6
   - apiVersion: v2
     appVersion: v0.6.3
     created: "2020-05-01T20:20:40.954729736+01:00"

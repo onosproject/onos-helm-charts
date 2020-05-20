@@ -180,14 +180,6 @@ App Version **v0.6.0**
 
 ## onos-ric-mlb
 
-#### Version **0.0.6**
-> Generated 2020-05-20T14:31:26.071524869+01:00
-
-App Version **v0.6.5**
-
-[https://github.com/onosproject/onos-helm-charts/releases/download/onos-ric-mlb-0.0.6/onos-ric-mlb-0.0.6.tgz](https://github.com/onosproject/onos-helm-charts/releases/download/onos-ric-mlb-0.0.6/onos-ric-mlb-0.0.6.tgz)
-
-
 #### Version **0.0.5**
 > Generated 2020-05-01T20:25:51.710016787+01:00
 
@@ -268,6 +260,14 @@ App Version **v0.6.0**
 
 
 ## ran-simulator
+
+#### Version **0.0.6**
+> Generated 2020-05-20T14:32:23.034114927+01:00
+
+App Version **v0.6.5**
+
+[https://github.com/onosproject/onos-helm-charts/releases/download/ran-simulator-0.0.6/ran-simulator-0.0.6.tgz](https://github.com/onosproject/onos-helm-charts/releases/download/ran-simulator-0.0.6/ran-simulator-0.0.6.tgz)
+
 
 #### Version **0.0.5**
 > Generated 2020-05-01T20:20:40.954729736+01:00
