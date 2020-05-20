@@ -41,25 +41,6 @@ entries:
     version: 0.1.0
   onos-cli:
   - apiVersion: v2
-    appVersion: v0.6.5
-    created: "2020-05-20T14:33:18.816381007+01:00"
-    description: ONOS Command Line Interface
-    digest: 0f5ab05d6f65f1f2a8332bd6f5a89ff88e5fe4cdd774e159946647e13e15b5b9
-    home: https://onosproject.org
-    keywords:
-    - onos
-    - sdn
-    kubeVersion: '>=1.17.0'
-    maintainers:
-    - email: andrea@opennetworking.org
-      name: Andrea Campanella
-    - email: jordan@opennetworking.org
-      name: kuujo
-    name: onos-cli
-    urls:
-    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-cli-0.0.2/onos-cli-0.0.2.tgz
-    version: 0.0.2
-  - apiVersion: v2
     appVersion: v0.6.0
     created: "2020-04-22T12:25:37.87784-07:00"
     description: ONOS Command Line Interface
@@ -164,6 +145,25 @@ entries:
     - https://github.com/onosproject/onos-helm-charts/releases/download/onos-config-0.0.1/onos-config-0.0.1.tgz
     version: 0.0.1
   onos-gui:
+  - apiVersion: v2
+    appVersion: v0.6.5
+    created: "2020-05-20T14:33:56.563958613+01:00"
+    description: ONOS Graphical User Interface
+    digest: 70f2182e822cff994f174766b163b7a2499809cfb7dff92cbab4a737443bb8d7
+    home: https://onosproject.org
+    keywords:
+    - onos
+    - sdn
+    kubeVersion: '>=1.15.0'
+    maintainers:
+    - email: sean@opennetworking.org
+      name: Sean Condon
+    - email: andrea@opennetworking.org
+      name: Andrea Campanella
+    name: onos-gui
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-gui-0.0.4/onos-gui-0.0.4.tgz
+    version: 0.0.4
   - apiVersion: v2
     appVersion: v0.6.1
     created: "2020-04-28T19:08:22.844219097+01:00"
