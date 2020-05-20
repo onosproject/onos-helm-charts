@@ -94,6 +94,14 @@ App Version **v0.6.0**
 
 ## onos-ric
 
+#### Version **0.0.6**
+> Generated 2020-05-20T14:27:38.041889587+01:00
+
+App Version **v0.6.5**
+
+[https://github.com/onosproject/onos-helm-charts/releases/download/onos-ric-0.0.6/onos-ric-0.0.6.tgz](https://github.com/onosproject/onos-helm-charts/releases/download/onos-ric-0.0.6/onos-ric-0.0.6.tgz)
+
+
 #### Version **0.0.5**
 > Generated 2020-05-01T20:23:09.741395246+01:00
 
@@ -222,6 +230,14 @@ App Version **v0.6.0**
 
 
 ## onos-topo
+
+#### Version **0.0.3**
+> Generated 2020-05-20T14:09:56.945041177+01:00
+
+App Version **v0.6.3**
+
+[https://github.com/onosproject/onos-helm-charts/releases/download/onos-topo-0.0.3/onos-topo-0.0.3.tgz](https://github.com/onosproject/onos-helm-charts/releases/download/onos-topo-0.0.3/onos-topo-0.0.3.tgz)
+
 
 #### Version **0.0.2**
 > Generated 2020-04-26T12:57:11.234297-07:00
