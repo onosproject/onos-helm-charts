@@ -215,6 +215,14 @@ App Version **v0.6.0**
 
 ## onos-topo
 
+#### Version **0.0.3**
+> Generated 2020-05-20T14:09:56.945041177+01:00
+
+App Version **v0.6.3**
+
+[https://github.com/onosproject/onos-helm-charts/releases/download/onos-topo-0.0.3/onos-topo-0.0.3.tgz](https://github.com/onosproject/onos-helm-charts/releases/download/onos-topo-0.0.3/onos-topo-0.0.3.tgz)
+
+
 #### Version **0.0.2**
 > Generated 2020-04-26T12:57:11.234297-07:00
 
