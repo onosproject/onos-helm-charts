@@ -54,7 +54,6 @@ spec:
             - "-showRoutes={{ .Values.showRoutes }}"
             - "-stepDelayMs={{ .Values.stepDelayMs }}"
             - "-zoom={{ .Values.zoom }}"
-            - "-towerConfigName={{ .Values.towerConfigName }}"
           ports:
             - name: grpc
               containerPort: 5150

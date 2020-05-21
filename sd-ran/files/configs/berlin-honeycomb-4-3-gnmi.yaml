@@ -1,0 +1,204 @@
+setrequest:
+  prefix:
+    elem:
+    - name: e2node
+  delete: []
+  replace: []
+  update:
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001420
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001420
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001421
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001421
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001422
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001422
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001423
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001423
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001424
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001424
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001425
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001425
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001426
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001426
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001427
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001427
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001428
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001428
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-0001429
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-0001429
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000142a
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000142a
+    val:
+      uintvalue:
+        uintval: 21
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerUe
+      target: 315010-000142b
+    val:
+      uintvalue:
+        uintval: 20
+  - path:
+      elem:
+      - name: intervals
+      - name: RadioMeasReportPerCell
+      target: 315010-000142b
+    val:
+      uintvalue:
+        uintval: 21
+  extension:
+  - id: 101
+    value: 1.0.0
+  - id: 102
+    value: E2Node

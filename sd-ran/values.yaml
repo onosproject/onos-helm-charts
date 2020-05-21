@@ -178,13 +178,13 @@ ran-simulator:
   showRoutes: true
   stepDelayMs: 1000
   zoom: 13
-  towerConfigName: berlin-honeycomb-4-3.yaml
 
 onos-cli:
   image:
     repository: onosproject/onos-cli
     tag: v0.6.5
     pullPolicy: IfNotPresent
-    postInstall:
-      - topo: berlin-honeycomb-4-3-topo.yaml
-        config: berlin-honeycomb-4-3-gnmi.yaml
+  postInstall:
+    placeholder: true
+    topo: berlin-honeycomb-4-3-topo.yaml
+    config: [ berlin-honeycomb-4-3-gnmi.yaml ]
