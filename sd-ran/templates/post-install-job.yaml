@@ -24,9 +24,45 @@ spec:
     spec:
       restartPolicy: Never
       containers:
-        - name: post-install-job
+        {{- if index .Values "import" "onos-topo" "enabled" }}
+          {{- if index .Values "onos-cli" "postInstall" "topo"}}
+        - name: post-install-topo-job
           image: {{ index .Values "onos-cli" "image" "repository" }}:{{ index .Values "onos-cli" "image" "tag" }}
           imagePullPolicy: {{ index .Values "onos-cli" "image" "pullPolicy" }}
           command: ["/usr/local/bin/onos"]
-#          TODO Change to `topo load yarn berlin-honeycomb-4-3-topo.yaml`
-          args: ["topo", "get", "devices"]
+          args:
+          - "topo"
+          - "load"
+          - "yaml"
+          - {{ index .Values "onos-cli" "postInstall" "topo" }}
+          volumeMounts:
+            - name: config
+              mountPath: /home/onos
+              readOnly: true
+          {{- end }}
+        {{- end }}
+        {{- if index .Values "import" "onos-config" "enabled" }}
+          {{- if index .Values "onos-cli" "postInstall" "config" }}
+        - name: post-install-config-job
+          image: {{ index .Values "onos-cli" "image" "repository" }}:{{ index .Values "onos-cli" "image" "tag" }}
+          imagePullPolicy: {{ index .Values "onos-cli" "image" "pullPolicy" }}
+          command: ["/usr/local/bin/onos"]
+          args:
+            - "config"
+            - "load"
+            - "yaml"
+            {{- with index .Values "onos-cli" "postInstall" "config" }}
+            {{- range $filename := . }}
+            - {{ $filename }}
+            {{- end }}
+            {{- end }}
+          volumeMounts:
+            - name: config
+              mountPath: /home/onos
+              readOnly: true
+          {{- end }}
+        {{- end }}
+      volumes:
+        - name: config
+          configMap:
+            name: {{ .Release.Name }}-post

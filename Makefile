@@ -12,6 +12,9 @@ publish: # @HELP publish version on github
 bumponosdeps: # @HELP update "onosproject" go dependencies and push patch to git.
 	./../build-tools/bump-onos-deps ${VERSION}
 
+clean: # @HELP clean up temporary files.
+	rm -rf sd-ran/charts sd-ran/Chart.lock
+
 help:
 	@grep -E '^.*: *# *@HELP' $(MAKEFILE_LIST) \
     | sort \

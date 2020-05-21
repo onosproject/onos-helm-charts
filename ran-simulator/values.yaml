@@ -21,7 +21,6 @@ showPower: true
 showRoutes: true
 stepDelayMs: 1000
 zoom: 13
-towerConfigName: berlin-honeycomb-4-3.yaml
 
 imagePullSecrets: []
 nameOverride: ""
