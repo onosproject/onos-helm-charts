@@ -790,6 +790,26 @@ entries:
   sd-ran:
   - apiVersion: v2
     appVersion: v0.6.5
+    created: "2020-05-21T11:28:07.739906035+01:00"
+    description: Umbrella chart to deploy all ONOS-RIC and simulator
+    digest: ed4110fd4060be2e63f627052f3dd3ebd30870d1d6c6a250d013aec69fc20684
+    home: https://onosproject.org
+    keywords:
+    - onos
+    - sdn
+    - ran
+    kubeVersion: '>=1.17.0'
+    maintainers:
+    - email: woojoong@opennetworking.org
+      name: Woojoong Kim
+    - email: jordan@opennetworking.org
+      name: Jordan Halterman
+    name: sd-ran
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/sd-ran-0.0.9/sd-ran-0.0.9.tgz
+    version: 0.0.9
+  - apiVersion: v2
+    appVersion: v0.6.5
     created: "2020-05-20T15:44:48.752043696+01:00"
     description: Umbrella chart to deploy all ONOS-RIC and simulator
     digest: 55151a10bf4750c14b81e3b3514f2d80c54afa1a175d2efee668f983ed28318c

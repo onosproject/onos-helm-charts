@@ -360,6 +360,14 @@ App Version **v0.6.0**
 
 ## sd-ran
 
+#### Version **0.0.9**
+> Generated 2020-05-21T11:28:07.739906035+01:00
+
+App Version **v0.6.5**
+
+[https://github.com/onosproject/onos-helm-charts/releases/download/sd-ran-0.0.9/sd-ran-0.0.9.tgz](https://github.com/onosproject/onos-helm-charts/releases/download/sd-ran-0.0.9/sd-ran-0.0.9.tgz)
+
+
 #### Version **0.0.8**
 > Generated 2020-05-20T15:44:48.752043696+01:00
 
