@@ -99,6 +99,27 @@ entries:
     version: 0.0.1
   onos-config:
   - apiVersion: v2
+    appVersion: v0.6.4
+    created: "2020-05-21T20:58:35.022744-07:00"
+    description: ONOS Config Manager
+    digest: 34c1651c70c29053c209364d9e0b8f80f354ae3d5fb6982cc3545f1acb466497
+    home: https://onosproject.org
+    keywords:
+    - onos
+    - sdn
+    kubeVersion: '>=1.17.0'
+    maintainers:
+    - email: tom@opennetworking.org
+      name: tomikazi
+    - email: jordan@opennetworking.org
+      name: kuujo
+    - email: andrea@opennetworking.org
+      name: Andrea Campanella
+    name: onos-config
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-config-0.0.5/onos-config-0.0.5.tgz
+    version: 0.0.5
+  - apiVersion: v2
     appVersion: v0.6.3
     created: "2020-05-20T14:13:52.668554061+01:00"
     description: ONOS Config Manager
@@ -617,6 +638,25 @@ entries:
     - https://github.com/onosproject/onos-helm-charts/releases/download/onos-ric-mlb-0.0.1/onos-ric-mlb-0.0.1.tgz
     version: 0.0.1
   onos-topo:
+  - apiVersion: v2
+    appVersion: v0.6.4
+    created: "2020-05-21T20:57:07.693334-07:00"
+    description: ONOS Topology service
+    digest: a71e1c4866cebd3b1b5dab03f90543c93447574011ed7543c2ee268ca1eb92c7
+    home: https://onosproject.org
+    keywords:
+    - onos
+    - sdn
+    kubeVersion: '>=1.17.0'
+    maintainers:
+    - email: andrea@opennetworking.org
+      name: Andrea Campanella
+    - email: jordan@opennetworking.org
+      name: kuujo
+    name: onos-topo
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-topo-0.0.4/onos-topo-0.0.4.tgz
+    version: 0.0.4
   - apiVersion: v2
     appVersion: v0.6.3
     created: "2020-05-20T14:09:56.945041177+01:00"
