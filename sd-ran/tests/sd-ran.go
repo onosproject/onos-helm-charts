@@ -28,7 +28,7 @@ type SDRANSuite struct {
 
 // TestInstall tests installing the sd-ran chart
 func (s *SDRANSuite) TestInstall(t *testing.T) {
-	atomix := helm.Chart("kubernetes-controller", "https://charts.atomix.io").
+	atomix := helm.Chart("atomix-controller", "https://charts.atomix.io").
 		Release("sd-ran-atomix").
 		Set("scope", "Namespace")
 	assert.NoError(t, atomix.Install(true))
@@ -45,7 +45,7 @@ func (s *SDRANSuite) TestInstall(t *testing.T) {
 
 	sdran := helm.Chart("sd-ran").
 		Release("sd-ran").
-		Set("global.store.controller", "sd-ran-atomix-kubernetes-controller:5679").
+		Set("global.store.controller", "sd-ran-atomix-atomix-controller:5679").
 		Set("import.onos-gui.enabled", false).
 		Set("onos-ric.service.external.nodePort", 0).
 		Set("onos-ric-ho.service.external.nodePort", 0).
