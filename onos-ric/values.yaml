@@ -34,12 +34,12 @@ store:
     database: ""
     partitions: 1
     clusters: 1
-    image: atomix/cache-storage-node:v0.1.0
+    image: atomix/cache-storage-node:v0.2.0
     imagePullPolicy: IfNotPresent
   consensus:
     enabled: true
     database: ""
-    image: atomix/raft-storage-node:v0.1.0
+    image: atomix/raft-storage-node:v0.2.0
     imagePullPolicy: IfNotPresent
     partitions: 1
     replicas: 1
