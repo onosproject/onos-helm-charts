@@ -600,6 +600,25 @@ entries:
     version: 0.0.1
   onos-topo:
   - apiVersion: v2
+    appVersion: v0.6.4
+    created: "2020-05-21T20:57:07.693334-07:00"
+    description: ONOS Topology service
+    digest: a71e1c4866cebd3b1b5dab03f90543c93447574011ed7543c2ee268ca1eb92c7
+    home: https://onosproject.org
+    keywords:
+    - onos
+    - sdn
+    kubeVersion: '>=1.17.0'
+    maintainers:
+    - email: andrea@opennetworking.org
+      name: Andrea Campanella
+    - email: jordan@opennetworking.org
+      name: kuujo
+    name: onos-topo
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-topo-0.0.4/onos-topo-0.0.4.tgz
+    version: 0.0.4
+  - apiVersion: v2
     appVersion: v0.6.3
     created: "2020-05-20T14:09:56.945041177+01:00"
     description: ONOS Topology service
