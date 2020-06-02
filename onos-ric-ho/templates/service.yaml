@@ -18,6 +18,8 @@ spec:
     resource: {{ template "onos-ric-ho.fullname" . }}
     {{- include "onos-ric-ho.selectorLabels" . | nindent 4 }}
   ports:
+    - name: grpc
+      port: 5150
     - name: exporter
       port: 7001
 ---
