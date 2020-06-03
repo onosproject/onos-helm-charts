@@ -23,7 +23,7 @@ dependencies:
   - name: atomix-controller
     condition: import.atomix-controller.enabled
     repository: https://charts.atomix.io
-    version: 0.5.0
+    version: 0.5.1
   - name: raft-storage-controller
     condition: import.atomix-raft-storage-controller.enabled
     repository: https://charts.atomix.io
@@ -34,8 +34,8 @@ dependencies:
     version: 0.4.0
   - name: onos-ric
     condition: import.onos-ric.enabled
-    repository: https://charts.onosproject.org
-    version: 0.0.7
+    repository: file://../onos-ric
+    version: 0.0.8
   - name: onos-ric-ho
     condition: import.onos-ric-ho.enabled
     repository: https://charts.onosproject.org
