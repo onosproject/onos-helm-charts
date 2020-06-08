@@ -18,3 +18,7 @@ We truncate at 60 chars because some Kubernetes name fields are limited to 63 (b
 {{- define "atomix.fullname" -}}
 {{- printf "%s-%s" .Release.Name "atomix" | trunc 59 | trimSuffix "-" -}}
 {{- end -}}
+
+{{- define "livelinessApps" -}}
+{{- join "," .Values.apps }}
+{{- end -}}

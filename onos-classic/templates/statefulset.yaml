@@ -71,8 +71,8 @@ spec:
         env:
           - name: JAVA_OPTS
             value: -Xmx{{ .Values.heap }}
-          - name: ONOS_APPS
-            value: {{ .Values.apps | quote }}
+          - name: LIVELINESS_CHECK_APPS
+            value: {{ template "livelinessApps" . }}
         ports:
           - name: openflow
             containerPort: 6653

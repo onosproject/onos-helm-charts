@@ -13,7 +13,7 @@ data:
     #!/bin/bash
     set -e
     live_probe () {
-        apps=$ONOS_APPS
+        apps=$(echo $LIVELINESS_CHECK_APPS | sed 's/[][]//g')
         IFS=',' read -ra app_array <<< "$apps"
         for i in "${app_array[@]}"
             do
