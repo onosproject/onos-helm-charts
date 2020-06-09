@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "stratum-simulator.fullname" . }}
+  labels:
+    {{- include "stratum-simulator.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "stratum-simulator.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "stratum-simulator.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag}}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+                {{  range .Values.topospec.topology }}
+                - {{ . | quote }}
+                {{ end }}
+          ports:
+                  {{range $i, $e := until (.Values.topospec.num_devices | int)}}
+                  - name: stratum-{{ $i }}
+                    containerPort:  {{ add $.Values.service.port $i }}
+                  {{- end}}
+          readinessProbe:
+              tcpSocket:
+                port: {{ .Values.service.port }}
+              initialDelaySeconds: 5
+              periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: {{ .Values.service.port}}
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          stdin: true
+
+

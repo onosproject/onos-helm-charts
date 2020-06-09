@@ -1,0 +1,19 @@
+{{- $fullName := include "stratum-simulator.fullname" . -}}
+{{- $labels := include "stratum-simulator.labels" . -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{ $labels | nindent 4 }}
+spec:
+  type: {{ $.Values.service.type }}
+  ports:
+          {{range $i, $e := until (.Values.topospec.num_devices | int)}}
+            - port: {{ add $.Values.service.port $i }}
+              name: "stratum-simulator-{{ $i }}"
+          {{- end }}
+  selector:
+    {{- include "stratum-simulator.selectorLabels" . | nindent 4 }}
+
+
