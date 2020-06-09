@@ -1,0 +1,15 @@
+apiVersion: v2
+name: stratum-simulator
+description: Stratum Simulator
+kubeVersion: ">=1.15.0"
+type: application
+version: 0.0.1
+appVersion: v0.1.0
+keywords:
+  - onos
+  - sdn
+  - ran
+home: https://onosproject.org
+maintainers:
+  - name: Adib Rastegarnia
+    email: adib@opennetworking.org

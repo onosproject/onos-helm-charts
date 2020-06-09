@@ -1,0 +1,25 @@
+# Default values for stratum-simulator.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: opennetworking/mn-stratum
+  tag: latest
+  pullPolicy: IfNotPresent
+
+
+securityContext:
+  privileged: true
+
+service:
+  type: ClusterIP
+  port: 50001
+
+
+topospec:
+  num_devices: 2
+  topology:
+  - "--topo"
+  - "linear,2"
