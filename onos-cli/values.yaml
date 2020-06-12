@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: onosproject/onos-cli
+  repository: onosproject/onos-sdran-cli
   tag: v0.6.5
   pullPolicy: IfNotPresent
   pullSecrets: []
