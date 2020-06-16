@@ -3,7 +3,7 @@ name: onos-ric
 description: ONOS Radio Access Network Intelligent Controller
 kubeVersion: ">=1.17.0"
 type: application
-version: 0.0.7
+version: 0.0.8
 appVersion: v0.6.6
 keywords:
   - onos

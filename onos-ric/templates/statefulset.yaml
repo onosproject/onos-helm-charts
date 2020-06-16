@@ -1,11 +1,14 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "onos-ric.fullname" . }}
   labels:
     {{- include "onos-ric.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  updateStrategy:
+    type: RollingUpdate
+  podManagementPolicy: Parallel
   selector:
     matchLabels:
       name: {{ template "onos-ric.fullname" . }}
@@ -13,6 +16,7 @@ spec:
       type: ran
       resource: {{ template "onos-ric.fullname" . }}
       {{- include "onos-ric.selectorLabels" . | nindent 6 }}
+  serviceName: {{ include "onos-ric.fullname" . }}-hs
   template:
     metadata:
       labels:
@@ -29,6 +33,18 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      initContainers:
+        - name: configure
+          image: ubuntu:16.04
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          command: ["/bin/sh", "-c", "printf \"%s.%s\" $(hostname -s) $(hostname -d) >> /config/id"]
+          volumeMounts:
+            - name: pod-id
+              mountPath: /config
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -54,6 +70,10 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
+          command:
+            - sh
+            - -c
+            - "POD_ID=$(cat /etc/onos/pod/id) onos-ric"
           args:
             - "-caPath=/etc/onos/certs/tls.cacrt"
             - "-keyPath=/etc/onos/certs/tls.key"
@@ -85,6 +105,9 @@ spec:
             - name: secret
               mountPath: /etc/onos/certs
               readOnly: true
+            - name: pod-id
+              mountPath: /etc/onos/pod
+              readOnly: true
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           # Enable ptrace for debugging
@@ -98,6 +121,8 @@ spec:
         - name: config
           configMap:
             name: {{ template "onos-ric.fullname" . }}-config
+        - name: pod-id
+          emptyDir: {}
         - name: secret
           secret:
             secretName: {{ template "onos-ric.fullname" . }}-secret
