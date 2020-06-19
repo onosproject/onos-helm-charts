@@ -56,6 +56,14 @@ App Version **v0.6.0**
 
 ## onos-config
 
+#### Version **0.0.6**
+> Generated 2020-06-19T17:02:44.6466645+01:00
+
+App Version **v0.6.5**
+
+[https://github.com/onosproject/onos-helm-charts/releases/download/onos-config-0.0.6/onos-config-0.0.6.tgz](https://github.com/onosproject/onos-helm-charts/releases/download/onos-config-0.0.6/onos-config-0.0.6.tgz)
+
+
 #### Version **0.0.5**
 > Generated 2020-05-21T20:58:35.022744-07:00
 
