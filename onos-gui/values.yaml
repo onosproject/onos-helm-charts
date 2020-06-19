@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: onosproject/onos-gui
-  tag: v0.6.5
+  tag: v0.6.7
   pullPolicy: IfNotPresent
   pullSecrets: []
 

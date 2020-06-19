@@ -1,0 +1,28 @@
+setrequest:
+  prefix:
+    target: devicesim-1
+  delete: []
+  replace: []
+  update:
+  - path:
+      elem:
+      - name: system
+      - name: clock
+      - name: config
+      - name: timezone-name
+    val:
+      stringvalue:
+        stringval: Europe/Berlin
+  - path:
+      elem:
+        - name: system
+        - name: config
+        - name: motd-banner
+    val:
+      stringvalue:
+        stringval: Welcome to Device Sim 1
+  extension:
+  - id: 101
+    value: 1.0.0
+  - id: 102
+    value: Devicesim

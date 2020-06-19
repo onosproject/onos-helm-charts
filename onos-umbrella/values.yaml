@@ -1,0 +1,77 @@
+# Default values for all µONOS Helm charts.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+global:
+  fullnameOverride: "onos"
+  nameOverride: ""
+  store:
+    controller: atomix-controller:5679
+    consensus:
+      enabled: true
+      database: ""
+      image: atomix/raft-storage-node:v0.2.0
+      imagePullPolicy: IfNotPresent
+      partitions: 1
+      replicas: 1
+      partitionsPerCluster: 1
+
+import:
+  atomix-controller:
+    enabled: false
+  atomix-raft-storage-controller:
+    enabled: false
+  onos-topo:
+    enabled: true
+  onos-config:
+    enabled: true
+  onos-gui:
+    enabled: true
+  onos-cli:
+    enabled: true
+
+# ONOS-TOPO
+onos-topo:
+  image:
+    repository: onosproject/onos-topo
+    tag: v0.6.4
+    pullPolicy: IfNotPresent
+  store:
+    controller: ""
+    consensus:
+      enabled: false
+
+# ONOS-CONFIG
+onos-config:
+  image:
+    repository: onosproject/onos-config
+    tag: v0.6.4
+    pullPolicy: IfNotPresent
+  store:
+    controller: ""
+    consensus:
+      enabled: false
+  plugins:
+#    devicesim:
+#      versions: []
+    stratum:
+      versions: []
+#    testdevice:
+#      versions: []
+
+# ONOS-GUI
+onos-gui:
+  image:
+    repository: onosproject/onos-gui
+    tag: v0.6.5
+    pullPolicy: IfNotPresent
+
+onos-cli:
+  image:
+    repository: onosproject/onos-cli
+    tag: v0.6.5
+    pullPolicy: IfNotPresent
+  postInstall:
+    placeholder: true
+    topo: berlin-grid-4-topo.yaml
+    config: [ berlin-devicesim-1-gnmi.yaml, berlin-devicesim-2-gnmi.yaml ]
