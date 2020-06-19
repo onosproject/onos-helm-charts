@@ -8,7 +8,6 @@ appVersion: v0.1.0
 keywords:
   - onos
   - sdn
-  - ran
 home: https://onosproject.org
 maintainers:
   - name: Adib Rastegarnia

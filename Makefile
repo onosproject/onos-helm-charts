@@ -13,7 +13,10 @@ bumponosdeps: # @HELP update "onosproject" go dependencies and push patch to git
 	./../build-tools/bump-onos-deps ${VERSION}
 
 clean: # @HELP clean up temporary files.
-	rm -rf sd-ran/charts sd-ran/Chart.lock
+	rm -rf onos-umbrella/charts onos-umbrella/Chart.lock
+
+deps: # @HELP build dependencies for local charts.
+	helm dep build onos-umbrella
 
 help:
 	@grep -E '^.*: *# *@HELP' $(MAKEFILE_LIST) \
