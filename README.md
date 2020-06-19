@@ -147,6 +147,7 @@ App Version **v0.6.0**
 [https://github.com/onosproject/onos-helm-charts/releases/download/onos-gui-0.0.1/onos-gui-0.0.1.tgz](https://github.com/onosproject/onos-helm-charts/releases/download/onos-gui-0.0.1/onos-gui-0.0.1.tgz)
 
 
+
 ## onos-topo
 
 #### Version **0.0.5**
@@ -190,6 +191,17 @@ App Version **v0.6.0**
 
 
 
+## onos-umbrella
+
+#### Version **0.0.1**
+> Generated 2020-06-19T17:39:37.729191624+01:00
+
+App Version **v0.6.0**
+
+[https://github.com/onosproject/onos-helm-charts/releases/download/onos-umbrella-0.0.1/onos-umbrella-0.0.1.tgz](https://github.com/onosproject/onos-helm-charts/releases/download/onos-umbrella-0.0.1/onos-umbrella-0.0.1.tgz)
+
+
+
 ## onos-ztp
 
 #### Version **0.0.1**
@@ -198,4 +210,7 @@ App Version **v0.6.0**
 App Version **v0.6.0**
 
 [https://github.com/onosproject/onos-helm-charts/releases/download/onos-ztp-0.0.1/onos-ztp-0.0.1.tgz](https://github.com/onosproject/onos-helm-charts/releases/download/onos-ztp-0.0.1/onos-ztp-0.0.1.tgz)
+
+
+
 

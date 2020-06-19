@@ -435,6 +435,26 @@ entries:
     urls:
     - https://github.com/onosproject/onos-helm-charts/releases/download/onos-topo-0.0.1/onos-topo-0.0.1.tgz
     version: 0.0.1
+  onos-umbrella:
+  - apiVersion: v2
+    appVersion: v0.6.0
+    created: "2020-06-19T17:39:37.729191624+01:00"
+    description: Umbrella chart to deploy all µONOS
+    digest: 5777ec4de988c9088060e1b1c24b5720d9b4494963af1bdd64a1b22a666b7ff4
+    home: https://onosproject.org
+    keywords:
+    - onos
+    - sdn
+    kubeVersion: '>=1.17.0'
+    maintainers:
+    - email: woojoong@opennetworking.org
+      name: Woojoong Kim
+    - email: jordan@opennetworking.org
+      name: Jordan Halterman
+    name: onos-umbrella
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-umbrella-0.0.1/onos-umbrella-0.0.1.tgz
+    version: 0.0.1
   onos-ztp:
   - apiVersion: v2
     appVersion: v0.6.0
@@ -457,3 +477,4 @@ entries:
     urls:
     - https://github.com/onosproject/onos-helm-charts/releases/download/onos-ztp-0.0.1/onos-ztp-0.0.1.tgz
     version: 0.0.1
+generated: "0001-01-01T00:00:00Z"
