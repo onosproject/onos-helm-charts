@@ -10,9 +10,5 @@ keywords:
   - sdn
 home: https://onosproject.org
 maintainers:
-  - name: Andrea Campanella
-    email: andrea@opennetworking.org
-  - name: kuujo
-    email: jordan@opennetworking.org
-  - name: Adib
-    email: adib@opennetworking.org
+  - name: ONOS Support
+    email: support@opennetworking.org
