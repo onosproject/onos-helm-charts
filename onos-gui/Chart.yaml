@@ -10,7 +10,5 @@ keywords:
   - sdn
 home: https://onosproject.org
 maintainers:
-  - name: Sean Condon
-    email: sean@opennetworking.org
-  - name: Andrea Campanella
-    email: andrea@opennetworking.org
+  - name: ONOS Support
+    email: support@opennetworking.org

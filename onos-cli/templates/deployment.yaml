@@ -37,7 +37,7 @@ spec:
           stdin : true
           volumeMounts:
             - name: config
-              mountPath: /home/onos
+              mountPath: /home/onos/config
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           livenessProbe:

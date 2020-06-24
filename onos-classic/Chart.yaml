@@ -12,5 +12,5 @@ keywords:
 home: http://onosproject.org
 icon: https://guide.opencord.org/logos/onos.svg
 maintainers:
-- name: Jordan Halterman
-  email: jordan@opennetworking.org
+  - name: ONOS Support
+    email: support@opennetworking.org

@@ -10,7 +10,5 @@ keywords:
   - verification
 home: https://onosproject.org
 maintainers:
-  - name: kuujo
-    email: jordan@opennetworking.org
-  - name: Adib Rastegarnia
-    email: adib@opennetworking.org
+  - name: ONOS Support
+    email: support@opennetworking.org
