@@ -21,26 +21,26 @@ import (
 	"testing"
 )
 
-// OnosSuite is the onos-umbrella chart test suite
-type OnosSuite struct {
+// OnosUmbrellaSuite is the onos-umbrella chart test suite
+type OnosUmbrellaSuite struct {
 	test.Suite
 }
 
 // TestInstall tests installing the onos-umbrella chart
-func (s *OnosSuite) TestInstall(t *testing.T) {
+func (s *OnosUmbrellaSuite) TestInstall(t *testing.T) {
 	atomix := helm.Chart("atomix-controller", "https://charts.atomix.io").
-		Release("onos-atomix").
+		Release("onos-umbrella-atomix").
 		Set("scope", "Namespace")
 	assert.NoError(t, atomix.Install(true))
 
 	raft := helm.Chart("raft-storage-controller", "https://charts.atomix.io").
-		Release("onos-raft").
+		Release("onos-umbrella-raft").
 		Set("scope", "Namespace")
 	assert.NoError(t, raft.Install(true))
 
-	onos := helm.Chart("onos").
-		Release("onos").
-		Set("global.store.controller", "onos-atomix-atomix-controller:5679").
+	onos := helm.Chart("onos-umbrella").
+		Release("onos-umbrella").
+		Set("global.store.controller", "onos-umbrella-atomix-atomix-controller:5679").
 		Set("import.onos-gui.enabled", false).
 		Set("import.onos-cli.enabled", false)
 	assert.NoError(t, onos.Install(true))
