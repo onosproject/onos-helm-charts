@@ -4,6 +4,7 @@ all: test
 
 test: # @HELP run the integration tests
 test:
+	COMPARISON_BRANCH=upstream/master ./../build-tools/chart_version_check
 	helmit test ./test -c .
 
 publish: # @HELP publish version on github
