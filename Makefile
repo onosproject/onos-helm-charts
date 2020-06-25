@@ -7,7 +7,7 @@ test: version_check
 	helmit test ./test -c .
 
 version_check: # @HELP run the version checker on the charts
-	COMPARISON_BRANCH=upstream/master ./../build-tools/chart_version_check
+	COMPARISON_BRANCH=master ./../build-tools/chart_version_check
 
 publish: # @HELP publish version on github
 	./../build-tools/publish-version ${VERSION}
