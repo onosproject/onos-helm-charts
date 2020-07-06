@@ -115,6 +115,14 @@ App Version **v0.6.0**
 
 ## onos-gui
 
+#### Version **0.0.6**
+> Generated 2020-07-06T10:58:16.676760334+01:00
+
+App Version **v0.6.8**
+
+[https://github.com/onosproject/onos-helm-charts/releases/download/onos-gui-0.0.6/onos-gui-0.0.6.tgz](https://github.com/onosproject/onos-helm-charts/releases/download/onos-gui-0.0.6/onos-gui-0.0.6.tgz)
+
+
 #### Version **0.0.5**
 > Generated 2020-06-19T16:42:17.000469768+01:00
 
