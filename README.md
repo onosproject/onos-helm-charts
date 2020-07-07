@@ -223,6 +223,17 @@ App Version **v0.6.0**
 
 
 
+## onos-tost
+
+#### Version **0.1.2**
+> Generated 2020-07-07T15:39:56.097314-07:00
+
+App Version **2.2.3**
+
+[https://github.com/onosproject/onos-helm-charts/releases/download/onos-tost-0.1.2/onos-tost-0.1.2.tgz](https://github.com/onosproject/onos-helm-charts/releases/download/onos-tost-0.1.2/onos-tost-0.1.2.tgz)
+
+
+
 ## onos-umbrella
 
 #### Version **0.0.2**
