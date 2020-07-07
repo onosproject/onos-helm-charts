@@ -21,6 +21,14 @@ App Version **2.2.2**
 
 ## onos-cli
 
+#### Version **0.0.6**
+> Generated 2020-07-07T12:55:41.069781104+01:00
+
+App Version **v0.6.8**
+
+[https://github.com/onosproject/onos-helm-charts/releases/download/onos-cli-0.0.6/onos-cli-0.0.6.tgz](https://github.com/onosproject/onos-helm-charts/releases/download/onos-cli-0.0.6/onos-cli-0.0.6.tgz)
+
+
 #### Version **0.0.5**
 > Generated 2020-06-24T19:24:16.135562255+01:00
 

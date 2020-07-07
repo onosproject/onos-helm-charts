@@ -41,6 +41,23 @@ entries:
     version: 0.1.0
   onos-cli:
   - apiVersion: v2
+    appVersion: v0.6.8
+    created: "2020-07-07T12:55:41.069781104+01:00"
+    description: ONOS Command Line Interface
+    digest: 3e78ce427159afc87479d4e2f33aacc14f5bb68421c3e308a6b0c99570e90d5b
+    home: https://onosproject.org
+    keywords:
+    - onos
+    - sdn
+    kubeVersion: '>=1.17.0'
+    maintainers:
+    - email: support@opennetworking.org
+      name: ONOS Support
+    name: onos-cli
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-cli-0.0.6/onos-cli-0.0.6.tgz
+    version: 0.0.6
+  - apiVersion: v2
     appVersion: v0.6.7
     created: "2020-06-24T19:24:16.135562255+01:00"
     description: ONOS Command Line Interface
