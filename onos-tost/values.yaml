@@ -1,0 +1,26 @@
+onos-classic:
+  image: 
+    repository: "onosproject/tost-onos"
+    tag: "1.0.0-b1"
+  apps:
+  - org.onosproject.drivers
+  - org.onosproject.lldpprovider
+  - org.onosproject.route-service
+  - org.onosproject.hostprovider         
+  - org.onosproject.protocols.grpc       
+  - org.onosproject.protocols.gnmi       
+  - org.onosproject.generaldeviceprovider
+  - org.onosproject.protocols.p4runtime  
+  - org.onosproject.p4runtime       
+  - org.onosproject.drivers.p4runtime    
+  - org.onosproject.pipelines.basic      
+  - org.onosproject.pipelines.fabric     
+  - org.onosproject.mcast                
+  - org.onosproject.portloadbalancer     
+  - org.onosproject.segmentrouting       
+  - org.onosproject.t3                   
+  - org.onosproject.gui2                 
+  - org.opencord.fabric-tofino
+  atomix:
+    persistence:
+      storageClass: fast-disks
