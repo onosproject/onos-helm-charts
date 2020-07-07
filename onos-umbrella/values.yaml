@@ -34,7 +34,7 @@ import:
 onos-topo:
   image:
     repository: onosproject/onos-topo
-    tag: v0.6.9
+    tag: v0.6.10
     pullPolicy: IfNotPresent
   store:
     controller: ""
@@ -63,13 +63,13 @@ onos-config:
 onos-gui:
   image:
     repository: onosproject/onos-gui
-    tag: v0.6.7
+    tag: v0.6.8
     pullPolicy: IfNotPresent
 
 onos-cli:
   image:
     repository: onosproject/onos-cli
-    tag: v0.6.7
+    tag: v0.6.8
     pullPolicy: IfNotPresent
   postInstall:
     placeholder: true
