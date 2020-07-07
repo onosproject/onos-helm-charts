@@ -2,6 +2,7 @@ onos-classic:
   image: 
     repository: "onosproject/tost-onos"
     tag: "1.0.0-b1"
+  replicas: 3
   apps:
   - org.onosproject.drivers
   - org.onosproject.lldpprovider
@@ -22,5 +23,6 @@ onos-classic:
   - org.onosproject.gui2                 
   - org.opencord.fabric-tofino
   atomix:
+    replicas: 3
     persistence:
       storageClass: fast-disks
