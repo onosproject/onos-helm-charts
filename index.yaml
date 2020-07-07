@@ -505,6 +505,23 @@ entries:
     version: 0.0.1
   onos-umbrella:
   - apiVersion: v2
+    appVersion: v0.6.1
+    created: "2020-07-07T13:12:27.315560908+01:00"
+    description: Umbrella chart to deploy all µONOS
+    digest: d31e5ecc5a61a8c07d51502577fd53ed8f6af80cdd74f31c317fcb541c037505
+    home: https://onosproject.org
+    keywords:
+    - onos
+    - sdn
+    kubeVersion: '>=1.17.0'
+    maintainers:
+    - email: support@opennetworking.org
+      name: ONOS Support
+    name: onos-umbrella
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-umbrella-0.0.2/onos-umbrella-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
     appVersion: v0.6.0
     created: "2020-06-19T17:39:37.729191624+01:00"
     description: Umbrella chart to deploy all µONOS

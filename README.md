@@ -225,6 +225,14 @@ App Version **v0.6.0**
 
 ## onos-umbrella
 
+#### Version **0.0.2**
+> Generated 2020-07-07T13:12:27.315560908+01:00
+
+App Version **v0.6.1**
+
+[https://github.com/onosproject/onos-helm-charts/releases/download/onos-umbrella-0.0.2/onos-umbrella-0.0.2.tgz](https://github.com/onosproject/onos-helm-charts/releases/download/onos-umbrella-0.0.2/onos-umbrella-0.0.2.tgz)
+
+
 #### Version **0.0.1**
 > Generated 2020-06-19T17:39:37.729191624+01:00
 
