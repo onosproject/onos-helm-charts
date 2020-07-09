@@ -27,3 +27,15 @@ resources:
   requests:
     cpu: 0.5
     memory: 512Mi
+
+ports:
+  - name: openflow
+    port: 6653
+  - name: ovsdb
+    port: 6640
+  - name: east-west
+    port: 9876
+  - name: cli
+    port: 8101
+  - name: ui
+    port: 8181
