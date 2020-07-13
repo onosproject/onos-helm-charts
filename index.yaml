@@ -3,6 +3,25 @@ entries:
   onos-classic:
   - apiVersion: v1
     appVersion: 2.2.2
+    created: "2020-07-13T12:55:03.470265-07:00"
+    description: ONOS cluster
+    digest: c87f2dfa80d021feff5df6aff209305dab1d86582524f3231de7c465a38e9c92
+    home: http://onosproject.org
+    icon: https://guide.opencord.org/logos/onos.svg
+    keywords:
+    - onos
+    - sdn
+    - networking
+    kubeVersion: '>=1.10.0'
+    maintainers:
+    - email: support@opennetworking.org
+      name: ONOS Support
+    name: onos-classic
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-classic-0.1.2/onos-classic-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v1
+    appVersion: 2.2.2
     created: "2020-05-01T15:31:30.513221-07:00"
     description: ONOS cluster
     digest: 3e06a21e8974248cd2662618bf4b7893dfa097a92d98402f41dc2c8018061c41
