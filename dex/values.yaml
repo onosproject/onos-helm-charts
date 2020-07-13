@@ -1,6 +1,8 @@
 # Default values for dex.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+# See https://hub.helm.sh/charts/stable/dex for values that can be overridden
+
+# See https://github.com/helm/charts/blob/master/stable/dex/values.yaml
+# for the file that this overrides
 
 ports:
   grpc:
@@ -40,6 +42,7 @@ config:
 
   frontend:
     issuer: Aether
+    logoURL: https://www.opennetworking.org/wp-content/uploads/2020/02/aether-logo.png
 
   grpc:
     address: 0.0.0.0
