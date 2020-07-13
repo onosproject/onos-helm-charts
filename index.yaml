@@ -525,6 +525,25 @@ entries:
   onos-tost:
   - apiVersion: v1
     appVersion: 2.2.3
+    created: "2020-07-13T13:30:24.752992-07:00"
+    description: ONOS TOST
+    digest: fa51818396c58a3a7d2cfcb8c06f45f131c552b544badb37402bbd92a882f5f7
+    home: http://onosproject.org
+    icon: https://guide.opencord.org/logos/onos.svg
+    keywords:
+    - onos
+    - sdn
+    - networking
+    kubeVersion: '>=1.10.0'
+    maintainers:
+    - email: support@opennetworking.org
+      name: ONOS Support
+    name: onos-tost
+    urls:
+    - https://github.com/onosproject/onos-helm-charts/releases/download/onos-tost-0.1.3/onos-tost-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v1
+    appVersion: 2.2.3
     created: "2020-07-07T15:39:56.097314-07:00"
     description: ONOS TOST
     digest: 2cf01266396e2bd3a967c9de3b8596828bdd2d82d4a775fa629b0547af867f86
