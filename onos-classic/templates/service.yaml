@@ -11,17 +11,14 @@ metadata:
   annotations:
       service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
 spec:
+  {{- with .Values.ports }}
   ports:
-  - name: openflow
-    port: 6653
-  - name: ovsdb
-    port: 6640
-  - name: east-west
-    port: 9876
-  - name: cli
-    port: 8101
-  - name: ui
-    port: 8181
+  {{- range . }}
+    - name: {{ .name }}
+      port: {{ .port }}
+      protocol: {{ .protocol | default "TCP" | quote }}
+  {{- end }}
+  {{- end }}
   # ONOS and Atomix need to be able to talk to each other for ONOS to become ready
   publishNotReadyAddresses: true
   clusterIP: None

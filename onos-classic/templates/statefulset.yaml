@@ -73,17 +73,13 @@ spec:
             value: -Xmx{{ .Values.heap }}
           - name: ONOS_APPS
             value: {{ .Values.apps | quote }}
+        {{- with .Values.ports }}
         ports:
-          - name: openflow
-            containerPort: 6653
-          - name: ovsdb
-            containerPort: 6640
-          - name: east-west
-            containerPort: 9876
-          - name: cli
-            containerPort: 8101
-          - name: ui
-            containerPort: 8181
+        {{- range . }}
+          - name: {{ .name }}
+            containerPort: {{ .port }}
+        {{- end }}
+        {{- end }}
         readinessProbe:
           exec:
             command:
