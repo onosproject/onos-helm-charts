@@ -2,14 +2,6 @@
 
 ## onos-classic
 
-#### Version **0.1.3**
-> Generated 2020-07-13T17:04:54.209579-07:00
-
-App Version **2.2.2**
-
-[https://github.com/onosproject/onos-helm-charts/releases/download/onos-classic-0.1.3/onos-classic-0.1.3.tgz](https://github.com/onosproject/onos-helm-charts/releases/download/onos-classic-0.1.3/onos-classic-0.1.3.tgz)
-
-
 #### Version **0.1.2**
 > Generated 2020-07-13T12:55:03.470265-07:00
 
@@ -240,6 +232,14 @@ App Version **v0.6.0**
 
 
 ## onos-tost
+
+#### Version **0.1.4**
+> Generated 2020-07-13T17:09:02.460475-07:00
+
+App Version **2.2.3**
+
+[https://github.com/onosproject/onos-helm-charts/releases/download/onos-tost-0.1.4/onos-tost-0.1.4.tgz](https://github.com/onosproject/onos-helm-charts/releases/download/onos-tost-0.1.4/onos-tost-0.1.4.tgz)
+
 
 #### Version **0.1.3**
 > Generated 2020-07-13T13:30:24.752992-07:00
