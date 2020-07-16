@@ -30,13 +30,13 @@ func Test_convertYaml(t *testing.T) {
 	assert.NilError(t, err, "Unexpected error loading YAML")
 	assert.Equal(t, 8, len(index.Entries))
 
-	tmplAppsListText, _ := texttemplate.New("yamlAppsTemplate").Parse(yamlAppsTemplate)
+	tmplAppsListText, _ := texttemplate.New("yamlAppsTemplateMarkdown").Parse(yamlAppsTemplateMarkdown)
 	markdownBuffer := new(bytes.Buffer)
 	tmplAppsListText.Execute(markdownBuffer, index)
 	assert.Equal(t, 10538, len(markdownBuffer.String()))
 	assert.Assert(t, strings.HasPrefix(markdownBuffer.String(), "#ONOS Helm Chart Releases"))
 
-	tmplAppsListHtml, _ := htmltemplate.New("yamlAppsTemplate").Parse(yamlAppsTemplateHtml)
+	tmplAppsListHtml, _ := htmltemplate.New("yamlAppsTemplateMarkdown").Parse(yamlAppsTemplateHtml)
 	xhtmlBuffer := new(bytes.Buffer)
 	tmplAppsListHtml.Execute(xhtmlBuffer, index)
 	assert.Equal(t, 13374, len(xhtmlBuffer.String()))

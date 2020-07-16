@@ -23,7 +23,7 @@ import (
 	texttemplate "text/template"
 )
 
-const yamlAppsTemplate = "{{ printf \"#ONOS Helm Chart Releases\"}}\n\n" +
+const yamlAppsTemplateMarkdown = "{{ printf \"#ONOS Helm Chart Releases\"}}\n\n" +
 	"{{range $key, $value := .Entries }}" +
 	"{{ printf \"## %s\" $key }}\n\n" +
 	"{{range $value}}" +
@@ -90,10 +90,10 @@ func main() {
 	}
 
 	if *htmlout {
-		tmplAppsList, _ := htmltemplate.New("yamlAppsTemplate").Parse(yamlAppsTemplate)
+		tmplAppsList, _ := htmltemplate.New("yamlAppsTemplateMarkdown").Parse(yamlAppsTemplateMarkdown)
 		tmplAppsList.Execute(os.Stdout, indexYaml)
 	} else {
-		tmplAppsList, _ := texttemplate.New("yamlAppsTemplate").Parse(yamlAppsTemplate)
+		tmplAppsList, _ := texttemplate.New("yamlAppsTemplateHtml").Parse(yamlAppsTemplateHtml)
 		tmplAppsList.Execute(os.Stdout, indexYaml)
 	}
 }
