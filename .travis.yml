@@ -12,6 +12,11 @@ notifications:
 
 before_install:
   - git config --global url."https://onos-builder:${CI_TOKEN}@github.com".insteadOf "https://github.com"
+  - wget https://get.helm.sh/helm-v3.2.0-linux-amd64.tar.gz
+  - tar xzvf helm-v3.2.0-linux-amd64.tar.gz
+  - mv linux-amd64/helm helm
+  - chmod u+x helm
+  - mv helm /home/travis/bin/
   - 'if [[ $TRAVIS_PULL_REQUEST == "false" && $TRAVIS_BRANCH == "master" ]] ; then
        openssl aes-256-cbc -K $encrypted_f217180e22ee_key -iv $encrypted_f217180e22ee_iv -in .ssh/id_rsa.enc -out ~/.ssh/id_rsa -d &&
        chmod 600 ~/.ssh/id_rsa;
