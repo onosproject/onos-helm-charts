@@ -8,6 +8,7 @@ test: version_check
 
 version_check: # @HELP run the version checker on the charts
 	COMPARISON_BRANCH=master ./../build-tools/chart_version_check
+	./../build-tools/chart_single_check
 
 publish: # @HELP publish version on github
 	./../build-tools/publish-version ${VERSION}
