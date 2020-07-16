@@ -10,12 +10,18 @@ services:
 notifications:
   email: false
 
+before_install:
+  - git config --global url."https://onos-builder:${CI_TOKEN}@github.com".insteadOf "https://github.com"
+  - 'if [[ $TRAVIS_PULL_REQUEST == "false" && $TRAVIS_BRANCH == "master" ]] ; then
+       openssl aes-256-cbc -K $encrypted_f217180e22ee_key -iv $encrypted_f217180e22ee_iv -in .ssh/id_rsa.enc -out ~/.ssh/id_rsa -d &&
+       chmod 600 ~/.ssh/id_rsa;
+     fi'
+
 install:
 - docker pull quay.io/helmpack/chart-testing:v2.4.0
 
 before_script:
   - pushd .. && git clone https://github.com/onosproject/build-tools.git && popd
-
 
 jobs:
   include:
@@ -27,3 +33,8 @@ jobs:
       if: type != pull_request
       script:
         - sh ../build-tools/build/travis/trigger-travis onosproject onos-test master "`git rev-parse --short HEAD`" $TRAVIS_ACCESS_TOKEN
+    - stage: release
+      script:
+        - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
+          bash ../build-tools/release-chart-merge-commit https://charts.onosproject.org $WEBSITE_USER $WEBSITE_PASSWORD;
+          fi'
