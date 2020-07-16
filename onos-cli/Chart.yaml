@@ -1,6 +1,6 @@
 apiVersion: v2
 name: onos-cli
-description: ONOS Command Line Interface
+description: ONOS Command Line Interfacex
 kubeVersion: ">=1.17.0"
 type: application
 version: 0.0.9
@@ -12,4 +12,3 @@ home: https://onosproject.org
 maintainers:
   - name: ONOS Support
     email: support@opennetworking.org
-
