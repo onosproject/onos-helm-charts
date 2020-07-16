@@ -1,6 +1,6 @@
 apiVersion: v2
 name: onos-cli
-description: ONOS Command Line Interfacex
+description: ONOS Command Line Interface
 kubeVersion: ">=1.17.0"
 type: application
 version: 0.0.9

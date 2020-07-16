@@ -10,7 +10,7 @@ plane deployment.
 Each folder contains the helm chart of that specific project.
 e.g. `onos-config` folder contains the `onos-config` helm chart.
 
-The overarching helm chart to deploy `micro-onos` is in the `onos-umbrella` folder.
+The overarching helm chart to deploy `micro-onos`  is in the `onos-umbrella` folder.
 
 The `micro-onos` documentation project provides [step by step documentation](https://docs.onosproject.org/developers/deploy_with_helm/)
 on how to deploy a whole `micro-onos` with Helm. You can also deploy each
