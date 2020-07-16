@@ -15,6 +15,7 @@ require (
 	github.com/stretchr/testify v1.5.1
 	golang.org/x/crypto v0.0.0-20200204104054-c9f3fb736b72 // indirect
 	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect
+	gotest.tools v2.2.0+incompatible
 	k8s.io/client-go v0.17.3
 )
 

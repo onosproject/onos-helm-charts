@@ -18,8 +18,9 @@ import (
 	"flag"
 	"fmt"
 	"github.com/spf13/viper"
+	htmltemplate "html/template"
 	"os"
-	"text/template"
+	texttemplate "text/template"
 )
 
 const yamlAppsTemplate = "{{ printf \"#ONOS Helm Chart Releases\"}}\n\n" +
@@ -34,6 +35,30 @@ const yamlAppsTemplate = "{{ printf \"#ONOS Helm Chart Releases\"}}\n\n" +
 	"{{end}}\n\n" +
 	"{{end}}\n" +
 	"{{end}}\n"
+
+const yamlAppsTemplateHtml = "" +
+"<!DOCTYPE html \n" +
+"PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \n" +
+"\"DTD/xhtml1-strict.dtd\">\n" +
+"<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n" +
+"\t<head>\n" +
+"\t\t<title>ONOS helm Chart Releases</title>\n" +
+"\t</head>\n" +
+"\t<body>\n"+
+"\t\t<h1>{{ printf \"ONOS Helm Chart Releases\"}}</h1>\n" +
+"{{range $key, $value := .Entries }}" +
+"\t\t<h2>{{ printf \"%s\" $key }}</h2>\n" +
+"{{range $value}}" +
+"\t\t<div id=\"{{printf \"%s-%s\" $key .Version}}\">\n" +
+"\t\t\t<h3>Version{{printf \"%s\" .Version}}</h3>\n" +
+"\t\t\t<p>{{printf \"Generated %s\" .Created}}</p>\n" +
+"\t\t\t<p>App Version <b>{{printf \"%s\" .AppVersion}}</b></p>\n" +
+"{{range .Urls}}" +
+"\t\t\t<a href=\"{{printf \"%s\" .}}\">{{printf \"%s\" .}}</a>\n" +
+"{{end}}\n" +
+"\t\t</div>\n" +
+"{{end}}\n" +
+"{{end}}</body></html>"
 
 type Chart struct {
 	ApiVersion string `yaml:"apiVersion"`
@@ -56,6 +81,7 @@ type IndexYaml struct {
  */
 func main() {
 	file := flag.String("file", "index", "name of YAML file to parse (without extension or path)")
+	htmlout := flag.Bool("html", false, "output HTML instead of Markdown")
 	flag.Parse()
 	indexYaml, err := getIndexYaml(*file)
 	if err != nil {
@@ -63,8 +89,13 @@ func main() {
 		os.Exit(1)
 	}
 
-	var tmplAppsList, _ = template.New("yamlAppsTemplate").Parse(yamlAppsTemplate)
-	tmplAppsList.Execute(os.Stdout, indexYaml)
+	if *htmlout {
+		tmplAppsList, _ := htmltemplate.New("yamlAppsTemplate").Parse(yamlAppsTemplate)
+		tmplAppsList.Execute(os.Stdout, indexYaml)
+	} else {
+		tmplAppsList, _ := texttemplate.New("yamlAppsTemplate").Parse(yamlAppsTemplate)
+		tmplAppsList.Execute(os.Stdout, indexYaml)
+	}
 }
 
 func getIndexYaml(location string) (IndexYaml, error) {

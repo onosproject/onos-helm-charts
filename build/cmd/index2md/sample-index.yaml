@@ -1,0 +1,665 @@
+apiVersion: v1
+entries:
+  onos-classic:
+    - apiVersion: v1
+      appVersion: 2.2.2
+      created: "2020-07-15T13:45:00.088929+02:00"
+      dependencies:
+        - name: atomix
+          repository: https://charts.atomix.io
+          version: 0.1.3
+      description: ONOS cluster
+      digest: d1b5ae13b4eb0ab7b14f3c4c5812d537c631018cf2ec98f62e3a1447767af0f3
+      home: http://onosproject.org
+      icon: https://guide.opencord.org/logos/onos.svg
+      keywords:
+        - onos
+        - sdn
+        - networking
+      kubeVersion: '>=1.10.0'
+      maintainers:
+        - email: support@opennetworking.org
+          name: ONOS Support
+      name: onos-classic
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-classic-0.1.4/onos-classic-0.1.4.tgz
+      version: 0.1.4
+    - apiVersion: v1
+      appVersion: 2.2.2
+      created: "2020-07-13T12:55:03.470265-07:00"
+      description: ONOS cluster
+      digest: c87f2dfa80d021feff5df6aff209305dab1d86582524f3231de7c465a38e9c92
+      home: http://onosproject.org
+      icon: https://guide.opencord.org/logos/onos.svg
+      keywords:
+        - onos
+        - sdn
+        - networking
+      kubeVersion: '>=1.10.0'
+      maintainers:
+        - email: support@opennetworking.org
+          name: ONOS Support
+      name: onos-classic
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-classic-0.1.2/onos-classic-0.1.2.tgz
+      version: 0.1.2
+    - apiVersion: v1
+      appVersion: 2.2.2
+      created: "2020-05-01T15:31:30.513221-07:00"
+      description: ONOS cluster
+      digest: 3e06a21e8974248cd2662618bf4b7893dfa097a92d98402f41dc2c8018061c41
+      home: http://onosproject.org
+      icon: https://guide.opencord.org/logos/onos.svg
+      keywords:
+        - onos
+        - sdn
+        - networking
+      kubeVersion: '>=1.10.0'
+      maintainers:
+        - email: jordan@opennetworking.org
+          name: Jordan Halterman
+      name: onos-classic
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-classic-0.1.1/onos-classic-0.1.1.tgz
+      version: 0.1.1
+    - apiVersion: v1
+      appVersion: 2.2.2
+      created: "2020-04-21T00:26:33.47819-07:00"
+      description: ONOS cluster
+      digest: eb0f3276a9baf03a2554808efa3c28d30edcdd1c86b5ed575f2fb5d7abf68c67
+      home: http://onosproject.org
+      icon: https://guide.opencord.org/logos/onos.svg
+      keywords:
+        - onos
+        - sdn
+        - networking
+      kubeVersion: '>=1.10.0'
+      maintainers:
+        - email: jordan@opennetworking.org
+          name: Jordan Halterman
+      name: onos-classic
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-classic-0.1.0/onos-classic-0.1.0.tgz
+      version: 0.1.0
+  onos-cli:
+    - apiVersion: v2
+      appVersion: v0.6.8
+      created: "2020-07-07T12:55:41.069781104+01:00"
+      description: ONOS Command Line Interface
+      digest: 3e78ce427159afc87479d4e2f33aacc14f5bb68421c3e308a6b0c99570e90d5b
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: support@opennetworking.org
+          name: ONOS Support
+      name: onos-cli
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-cli-0.0.6/onos-cli-0.0.6.tgz
+      version: 0.0.6
+    - apiVersion: v2
+      appVersion: v0.6.7
+      created: "2020-06-24T19:24:16.135562255+01:00"
+      description: ONOS Command Line Interface
+      digest: ce409583bed7425d21f875004a1771211ab0f4b9b98c25d21c7211f67c36f606
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: support@opennetworking.org
+          name: ONOS Support
+      name: onos-cli
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-cli-0.0.5/onos-cli-0.0.5.tgz
+      version: 0.0.5
+    - apiVersion: v2
+      appVersion: v0.6.7
+      created: "2020-06-19T16:31:08.426910142+01:00"
+      description: ONOS Command Line Interface
+      digest: 4c9fe818b775eaed5bdf4d26d74bc8e9f8f3e45d91861e366ef962acefad7889
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: andrea@opennetworking.org
+          name: Andrea Campanella
+        - email: jordan@opennetworking.org
+          name: kuujo
+      name: onos-cli
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-cli-0.0.4/onos-cli-0.0.4.tgz
+      version: 0.0.4
+    - apiVersion: v2
+      appVersion: v0.6.5
+      created: "2020-05-21T10:59:26.581585208+01:00"
+      description: ONOS Command Line Interface
+      digest: 44e993be9c2221c076603d87dffddd85f68cad436835f036bf37fcf8dd3d939a
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: andrea@opennetworking.org
+          name: Andrea Campanella
+        - email: jordan@opennetworking.org
+          name: kuujo
+      name: onos-cli
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-cli-0.0.3/onos-cli-0.0.3.tgz
+      version: 0.0.3
+    - apiVersion: v2
+      appVersion: v0.6.5
+      created: "2020-05-20T14:33:18.816381007+01:00"
+      description: ONOS Command Line Interface
+      digest: 0f5ab05d6f65f1f2a8332bd6f5a89ff88e5fe4cdd774e159946647e13e15b5b9
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: andrea@opennetworking.org
+          name: Andrea Campanella
+        - email: jordan@opennetworking.org
+          name: kuujo
+      name: onos-cli
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-cli-0.0.2/onos-cli-0.0.2.tgz
+      version: 0.0.2
+    - apiVersion: v2
+      appVersion: v0.6.0
+      created: "2020-04-22T12:25:37.87784-07:00"
+      description: ONOS Command Line Interface
+      digest: ce8cb7d2b80eb0dc8bcf0cdc4a3dcb022fb0e15fe4b013593387183d9620e766
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: andrea@opennetworking.org
+          name: Andrea Campanella
+        - email: jordan@opennetworking.org
+          name: kuujo
+      name: onos-cli
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-cli-0.0.1/onos-cli-0.0.1.tgz
+      version: 0.0.1
+  onos-config:
+    - apiVersion: v2
+      appVersion: v0.6.5
+      created: "2020-06-19T17:02:44.6466645+01:00"
+      description: ONOS Config Manager
+      digest: e1efbeb0dcaa31f1a9e820e053d0dc716cc38ad7a86eba91923a93906644e9a2
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: tom@opennetworking.org
+          name: tomikazi
+        - email: jordan@opennetworking.org
+          name: kuujo
+        - email: andrea@opennetworking.org
+          name: Andrea Campanella
+      name: onos-config
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-config-0.0.6/onos-config-0.0.6.tgz
+      version: 0.0.6
+    - apiVersion: v2
+      appVersion: v0.6.4
+      created: "2020-05-21T20:58:35.022744-07:00"
+      description: ONOS Config Manager
+      digest: 34c1651c70c29053c209364d9e0b8f80f354ae3d5fb6982cc3545f1acb466497
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: tom@opennetworking.org
+          name: tomikazi
+        - email: jordan@opennetworking.org
+          name: kuujo
+        - email: andrea@opennetworking.org
+          name: Andrea Campanella
+      name: onos-config
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-config-0.0.5/onos-config-0.0.5.tgz
+      version: 0.0.5
+    - apiVersion: v2
+      appVersion: v0.6.3
+      created: "2020-05-20T14:13:52.668554061+01:00"
+      description: ONOS Config Manager
+      digest: fb1234bc0c9e5542eaac41e1b536802ae17c6d3cdb57c3294e995d100246eaf9
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: tom@opennetworking.org
+          name: tomikazi
+        - email: jordan@opennetworking.org
+          name: kuujo
+        - email: andrea@opennetworking.org
+          name: Andrea Campanella
+      name: onos-config
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-config-0.0.4/onos-config-0.0.4.tgz
+      version: 0.0.4
+    - apiVersion: v2
+      appVersion: v0.6.1
+      created: "2020-05-01T19:40:11.639716817+01:00"
+      description: ONOS Config Manager
+      digest: d5881ae29fce59a97478102c443fbde92517673ed03fb4d0e11af549d9bd5564
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: tom@opennetworking.org
+          name: tomikazi
+        - email: jordan@opennetworking.org
+          name: kuujo
+        - email: andrea@opennetworking.org
+          name: Andrea Campanella
+      name: onos-config
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-config-0.0.3/onos-config-0.0.3.tgz
+      version: 0.0.3
+    - apiVersion: v2
+      appVersion: v0.6.0
+      created: "2020-04-26T12:58:15.716665-07:00"
+      description: ONOS Config Manager
+      digest: 0ba398e3c3a86af23a031b7bd2fcfae4564a22a3c7d0dbccc39c106d075fb5b3
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: tom@opennetworking.org
+          name: tomikazi
+        - email: jordan@opennetworking.org
+          name: kuujo
+        - email: andrea@opennetworking.org
+          name: Andrea Campanella
+      name: onos-config
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-config-0.0.2/onos-config-0.0.2.tgz
+      version: 0.0.2
+    - apiVersion: v2
+      appVersion: v0.6.0
+      created: "2020-04-22T12:21:18.326374-07:00"
+      description: ONOS Config Manager
+      digest: a817a74e5594a45928754f9108359968bc496f8be01374f77eb968575ebb55d2
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: tom@opennetworking.org
+          name: tomikazi
+        - email: jordan@opennetworking.org
+          name: kuujo
+        - email: andrea@opennetworking.org
+          name: Andrea Campanella
+      name: onos-config
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-config-0.0.1/onos-config-0.0.1.tgz
+      version: 0.0.1
+  onos-gui:
+    - apiVersion: v2
+      appVersion: v0.6.8
+      created: "2020-07-06T10:58:16.676760334+01:00"
+      description: ONOS Graphical User Interface
+      digest: ac2e3aad3d5d270762ea6f85273477ffb82aa3ba9485a7c45fbde10b4533ad75
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.15.0'
+      maintainers:
+        - email: support@opennetworking.org
+          name: ONOS Support
+      name: onos-gui
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-gui-0.0.6/onos-gui-0.0.6.tgz
+      version: 0.0.6
+    - apiVersion: v2
+      appVersion: v0.6.7
+      created: "2020-06-19T16:42:17.000469768+01:00"
+      description: ONOS Graphical User Interface
+      digest: 5b0d190dc48142bef04046fb20aa6e6a824f6b133a99470356be2617ac896a85
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.15.0'
+      maintainers:
+        - email: sean@opennetworking.org
+          name: Sean Condon
+        - email: andrea@opennetworking.org
+          name: Andrea Campanella
+      name: onos-gui
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-gui-0.0.5/onos-gui-0.0.5.tgz
+      version: 0.0.5
+    - apiVersion: v2
+      appVersion: v0.6.5
+      created: "2020-05-20T14:33:56.563958613+01:00"
+      description: ONOS Graphical User Interface
+      digest: 70f2182e822cff994f174766b163b7a2499809cfb7dff92cbab4a737443bb8d7
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.15.0'
+      maintainers:
+        - email: sean@opennetworking.org
+          name: Sean Condon
+        - email: andrea@opennetworking.org
+          name: Andrea Campanella
+      name: onos-gui
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-gui-0.0.4/onos-gui-0.0.4.tgz
+      version: 0.0.4
+    - apiVersion: v2
+      appVersion: v0.6.1
+      created: "2020-04-28T19:08:22.844219097+01:00"
+      description: ONOS Graphical User Interface
+      digest: 5a09635e53e5d34e8e113136f2890f9259ce458aecd16605414aabfbc5d2f61f
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.15.0'
+      maintainers:
+        - email: sean@opennetworking.org
+          name: Sean Condon
+        - email: andrea@opennetworking.org
+          name: Andrea Campanella
+      name: onos-gui
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-gui-0.0.3/onos-gui-0.0.3.tgz
+      version: 0.0.3
+    - apiVersion: v2
+      appVersion: v0.6.0
+      created: "2020-04-26T13:06:05.255337-07:00"
+      description: ONOS Graphical User Interface
+      digest: d8ac02403920f79320ef06301b1825b2a631e5522ad3d2cf2d2bd7c76c3af731
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: sean@opennetworking.org
+          name: Sean Condon
+        - email: andrea@opennetworking.org
+          name: Andrea Campanella
+      name: onos-gui
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-gui-0.0.2/onos-gui-0.0.2.tgz
+      version: 0.0.2
+    - apiVersion: v2
+      appVersion: v0.6.0
+      created: "2020-04-22T12:51:55.905883-07:00"
+      description: ONOS Graphical User Interface
+      digest: 7945681260830d6d39e749dfd87177a10b712cd9b9a8bb1b86f1ba830da6256b
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: sean@opennetworking.org
+          name: Sean Condon
+        - email: andrea@opennetworking.org
+          name: Andrea Campanella
+      name: onos-gui
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-gui-0.0.1/onos-gui-0.0.1.tgz
+      version: 0.0.1
+  onos-topo:
+    - apiVersion: v2
+      appVersion: v0.6.10
+      created: "2020-07-07T12:46:55.694933822+01:00"
+      description: ONOS Topology service
+      digest: 86e1162171e6f421d0a619491c4cbc5aef5fc374893a24af6e9d4732269b2b77
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: support@opennetworking.org
+          name: ONOS Support
+      name: onos-topo
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-topo-0.0.6/onos-topo-0.0.6.tgz
+      version: 0.0.6
+    - apiVersion: v2
+      appVersion: v0.6.9
+      created: "2020-06-19T16:52:23.887373324+01:00"
+      description: ONOS Topology service
+      digest: 8d3ec7fd0e48eb978eecf6832e5825bc04a47f2bc7e75ca25320ad499ca75e2f
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: andrea@opennetworking.org
+          name: Andrea Campanella
+        - email: jordan@opennetworking.org
+          name: kuujo
+      name: onos-topo
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-topo-0.0.5/onos-topo-0.0.5.tgz
+      version: 0.0.5
+    - apiVersion: v2
+      appVersion: v0.6.4
+      created: "2020-05-21T20:57:07.693334-07:00"
+      description: ONOS Topology service
+      digest: a71e1c4866cebd3b1b5dab03f90543c93447574011ed7543c2ee268ca1eb92c7
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: andrea@opennetworking.org
+          name: Andrea Campanella
+        - email: jordan@opennetworking.org
+          name: kuujo
+      name: onos-topo
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-topo-0.0.4/onos-topo-0.0.4.tgz
+      version: 0.0.4
+    - apiVersion: v2
+      appVersion: v0.6.3
+      created: "2020-05-20T14:09:56.945041177+01:00"
+      description: ONOS Topology service
+      digest: 01d53fcecf47cf0f987061f50e5750262ebcc99552499489b1591fb5a0f9f897
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: andrea@opennetworking.org
+          name: Andrea Campanella
+        - email: jordan@opennetworking.org
+          name: kuujo
+      name: onos-topo
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-topo-0.0.3/onos-topo-0.0.3.tgz
+      version: 0.0.3
+    - apiVersion: v2
+      appVersion: v0.6.0
+      created: "2020-04-26T12:57:11.234297-07:00"
+      description: ONOS Topology service
+      digest: fa530c98e815a7c7a7e776544f536abfdb642e12b7250322ad7cd5cde582351a
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: andrea@opennetworking.org
+          name: Andrea Campanella
+        - email: jordan@opennetworking.org
+          name: kuujo
+      name: onos-topo
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-topo-0.0.2/onos-topo-0.0.2.tgz
+      version: 0.0.2
+    - apiVersion: v2
+      appVersion: v0.6.0
+      created: "2020-04-22T12:18:13.793003-07:00"
+      description: ONOS Topology service
+      digest: 8249b750375e60e2b8bde7c05b297d18f9c176f8df5f0af72dea6263042514b0
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: andrea@opennetworking.org
+          name: Andrea Campanella
+        - email: jordan@opennetworking.org
+          name: kuujo
+      name: onos-topo
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-topo-0.0.1/onos-topo-0.0.1.tgz
+      version: 0.0.1
+  onos-tost:
+    - apiVersion: v1
+      appVersion: 2.2.3
+      created: "2020-07-13T17:09:02.460475-07:00"
+      description: ONOS TOST
+      digest: 6914305915ecfd730a1d936b473cf2292afec937c81ead543980146c92e9ef0a
+      home: http://onosproject.org
+      icon: https://guide.opencord.org/logos/onos.svg
+      keywords:
+        - onos
+        - sdn
+        - networking
+      kubeVersion: '>=1.10.0'
+      maintainers:
+        - email: support@opennetworking.org
+          name: ONOS Support
+      name: onos-tost
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-tost-0.1.4/onos-tost-0.1.4.tgz
+      version: 0.1.4
+    - apiVersion: v1
+      appVersion: 2.2.3
+      created: "2020-07-13T13:30:24.752992-07:00"
+      description: ONOS TOST
+      digest: fa51818396c58a3a7d2cfcb8c06f45f131c552b544badb37402bbd92a882f5f7
+      home: http://onosproject.org
+      icon: https://guide.opencord.org/logos/onos.svg
+      keywords:
+        - onos
+        - sdn
+        - networking
+      kubeVersion: '>=1.10.0'
+      maintainers:
+        - email: support@opennetworking.org
+          name: ONOS Support
+      name: onos-tost
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-tost-0.1.3/onos-tost-0.1.3.tgz
+      version: 0.1.3
+    - apiVersion: v1
+      appVersion: 2.2.3
+      created: "2020-07-07T15:39:56.097314-07:00"
+      description: ONOS TOST
+      digest: 2cf01266396e2bd3a967c9de3b8596828bdd2d82d4a775fa629b0547af867f86
+      home: http://onosproject.org
+      icon: https://guide.opencord.org/logos/onos.svg
+      keywords:
+        - onos
+        - sdn
+        - networking
+      kubeVersion: '>=1.10.0'
+      maintainers:
+        - email: support@opennetworking.org
+          name: ONOS Support
+      name: onos-tost
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-tost-0.1.2/onos-tost-0.1.2.tgz
+      version: 0.1.2
+  onos-umbrella:
+    - apiVersion: v2
+      appVersion: v0.6.1
+      created: "2020-07-07T13:12:27.315560908+01:00"
+      description: Umbrella chart to deploy all µONOS
+      digest: d31e5ecc5a61a8c07d51502577fd53ed8f6af80cdd74f31c317fcb541c037505
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: support@opennetworking.org
+          name: ONOS Support
+      name: onos-umbrella
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-umbrella-0.0.2/onos-umbrella-0.0.2.tgz
+      version: 0.0.2
+    - apiVersion: v2
+      appVersion: v0.6.0
+      created: "2020-06-19T17:39:37.729191624+01:00"
+      description: Umbrella chart to deploy all µONOS
+      digest: 5777ec4de988c9088060e1b1c24b5720d9b4494963af1bdd64a1b22a666b7ff4
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: woojoong@opennetworking.org
+          name: Woojoong Kim
+        - email: jordan@opennetworking.org
+          name: Jordan Halterman
+      name: onos-umbrella
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-umbrella-0.0.1/onos-umbrella-0.0.1.tgz
+      version: 0.0.1
+  onos-ztp:
+    - apiVersion: v2
+      appVersion: v0.6.0
+      created: "2020-04-22T12:53:10.60672-07:00"
+      description: ONOS Zero Touch Provisioning Subsystem
+      digest: 22df59660324a398f43a8185b6f3808bc89aea09b0df29ddabd03d588c305b9e
+      home: https://onosproject.org
+      keywords:
+        - onos
+        - sdn
+      kubeVersion: '>=1.17.0'
+      maintainers:
+        - email: andrea@opennetworking.org
+          name: Andrea Campanella
+        - email: jordan@opennetworking.org
+          name: kuujo
+        - email: adib@opennetworking.org
+          name: Adib
+      name: onos-ztp
+      urls:
+        - https://github.com/onosproject/onos-helm-charts/releases/download/onos-ztp-0.0.1/onos-ztp-0.0.1.tgz
+      version: 0.0.1
+generated: "0001-01-01T00:00:00Z"
