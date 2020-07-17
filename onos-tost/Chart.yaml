@@ -1,10 +1,10 @@
 ---
 apiVersion: v1
 name: onos-tost
-version: 0.1.4
+version: 0.1.5
 kubeVersion: ">=1.10.0"
 appVersion: 2.2.3
-description: ONOS TOST
+description: ONOS helm chart for TOST
 keywords:
 - onos
 - sdn
