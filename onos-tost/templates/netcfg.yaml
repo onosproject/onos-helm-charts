@@ -1,0 +1,80 @@
+
+{{ $netcfgDir := "/netcfg" }}
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: netcfg
+spec:
+  initContainers:
+    # Wait for ONOS to be fully ready
+    - name: debug
+      image: opennetworking/utils:bash-curl-jq
+      env:
+        - name: USER
+          valueFrom:
+            secretKeyRef:
+              name: onos-secret
+              key: username
+        - name: PASSWD
+          valueFrom:
+            secretKeyRef:
+              name: onos-secret
+              key: password
+        - name: URL
+          value: {{ .Values.onos.clusterUrl }}
+        - name: INSTANCES
+          # Need this to get around hyphenated name
+          value: {{ index .Values "onos-classic" "replicas" | quote }}
+      command: ["sh", "-c", "until [ $(curl -s $URL -u $USER:$PASSWD | jq '.nodes | .[] | .status' | grep -c READY) -eq $INSTANCES ]; do echo 'Waiting for ONOS'; sleep 5; done;" ]
+    # Pull netcfg from the git repository
+    - name: netcfg-getter
+      image: alpine/git
+      env:
+        - name: USER
+          valueFrom:
+            secretKeyRef:
+              name: git-secret
+              key: username
+        - name: PASSWD
+          valueFrom:
+            secretKeyRef:
+              name: git-secret
+              key: password
+        - name: GIT_SERVER
+          value: {{ .Values.git.server }}
+        - name: GIT_REPO
+          value: {{ .Values.git.repo }}
+      workingDir: {{ $netcfgDir }}
+      command: ["sh", "-c", "git clone https://$USER:$PASSWD@$GIT_SERVER/$GIT_REPO"]
+      volumeMounts:
+        - name: workdir
+          mountPath: {{ $netcfgDir }}
+  containers:
+    # Push netcfg to ONOS REST API
+    - name: netcfg-setter
+      image: curlimages/curl
+      env:
+        - name: USER
+          valueFrom:
+            secretKeyRef:
+              name: onos-secret
+              key: username
+        - name: PASSWD
+          valueFrom:
+            secretKeyRef:
+              name: onos-secret
+              key: password
+        - name: NETCFG_URL
+          value: {{ .Values.onos.netcfgUrl }}
+        - name: NETCFG_FILE
+          value: {{ .Values.git.file }}
+      workingDir: {{ printf "%s/%s" $netcfgDir .Values.git.repo }}
+      command: ["sh", "-c", "curl -v -u $USER:$PASSWD POST -H 'Content-Type: application/json' $NETCFG_URL -d@$NETCFG_FILE"]
+      volumeMounts:
+        - name: workdir
+          mountPath: {{ $netcfgDir }}
+  volumes:
+  - name: workdir
+    emptyDir: {}
+  restartPolicy: Never

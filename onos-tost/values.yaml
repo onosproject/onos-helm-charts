@@ -1,7 +1,7 @@
 onos-classic:
-  image: 
+  image:
     repository: "onosproject/tost-onos"
-    tag: "1.0.0-b1"
+    tag: "1.0.0-b3"
   replicas: 3
   ports:
     - name: up4
@@ -13,25 +13,32 @@ onos-classic:
     - name: ui
       port: 8181
   apps:
-  - org.onosproject.drivers
-  - org.onosproject.lldpprovider
-  - org.onosproject.route-service
-  - org.onosproject.hostprovider         
-  - org.onosproject.protocols.grpc       
-  - org.onosproject.protocols.gnmi       
-  - org.onosproject.generaldeviceprovider
-  - org.onosproject.protocols.p4runtime  
-  - org.onosproject.p4runtime       
-  - org.onosproject.drivers.p4runtime    
-  - org.onosproject.pipelines.basic      
-  - org.onosproject.pipelines.fabric     
-  - org.onosproject.mcast                
-  - org.onosproject.portloadbalancer     
-  - org.onosproject.segmentrouting       
-  - org.onosproject.t3                   
-  - org.onosproject.gui2                 
-  - org.opencord.fabric-tofino
+    - org.onosproject.drivers
+    - org.onosproject.lldpprovider
+    - org.onosproject.route-service
+    - org.onosproject.hostprovider
+    - org.onosproject.protocols.grpc
+    - org.onosproject.protocols.gnmi
+    - org.onosproject.generaldeviceprovider
+    - org.onosproject.protocols.p4runtime
+    - org.onosproject.p4runtime
+    - org.onosproject.drivers.p4runtime
+    - org.onosproject.pipelines.basic
+    - org.onosproject.pipelines.fabric
+    - org.onosproject.mcast
+    - org.onosproject.portloadbalancer
+    - org.onosproject.segmentrouting
+    - org.onosproject.t3
+    - org.onosproject.gui2
+    - org.opencord.fabric-tofino
   atomix:
     replicas: 3
     persistence:
       storageClass: fast-disks
+git:
+  server: "gerrit.opencord.org"
+  repo: "aether-pod-configs"
+  file: "deployment-configs/aether/apps/menlo-prd/onos-netcfg.json"
+onos:
+  netcfgUrl: "http://onos-tost-onos-classic-hs.onos-tost.svc:8181/onos/v1/network/configuration"
+  clusterUrl: "http://onos-tost-onos-classic-hs.onos-tost.svc:8181/onos/v1/cluster"
