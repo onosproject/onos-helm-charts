@@ -1,7 +1,12 @@
 onos-classic:
   image:
-    repository: "onosproject/tost-onos"
+    repository: "registry.aetherproject.org/tost"
     tag: "1.0.0-b3"
+    # You will need to pass docker registry credential to K8s before installing this helm chart.
+    #   kubectl -n <ONOS_NAMESPACE> create secret docker-registry aether-registry-credential \
+    #     --docker-server=registry.aetherproject.org --docker-username=<DOCKER_USER> --docker-password=<DOCKER_PASS>
+    pullSecrets:
+      - aether-registry-credential
   replicas: 3
   ports:
     - name: up4
@@ -35,10 +40,19 @@ onos-classic:
     replicas: 3
     persistence:
       storageClass: fast-disks
-git:
-  server: "gerrit.opencord.org"
-  repo: "aether-pod-configs"
-  file: "deployment-configs/aether/apps/menlo-prd/onos-netcfg.json"
-onos:
-  netcfgUrl: "http://onos-tost-onos-classic-hs.onos-tost.svc:8181/onos/v1/network/configuration"
-  clusterUrl: "http://onos-tost-onos-classic-hs.onos-tost.svc:8181/onos/v1/cluster"
+
+# Optional.
+# When configured, a pod will fetch netcfg from given git repo and push it to ONOS.
+# You will need to pass git and ONOS credential to K8s before installing this helm chart.
+#   kubectl -n <ONOS_NAMESPACE> create secret generic git-secret \
+#     --from-literal=username=<GIT_USER> --from-literal=password=<GIT_PASS>
+#   kubectl -n <ONOS_NAMESPACE> create secret generic onos-secret \
+#     --from-literal=username=<ONOS_USER> --from-literal=password=<ONOS_PASS>
+#
+# config:
+#   server: "gerrit.opencord.org"
+#   repo: "aether-pod-configs"
+#   folder: "deployment-configs/aether/apps/menlo-prd"
+#   file: "onos-netcfg.json"
+#   netcfgUrl: "http://onos-tost-onos-classic-hs.onos-tost.svc:8181/onos/v1/network/configuration"
+#   clusterUrl: "http://onos-tost-onos-classic-hs.onos-tost.svc:8181/onos/v1/cluster"
