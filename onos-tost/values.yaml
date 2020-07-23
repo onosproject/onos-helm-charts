@@ -38,7 +38,8 @@ onos-classic:
 git:
   server: "gerrit.opencord.org"
   repo: "aether-pod-configs"
-  file: "deployment-configs/aether/apps/menlo-prd/onos-netcfg.json"
+  folder: "deployment-configs/aether/apps/menlo-prd"
+  file: "onos-netcfg.json"
 onos:
   netcfgUrl: "http://onos-tost-onos-classic-hs.onos-tost.svc:8181/onos/v1/network/configuration"
   clusterUrl: "http://onos-tost-onos-classic-hs.onos-tost.svc:8181/onos/v1/cluster"
