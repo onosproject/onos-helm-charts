@@ -1,14 +1,14 @@
-
-{{ $netcfgDir := "/netcfg" }}
-
+# Fetch netcfg from pod config repository and push to ONOS once it is READY
+{{ if .Values.config }}
+{{ $configDir := "/config" }}
 apiVersion: v1
 kind: Pod
 metadata:
-  name: netcfg
+  name: config
 spec:
   initContainers:
     # Wait for ONOS to be fully ready
-    - name: debug
+    - name: wait-onos
       image: opennetworking/utils:bash-curl-jq
       env:
         - name: USER
@@ -22,13 +22,13 @@ spec:
               name: onos-secret
               key: password
         - name: URL
-          value: {{ .Values.onos.clusterUrl }}
+          value: {{ .Values.config.clusterUrl }}
         - name: INSTANCES
           # Need this to get around hyphenated name
           value: {{ index .Values "onos-classic" "replicas" | quote }}
       command: ["sh", "-c", "until [ $(curl -s $URL -u $USER:$PASSWD | jq '.nodes | .[] | .status' | grep -c READY) -eq $INSTANCES ]; do echo 'Waiting for ONOS'; sleep 5; done;" ]
-    # Pull netcfg from the git repository
-    - name: netcfg-getter
+    # Pull config from the git repository
+    - name: config-getter
       image: alpine/git
       env:
         - name: USER
@@ -42,17 +42,17 @@ spec:
               name: git-secret
               key: password
         - name: GIT_SERVER
-          value: {{ .Values.git.server }}
+          value: {{ .Values.config.server }}
         - name: GIT_REPO
-          value: {{ .Values.git.repo }}
-      workingDir: {{ $netcfgDir }}
+          value: {{ .Values.config.repo }}
+      workingDir: {{ $configDir }}
       command: ["sh", "-c", "git clone https://$USER:$PASSWD@$GIT_SERVER/$GIT_REPO"]
       volumeMounts:
-        - name: workdir
-          mountPath: {{ $netcfgDir }}
+        - name: config-dir
+          mountPath: {{ $configDir }}
   containers:
-    # Push netcfg to ONOS REST API
-    - name: netcfg-setter
+    # Push config to ONOS REST API
+    - name: config-setter
       image: curlimages/curl
       env:
         - name: USER
@@ -66,15 +66,18 @@ spec:
               name: onos-secret
               key: password
         - name: NETCFG_URL
-          value: {{ .Values.onos.netcfgUrl }}
-        - name: NETCFG_FILE
-          value: {{ .Values.git.file }}
-      workingDir: {{ printf "%s/%s" $netcfgDir .Values.git.repo }}
-      command: ["sh", "-c", "curl -v -u $USER:$PASSWD POST -H 'Content-Type: application/json' $NETCFG_URL -d@$NETCFG_FILE"]
+          value: {{ .Values.config.netcfgUrl }}
+        - name: CFG_FOLDER
+          value: {{ .Values.config.folder }}
+        - name: CFG_FILE
+          value: {{ .Values.config.file }}
+      workingDir: {{ printf "%s/%s" $configDir .Values.config.repo }}
+      command: ["sh", "-c", "curl -v -u $USER:$PASSWD POST -H 'Content-Type: application/json' $NETCFG_URL -d@$CFG_FOLDER/$CFG_FILE"]
       volumeMounts:
-        - name: workdir
-          mountPath: {{ $netcfgDir }}
+        - name: config-dir
+          mountPath: {{ $configDir }}
   volumes:
-  - name: workdir
+  - name: config-dir
     emptyDir: {}
   restartPolicy: Never
+{{ end }}
