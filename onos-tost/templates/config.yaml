@@ -41,12 +41,12 @@ spec:
             secretKeyRef:
               name: git-secret
               key: password
-        - name: GIT_SERVER
+        - name: CFG_SERVER
           value: {{ .Values.config.server }}
-        - name: GIT_REPO
+        - name: CFG_REPO
           value: {{ .Values.config.repo }}
       workingDir: {{ $configDir }}
-      command: ["sh", "-c", "git clone https://$USER:$PASSWD@$GIT_SERVER/$GIT_REPO"]
+      command: ["sh", "-c", "git clone https://$USER:$PASSWD@$CFG_SERVER/$CFG_SERVER"]
       volumeMounts:
         - name: config-dir
           mountPath: {{ $configDir }}
