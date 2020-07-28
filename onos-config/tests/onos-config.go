@@ -38,12 +38,12 @@ func (s *ONOSConfigSuite) TestInstall(t *testing.T) {
 		Set("scope", "Namespace")
 	assert.NoError(t, raft.Install(true))
 
-	topo := helm.Chart("onos-topo").
+	topo := helm.Chart("onos-topo", "https://charts.onosproject.org").
 		Release("onos-topo").
 		Set("store.controller", "onos-config-atomix-atomix-controller:5679")
 	assert.NoError(t, topo.Install(false))
 
-	config := helm.Chart("onos-config").
+	config := helm.Chart("onos-config", "https://charts.onosproject.org").
 		Release("onos-config").
 		Set("store.controller", "onos-config-atomix-atomix-controller:5679")
 	assert.NoError(t, config.Install(true))

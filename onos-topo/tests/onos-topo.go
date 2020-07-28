@@ -38,7 +38,7 @@ func (s *ONOSTopoSuite) TestInstall(t *testing.T) {
 		Set("scope", "Namespace")
 	assert.NoError(t, raft.Install(true))
 
-	topo := helm.Chart("onos-topo").
+	topo := helm.Chart("onos-topo", "https://charts.onosproject.org").
 		Release("onos-topo").
 		Set("store.controller", "onos-topo-atomix-atomix-controller:5679")
 	assert.NoError(t, topo.Install(true))
