@@ -1,0 +1,33 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: onos-config-scripts
+  labels:
+    app: onos
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+data:
+  onos-config: |
+    #!/bin/sh
+    set -e
+    rm -rf $CFG_REPO
+    git clone https://$USER:$PASSWD@$CFG_SERVER/$CFG_REPO
+
+    if [ ! -z $CFG_REVIEW ] && [ ! -z $CFG_PATCHSET ]; then
+        cd $CFG_REPO
+        CFG_LAST2=$(echo $CFG_REVIEW | tail -c 3)
+        git fetch https://$USER:$PASSWD@$CFG_SERVER/$CFG_REPO refs/changes/$CFG_LAST2/$CFG_REVIEW/$CFG_PATCHSET
+        git checkout FETCH_HEAD
+        cd ..
+    fi
+
+    REMOTE_CHASSIS_CONFIG=$CFG_REPO/$CFG_FOLDER/$NODE_NAME-chassis-config.pb.txt
+    LOCAL_CHASSIS_CONFIG=chassis_config.pb.txt
+    if [ -f $REMOTE_CHASSIS_CONFIG ]; then
+        if [ -f $LOCAL_CHASSIS_CONFIG ] && [ ! -f $LOCAL_CHASSIS_CONFIG.old ]; then
+            mv $LOCAL_CHASSIS_CONFIG $LOCAL_CHASSIS_CONFIG.old
+        fi
+        cp $REMOTE_CHASSIS_CONFIG $LOCAL_CHASSIS_CONFIG
+    fi

@@ -1,6 +1,6 @@
 onos-classic:
   image:
-    repository: "registry.aetherproject.org/tost"
+    repository: "registry.aetherproject.org/tost/tost"
     tag: "1.0.0-b3"
     # You will need to pass docker registry credential to K8s before installing this helm chart.
     #   kubectl -n <ONOS_NAMESPACE> create secret docker-registry aether-registry-credential \
@@ -50,9 +50,11 @@ onos-classic:
 #     --from-literal=username=<ONOS_USER> --from-literal=password=<ONOS_PASS>
 #
 # config:
-#   server: "gerrit.opencord.org"
-#   repo: "aether-pod-configs"
-#   folder: "deployment-configs/aether/apps/menlo-prd"
-#   file: "onos-netcfg.json"
-#   netcfgUrl: "http://onos-tost-onos-classic-hs.onos-tost.svc:8181/onos/v1/network/configuration"
-#   clusterUrl: "http://onos-tost-onos-classic-hs.onos-tost.svc:8181/onos/v1/cluster"
+#   server: gerrit.opencord.org
+#   repo: aether-pod-configs
+#   folder: deployment-configs/aether/apps/menlo-prd
+#   file: onos-netcfg.json
+#   review: 12345    # Optional. Must be used with config.patchset
+#   patchset: 1      # Optional. Must be used with config.review
+#   netcfgUrl: http://onos-tost-onos-classic-hs.onos-tost.svc:8181/onos/v1/network/configuration
+#   clusterUrl: http://onos-tost-onos-classic-hs.onos-tost.svc:8181/onos/v1/cluster

@@ -41,15 +41,26 @@ spec:
             secretKeyRef:
               name: git-secret
               key: password
-        - name: GIT_SERVER
+        - name: CFG_SERVER
           value: {{ .Values.config.server }}
-        - name: GIT_REPO
+        - name: CFG_REPO
           value: {{ .Values.config.repo }}
+        {{ if .Values.config.review }}
+        - name: CFG_REVIEW
+          value: {{ .Values.config.review | quote }}
+        {{ end }}
+        {{ if .Values.config.patchset }}
+        - name: CFG_PATCHSET
+          value: {{ .Values.config.patchset | quote }}
+        {{ end }}
       workingDir: {{ $configDir }}
-      command: ["sh", "-c", "git clone https://$USER:$PASSWD@$GIT_SERVER/$GIT_REPO"]
+      command: ["sh", "-c", "/usr/bin/onos-config"]
       volumeMounts:
         - name: config-dir
           mountPath: {{ $configDir }}
+        - name: configmap-config
+          mountPath: /usr/bin/onos-config
+          subPath: onos-config
   containers:
     # Push config to ONOS REST API
     - name: config-setter
@@ -79,5 +90,9 @@ spec:
   volumes:
   - name: config-dir
     emptyDir: {}
+  - name: configmap-config
+    configMap:
+      name: onos-config-scripts
+      defaultMode: 0744
   restartPolicy: Never
 {{ end }}
