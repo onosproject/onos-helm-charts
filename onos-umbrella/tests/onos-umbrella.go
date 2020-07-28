@@ -38,7 +38,7 @@ func (s *OnosUmbrellaSuite) TestInstall(t *testing.T) {
 		Set("scope", "Namespace")
 	assert.NoError(t, raft.Install(true))
 
-	onos := helm.Chart("onos-umbrella").
+	onos := helm.Chart("onos-umbrella", "https://charts.onosproject.org").
 		Release("onos-umbrella").
 		Set("global.store.controller", "onos-umbrella-atomix-atomix-controller:5679").
 		Set("import.onos-gui.enabled", false).
