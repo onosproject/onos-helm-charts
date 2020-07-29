@@ -1,7 +1,7 @@
 onos-classic:
   image:
     repository: "registry.aetherproject.org/tost/tost"
-    tag: "1.0.0-b3"
+    tag: "1.0.0-b4"
     # You will need to pass docker registry credential to K8s before installing this helm chart.
     #   kubectl -n <ONOS_NAMESPACE> create secret docker-registry aether-registry-credential \
     #     --docker-server=registry.aetherproject.org --docker-username=<DOCKER_USER> --docker-password=<DOCKER_PASS>
@@ -18,24 +18,14 @@ onos-classic:
     - name: ui
       port: 8181
   apps:
-    - org.onosproject.drivers
     - org.onosproject.lldpprovider
-    - org.onosproject.route-service
     - org.onosproject.hostprovider
-    - org.onosproject.protocols.grpc
-    - org.onosproject.protocols.gnmi
-    - org.onosproject.generaldeviceprovider
-    - org.onosproject.protocols.p4runtime
-    - org.onosproject.p4runtime
-    - org.onosproject.drivers.p4runtime
-    - org.onosproject.pipelines.basic
-    - org.onosproject.pipelines.fabric
-    - org.onosproject.mcast
-    - org.onosproject.portloadbalancer
+    - org.onosproject.gui2
+    - org.onosproject.drivers.barefoot
+    - org.opencord.fabric-tofino
     - org.onosproject.segmentrouting
     - org.onosproject.t3
-    - org.onosproject.gui2
-    - org.opencord.fabric-tofino
+    - org.omecproject.up4
   atomix:
     replicas: 3
     persistence:
