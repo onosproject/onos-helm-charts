@@ -20,6 +20,7 @@ onos-classic:
   apps:
     - org.onosproject.lldpprovider
     - org.onosproject.hostprovider
+    - org.onosproject.netcfghostprovider
     - org.onosproject.gui2
     - org.onosproject.drivers.barefoot
     - org.opencord.fabric-tofino
