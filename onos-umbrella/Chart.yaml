@@ -3,8 +3,8 @@ name: onos-umbrella
 description: Umbrella chart to deploy all µONOS
 kubeVersion: ">=1.17.0"
 type: application
-version: 0.0.6
-appVersion: v0.6.3
+version: 0.0.7
+appVersion: v0.6.4
 keywords:
   - onos
   - sdn
