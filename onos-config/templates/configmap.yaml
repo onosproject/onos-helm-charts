@@ -29,6 +29,5 @@ data:
         {{- end }}
   logging.yaml: |-
 {{- if .Values.logging }}
-    logging:
-{{ toYaml .Values.logging | indent 6 }}
+{{ toYaml .Values.logging | indent 4 }}
 {{- end}}
