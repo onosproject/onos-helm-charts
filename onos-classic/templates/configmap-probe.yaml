@@ -13,6 +13,24 @@ data:
     #!/bin/bash
     set -e
     host=$(hostname -s)
-    config=$(curl -s http://$host:8181/onos/v1/cluster/$host --user onos:rocks)
-    echo $config
-    printf '%q' $config | grep -q "READY"
+    result=$(curl -s -f http://$host:8181/onos/v1/cluster/$host --user onos:rocks)
+    echo $result
+
+    if ! printf '%q' $result | grep -q "READY"; then
+      echo "Cluster is not yet ready"
+      exit -1
+    fi
+
+    apps=()
+    {{- range .Values.apps }}
+    apps+=("{{ . }}")
+    {{- end }}
+
+    for app in ${apps[@]}; do
+      result=$(curl -s -f http://$host:8181/onos/v1/applications/$app --user onos:rocks)
+      echo $result
+      if ! printf %q $result | grep -q "ACTIVE"; then
+        echo "$app is not yet activated"
+        exit -1
+      fi
+    done
