@@ -49,3 +49,5 @@ onos-classic:
 #   patchset: 1      # Optional. Must be used with config.review
 #   netcfgUrl: http://onos-tost-onos-classic-hs.onos-tost.svc:8181/onos/v1/network/configuration
 #   clusterUrl: http://onos-tost-onos-classic-hs.onos-tost.svc:8181/onos/v1/cluster
+#
+service_account_name: internal-kubectl

@@ -1,7 +1,7 @@
 ---
 apiVersion: v1
 name: onos-tost
-version: 0.1.10
+version: 0.1.11
 kubeVersion: ">=1.10.0"
 appVersion: 2.2.3
 description: ONOS helm chart for TOST

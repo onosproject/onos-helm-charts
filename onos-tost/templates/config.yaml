@@ -6,27 +6,20 @@ kind: Pod
 metadata:
   name: config
 spec:
+  serviceAccountName: {{ .Values.service_account_name }}
   initContainers:
     # Wait for ONOS to be fully ready
     - name: wait-onos
-      image: opennetworking/utils:bash-curl-jq
+      image: bitnami/kubectl
       env:
-        - name: USER
+        - name: NAMESPACE
           valueFrom:
-            secretKeyRef:
-              name: onos-secret
-              key: username
-        - name: PASSWD
-          valueFrom:
-            secretKeyRef:
-              name: onos-secret
-              key: password
-        - name: URL
-          value: {{ .Values.config.clusterUrl }}
+            fieldRef:
+              fieldPath: metadata.namespace              
         - name: INSTANCES
           # Need this to get around hyphenated name
           value: {{ index .Values "onos-classic" "replicas" | quote }}
-      command: ["sh", "-c", "until [ $(curl -s $URL -u $USER:$PASSWD | jq '.nodes | .[] | .status' | grep -c READY) -eq $INSTANCES ]; do echo 'Waiting for ONOS'; sleep 5; done;" ]
+      command: ["sh", "-c", "until [ $INSTANCES -eq $(kubectl -n $NAMESPACE get --no-headers pods -lapp=onos-tost-onos-classic | grep Running | wc -l) ]; do echo 'Waiting for ONOS'; sleep 5; done;" ]
     # Pull config from the git repository
     - name: config-getter
       image: alpine/git
