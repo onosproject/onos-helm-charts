@@ -1,43 +1,87 @@
-topodevices:
+topokinds:
+- id: "TestDevice"
+  type: 3
+  obj:
+    kind:
+      name: "TestDevice"
+  attributes:
+    displayname: ""
+    address: ""
+    version: ""
+    plmnid: ""
+    ecid: ""
+    azimuth: ""
+    arc: ""
+    latitude: ""
+    longitude: ""
+    grpcport: ""
+    tls-insecure: "true"
+- id: "Devicesim"
+  type: 3
+  obj:
+    kind:
+      name: "Devicesim"
+  attributes:
+    displayname: ""
+    address: ""
+    version: ""
+    plmnid: ""
+    ecid: ""
+    azimuth: ""
+    arc: ""
+    latitude: ""
+    longitude: ""
+    grpcport: ""
+    tls-insecure: ""
+
+topoentities:
 - id: sample-1
-  address: sample-1:0
-  version: 1.0.0
-  tls:
-    insecure: true
-  type: TestDevice
+  type: 1
+  obj:
+    entity:
+      kindid: "TestDevice"
   attributes:
+    version: "1.0.0"
+    displayname: "Sample device"
+    address: "sample-1:0"
     latitude: "52.5350"
     longitude: "13.3885"
-  displayname: Sample device
+    tls-insecure: "true"
 - id: sample-2
-  address: sample-2:0
-  version: 1.0.0
-  tls:
-    insecure: true
-  type: TestDevice
+  type: 1
+  obj:
+    entity:
+      kindid: "Devicesim"
   attributes:
+    version: "1.0.0"
+    displayname: "Other sample device"
+    address: "sample-2:0"
     latitude: "52.5350"
-    longitude: "13.4215"
-  displayname: Other sample device
+    longitude: "13.3885"
+    tls-insecure: "true"
 - id: devicesim-1
-  address: devicesim-1:5150
-  version: 1.0.0
-  tls:
-    insecure: true
-  type: Devicesim
+  type: 1
+  obj:
+    entity:
+      kindid: "Devicesim"
   attributes:
-    grpcport: "5150"
+    version: "1.0.0"
+    displayname: "Device Sim 1"
+    address: "devicesim-1:5150"
     latitude: "52.5150"
     longitude: "13.3885"
-  displayname: Device Sim 1
-- id: devicesim-2
-  address: devicesim-2:5150
-  version: 1.0.0
-  tls:
-    insecure: true
-  type: Devicesim
-  attributes:
+    tls-insecure: "true"
     grpcport: "5150"
+- id: devicesim-2
+  type: 1
+  obj:
+    entity:
+      kindid: "Devicesim"
+  attributes:
+    version: "1.0.0"
+    displayname: "Device Sim 2"
+    address: "devicesim-2:5150"
     latitude: "52.5150"
     longitude: "13.4215"
-  displayname: Device Sim 2
+    tls-insecure: "true"
+    grpcport: "5150"

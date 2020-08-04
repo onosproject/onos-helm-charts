@@ -33,7 +33,7 @@ spec:
           args:
           - "topo"
           - "load"
-          - "yaml"
+          - "yamlentities"
           - {{ index .Values "onos-cli" "postInstall" "topo" }}
           volumeMounts:
             - name: config
