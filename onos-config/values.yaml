@@ -3,16 +3,16 @@
 # Declare variables to be passed into your templates.
 
 global:
-  store:
+  storage:
     controller: ""
-    consensus:
-      database: ""
+    config:
+      name: ""
 
 replicaCount: 1
 
 image:
   repository: onosproject/onos-config
-  tag: v0.6.6
+  tag: v0.6.7
   pullPolicy: IfNotPresent
   pullSecrets: []
 
@@ -39,12 +39,13 @@ plugins:
 # Variable to change to onos topo service endpoint for the default onos-topo:5150
 # topoEndpoint: onos-topo-classic:5150
 
-store:
+storage:
   controller: "atomix-controller:5679"
-  consensus:
+  config:
     enabled: true
-    database: ""
-    image: atomix/raft-storage-node:v0.2.0
+    name: ""
+    type: raft
+    image: ""
     imagePullPolicy: IfNotPresent
     partitions: 1
     replicas: 1
