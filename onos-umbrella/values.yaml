@@ -5,22 +5,19 @@
 global:
   fullnameOverride: "onos"
   nameOverride: ""
-  store:
+  storage:
     controller: atomix-controller:5679
-    consensus:
+    config:
       enabled: true
-      database: ""
-      image: atomix/raft-storage-node:v0.2.0
+      name: ""
+      type: raft
+      image: ""
       imagePullPolicy: IfNotPresent
       partitions: 1
       replicas: 1
       partitionsPerCluster: 1
 
 import:
-  atomix-controller:
-    enabled: false
-  atomix-raft-storage-controller:
-    enabled: false
   onos-topo:
     enabled: true
   onos-config:
@@ -32,24 +29,16 @@ import:
 
 # ONOS-TOPO
 onos-topo:
-  image:
-    repository: onosproject/onos-topo
-    tag: v0.6.11
-    pullPolicy: IfNotPresent
-  store:
+  storage:
     controller: ""
-    consensus:
+    config:
       enabled: false
 
 # ONOS-CONFIG
 onos-config:
-  image:
-    repository: onosproject/onos-config
-    tag: v0.6.6
-    pullPolicy: IfNotPresent
-  store:
+  storage:
     controller: ""
-    consensus:
+    config:
       enabled: false
   plugins:
 #    devicesim:
@@ -60,17 +49,10 @@ onos-config:
 #      versions: []
 
 # ONOS-GUI
-onos-gui:
-  image:
-    repository: onosproject/onos-gui
-    tag: v0.6.8
-    pullPolicy: IfNotPresent
+onos-gui: {}
 
+# ONOS-CLI
 onos-cli:
-  image:
-    repository: onosproject/onos-cli
-    tag: v0.6.10
-    pullPolicy: IfNotPresent
   postInstall:
     placeholder: true
     topo: berlin-grid-4-topo.yaml
