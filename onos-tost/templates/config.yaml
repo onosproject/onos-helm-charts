@@ -19,7 +19,9 @@ spec:
         - name: INSTANCES
           # Need this to get around hyphenated name
           value: {{ index .Values "onos-classic" "replicas" | quote }}
-      command: ["sh", "-c", "until [ $INSTANCES -eq $(kubectl -n $NAMESPACE get --no-headers pods -lapp=onos-tost-onos-classic | grep Running | wc -l) ]; do echo 'Waiting for ONOS'; sleep 5; done;" ]
+        - name: LABEL_NAME
+          value: {{ index .Values "onos-classic" "label_name" | quote }}
+      command: ["sh", "-c", "until [ $INSTANCES -eq $(kubectl -n $NAMESPACE get --no-headers pods -lapp=$LABEL_NAME -o custom-columns=':.status.containerStatuses[0].ready' | grep true | wc -l) ]; do echo 'Waiting for ONOS'; sleep 5; done;" ]
     # Pull config from the git repository
     - name: config-getter
       image: alpine/git

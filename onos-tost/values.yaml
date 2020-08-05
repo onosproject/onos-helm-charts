@@ -31,6 +31,8 @@ onos-classic:
     replicas: 3
     persistence:
       storageClass: fast-disks
+  label_name: onos-tost-onos-classic
+
 
 # Optional.
 # When configured, a pod will fetch netcfg from given git repo and push it to ONOS.
