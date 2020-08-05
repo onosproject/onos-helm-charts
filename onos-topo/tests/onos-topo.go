@@ -40,6 +40,6 @@ func (s *ONOSTopoSuite) TestInstall(t *testing.T) {
 
 	topo := helm.Chart("onos-topo", "https://charts.onosproject.org").
 		Release("onos-topo").
-		Set("store.controller", "onos-topo-atomix-atomix-controller:5679")
+		Set("storage.controller", "onos-topo-atomix-atomix-controller:5679")
 	assert.NoError(t, topo.Install(true))
 }
