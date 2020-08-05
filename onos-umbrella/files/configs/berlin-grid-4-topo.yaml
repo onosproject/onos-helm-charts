@@ -1,43 +1,46 @@
-topodevices:
-- id: sample-1
-  address: sample-1:0
-  version: 1.0.0
-  tls:
-    insecure: true
-  type: TestDevice
+topokinds:
+- id: "Devicesim"
+  type: 3
+  obj:
+    kind:
+      name: "Devicesim"
   attributes:
-    latitude: "52.5350"
-    longitude: "13.3885"
-  displayname: Sample device
-- id: sample-2
-  address: sample-2:0
-  version: 1.0.0
-  tls:
-    insecure: true
-  type: TestDevice
-  attributes:
-    latitude: "52.5350"
-    longitude: "13.4215"
-  displayname: Other sample device
+    displayname: ""
+    address: ""
+    version: ""
+    plmnid: ""
+    ecid: ""
+    azimuth: ""
+    arc: ""
+    latitude: ""
+    longitude: ""
+    grpcport: ""
+    tls-insecure: ""
+
+topoentities:
 - id: devicesim-1
-  address: devicesim-1:5150
-  version: 1.0.0
-  tls:
-    insecure: true
-  type: Devicesim
+  type: 1
+  obj:
+    entity:
+      kindid: "Devicesim"
   attributes:
-    grpcport: "5150"
+    version: "1.0.0"
+    displayname: "Device Sim 1"
+    address: "devicesim-1:5150"
     latitude: "52.5150"
     longitude: "13.3885"
-  displayname: Device Sim 1
-- id: devicesim-2
-  address: devicesim-2:5150
-  version: 1.0.0
-  tls:
-    insecure: true
-  type: Devicesim
-  attributes:
+    tls-insecure: "true"
     grpcport: "5150"
+- id: devicesim-2
+  type: 1
+  obj:
+    entity:
+      kindid: "Devicesim"
+  attributes:
+    version: "1.0.0"
+    displayname: "Device Sim 2"
+    address: "devicesim-2:5150"
     latitude: "52.5150"
     longitude: "13.4215"
-  displayname: Device Sim 2
+    tls-insecure: "true"
+    grpcport: "5150"
