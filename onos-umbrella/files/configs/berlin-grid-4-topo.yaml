@@ -1,21 +1,4 @@
 topokinds:
-- id: "TestDevice"
-  type: 3
-  obj:
-    kind:
-      name: "TestDevice"
-  attributes:
-    displayname: ""
-    address: ""
-    version: ""
-    plmnid: ""
-    ecid: ""
-    azimuth: ""
-    arc: ""
-    latitude: ""
-    longitude: ""
-    grpcport: ""
-    tls-insecure: "true"
 - id: "Devicesim"
   type: 3
   obj:
@@ -35,30 +18,6 @@ topokinds:
     tls-insecure: ""
 
 topoentities:
-- id: sample-1
-  type: 1
-  obj:
-    entity:
-      kindid: "TestDevice"
-  attributes:
-    version: "1.0.0"
-    displayname: "Sample device"
-    address: "sample-1:0"
-    latitude: "52.5350"
-    longitude: "13.3885"
-    tls-insecure: "true"
-- id: sample-2
-  type: 1
-  obj:
-    entity:
-      kindid: "Devicesim"
-  attributes:
-    version: "1.0.0"
-    displayname: "Other sample device"
-    address: "sample-2:0"
-    latitude: "52.5350"
-    longitude: "13.3885"
-    tls-insecure: "true"
 - id: devicesim-1
   type: 1
   obj:
