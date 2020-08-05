@@ -10,24 +10,27 @@ metadata:
 data:
   onos.yaml: |-
     atomix:
-      {{- if .Values.global.store.controller }}
-      controller: {{ .Values.global.store.controller }}
+      {{- if .Values.global.storage.controller }}
+      controller: {{ .Values.global.storage.controller }}
       {{- else }}
-      controller: {{ .Values.store.controller }}
+      controller: {{ .Values.storage.controller }}
       {{- end }}
       namespace: {{ .Release.Namespace }}
       scope: {{ template "onos-config.fullname" . }}
+      {{- if .Values.storage.config.enabled }}
       databases:
-        {{- if .Values.global.store.consensus.database }}
-        consensus: {{ .Values.global.store.consensus.database }}
-        {{- else if .Values.store.consensus.database }}
-        consensus: {{ .Values.store.consensus.database }}
-        {{- else if .Values.global.store.controller }}
-        consensus: {{ template "global.fullname" . }}-consensus
+        {{- if .Values.storage.config.name }}
+        config: {{ .Values.storage.config.name }}
         {{- else }}
-        consensus: {{ template "onos-config.fullname" . }}-consensus
+        config: {{ template "onos-config.fullname" . }}-config-db
         {{- end }}
+      {{- else if .Values.global.storage.config.enabled }}
+      databases:
+        {{- if .Values.global.storage.config.name }}
+        config: {{ .Values.global.storage.config.name }}
+        {{- else }}
+        config: {{ template "global.fullname" . }}-config-db
+        {{- end }}
+      {{- end }}
   logging.yaml: |-
-{{- if .Values.logging }}
 {{ toYaml .Values.logging | indent 4 }}
-{{- end}}

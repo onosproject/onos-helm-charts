@@ -40,11 +40,11 @@ func (s *ONOSConfigSuite) TestInstall(t *testing.T) {
 
 	topo := helm.Chart("onos-topo", "https://charts.onosproject.org").
 		Release("onos-topo").
-		Set("store.controller", "onos-config-atomix-atomix-controller:5679")
+		Set("storage.controller", "onos-config-atomix-atomix-controller:5679")
 	assert.NoError(t, topo.Install(false))
 
 	config := helm.Chart("onos-config", "https://charts.onosproject.org").
 		Release("onos-config").
-		Set("store.controller", "onos-config-atomix-atomix-controller:5679")
+		Set("storage.controller", "onos-config-atomix-atomix-controller:5679")
 	assert.NoError(t, config.Install(true))
 }
