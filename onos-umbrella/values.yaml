@@ -6,7 +6,7 @@ global:
   fullnameOverride: "onos"
   nameOverride: ""
   storage:
-    controller: atomix-controller:5679
+    controller: atomix-controller-kubernetes-controller:5679
     config:
       enabled: true
       name: ""
