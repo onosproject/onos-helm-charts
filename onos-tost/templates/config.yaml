@@ -16,9 +16,6 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace              
-        - name: INSTANCES
-          # Need this to get around hyphenated name
-          value: {{ index .Values "onos-classic" "replicas" | quote }}
         - name: APP_LABEL
           value: {{ index .Values "onos-classic" "app_label" | quote }}
       volumeMounts:

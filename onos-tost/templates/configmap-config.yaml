@@ -34,7 +34,7 @@ data:
   wait-onos: |
    #!/bin/sh
     set -e
-    until [ $INSTANCES -eq $(kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL -o custom-columns=':.status.containerStatuses[0].ready' | grep true | wc -l) ]; do
+    until [ 0 -ne $(kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL -o custom-columns=':.status.containerStatuses[*].ready' | grep false | wc -l) ]; do
     echo 'Waiting for ONOS';
     kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL;
     sleep 5;
