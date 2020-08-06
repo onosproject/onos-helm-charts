@@ -40,7 +40,7 @@ func (s *OnosUmbrellaSuite) TestInstall(t *testing.T) {
 
 	onos := helm.Chart("onos-umbrella", "https://charts.onosproject.org").
 		Release("onos-umbrella").
-		Set("global.store.controller", "onos-umbrella-atomix-atomix-controller:5679").
+		Set("global.storage.controller", "onos-umbrella-atomix-atomix-controller:5679").
 		Set("import.onos-gui.enabled", false).
 		Set("import.onos-cli.enabled", false)
 	assert.NoError(t, onos.Install(true))

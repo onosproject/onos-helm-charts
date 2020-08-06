@@ -1,0 +1,57 @@
+{{- if .Values.global.storage.config.enabled }}
+{{- $name := ternary .Values.global.storage.config.name (printf "%s-config-db" (include "global.fullname" .)) (not (eq .Values.global.storage.config.name "")) }}
+apiVersion: cloud.atomix.io/v1beta3
+kind: Database
+metadata:
+  name: {{ $name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  partitions: {{ .Values.global.storage.config.partitions }}
+  storageClass:
+    group: storage.cloud.atomix.io
+    version: v1beta1
+    {{- if eq .Values.global.storage.config.type "raft" }}
+    kind: RaftStorageClass
+    {{- else if eq .Values.global.storage.config.type "cache" }}
+    kind: CacheStorageClass
+    {{- else }}
+    {{ fail ( printf "%s is not a valid storage type" .Values.global.storage.config.type ) }}
+    {{- end }}
+    name: {{ $name }}
+---
+{{- if eq .Values.global.storage.config.type "raft" }}
+apiVersion: storage.cloud.atomix.io/v1beta1
+kind: RaftStorageClass
+metadata:
+  name: {{ $name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  image: {{ default .Values.global.storage.config.image "atomix/raft-storage-node:v0.2.0" }}
+  imagePullPolicy: {{ .Values.global.storage.config.imagePullPolicy }}
+  replicas: {{ .Values.global.storage.config.replicas }}
+  partitionsPerCluster: {{ .Values.global.storage.config.partitionsPerCluster }}
+{{- else if eq .Values.global.storage.config.type "cache" }}
+apiVersion: storage.cloud.atomix.io/v1beta1
+kind: CacheStorageClass
+metadata:
+  name: {{ $name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  image: {{ default .Values.global.storage.config.image "atomix/cache-storage-node:v0.2.0" }}
+  imagePullPolicy: {{ .Values.global.storage.config.imagePullPolicy }}
+{{- else }}
+{{ fail ( printf "%s is not a valid storage type" .Values.global.storage.config.type ) }}
+{{- end }}
+{{- end }}
