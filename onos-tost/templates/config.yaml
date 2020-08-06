@@ -6,27 +6,23 @@ kind: Pod
 metadata:
   name: config
 spec:
+  serviceAccountName: {{ .Values.service_account_name }}
   initContainers:
     # Wait for ONOS to be fully ready
     - name: wait-onos
-      image: opennetworking/utils:bash-curl-jq
+      image: alpine/k8s:1.18.2
       env:
-        - name: USER
+        - name: NAMESPACE
           valueFrom:
-            secretKeyRef:
-              name: onos-secret
-              key: username
-        - name: PASSWD
-          valueFrom:
-            secretKeyRef:
-              name: onos-secret
-              key: password
-        - name: URL
-          value: {{ .Values.config.clusterUrl }}
-        - name: INSTANCES
-          # Need this to get around hyphenated name
-          value: {{ index .Values "onos-classic" "replicas" | quote }}
-      command: ["sh", "-c", "until [ $(curl -s $URL -u $USER:$PASSWD | jq '.nodes | .[] | .status' | grep -c READY) -eq $INSTANCES ]; do echo 'Waiting for ONOS'; sleep 5; done;" ]
+            fieldRef:
+              fieldPath: metadata.namespace              
+        - name: APP_LABEL
+          value: {{ index .Values "onos-classic" "app_label" | quote }}
+      volumeMounts:
+        - name: configmap-config
+          mountPath: /usr/bin/wait-onos
+          subPath: wait-onos
+      command: ["sh", "-c", "/usr/bin/wait-onos"]
     # Pull config from the git repository
     - name: config-getter
       image: alpine/git
