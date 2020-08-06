@@ -31,7 +31,7 @@ onos-classic:
     replicas: 3
     persistence:
       storageClass: fast-disks
-  label_name: onos-tost-onos-classic
+  app_label: onos-tost-onos-classic
 
 
 # Optional.

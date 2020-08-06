@@ -31,3 +31,11 @@ data:
         fi
         cp $REMOTE_CHASSIS_CONFIG $LOCAL_CHASSIS_CONFIG
     fi
+  wait-onos: |
+   #!/bin/sh
+    set -e
+    until [ $INSTANCES -eq $(kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL -o custom-columns=':.status.containerStatuses[0].ready' | grep true | wc -l) ]; do
+    echo 'Waiting for ONOS';
+    kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL;
+    sleep 5;
+    done

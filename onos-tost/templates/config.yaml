@@ -10,7 +10,7 @@ spec:
   initContainers:
     # Wait for ONOS to be fully ready
     - name: wait-onos
-      image: bitnami/kubectl
+      image: alpine/k8s:1.18.2
       env:
         - name: NAMESPACE
           valueFrom:
@@ -19,9 +19,13 @@ spec:
         - name: INSTANCES
           # Need this to get around hyphenated name
           value: {{ index .Values "onos-classic" "replicas" | quote }}
-        - name: LABEL_NAME
-          value: {{ index .Values "onos-classic" "label_name" | quote }}
-      command: ["sh", "-c", "until [ $INSTANCES -eq $(kubectl -n $NAMESPACE get --no-headers pods -lapp=$LABEL_NAME -o custom-columns=':.status.containerStatuses[0].ready' | grep true | wc -l) ]; do echo 'Waiting for ONOS'; sleep 5; done;" ]
+        - name: APP_LABEL
+          value: {{ index .Values "onos-classic" "app_label" | quote }}
+      volumeMounts:
+        - name: configmap-config
+          mountPath: /usr/bin/wait-onos
+          subPath: wait-onos
+      command: ["sh", "-c", "/usr/bin/wait-onos"]
     # Pull config from the git repository
     - name: config-getter
       image: alpine/git
