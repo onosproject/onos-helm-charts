@@ -16,7 +16,13 @@ topokinds:
     longitude: ""
     grpcport: ""
     tls-insecure: ""
-
+- id: "Peer"
+  type: 3
+  obj:
+    kind:
+      name: "Peer"
+  attributes:
+    displayname: "Peer relation"
 topoentities:
 - id: devicesim-1
   type: 1
@@ -26,11 +32,11 @@ topoentities:
   attributes:
     version: "1.0.0"
     displayname: "Device Sim 1"
-    address: "devicesim-1:5150"
+    address: "devicesim-1:11161"
     latitude: "52.5150"
     longitude: "13.3885"
     tls-insecure: "true"
-    grpcport: "5150"
+    grpcport: "11161"
 - id: devicesim-2
   type: 1
   obj:
@@ -39,8 +45,49 @@ topoentities:
   attributes:
     version: "1.0.0"
     displayname: "Device Sim 2"
-    address: "devicesim-2:5150"
+    address: "devicesim-2:11161"
     latitude: "52.5150"
     longitude: "13.4215"
     tls-insecure: "true"
-    grpcport: "5150"
+    grpcport: "11161"
+- id: devicesim-3
+  type: 1
+  obj:
+    entity:
+      kindid: "Devicesim"
+  attributes:
+    version: "1.0.0"
+    displayname: "Device Sim 3"
+    address: "devicesim-3:11161"
+    latitude: "52.5150"
+    longitude: "13.4615"
+    tls-insecure: "true"
+    grpcport: "11161"
+toporelations:
+  - id: d1d2peer
+    type: 2
+    obj:
+      relation:
+        kindid: "Peer"
+        srcentityid: "devicesim-1"
+        tgtentityid: "devicesim-2"
+    attributes:
+      displayname: "Device 1 - Device 2"
+  - id: d1d3peer
+    type: 2
+    obj:
+      relation:
+        kindid: "Peer"
+        srcentityid: "devicesim-1"
+        tgtentityid: "devicesim-3"
+    attributes:
+      displayname: "Device 1 - Device 3"
+  - id: d3d2peer
+    type: 2
+    obj:
+      relation:
+        kindid: "Peer"
+        srcentityid: "devicesim-3"
+        tgtentityid: "devicesim-2"
+    attributes:
+      displayname: "Device 3 - Device 2"
