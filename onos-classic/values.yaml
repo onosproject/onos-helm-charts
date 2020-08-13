@@ -29,8 +29,6 @@ resources:
     memory: 512Mi
 
 ports:
-  - name: openflow
-    port: 6653
   - name: ovsdb
     port: 6640
   - name: east-west

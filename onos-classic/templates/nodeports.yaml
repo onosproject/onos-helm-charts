@@ -1,20 +1,5 @@
 ---
-{{- if .Values.onosOfPort }}
-apiVersion: v1
-kind: Service
-metadata:
-  name: onos-of
-spec:
-  type: NodePort
-  ports:
-  - name: onos-of
-    port: 6653
-    nodePort: {{ .Values.onosOfPort }}
-  selector:
-    app: {{ template "fullname" . }}
-{{- end}}
----
-{{- if .Values.onosApiPort }}
+  {{- if .Values.onosApiPort }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -22,14 +7,14 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - name: onos-api
-    port: 8181
-    nodePort: {{ .Values.onosApiPort }}
+    - name: onos-api
+      port: 8181
+      nodePort: {{ .Values.onosApiPort }}
   selector:
     app: {{ template "fullname" . }}
-{{- end}}
+  {{- end}}
 ---
-{{- if .Values.onosSshPort }}
+  {{- if .Values.onosSshPort }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -37,9 +22,29 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - name: onos-ssh
-    port: 8101
-    nodePort: {{ .Values.onosSshPort }}
+    - name: onos-ssh
+      port: 8101
+      nodePort: {{ .Values.onosSshPort }}
   selector:
     app: {{ template "fullname" . }}
-{{- end}}
+  {{- end}}
+
+# workaround for . not working, see
+# https://github.com/helm/helm/issues/1311
+{{- $root := . -}}
+{{ range $k, $index := until (atoi (quote .Values.replicas) | default 3) }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: onos-of-{{ $index }}
+spec:
+  type: NodePort
+  ports:
+    - name: onos-of-{{ $index }}
+      #starting from 6654 not to break backwards compatibility with existing -hs service and node ports
+      port: {{ add $index 6654 }}
+      nodePort: {{ add $index 31654 }}
+  selector:
+    app: {{ template "fullname" $root }}
+{{ end }}
