@@ -59,6 +59,6 @@ spec:
   publishNotReadyAddresses: true
   clusterIP: None
   selector:
-    app: {{ template "fullname" $root }}
+    app: {{ template "fullname" $root }}-{{ $index }}
 {{ end }}
 
