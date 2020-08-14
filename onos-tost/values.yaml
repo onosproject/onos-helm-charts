@@ -1,7 +1,7 @@
 onos-classic:
   image:
     repository: "registry.aetherproject.org/tost/tost"
-    tag: "1.0.0-b4"
+    tag: "1.0.0-b6"
     # You will need to pass docker registry credential to K8s before installing this helm chart.
     #   kubectl -n <ONOS_NAMESPACE> create secret docker-registry aether-registry-credential \
     #     --docker-server=registry.aetherproject.org --docker-username=<DOCKER_USER> --docker-password=<DOCKER_PASS>
@@ -21,7 +21,7 @@ onos-classic:
     - org.onosproject.lldpprovider
     - org.onosproject.hostprovider
     - org.onosproject.netcfghostprovider
-    - org.onosproject.gui2
+    - org.onosproject.gui
     - org.onosproject.drivers.barefoot
     - org.opencord.fabric-tofino
     - org.onosproject.segmentrouting
