@@ -16,7 +16,7 @@ data:
     result=$(curl -s -f http://$host:8181/onos/v1/cluster/$host --user onos:rocks)
     echo $result
 
-    if ! printf '%q' $result | grep -q "READY"; then
+    if ! printf '%q' $result | grep -q -i "READY"; then
       echo "Cluster is not yet ready"
       exit -1
     fi
@@ -27,10 +27,10 @@ data:
     {{- end }}
 
     for app in ${apps[@]}; do
-      result=$(curl -s -f http://$host:8181/onos/v1/applications/$app --user onos:rocks)
+      result=$(curl -s -f http://$host:8181/onos/v1/applications/$app/health --user onos:rocks)
       echo $result
-      if ! printf %q $result | grep -q "ACTIVE"; then
-        echo "$app is not yet activated"
+      if ! printf %q $result | grep -q -i "READY"; then
+        echo "$app is not yet ready"
         exit -1
       fi
     done
