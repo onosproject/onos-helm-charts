@@ -55,7 +55,7 @@ spec:
                   fieldPath: metadata.namespace
             - name: SERVICE_NAME
               value: {{ template "onos-config.fullname" . }}
-            - name: NODE_NAME
+            - name: NODE_ID
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
