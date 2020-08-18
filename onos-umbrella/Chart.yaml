@@ -3,7 +3,7 @@ name: onos-umbrella
 description: Umbrella chart to deploy all µONOS
 kubeVersion: ">=1.17.0"
 type: application
-version: 0.0.13
+version: 0.0.14
 appVersion: v0.6.4
 keywords:
   - onos
@@ -20,7 +20,7 @@ dependencies:
   - name: onos-config
     condition: import.onos-config.enabled
     repository: https://charts.onosproject.org
-    version: 0.0.8
+    version: 0.0.9
   - name: onos-gui
     condition: import.onos-gui.enabled
     repository: https://charts.onosproject.org
