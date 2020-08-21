@@ -17,6 +17,7 @@ package tests
 import (
 	"github.com/onosproject/helmit/pkg/helm"
 	"github.com/onosproject/helmit/pkg/test"
+	"github.com/onosproject/onos-test/pkg/onostest"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -26,21 +27,24 @@ type OnosUmbrellaSuite struct {
 	test.Suite
 }
 
+const onosComponentName = "onos-helm-charts"
+const testName = "umbrella-test"
+
 // TestInstall tests installing the onos-umbrella chart
 func (s *OnosUmbrellaSuite) TestInstall(t *testing.T) {
-	atomix := helm.Chart("atomix-controller", "https://charts.atomix.io").
-		Release("onos-umbrella-atomix").
+	atomix := helm.Chart(onostest.ControllerChartName, onostest.AtomixChartRepo).
+		Release(onostest.AtomixName(testName, onosComponentName)).
 		Set("scope", "Namespace")
 	assert.NoError(t, atomix.Install(true))
 
-	raft := helm.Chart("raft-storage-controller", "https://charts.atomix.io").
-		Release("onos-umbrella-raft").
+	raft := helm.Chart(onostest.RaftStorageControllerChartName, onostest.AtomixChartRepo).
+		Release(onostest.RaftReleaseName(onosComponentName)).
 		Set("scope", "Namespace")
 	assert.NoError(t, raft.Install(true))
 
-	onos := helm.Chart("onos-umbrella", "https://charts.onosproject.org").
+	onos := helm.Chart("onos-umbrella", onostest.OnosChartRepo).
 		Release("onos-umbrella").
-		Set("global.storage.controller", "onos-umbrella-atomix-atomix-controller:5679").
+		Set("global.storage.controller", onostest.AtomixController(testName, onosComponentName)).
 		Set("import.onos-gui.enabled", false).
 		Set("import.onos-cli.enabled", false)
 	assert.NoError(t, onos.Install(true))

@@ -17,6 +17,7 @@ package tests
 import (
 	"github.com/onosproject/helmit/pkg/helm"
 	"github.com/onosproject/helmit/pkg/test"
+	"github.com/onosproject/onos-test/pkg/onostest"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -26,20 +27,23 @@ type ONOSTopoSuite struct {
 	test.Suite
 }
 
+const onosRicComponentName = "onos-topo"
+const testName = "chart-test"
+
 // TestInstall tests installing the onos-topo chart
 func (s *ONOSTopoSuite) TestInstall(t *testing.T) {
-	atomix := helm.Chart("atomix-controller", "https://charts.atomix.io").
-		Release("onos-topo-atomix").
+	atomix := helm.Chart(onostest.ControllerChartName, onostest.AtomixChartRepo).
+		Release(onostest.AtomixName(testName, onosRicComponentName)).
 		Set("scope", "Namespace")
 	assert.NoError(t, atomix.Install(true))
 
-	raft := helm.Chart("raft-storage-controller", "https://charts.atomix.io").
-		Release("onos-topo-raft").
+	raft := helm.Chart(onostest.RaftStorageControllerChartName, onostest.AtomixChartRepo).
+		Release(onostest.RaftReleaseName(onosRicComponentName)).
 		Set("scope", "Namespace")
 	assert.NoError(t, raft.Install(true))
 
-	topo := helm.Chart("onos-topo", "https://charts.onosproject.org").
+	topo := helm.Chart("onos-topo", onostest.SdranChartRepo).
 		Release("onos-topo").
-		Set("storage.controller", "onos-topo-atomix-atomix-controller:5679")
+		Set("storage.controller", onostest.AtomixController(testName, onosRicComponentName))
 	assert.NoError(t, topo.Install(true))
 }
