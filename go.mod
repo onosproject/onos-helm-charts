@@ -10,7 +10,7 @@ require (
 	github.com/kr/pretty v0.2.0 // indirect
 	github.com/mattn/go-colorable v0.1.4 // indirect
 	github.com/mattn/go-isatty v0.0.12 // indirect
-	github.com/onosproject/helmit v0.6.4
+	github.com/onosproject/helmit v0.6.6
 	github.com/onosproject/onos-test v0.6.2
 	github.com/stretchr/testify v1.5.1
 	golang.org/x/crypto v0.0.0-20200204104054-c9f3fb736b72 // indirect
