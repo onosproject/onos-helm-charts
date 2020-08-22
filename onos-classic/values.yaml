@@ -39,3 +39,16 @@ ports:
     port: 8101
   - name: ui
     port: 8181
+
+# logging:
+#   karafVersion: 4.2.9
+#   config: |
+#     # Just an example. See org.ops4j.pax.logging.cfg for details.
+#
+#     log4j2.rootLogger.level = DEBUG
+#
+#     log4j2.rootLogger.appenderRef.Console.ref = Console
+#     log4j2.appender.console.type = Console
+#     log4j2.appender.console.name = Console
+#     log4j2.appender.console.layout.type = PatternLayout
+#     log4j2.appender.console.layout.pattern = %d{RFC3339} %-5level [%c{1}] %msg%n%throwable

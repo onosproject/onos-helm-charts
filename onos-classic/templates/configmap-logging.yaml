@@ -1,0 +1,14 @@
+{{- if .Values.logging }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "fullname" . }}-logging
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+data:
+  org.ops4j.pax.logging.cfg: |
+    {{- .Values.logging.config  | nindent 4 }}
+{{- end }}
