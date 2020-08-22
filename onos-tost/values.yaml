@@ -1,13 +1,15 @@
 onos-classic:
   image:
     repository: "registry.aetherproject.org/tost/tost"
-    tag: "1.0.0-b6"
+    tag: "1.0.0"
     # You will need to pass docker registry credential to K8s before installing this helm chart.
     #   kubectl -n <ONOS_NAMESPACE> create secret docker-registry aether-registry-credential \
     #     --docker-server=registry.aetherproject.org --docker-username=<DOCKER_USER> --docker-password=<DOCKER_PASS>
     pullSecrets:
       - aether-registry-credential
+
   replicas: 3
+
   ports:
     - name: up4
       port: 51001
@@ -17,6 +19,7 @@ onos-classic:
       port: 8101
     - name: ui
       port: 8181
+
   apps:
     - org.onosproject.lldpprovider
     - org.onosproject.hostprovider
@@ -27,12 +30,47 @@ onos-classic:
     - org.onosproject.segmentrouting
     - org.onosproject.t3
     - org.omecproject.up4
+
+  logging:
+    karafVersion: 4.2.9
+    config: |
+      # Common pattern layout for appenders
+      log4j2.stdout.pattern = %d{RFC3339} %-5level [%c{1}] %msg%n%throwable
+
+      # Root logger
+      log4j2.rootLogger.level = INFO
+
+      # OSGi appender
+      log4j2.rootLogger.appenderRef.PaxOsgi.ref = PaxOsgi
+      log4j2.appender.osgi.type = PaxOsgi
+      log4j2.appender.osgi.name = PaxOsgi
+      log4j2.appender.osgi.filter = *
+
+      # stdout appender
+      log4j2.rootLogger.appenderRef.Console.ref = Console
+      log4j2.appender.console.type = Console
+      log4j2.appender.console.name = Console
+      log4j2.appender.console.layout.type = PatternLayout
+      log4j2.appender.console.layout.pattern = ${log4j2.stdout.pattern}
+
+      # SSHD logger
+      log4j2.logger.sshd.name = org.apache.sshd
+      log4j2.logger.sshd.level = INFO
+
+      # Spifly logger
+      log4j2.logger.spifly.name = org.apache.aries.spifly
+      log4j2.logger.spifly.level = WARN
+
+  annotations:
+    fluentbit.io/parser: onos
+
   atomix:
     replicas: 3
     persistence:
       storageClass: fast-disks
   app_label: onos-tost-onos-classic
 
+service_account_name: internal-kubectl
 
 # Optional.
 # When configured, a pod will fetch netcfg from given git repo and push it to ONOS.
@@ -52,4 +90,3 @@ onos-classic:
 #   netcfgUrl: http://onos-tost-onos-classic-hs.onos-tost.svc:8181/onos/v1/network/configuration
 #   clusterUrl: http://onos-tost-onos-classic-hs.onos-tost.svc:8181/onos/v1/cluster
 #
-service_account_name: internal-kubectl
