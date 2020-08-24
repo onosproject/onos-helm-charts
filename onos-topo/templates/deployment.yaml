@@ -70,15 +70,20 @@ spec:
               containerPort: 40000
               protocol: TCP
             {{- end }}
-          livenessProbe:
+          startupProbe:
             tcpSocket:
               port: 5150
-            initialDelaySeconds: 15
-            periodSeconds: 20
+            periodSeconds: 5
+            failureThreshold: 60
           readinessProbe:
             tcpSocket:
               port: 5150
-            initialDelaySeconds: 5
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 5150
+            initialDelaySeconds: 10
             periodSeconds: 10
           volumeMounts:
             - name: config
