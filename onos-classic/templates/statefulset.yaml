@@ -71,6 +71,11 @@ spec:
         env:
           - name: JAVA_OPTS
             value: -Xmx{{ .Values.heap }}
+          {{- with .Values.apps }}
+          - name: ONOS_APPS
+            value: {{ template "onos-apps" . }}
+          {{- end }}
+
         {{- with .Values.ports }}
         ports:
         {{- range . }}
@@ -103,11 +108,6 @@ spec:
           - name: config
             mountPath: /root/onos/config/cluster.json
             subPath: cluster.json
-          {{- range .Values.apps }}
-          - name: config
-            mountPath: /root/onos/apps/{{ . }}/active
-            subPath: active
-          {{- end }}
       {{- if .Values.image.pullSecrets }}
       imagePullSecrets:
         {{- range .Values.image.pullSecrets }}
