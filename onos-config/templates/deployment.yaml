@@ -64,10 +64,8 @@ spec:
             - "-keyPath=/etc/onos/certs/tls.key"
             - "-certPath=/etc/onos/certs/tls.crt"
             {{- range $key, $plugin := .Values.plugins }}
-              {{- range $j, $v := $plugin.versions }}
-            - {{ printf "-modelPlugin=/usr/local/lib/shared/%s.so.%s" $key $v }}
+            - {{ printf "-modelPlugin=/usr/local/lib/shared/%s.so.%s" $plugin.name $plugin.version }}
               {{- end }}
-            {{- end }}
             {{- if .Values.topoEndpoint }}
             - {{ printf "-topoEndpoint=%s" .Values.topoEndpoint }}
             {{- end }}
