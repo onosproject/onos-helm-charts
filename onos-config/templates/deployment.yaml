@@ -113,21 +113,19 @@ spec:
             {{- end }}
         # Load model plugins as side car containers
         {{- range $key, $plugin := .Values.plugins }}
-          {{- range $j, $v := $plugin.versions }}
-        - name: {{ printf "config-model-%s-%s" $key $v | replace "." "-" }}
-          image: {{ printf "onosproject/config-model-%s-%s:%s" $key $v $.Values.image.tag }}
-          imagePullPolicy: {{ $.Values.image.pullPolicy }}
+        - name: {{ printf "config-model-%s-%s" $plugin.name $plugin.version | replace "." "-" }}
+          image: {{ printf "%s:%s" $plugin.image.repository $plugin.image.tag }}
+          imagePullPolicy: {{ $plugin.image.pullPolicy }}
           command:
             - "/copylibandstay"
           args:
-            - {{ printf "%s.so.%s" $key $v }}
-            - {{ printf "/usr/local/lib/%s.so.%s" $key $v }}
+            - {{ printf "%s.so.%s" $plugin.name $plugin.version }}
+            - {{ printf "/usr/local/lib/%s.so.%s" $plugin.name $plugin.version }}
             - "stayrunning"
           volumeMounts:
             - name: shared-data
               mountPath: /usr/local/lib
           {{- end }}
-        {{- end }}
       # Mount volumes
       volumes:
         - name: config
