@@ -41,12 +41,26 @@ onos-config:
     config:
       enabled: false
   plugins:
-#    devicesim:
-#      versions: []
-    stratum:
-      versions: []
-#    testdevice:
-#      versions: []
+    - name: devicesim
+      version: 1.0.0
+      image:
+        repository: onosproject/config-model-devicesim-1.0.0
+        tag: v0.6.6
+        pullPolicy: IfNotPresent
+    - name: testdevice
+      version: 1.0.0
+      image:
+        repository: onosproject/config-model-testdevice-1.0.0
+        tag: v0.6.5
+        pullPolicy: IfNotPresent
+    - name: testdevice
+      version: 2.0.0
+      image:
+        repository: onosproject/config-model-testdevice-2.0.0
+        tag: v0.6.5
+        pullPolicy: IfNotPresent
+
+
 
 # ONOS-GUI
 onos-gui: {}
