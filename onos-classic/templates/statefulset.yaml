@@ -29,6 +29,10 @@ spec:
     metadata:
       labels:
         app: {{ template "fullname" . }}
+      {{- with .Values.annotations }}
+      annotations:
+        {{ toYaml . | nindent 8 }}
+      {{- end }}
     spec:
       {{- if .Values.podAntiAffinity.enabled }}
       affinity:
@@ -71,6 +75,11 @@ spec:
         env:
           - name: JAVA_OPTS
             value: -Xmx{{ .Values.heap }}
+          {{- with .Values.apps }}
+          - name: ONOS_APPS
+            value: {{ template "onos-apps" . }}
+          {{- end }}
+
         {{- with .Values.ports }}
         ports:
         {{- range . }}
@@ -103,11 +112,11 @@ spec:
           - name: config
             mountPath: /root/onos/config/cluster.json
             subPath: cluster.json
-          {{- range .Values.apps }}
-          - name: config
-            mountPath: /root/onos/apps/{{ . }}/active
-            subPath: active
-          {{- end }}
+          {{- if .Values.logging }}
+          - name: logging
+            mountPath: /root/onos/apache-karaf-{{ .Values.logging.karafVersion }}/etc/org.ops4j.pax.logging.cfg
+            subPath: org.ops4j.pax.logging.cfg
+          {{- end}}
       {{- if .Values.image.pullSecrets }}
       imagePullSecrets:
         {{- range .Values.image.pullSecrets }}
@@ -125,3 +134,11 @@ spec:
             defaultMode: 0744
         - name: config
           emptyDir: {}
+        {{- if .Values.logging }}
+        - name: logging
+          configMap:
+            name: {{ template "fullname" . }}-logging
+            items:
+              - key: org.ops4j.pax.logging.cfg
+                path: org.ops4j.pax.logging.cfg
+        {{- end}}
