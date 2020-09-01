@@ -34,6 +34,21 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      initContainers:
+        # Load model plugins as side car containers
+        {{- range $key, $plugin := .Values.plugins }}
+        - name: {{ printf "config-model-%s-%s" $plugin.name $plugin.version | replace "." "-" }}
+          image: {{ printf "%s:%s" $plugin.image.repository $plugin.image.tag }}
+          imagePullPolicy: {{ $plugin.image.pullPolicy }}
+          command:
+            - "/copylibandstay"
+          args:
+            - {{ printf "%s.so.%s" $plugin.name $plugin.version }}
+            - {{ printf "/usr/local/lib/%s.so.%s" $plugin.name $plugin.version }}
+          volumeMounts:
+            - name: shared-data
+              mountPath: /usr/local/lib
+        {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -109,21 +124,6 @@ spec:
               add:
                 - SYS_PTRACE
             {{- end }}
-        # Load model plugins as side car containers
-        {{- range $key, $plugin := .Values.plugins }}
-        - name: {{ printf "config-model-%s-%s" $plugin.name $plugin.version | replace "." "-" }}
-          image: {{ printf "%s:%s" $plugin.image.repository $plugin.image.tag }}
-          imagePullPolicy: {{ $plugin.image.pullPolicy }}
-          command:
-            - "/copylibandstay"
-          args:
-            - {{ printf "%s.so.%s" $plugin.name $plugin.version }}
-            - {{ printf "/usr/local/lib/%s.so.%s" $plugin.name $plugin.version }}
-            - "stayrunning"
-          volumeMounts:
-            - name: shared-data
-              mountPath: /usr/local/lib
-          {{- end }}
       # Mount volumes
       volumes:
         - name: config
