@@ -46,8 +46,6 @@ spec:
       port: 6653
       nodePort: {{ add $index 31653 }}
   selector:
-      selector:
-        matchLabels:
-            "statfultset.kubernetes.io/pod-name": onos-onos-classic-{{ $index }}
+      statefulset.kubernetes.io/pod-name: onos-onos-classic-{{ $index }}
 {{ end }}
 {{- end}}
