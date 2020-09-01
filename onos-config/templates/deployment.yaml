@@ -35,7 +35,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       initContainers:
-        # Load model plugins as side car containers
+        # Run model plugins as init containers to load plugins onto the shared volume
         {{- range $key, $plugin := .Values.plugins }}
         - name: {{ printf "config-model-%s-%s" $plugin.name $plugin.version | replace "." "-" }}
           image: {{ printf "%s:%s" $plugin.image.repository $plugin.image.tag }}
