@@ -31,6 +31,7 @@ spec:
 
 # workaround for . not working, see
 # https://github.com/helm/helm/issues/1311
+{{- if .Values.exposeNodePorts }}
 {{- $root := . -}}
 {{ range $k, $index := until (atoi (quote .Values.replicas) | default 3) }}
 ---
@@ -42,9 +43,11 @@ spec:
   type: NodePort
   ports:
     - name: onos-of-{{ $index }}
-      #starting from 6654 not to break backwards compatibility with existing -hs service and node ports
-      port: {{ add $index 6654 }}
-      nodePort: {{ add $index 31654 }}
+      port: 6653
+      nodePort: {{ add $index 31653 }}
   selector:
-    app: {{ template "fullname" $root }}
+      selector:
+        matchLabels:
+            "statfultset.kubernetes.io/pod-name": onos-onos-classic-{{ $index }}
 {{ end }}
+{{- end}}
