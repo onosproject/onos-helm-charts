@@ -12,7 +12,7 @@ replicaCount: 1
 
 image:
   repository: onosproject/onos-topo
-  tag: v0.6.16
+  tag: v0.6.17
   pullPolicy: IfNotPresent
   pullSecrets: []
 
@@ -23,8 +23,8 @@ fullnameOverride: "onos-topo"
 debug: false
 
 storage:
-  controller: "atomix-controller:5679"
-  config:
+  controller: "atomix-controller.kube-system.svc.cluster.local:5679"
+  consensus:
     enabled: true
     name: ""
     type: raft
