@@ -17,19 +17,19 @@ data:
       {{- end }}
       namespace: {{ .Release.Namespace }}
       scope: {{ template "onos-topo.fullname" . }}
-      {{- if .Values.storage.config.enabled }}
+      {{- if .Values.storage.consensus.enabled }}
       databases:
-        {{- if .Values.storage.config.name }}
-        config: {{ .Values.storage.config.name }}
+        {{- if .Values.storage.consensus.name }}
+        config: {{ .Values.storage.consensus.name }}
         {{- else }}
-        config: {{ template "onos-topo.fullname" . }}-config-db
+        config: {{ template "onos-topo.fullname" . }}-consensus-db
         {{- end }}
-      {{- else if .Values.global.storage.config.enabled }}
+      {{- else if .Values.global.storage.consensus.enabled }}
       databases:
-        {{- if .Values.global.storage.config.name }}
-        config: {{ .Values.global.storage.config.name }}
+        {{- if .Values.global.storage.consensus.name }}
+        config: {{ .Values.global.storage.consensus.name }}
         {{- else }}
-        config: {{ template "global.fullname" . }}-config-db
+        config: {{ template "global.fullname" . }}-consensus-db
         {{- end }}
       {{- end }}
   logging.yaml: |-
