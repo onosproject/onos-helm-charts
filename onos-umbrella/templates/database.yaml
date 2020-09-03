@@ -1,5 +1,5 @@
-{{- if .Values.global.storage.config.enabled }}
-{{- $name := ternary .Values.global.storage.config.name (printf "%s-config-db" (include "global.fullname" .)) (not (eq .Values.global.storage.config.name "")) }}
+{{- if .Values.global.storage.consensus.enabled }}
+{{- $name := ternary .Values.global.storage.consensus.name (printf "%s-consensus-db" (include "global.fullname" .)) (not (eq .Values.global.storage.consensus.name "")) }}
 apiVersion: cloud.atomix.io/v1beta3
 kind: Database
 metadata:
@@ -10,20 +10,20 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 spec:
-  partitions: {{ .Values.global.storage.config.partitions }}
+  partitions: {{ .Values.global.storage.consensus.partitions }}
   storageClass:
     group: storage.cloud.atomix.io
     version: v1beta1
-    {{- if eq .Values.global.storage.config.type "raft" }}
+    {{- if eq .Values.global.storage.consensus.type "raft" }}
     kind: RaftStorageClass
-    {{- else if eq .Values.global.storage.config.type "cache" }}
+    {{- else if eq .Values.global.storage.consensus.type "cache" }}
     kind: CacheStorageClass
     {{- else }}
-    {{ fail ( printf "%s is not a valid storage type" .Values.global.storage.config.type ) }}
+    {{ fail ( printf "%s is not a valid storage type" .Values.global.storage.consensus.type ) }}
     {{- end }}
     name: {{ $name }}
 ---
-{{- if eq .Values.global.storage.config.type "raft" }}
+{{- if eq .Values.global.storage.consensus.type "raft" }}
 apiVersion: storage.cloud.atomix.io/v1beta1
 kind: RaftStorageClass
 metadata:
@@ -34,11 +34,11 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 spec:
-  image: {{ default .Values.global.storage.config.image "atomix/raft-storage-node:v0.2.0" }}
-  imagePullPolicy: {{ .Values.global.storage.config.imagePullPolicy }}
-  replicas: {{ .Values.global.storage.config.replicas }}
-  partitionsPerCluster: {{ .Values.global.storage.config.partitionsPerCluster }}
-{{- else if eq .Values.global.storage.config.type "cache" }}
+  image: {{ default .Values.global.storage.consensus.image "atomix/raft-storage-node:v0.2.0" }}
+  imagePullPolicy: {{ .Values.global.storage.consensus.imagePullPolicy }}
+  replicas: {{ .Values.global.storage.consensus.replicas }}
+  partitionsPerCluster: {{ .Values.global.storage.consensus.partitionsPerCluster }}
+{{- else if eq .Values.global.storage.consensus.type "cache" }}
 apiVersion: storage.cloud.atomix.io/v1beta1
 kind: CacheStorageClass
 metadata:
@@ -49,9 +49,9 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 spec:
-  image: {{ default .Values.global.storage.config.image "atomix/cache-storage-node:v0.2.0" }}
-  imagePullPolicy: {{ .Values.global.storage.config.imagePullPolicy }}
+  image: {{ default .Values.global.storage.consensus.image "atomix/cache-storage-node:v0.2.0" }}
+  imagePullPolicy: {{ .Values.global.storage.consensus.imagePullPolicy }}
 {{- else }}
-{{ fail ( printf "%s is not a valid storage type" .Values.global.storage.config.type ) }}
+{{ fail ( printf "%s is not a valid storage type" .Values.global.storage.consensus.type ) }}
 {{- end }}
 {{- end }}
