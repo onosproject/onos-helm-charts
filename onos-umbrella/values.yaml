@@ -6,8 +6,8 @@ global:
   fullnameOverride: "onos"
   nameOverride: ""
   storage:
-    controller: atomix-controller:5679
-    config:
+    controller: "atomix-controller.kube-system.svc.cluster.local:5679"
+    consensus:
       enabled: true
       name: ""
       type: raft
@@ -31,33 +31,33 @@ import:
 onos-topo:
   storage:
     controller: ""
-    config:
+    consensus:
       enabled: false
 
 # ONOS-CONFIG
 onos-config:
   storage:
     controller: ""
-    config:
+    consensus:
       enabled: false
   plugins:
     - name: devicesim
       version: 1.0.0
       image:
         repository: onosproject/config-model-devicesim-1.0.0
-        tag: v0.6.6
+        tag: v0.6.12
         pullPolicy: IfNotPresent
     - name: testdevice
       version: 1.0.0
       image:
         repository: onosproject/config-model-testdevice-1.0.0
-        tag: v0.6.5
+        tag: v0.6.12
         pullPolicy: IfNotPresent
     - name: testdevice
       version: 2.0.0
       image:
         repository: onosproject/config-model-testdevice-2.0.0
-        tag: v0.6.5
+        tag: v0.6.12
         pullPolicy: IfNotPresent
 
 
