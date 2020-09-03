@@ -28,7 +28,7 @@ resources:
     cpu: 0.5
     memory: 512Mi
 
-exposeNodePorts: true
+exposeNodePorts: false
 
 ports:
   - name: openflow
