@@ -22,7 +22,7 @@ before_install:
   - mv linux-amd64/helm helm
   - chmod u+x helm
   - mv helm /home/travis/bin/
-  - 'if [[ $TRAVIS_PULL_REQUEST == "false" && $TRAVIS_BRANCH == "master" ]] ; then
+  - 'if [[ $TRAVIS_PULL_REQUEST == "false" && $TRAVIS_BRANCH == "master" && $TRAVIS_SECURE_ENV_VARS == "true" ]] ; then
        openssl aes-256-cbc -K $encrypted_f217180e22ee_key -iv $encrypted_f217180e22ee_iv -in .ssh/id_rsa.enc -out ~/.ssh/id_rsa -d &&
        chmod 600 ~/.ssh/id_rsa;
      fi'
@@ -36,15 +36,14 @@ before_script:
 jobs:
   include:
     - stage: chart tests
+      if: type == pull_request || fork == false
       script:
         - make version_check
         - docker run -it --rm --name ct --volume $(pwd):/charts quay.io/helmpack/chart-testing:v3.0.0-beta.1 sh -c "ct lint --charts charts/onos-config,charts/onos-topo,charts/onos-cli,charts/onos-gui,charts/device-simulator --debug --validate-maintainers=false"
-    - stage: integration tests
-      if: type != pull_request
+    - if: type != pull_request && fork == false
       script:
         - sh ../build-tools/build/travis/trigger-travis onosproject onos-test master "`git rev-parse --short HEAD`" $TRAVIS_ACCESS_TOKEN
     - stage: release
+      if: type != pull_request && fork == false
       script:
-        - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
-          bash ../build-tools/release-chart-merge-commit https://charts.onosproject.org $WEBSITE_USER $WEBSITE_PASSWORD;
-          fi'
+          bash ../build-tools/release-chart-merge-commit https://charts.onosproject.org $WEBSITE_USER $WEBSITE_PASSWORD
