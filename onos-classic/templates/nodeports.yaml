@@ -31,7 +31,7 @@ spec:
 
 # workaround for . not working, see
 # https://github.com/helm/helm/issues/1311
-{{- if .Values.exposeNodePorts }}
+{{- if .Values.individualOpenFlowNodePorts }}
 {{- $root := . -}}
 {{ range $k, $index := until (atoi (quote .Values.replicas) | default 3) }}
 ---
