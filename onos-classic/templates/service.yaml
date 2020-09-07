@@ -9,14 +9,14 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
   annotations:
-      service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
 spec:
   {{- with .Values.ports }}
   ports:
   {{- range . }}
-    - name: {{ .name }}
-      port: {{ .port }}
-      protocol: {{ .protocol | default "TCP" | quote }}
+  - name: {{ .name }}
+    port: {{ .port }}
+    protocol: {{ .protocol | default "TCP" | quote }}
   {{- end }}
   {{- end }}
   # ONOS and Atomix need to be able to talk to each other for ONOS to become ready
@@ -24,3 +24,4 @@ spec:
   clusterIP: None
   selector:
     app: {{ template "fullname" . }}
+

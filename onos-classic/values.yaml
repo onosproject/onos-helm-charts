@@ -28,6 +28,8 @@ resources:
     cpu: 0.5
     memory: 512Mi
 
+individualOpenFlowNodePorts: false
+
 ports:
   - name: openflow
     port: 6653
