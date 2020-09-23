@@ -30,12 +30,12 @@ spec:
         - name: USER
           valueFrom:
             secretKeyRef:
-              name: git-secret
+              name: {{ .Values.config.secretName }}
               key: username
         - name: PASSWD
           valueFrom:
             secretKeyRef:
-              name: git-secret
+              name: {{ .Values.config.secretName }}
               key: password
         - name: CFG_SERVER
           value: {{ .Values.config.server }}
