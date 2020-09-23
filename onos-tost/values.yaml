@@ -76,12 +76,13 @@ service_account_name: internal-kubectl
 # Optional.
 # When configured, a pod will fetch netcfg from given git repo and push it to ONOS.
 # You will need to pass git and ONOS credential to K8s before installing this helm chart.
-#   kubectl -n <ONOS_NAMESPACE> create secret generic git-secret \
+#   kubectl -n <ONOS_NAMESPACE> create secret generic onos-git-secret \
 #     --from-literal=username=<GIT_USER> --from-literal=password=<GIT_PASS>
 #   kubectl -n <ONOS_NAMESPACE> create secret generic onos-secret \
 #     --from-literal=username=<ONOS_USER> --from-literal=password=<ONOS_PASS>
 #
-# config:
+config:
+  secretName: onos-git-secret
 #   server: gerrit.opencord.org
 #   repo: aether-pod-configs
 #   folder: deployment-configs/aether/apps/menlo-prd
