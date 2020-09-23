@@ -88,7 +88,7 @@ spec:
             cpu: {{ .Values.resources.requests.cpu }}
         env:
           - name: JAVA_OPTS
-            value: -Xmx{{ .Values.heap }}
+            value: {{ .Values.java_opts }}
           {{- with .Values.apps }}
           - name: ONOS_APPS
             value: {{ template "onos-apps" . }}
