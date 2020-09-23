@@ -3,10 +3,10 @@ onos-classic:
     repository: registry.aetherproject.org/tost/tost
     tag: 1.0.1
     # You will need to pass docker registry credential to K8s before installing this helm chart.
-    #   kubectl -n <ONOS_NAMESPACE> create secret docker-registry tost-aether-registry-credential \
+    #   kubectl -n <ONOS_NAMESPACE> create secret docker-registry aether-registry-credential \
     #     --docker-server=registry.aetherproject.org --docker-username=<DOCKER_USER> --docker-password=<DOCKER_PASS>
     pullSecrets:
-      - tost-aether-registry-credential
+      - aether-registry-credential
 
   replicas: 3
 
