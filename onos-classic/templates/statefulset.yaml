@@ -64,6 +64,20 @@ spec:
               mountPath: /scripts
             - name: config
               mountPath: /config
+        {{- if .Values.logging }}
+        - name: {{ .Chart.Name }}-logging
+          image: alpine
+          command:
+            - cp
+            - /logging-configmap/org.ops4j.pax.logging.cfg
+            - /logging/org.ops4j.pax.logging.cfg
+          volumeMounts:
+            - name: logging-configmap
+              mountPath: /logging-configmap/org.ops4j.pax.logging.cfg
+              subPath: org.ops4j.pax.logging.cfg
+            - name: logging
+              mountPath: /logging
+        {{- end }}
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -135,10 +149,12 @@ spec:
         - name: config
           emptyDir: {}
         {{- if .Values.logging }}
-        - name: logging
+        - name: logging-configmap
           configMap:
             name: {{ template "fullname" . }}-logging
             items:
               - key: org.ops4j.pax.logging.cfg
                 path: org.ops4j.pax.logging.cfg
+        - name: logging
+          emptyDir: {}
         {{- end}}
