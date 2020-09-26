@@ -11,7 +11,7 @@ metadata:
 data:
   onos-config: |
     #!/bin/sh
-    set -e
+    set -e -x
     rm -rf $CFG_REPO
     git clone https://$USER:$PASSWD@$CFG_SERVER/$CFG_REPO
 
@@ -33,7 +33,7 @@ data:
     fi
   wait-onos: |
    #!/bin/sh
-    set -e
+    set -e -x
     until [ 0 -ne $(kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL | wc -l) ]; do
     echo 'Waiting for ONOS POD running';
     sleep 5;
