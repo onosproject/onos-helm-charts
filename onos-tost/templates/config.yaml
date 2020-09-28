@@ -15,7 +15,7 @@ spec:
         - name: NAMESPACE
           valueFrom:
             fieldRef:
-              fieldPath: metadata.namespace              
+              fieldPath: metadata.namespace
         - name: APP_LABEL
           value: {{ index .Values "onos-classic" "app_label" | quote }}
       volumeMounts:
