@@ -8,7 +8,7 @@ image:
   pullSecrets: []
 
 replicas: 3
-heap: 4G
+java_opts: -Xmx4G
 apps:
 - org.onosproject.openflow-base
 
