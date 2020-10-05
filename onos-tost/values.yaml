@@ -31,6 +31,7 @@ onos-classic:
     - org.onosproject.t3
     - org.omecproject.up4
     - org.stratumproject.fabric-tna
+    - org.onosproject.inbandtelemetry
 
   logging:
     karafVersion: 4.2.9
