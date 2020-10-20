@@ -33,7 +33,7 @@ spec:
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: {{ include "onos-topo.image-name" . | quote }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             # *_NAMESPACE and *_NAME environment variables are recognized by onos-lib-go utilities.
