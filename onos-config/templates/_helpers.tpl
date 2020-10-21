@@ -57,9 +57,9 @@ onos-config image name
 */}}
 {{- define "onos-config.imagename" -}}
 {{- if .Values.global.image.registry -}}
-{{- .Values.global.image.registry -}}
+{{- .Values.global.image.registry -}}/
 {{- else if .Values.image.registry -}}
-{{- .Values.image.registry -}}
+{{- .Values.image.registry -}}/
 {{- end -}}
 {{- printf "%s:" .Values.image.repository -}}
 {{- if .Values.global.image.tag -}}
