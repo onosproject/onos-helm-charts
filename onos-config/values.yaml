@@ -3,6 +3,9 @@
 # Declare variables to be passed into your templates.
 
 global:
+  image:
+    registry: ""
+    tag: ""
   storage:
     controller: ""
     config:
@@ -11,8 +14,9 @@ global:
 replicaCount: 1
 
 image:
+  registry: ""
   repository: onosproject/onos-config
-  tag: v0.6.14
+  tag: v0.6.16
   pullPolicy: IfNotPresent
   pullSecrets: []
 
