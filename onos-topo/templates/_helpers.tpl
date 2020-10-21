@@ -54,7 +54,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{/*
 onos-topo image name
 */}}
-{{- define "onos-topo.image-name" -}}
+{{- define "onos-topo.imagename" -}}
 {{- if .Values.global.image.registry -}}
 {{- .Values.global.image.registry -}}
 {{- else if .Values.image.registry -}}
