@@ -11,9 +11,10 @@ metadata:
 data:
   check-onos-status: |
     #!/bin/bash
-    set -e
+
+    # Wait for {{ .Values.probe_timeout }}s before timing out
     host=$(hostname -s)
-    result=$(curl -s -f http://$host:8181/onos/v1/cluster/$host --user onos:rocks)
+    result=$(curl -m {{ .Values.probe_timeout }} -s -f http://$host:8181/onos/v1/cluster/$host --user onos:rocks)
     echo $result
 
     if ! printf '%q' $result | grep -q -i "READY"; then
@@ -27,7 +28,7 @@ data:
     {{- end }}
 
     for app in ${apps[@]}; do
-      result=$(curl -s -f http://$host:8181/onos/v1/applications/$app/health --user onos:rocks)
+      result=$(curl -m {{ .Values.probe_timeout }} -s -f http://$host:8181/onos/v1/applications/$app/health --user onos:rocks)
       echo $result
       if ! printf %q $result | grep -q -i "READY"; then
         echo "$app is not yet ready"
