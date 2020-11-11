@@ -9,6 +9,7 @@ image:
 
 replicas: 3
 java_opts: -Xmx4G
+probe_timeout: 5
 apps:
 - org.onosproject.openflow-base
 
