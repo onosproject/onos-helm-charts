@@ -67,6 +67,7 @@ spec:
         {{- if .Values.logging }}
         - name: {{ .Chart.Name }}-logging
           image: alpine
+          imagePullPolicy: IfNotPresent
           command:
             - cp
             - /logging-configmap/org.ops4j.pax.logging.cfg
@@ -110,6 +111,10 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 15
           failureThreshold: 10
+          # Workaround for the probes issue - https://github.com/kubernetes/kubernetes/issues/82987
+          # we use in curl a timeout lower than this to avoid the deadline exceed. Also we dont't
+          # allow the script to exit immeditately.
+          timeoutSeconds: {{ mul .Values.probe_timeout 2 }}
         livenessProbe:
           exec:
             command:
@@ -118,7 +123,7 @@ spec:
               - /root/onos/bin/check-onos-status
           initialDelaySeconds: 300
           periodSeconds: 15
-          timeoutSeconds: 5
+          timeoutSeconds: {{ mul .Values.probe_timeout 2 }}
         volumeMounts:
           - name: probe-scripts
             mountPath: /root/onos/bin/check-onos-status
