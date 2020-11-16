@@ -67,6 +67,7 @@ spec:
         {{- if .Values.logging }}
         - name: {{ .Chart.Name }}-logging
           image: alpine
+          imagePullPolicy: IfNotPresent
           command:
             - cp
             - /logging-configmap/org.ops4j.pax.logging.cfg
