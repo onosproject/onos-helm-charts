@@ -11,6 +11,7 @@ spec:
     # Wait for ONOS to be fully ready
     - name: wait-onos
       image: alpine/k8s:1.18.2
+      imagePullPolicy: IfNotPresent
       env:
         - name: NAMESPACE
           valueFrom:
@@ -26,6 +27,7 @@ spec:
     # Pull config from the git repository
     - name: config-getter
       image: alpine/git
+      imagePullPolicy: IfNotPresent
       env:
         - name: USER
           valueFrom:
@@ -61,6 +63,7 @@ spec:
     # Push config to ONOS REST API
     - name: config-setter
       image: curlimages/curl
+      imagePullPolicy: IfNotPresent
       env:
         - name: USER
           valueFrom:
