@@ -32,6 +32,7 @@ onos-classic:
     - org.omecproject.up4
     - org.stratumproject.fabric-tna
     - org.onosproject.inbandtelemetry
+    - org.onosproject.dhcprelay
 
   logging:
     karafVersion: 4.2.9
