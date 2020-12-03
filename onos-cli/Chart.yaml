@@ -3,8 +3,8 @@ name: onos-cli
 description: ONOS Command Line Interface
 kubeVersion: ">=1.17.0"
 type: application
-version: 0.0.14
-appVersion: v0.6.15
+version: 0.0.15
+appVersion: v0.6.16
 keywords:
   - onos
   - sdn
