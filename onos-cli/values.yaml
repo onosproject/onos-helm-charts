@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: onosproject/onos-cli
-  tag: v0.6.15
+  tag: v0.6.16
   pullPolicy: IfNotPresent
   pullSecrets: []
 
