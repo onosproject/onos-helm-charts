@@ -40,10 +40,6 @@ jobs:
       script:
         - make version_check
         - docker run -it --rm --name ct --volume $(pwd):/charts quay.io/helmpack/chart-testing:v3.0.0-beta.1 sh -c "ct lint --charts charts/onos-config,charts/onos-topo,charts/onos-cli,charts/onos-gui,charts/device-simulator --debug --validate-maintainers=false"
-    - stage: Integration Tests
-      if: type != pull_request && fork == false
-      script:
-        - sh ../build-tools/build/travis/trigger-travis onosproject onos-test master "`git rev-parse --short HEAD`" $TRAVIS_ACCESS_TOKEN
     - stage: Release
       if: type != pull_request && fork == false
       script:
