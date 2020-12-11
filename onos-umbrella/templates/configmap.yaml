@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Release.Name }}-post
-  namespace: {{ .Release.Namespace }}
-data:
-{{ (.Files.Glob "files/configs/*.yaml").AsConfig | indent 2 }}
