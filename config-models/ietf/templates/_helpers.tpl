@@ -12,15 +12,10 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 If release name contains chart name it will be used as a full name.
 */}}
 {{- define "ietf.fullname" -}}
-{{- if .Values.fullnameOverride -}}
-{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}
-{{- else -}}
-{{- $name := default .Chart.Name .Values.nameOverride -}}
-{{- if contains $name .Release.Name -}}
+{{- if contains "config-model-ietf" .Release.Name -}}
 {{- .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
-{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
-{{- end -}}
+{{- printf "%s-config-model-ietf" .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 {{- end -}}
 
@@ -50,21 +45,4 @@ Selector labels
 {{- define "ietf.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "ietf.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
-{{- end -}}
-
-{{/*
-ietf image name
-*/}}
-{{- define "ietf.imagename" -}}
-{{- if .Values.global.image.registry -}}
-{{- printf "%s/" .Values.global.image.registry -}}
-{{- else if .Values.image.registry -}}
-{{- printf "%s/" .Values.image.registry -}}
-{{- end -}}
-{{- printf "%s:" .Values.image.repository -}}
-{{- if .Values.global.image.tag -}}
-{{- .Values.global.image.tag -}}
-{{- else -}}
-{{- .Values.image.tag -}}
-{{- end -}}
 {{- end -}}

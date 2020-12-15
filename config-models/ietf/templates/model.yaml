@@ -9,15 +9,15 @@ spec:
   type: ietf
   version: 1.0.0
   modules:
-    {{- range $path, $_  := $.Files.Glob "files/yang/*.yang" }}
-    {{- $base := base $path }}
-    {{- $names := split "@" $base }}
-    {{- $name := $names._0 }}
-    {{- $versions := split "." $names._1 }}
-    {{- $version := $versions._0 }}
-    - name: {{ $name | quote }}
-      version: {{ $version | quote }}
-      yangModule:
-        data: |
-{{ $.Files.Get $path | indent 10 }}
-    {{- end }}
+  {{- range $path, $_  := $.Files.Glob "files/yang/*.yang" }}
+  {{- $base := base $path }}
+  {{- $names := split "@" $base }}
+  {{- $name := $names._0 }}
+  {{- $versions := split "." $names._1 }}
+  {{- $version := $versions._0 }}
+  - name: {{ $name | quote }}
+    version: {{ $version | quote }}
+    yangModule:
+      data: |
+{{ $.Files.Get $path | indent 8 }}
+  {{- end }}
