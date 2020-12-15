@@ -34,10 +34,20 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 spec:
-  image: {{ default .Values.global.storage.consensus.image "atomix/raft-storage-node:v0.2.0" }}
+  image: {{ .Values.global.storage.consensus.image | quote }}
   imagePullPolicy: {{ .Values.global.storage.consensus.imagePullPolicy }}
   replicas: {{ .Values.global.storage.consensus.replicas }}
-  partitionsPerCluster: {{ .Values.global.storage.consensus.partitionsPerCluster }}
+  clusters: {{ .Values.global.storage.consensus.clusters }}
+  {{- if .Values.global.storage.consensus.class }}
+  volumeClaimTemplate:
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      storageClassName: {{ .Values.global.storage.consensus.class | quote }}
+      resources:
+        requests:
+          storage: {{ .Values.global.storage.consensus.size }}
+  {{- end }}
 {{- else if eq .Values.global.storage.consensus.type "cache" }}
 apiVersion: storage.cloud.atomix.io/v1beta1
 kind: CacheStorageClass
@@ -49,7 +59,7 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 spec:
-  image: {{ default .Values.global.storage.consensus.image "atomix/cache-storage-node:v0.2.0" }}
+  image: {{ .Values.global.storage.consensus.image | quote }}
   imagePullPolicy: {{ .Values.global.storage.consensus.imagePullPolicy }}
 {{- else }}
 {{ fail ( printf "%s is not a valid storage type" .Values.global.storage.consensus.type ) }}

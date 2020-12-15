@@ -15,7 +15,9 @@ global:
       imagePullPolicy: IfNotPresent
       partitions: 1
       replicas: 1
-      partitionsPerCluster: 1
+      clusters: 1
+      class: ""
+      size: 1Gi
 
 import:
   onos-topo:
@@ -66,8 +68,4 @@ onos-config:
 onos-gui: {}
 
 # ONOS-CLI
-onos-cli:
-  postInstall:
-    placeholder: true
-    topo: berlin-grid-4-topo.yaml
-    config: [ berlin-devicesim-1-gnmi.yaml, berlin-devicesim-2-gnmi.yaml ]
+onos-cli: {}
