@@ -1,0 +1,12 @@
+apiVersion: config.onosproject.org/v1beta1
+kind: Model
+metadata:
+  name: {{ template "devicesim.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "devicesim.labels" . | nindent 4 }}
+spec:
+  type: devicesim
+  version: 1.0.0
+  dependencies:
+  - name: {{ template "openconfig.fullname" . }}
