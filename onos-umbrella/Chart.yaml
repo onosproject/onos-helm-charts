@@ -19,7 +19,8 @@ dependencies:
     version: 1.0.3
   - name: onos-config
     condition: import.onos-config.enabled
-    repository: https://charts.onosproject.org
+    #repository: https://charts.onosproject.org
+    repository: file://../onos-config
     version: 1.0.4
   - name: onos-gui
     condition: import.onos-gui.enabled
