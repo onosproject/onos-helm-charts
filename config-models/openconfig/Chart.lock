@@ -1,0 +1,6 @@
+dependencies:
+- name: config-model-ietf
+  repository: file://../ietf
+  version: 1.0.0
+digest: sha256:ef4a11443162c6e55fbe73eddff6cf423249bd4b95c4b0f3b073215ac4e0d6ce
+generated: "2020-12-15T01:04:42.687486-08:00"
