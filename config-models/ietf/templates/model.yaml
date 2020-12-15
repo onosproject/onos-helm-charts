@@ -1,0 +1,23 @@
+apiVersion: config.onosproject.org/v1beta1
+kind: Model
+metadata:
+  name: {{ template "ietf.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "ietf.labels" . | nindent 4 }}
+spec:
+  type: ietf
+  version: 1.0.0
+  modules:
+    {{- range $path, $_  := $.Files.Glob "files/yang/*.yang" }}
+    {{- $base := base $path }}
+    {{- $names := split "@" $base }}
+    {{- $name := $names._0 }}
+    {{- $versions := split "." $names._1 }}
+    {{- $version := $versions._0 }}
+    - name: {{ $name | quote }}
+      version: {{ $version | quote }}
+      yangModule:
+        data: |
+{{ $.Files.Get $path | indent 10 }}
+    {{- end }}
