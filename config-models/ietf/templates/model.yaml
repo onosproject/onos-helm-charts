@@ -6,8 +6,6 @@ metadata:
   labels:
     {{- include "ietf.labels" . | nindent 4 }}
 spec:
-  type: ietf
-  version: 1.0.0
   modules:
   {{- range $path, $_  := $.Files.Glob "files/yang/*.yang" }}
   {{- $base := base $path }}

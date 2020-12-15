@@ -6,7 +6,9 @@ metadata:
   labels:
     {{- include "devicesim.labels" . | nindent 4 }}
 spec:
-  type: devicesim
-  version: 1.0.0
+  plugin:
+    type: devicesim
+    version: 1.0.0
   dependencies:
   - name: {{ template "openconfig.fullname" . }}
+    namespace: {{ .Release.Namespace }}

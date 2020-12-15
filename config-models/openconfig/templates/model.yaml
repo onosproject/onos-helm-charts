@@ -6,10 +6,9 @@ metadata:
   labels:
     {{- include "openconfig.labels" . | nindent 4 }}
 spec:
-  type: openconfig
-  version: 1.0.0
   dependencies:
   - name: {{ template "ietf.fullname" . }}
+    namespace: {{ .Release.Namespace }}
   modules:
   {{- range $path, $_  := $.Files.Glob "files/yang/*.yang" }}
   {{- $base := base $path }}
