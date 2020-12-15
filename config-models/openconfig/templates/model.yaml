@@ -19,7 +19,6 @@ spec:
   {{- $version := $versions._0 }}
   - name: {{ $name | quote }}
     version: {{ $version | quote }}
-    yangModule:
-      data: |
-{{ $.Files.Get $path | indent 8 }}
+    data: |
+{{ $.Files.Get $path | indent 6 }}
   {{- end }}
