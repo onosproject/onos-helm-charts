@@ -1,0 +1,14 @@
+{{- $scope := include "topo-operator.scope" . }}
+{{- if eq $scope "namespace" }}
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ template "topo-operator.fullname" . }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ template "topo-operator.fullname" . }}
+roleRef:
+  kind: Role
+  name: {{ template "topo-operator.fullname" . }}
+  apiGroup: rbac.authorization.k8s.io
+{{- end }}

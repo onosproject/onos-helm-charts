@@ -1,0 +1,13 @@
+apiVersion: v2
+name: core-operator
+version: 0.1.0
+kubeVersion: ">=1.17.0"
+appVersion: v0.6.18
+description: µONOS Core Operator
+keywords:
+  - onos
+  - sdn
+home: https://onosproject.org
+maintainers:
+  - name: ONOS Support
+    email: support@opennetworking.org

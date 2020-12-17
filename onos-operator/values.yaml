@@ -1,0 +1,18 @@
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: "onos-operator"
+
+global:
+  scope: Namespace
+  image:
+    registry: ""
+    tag: ""
+
+config-operator:
+  nameOverride: "config"
+
+core-operator:
+  nameOverride: "core"
+
+topo-operator:
+  nameOverride: "topo"

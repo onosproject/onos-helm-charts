@@ -1,0 +1,108 @@
+{{- $scope := include "core-operator.scope" . }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "config-operator.fullname" . }}
+  namespace: {{ .Release.Namespace | default "kube-system" }}
+  labels:
+    app: {{ template "config-operator.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      name: {{ template "config-operator.fullname" . }}
+  template:
+    metadata:
+      labels:
+        name: {{ template "config-operator.fullname" . }}
+    spec:
+      serviceAccountName: {{ template "config-operator.fullname" . }}
+      initContainers:
+        - name: init-certs
+          image: onosproject/config-operator-init:latest
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 0
+          env:
+            - name: CONTROLLER_NAME
+              value: {{ template "config-operator.fullname" . }}
+            - name: CONTROLLER_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: CONTROLLER_SCOPE
+              value: {{ $scope }}
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          volumeMounts:
+            - name: config
+              mountPath: /etc/onos/config
+              readOnly: true
+            - name: plugins
+              mountPath: /etc/onos/plugins
+            - name: certs
+              mountPath: /etc/webhook/certs
+      containers:
+        - name: controller
+          image: onosproject/config-operator:latest
+          ports:
+            - containerPort: 60000
+              name: metrics
+            - containerPort: 443
+              name: webhook-server
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 0
+          readinessProbe:
+            exec:
+              command:
+                - stat
+                - /tmp/onos-operator-ready
+            initialDelaySeconds: 4
+            periodSeconds: 10
+            failureThreshold: 1
+          env:
+            - name: CONTROLLER_NAME
+              value: {{ template "config-operator.fullname" . }}
+            - name: CONTROLLER_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: CONTROLLER_SCOPE
+              value: {{ $scope }}
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          volumeMounts:
+            - name: config
+              mountPath: /etc/onos/config
+              readOnly: true
+            - name: plugins
+              mountPath: /etc/onos/plugins
+            - name: certs
+              mountPath: /tmp/k8s-webhook-server/serving-certs
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: {{ template "config-operator.fullname" . }}-config
+        - name: certs
+          emptyDir: {}
+        - name: plugins
+          emptyDir: {}

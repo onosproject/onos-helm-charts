@@ -1,0 +1,615 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: models.config.onosproject.org
+spec:
+  group: config.onosproject.org
+  scope: Namespaced
+  names:
+    kind: Model
+    listKind: ModelList
+    plural: models
+    singular: model
+  versions:
+    - name: v1beta1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      schema:
+        openAPIV3Schema:
+          type: object
+          required:
+            - spec
+          properties:
+            spec:
+              type: object
+              properties:
+                plugin:
+                  type: object
+                  required:
+                    - type
+                    - version
+                  properties:
+                    type:
+                      type: string
+                    version:
+                      type: string
+                dependencies:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - name
+                    properties:
+                      name:
+                        type: string
+                      namespace:
+                        type: string
+                modules:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - name
+                      - version
+                      - data
+                    properties:
+                      name:
+                        type: string
+                      organization:
+                        type: string
+                      version:
+                        type: string
+                      data:
+                        type: string
+            status:
+              type: object
+              properties:
+                registryStatuses:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      podName:
+                        type: string
+                      phase:
+                        type: string
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: applications.core.onosproject.org
+spec:
+  group: core.onosproject.org
+  scope: Namespaced
+  names:
+    kind: Application
+    listKind: ApplicationList
+    plural: applications
+    singular: application
+    shortNames:
+      - app
+  versions:
+    - name: v1beta1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              required:
+                - image
+              properties:
+                replicas:
+                  type: integer
+                  default: 1
+                image:
+                  type: string
+                imagePullPolicy:
+                  type: string
+                  default: IfNotPresent
+                model:
+                  type: object
+                  required:
+                    - name
+                  properties:
+                    name:
+                      type: string
+                    namespace:
+                      type: string
+                config:
+                  type: object
+                  additionalProperties:
+                    type: string
+            status:
+              type: object
+              properties:
+                readyReplicas:
+                  type: integer
+
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: services.topo.onosproject.org
+spec:
+  group: topo.onosproject.org
+  scope: Namespaced
+  names:
+    kind: Service
+    listKind: ServiceList
+    plural: services
+    singular: service
+    shortNames:
+      - svc
+  versions:
+    - name: v1beta1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                selector:
+                  type: object
+                  properties:
+                    matchLabels:
+                      type: object
+                      additionalProperties:
+                        type: string
+            status:
+              type: object
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: entities.topo.onosproject.org
+spec:
+  group: topo.onosproject.org
+  scope: Namespaced
+  names:
+    kind: Entity
+    listKind: EntityList
+    plural: entities
+    singular: entity
+    shortNames:
+      - ent
+  versions:
+    - name: v1beta1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              required:
+                - kind
+              properties:
+                kind:
+                  type: object
+                  required:
+                    - name
+                  properties:
+                    name:
+                      type: string
+                    namespace:
+                      type: string
+                attributes:
+                  type: object
+                  additionalProperties:
+                    type: string
+            status:
+              type: object
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: relations.topo.onosproject.org
+spec:
+  group: topo.onosproject.org
+  scope: Namespaced
+  names:
+    kind: Relation
+    listKind: RelationList
+    plural: relations
+    singular: relation
+    shortNames:
+      - rel
+  versions:
+    - name: v1beta1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              required:
+                - kind
+                - source
+                - target
+              properties:
+                kind:
+                  type: object
+                  required:
+                    - name
+                  properties:
+                    name:
+                      type: string
+                    namespace:
+                      type: string
+                source:
+                  type: object
+                  required:
+                    - name
+                  properties:
+                    name:
+                      type: string
+                    namespace:
+                      type: string
+                target:
+                  type: object
+                  required:
+                    - name
+                  properties:
+                    name:
+                      type: string
+                    namespace:
+                      type: string
+                attributes:
+                  type: object
+                  additionalProperties:
+                    type: string
+            status:
+              type: object
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: kinds.topo.onosproject.org
+spec:
+  group: topo.onosproject.org
+  scope: Namespaced
+  names:
+    kind: Kind
+    listKind: KindList
+    plural: kinds
+    singular: kind
+  versions:
+    - name: v1beta1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                attributes:
+                  type: object
+                  additionalProperties:
+                    type: string
+            status:
+              type: object
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: onos-operator
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: onos-operator
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - pods
+      - services
+      - configmaps
+    verbs:
+      - '*'
+  - apiGroups:
+      - ""
+    resources:
+      - namespaces
+    verbs:
+      - get
+  - apiGroups:
+      - policy
+    resources:
+      - poddisruptionbudgets
+    verbs:
+      - '*'
+  - apiGroups:
+      - core.onosproject.org
+      - config.onosproject.org
+      - topo.onosproject.org
+    resources:
+      - '*'
+    verbs:
+      - '*'
+  - apiGroups:
+      - admissionregistration.k8s.io
+    resources:
+      - mutatingwebhookconfigurations
+    verbs:
+      - '*'
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: onos-operator
+subjects:
+  - kind: ServiceAccount
+    name: onos-operator
+    namespace: kube-system
+roleRef:
+  kind: ClusterRole
+  name: onos-operator
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core-operator
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: core-operator
+  template:
+    metadata:
+      labels:
+        name: core-operator
+    spec:
+      serviceAccountName: onos-operator
+      containers:
+        - name: controller
+          image: onosproject/core-operator:latest
+          ports:
+            - containerPort: 60000
+              name: metrics
+          imagePullPolicy: IfNotPresent
+          readinessProbe:
+            exec:
+              command:
+                - stat
+                - /tmp/onos-operator-ready
+            initialDelaySeconds: 4
+            periodSeconds: 10
+            failureThreshold: 1
+          env:
+            - name: CONTROLLER_NAME
+              value: core-operator
+            - name: CONTROLLER_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          volumeMounts:
+            - name: config
+              mountPath: /etc/onos/config
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: onos-operator-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-operator
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: config-operator
+  template:
+    metadata:
+      labels:
+        name: config-operator
+    spec:
+      serviceAccountName: onos-operator
+      initContainers:
+        - name: init-certs
+          image: onosproject/config-operator-init:latest
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 0
+          env:
+            - name: CONTROLLER_NAME
+              value: config-operator
+            - name: CONTROLLER_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          volumeMounts:
+            - name: config
+              mountPath: /etc/onos/config
+              readOnly: true
+            - name: plugins
+              mountPath: /etc/onos/plugins
+            - name: certs
+              mountPath: /etc/webhook/certs
+      containers:
+        - name: controller
+          image: onosproject/config-operator:latest
+          ports:
+            - containerPort: 60000
+              name: metrics
+            - containerPort: 443
+              name: webhook-server
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 0
+          readinessProbe:
+            exec:
+              command:
+                - stat
+                - /tmp/onos-operator-ready
+            initialDelaySeconds: 4
+            periodSeconds: 10
+            failureThreshold: 1
+          env:
+            - name: CONTROLLER_NAME
+              value: config-operator
+            - name: CONTROLLER_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          volumeMounts:
+            - name: config
+              mountPath: /etc/onos/config
+              readOnly: true
+            - name: plugins
+              mountPath: /etc/onos/plugins
+            - name: certs
+              mountPath: /tmp/k8s-webhook-server/serving-certs
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: onos-operator-config
+        - name: certs
+          emptyDir: {}
+        - name: plugins
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-operator
+  namespace: kube-system
+  labels:
+    name: config-operator
+spec:
+  selector:
+    name: config-operator
+  ports:
+    - name: webhook
+      port: 443
+      targetPort: 443
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: topo-operator
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: topo-operator
+  template:
+    metadata:
+      labels:
+        name: topo-operator
+    spec:
+      serviceAccountName: onos-operator
+      containers:
+        - name: controller
+          image: onosproject/topo-operator:latest
+          ports:
+            - containerPort: 60000
+              name: metrics
+          imagePullPolicy: IfNotPresent
+          readinessProbe:
+            exec:
+              command:
+                - stat
+                - /tmp/onos-operator-ready
+            initialDelaySeconds: 4
+            periodSeconds: 10
+            failureThreshold: 1
+          env:
+            - name: CONTROLLER_NAME
+              value: topo-operator
+            - name: CONTROLLER_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          volumeMounts:
+            - name: config
+              mountPath: /etc/onos/config
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: onos-operator-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: onos-operator-config
+  namespace: kube-system
+data:
+  logging.yaml: |-
+    loggers:
+      root:
+        level: debug
+        output:
+          stdout:
+            sink: stdout
+    sinks:
+      stdout:
+        type: stdout
+        stdout: {}
