@@ -24,7 +24,8 @@ spec:
         {{- include "onos-config.selectorLabels" . | nindent 8 }}
       annotations:
         "seccomp.security.alpha.kubernetes.io/pod": "unconfined"
-        config.onosproject.org/inject-registry: "true"
+        registry.config.onosproject.org/inject: {{ template "onos-config.fullname" . }}
+        registry.config.onosproject.org/path: /etc/onos/plugins
         compiler.config.onosproject.org/language: go
         compiler.config.onosproject.org/version: latest
         compiler.config.onosproject.org/go-mod-target: github.com/onosproject/onos-config
