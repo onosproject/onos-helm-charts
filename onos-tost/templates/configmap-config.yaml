@@ -32,9 +32,10 @@ data:
         cp $REMOTE_CHASSIS_CONFIG $LOCAL_CHASSIS_CONFIG
     fi
   wait-onos: |
-   #!/bin/sh
+    #!/bin/sh
     set -e -x
-    until [ 0 -ne $(kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL | wc -l) ]; do
+    replicas=$(kubectl -n $NAMESPACE get --no-headers sts -lapp=$APP_LABEL -o custom-columns=':.spec.replicas')
+    until [ $replicas -eq $(kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL | grep Running | wc -l) ]; do
     echo 'Waiting for ONOS POD running';
     sleep 5;
     done
