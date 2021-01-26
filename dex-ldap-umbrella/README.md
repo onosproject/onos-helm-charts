@@ -1,32 +1,70 @@
-# DEX Helm chart
+# DEX-LDAP Helm chart
 
-[Dex] is an OpenID provider proxy
+[Dex] is A Federated [OpenID Connect] provider. It can connect to a variety of backends.
+In this deployment it is connected to an [OpenLDAP] server, and a management
+GUI is provided with [phpLDAPadmin]
+
+This chart can be deployed alongside [onos-umbrella](../onos-umbrella) or any other umbrella
+chart that requires an OpenID provider.
 
 ## Helm install
+Add a couple repos to `helm`, if you don't already have them:
+```
+helm repo add stable https://charts.helm.sh/stable
+helm repo add cetic https://cetic.github.io/helm-charts
+helm repo update
+```
+
 Deploy with
 
 ```
-helm -n micro-onos install dex stable/dex --values=dex/values.yaml
+helm -n micro-onos install dex-ldap-umbrella onosproject/dex-ldap-umbrella
 ```
 
-## Running example app
-```bash
-DEX_POD_NAME=$(kubectl get pods --namespace micro-onos -l "app.kubernetes.io/name=dex,app.kubernetes.io/instance=dex" -o jsonpath="{.items[0].metadata.name}") \
-kubectl -n micro-onos port-forward $DEX_POD_NAME 32000:5556
+It will display details of Port Forwarding that need to be made.
+
+* Add `dex` to your `/etc/hosts` file as an alias for localhost
+* Port forward the `dex` service to 32000
+
+Now GUI applications with security enabled will redirect to this `dex:32000`
+and when login is successful will redirect to an authenticated GUI.
+
+## Testing with Dex's example app (optional)
+Get the DEX client app to run a test:
+```
+git clone https://github.com/dexidp/dex.git && cd dex
 ```
 
-Then in a separate terminal
-```bash
+Update `examples/example-app/main.go` to add `groups` to the scope:
+
+```go
+diff --git a/examples/example-app/main.go b/examples/example-app/main.go
+index e417c8b2..724599f8 100644
+--- a/examples/example-app/main.go
++++ b/examples/example-app/main.go
+@@ -243,7 +243,7 @@ func (a *app) handleLogin(w http.ResponseWriter, r *http.Request) {
+        }
+ 
+        authCodeURL := ""
+-       scopes = append(scopes, "openid", "profile", "email")
++       scopes = append(scopes, "openid", "profile", "email", "groups")
+        if r.FormValue("offline_access") != "yes" {
+                authCodeURL = a.oauth2Config(scopes).AuthCodeURL(exampleAppState)
+        } else if a.offlineAsScope {
+```
+Then make and run the example
+```
+make bin/example-app
 ./bin/example-app --issuer http://dex:32000
 ```
 > this runs a web server on localhost:5555
 
 In a browser window, go to http://localhost:5555
 
-Click the login button and you will get redirected to the **dex** login form.
+Click the login button and you will get redirected to the **dex** login form
+at http://dex:32000.
 
-Enter one of the passwords in the static password list in `values.yaml` e.g. 
-`aether@opennetworking.org` pw `rocks`
+Login as `test@opennetworking.org` with password `password`
 
 Once this is correct it will bring you back to the `example-app` window and display
 the token generated. This can then be passed on in a gRPC call to ONOS.
@@ -34,22 +72,25 @@ the token generated. This can then be passed on in a gRPC call to ONOS.
 ```
 ID Token:
 
-eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwODdhYWQ5NTA3MzQ3YzJkOGQyNGQxYmE4YjEzY2E0NDAyNWFmMGEifQ.eyJpc3MiOiJodHRwOi8vZGV4OjMyMDAwIiwic3ViIjoiQ2lRd09HRTROamcwWWkxa1lqZzRMVFJpTnpNdE9UQmhPUzB6WTJReE5qWXhaalUwTmpnU0JXeHZZMkZzIiwiYXVkIjoiZXhhbXBsZS1hcHAiLCJleHAiOjE1OTM3NjIxODUsImlhdCI6MTU5MzY3NTc4NSwiYXRfaGFzaCI6InowUGZqbHBmeTNqaGw1M2NoTVppQ2ciLCJlbWFpbCI6InNlYW5Ab3Blbm5ldHdvcmtpbmcub3JnIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsIm5hbWUiOiJzZWFuIn0.SdL6ShQ7tHE2skA-FhSD4Ep1NSvAzGJHUH0tbX3FJQN4w-MdWtumKr51blRVY_VDkD6V9-DibLJdt1Oxg2yBoWNIu600sDQDBXhbzCCCfdUNYCo4PsYmoFr-vvLmD0VxgGmg1vvoKTwBxzM1EfzuuMgKrYfVYZx2_5XWGI2P826w4lZa2i4NT6H9GR9IokKPvRxfIJqYvfw61Z3li9XYVz2cyFpgXoxHqY9yC44M21LO1DtUZ5fWCOi2UhYKrNHl2_KFZ2JlmsuuqTga0hyM-_8H6QKLL7j1ZNjSBXYDftZFLp__5K7C4COZenjdEfDg0ugCEwoZgnTZnKymavTEpg
+eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg2NTk4MTU2MDE3NDBkMDZiYzZkMTg4ZGYwZDMzYmFhYzJkNGY4NTIifQ.eyJpc3MiOiJodHRwOi8vZGV4OjMyMDAwIiwic3ViIjoiQ2dWMGRYTmxjaElFYkdSaGNBIiwiYXVkIjoiZXhhbXBsZS1hcHAiLCJleHAiOjE2MTE3OTE4NjIsImlhdCI6MTYxMTcwNTQ2MiwiYXRfaGFzaCI6IlNnbGpTOEM3bGE2UVpGWjZQbFUwbWciLCJlbWFpbCI6InRlc3RAb3Blbm5ldHdvcmtpbmcub3JnIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImdyb3VwcyI6WyJ0ZXN0R3JvdXAiXSwibmFtZSI6IlRlc3QgVXNlciJ9.a_EdNHfI6EJLpngm480tyZtZxQEFkX0P6S8OErHUIgJvfL0oxdp1eWmVYS8MS-UGBqK-2LTPYCuhKQ9BlD-JNK76sZnGWzjE1eiOe6f4CDXGIDnIvCfASGVrvdPxwqi0T6vyoFO9we9DTOPBYALq8lB6wfIU8TQg6Tyxfd8UWVwHJ6A14me0VJQnrYGliPAB5GDRMZ13gWR24XafDiNjpWBi72xhpwnm99k_3jMn_EPn_d9xecsD0TUBTqFihSG90RpnGcZ00p7N47_smeCb5QDejenKP5JOiSHK_nzqPOwEDWrFkhkNnCNwFt7GO3jKLvtRgv6o9VGHkTeVTTuGwA
 Access Token:
 
-eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwODdhYWQ5NTA3MzQ3YzJkOGQyNGQxYmE4YjEzY2E0NDAyNWFmMGEifQ.eyJpc3MiOiJodHRwOi8vZGV4OjMyMDAwIiwic3ViIjoiQ2lRd09HRTROamcwWWkxa1lqZzRMVFJpTnpNdE9UQmhPUzB6WTJReE5qWXhaalUwTmpnU0JXeHZZMkZzIiwiYXVkIjoiZXhhbXBsZS1hcHAiLCJleHAiOjE1OTM3NjIxODUsImlhdCI6MTU5MzY3NTc4NSwiYXRfaGFzaCI6ImlhQ2tjVUtvUjJSNTZqMTNqRDIzX1EiLCJlbWFpbCI6InNlYW5Ab3Blbm5ldHdvcmtpbmcub3JnIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsIm5hbWUiOiJzZWFuIn0.V2buJs120iBx2xpworDRmddLeJ9_iTsMnFPhLG-EVB8pxmYNA0JEP1WzNxU5schRWLtktjGeyZZSJP1rP71L5uF2tu0f_OhE5lk7E3TR_Aumx46laX0_NzLf3-2T-yPhEuqiyuPqBepB7xGS84dHIV7m869OCg2Rdct_1ue9PaAH-dVltpbIHvdnrLut4Y_3cYwluIQB0y361Vni-vf7-T29ps204SG_lrol9bTO7QgvaczXW_CeZ0xZrRqQ61zSMZCWSbbmmYGufrQOpu2jAJo4aXgIc6g0Kzp-4v26134JZ5weHGNfXCL3go8ehw7E5EcNvqKXAg0g-yIKAma_xQ
+eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg2NTk4MTU2MDE3NDBkMDZiYzZkMTg4ZGYwZDMzYmFhYzJkNGY4NTIifQ.eyJpc3MiOiJodHRwOi8vZGV4OjMyMDAwIiwic3ViIjoiQ2dWMGRYTmxjaElFYkdSaGNBIiwiYXVkIjoiZXhhbXBsZS1hcHAiLCJleHAiOjE2MTE3OTE4NjIsImlhdCI6MTYxMTcwNTQ2MiwiYXRfaGFzaCI6IlVJanRGUF9xWE9fT3g4ZEZCR1RJUEEiLCJlbWFpbCI6InRlc3RAb3Blbm5ldHdvcmtpbmcub3JnIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImdyb3VwcyI6WyJ0ZXN0R3JvdXAiXSwibmFtZSI6IlRlc3QgVXNlciJ9.rf_EpJ8tSm7k-XcQdDtbhcWmFFgaM87pzimGg-kCb_xJNOrkyoEVU_-QtW7szK-i7tm7yDFhyzL4wucLdOTZ-S_wXI-0-yCJYLKf8epWrEpkpmMb1FMiLRjr87AP9Tb5wr-xg_GfcYHgYd3Dgt2FnBSpgccorKOtIe3I9rVrGNtH34bHSwIfSMnlU5cq0qQC42l7q8NSNp3xBQjgED8J7lMTz_-RDw9efj3JtNF8JrsN8icXs7bpBbbUR_KiRU9HzApBSh9nBxwNODmy7z4530oROu5ZPjsHVQlRS13BnbXTLFqp7zub7-WuQBsaUY-FYDlPlVaisZtPMX3oKq6D7A
 Claims:
 
 {
   "iss": "http://dex:32000",
-  "sub": "CiQwOGE4Njg0Yi1kYjg4LTRiNzMtOTBhOS0zY2QxNjYxZjU0NjgSBWxvY2Fs",
+  "sub": "CgV0dXNlchIEbGRhcA",
   "aud": "example-app",
-  "exp": 1593762185,
-  "iat": 1593675785,
-  "at_hash": "z0Pfjlpfy3jhl53chMZiCg",
-  "email": "sean@opennetworking.org",
+  "exp": 1611791862,
+  "iat": 1611705462,
+  "at_hash": "SgljS8C7la6QZFZ6PlU0mg",
+  "email": "test@opennetworking.org",
   "email_verified": true,
-  "name": "sean"
+  "groups": [
+    "testGroup"
+  ],
+  "name": "Test User"
 }
 ```
 
@@ -146,3 +187,8 @@ Gives a result like
 2020/07/01 20:38:28 email:"sean@opennetworking.org" username:"sean" user_id:"08a8684b-db88-4b73-90a9-3cd1661f5468" 
 2020/07/01 20:38:28 Deleted password with email test@example.com
 ```
+
+[Dex]: http://dexidp.io
+[OpenID Connect]: https://openid.net/connect/
+[OpenLDAP]: https://www.openldap.org
+[phpLDAPadmin]: http://phpldapadmin.sourceforge.net/wiki/index.php/Main_Page
