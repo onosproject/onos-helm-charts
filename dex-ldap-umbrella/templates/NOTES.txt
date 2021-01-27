@@ -1,0 +1,26 @@
+Thank you for installing {{ .Chart.Name }} Helm chart.
+
+Your release is named {{ .Release.Name }} in namespace {{.Release.Namespace}}.
+See https://docs.onosproject.org/developers/deploy_with_helm/
+
+To learn more about the release, try:
+  $ helm -n {{.Release.Namespace}} status {{ .Release.Name }}
+  $ helm -n {{.Release.Namespace}} get all {{ .Release.Name }}
+  $ watch kubectl -n {{.Release.Namespace}} get pods
+
+When using Kind set up port-forwarding to expose the services:
+
+For the PhpLDAPAdmin tool:
+
+POD_NAME=$(kubectl -n {{.Release.Namespace}} get pods -l "app=phpldapadmin" -o jsonpath="{.items[0].metadata.name}") &&
+kubectl -n {{.Release.Namespace}} port-forward $POD_NAME 8184:80
+
+
+To access Dex:
+
+DEX_POD_NAME=$(kubectl -n {{.Release.Namespace}} get pods -l "app.kubernetes.io/name=dex,app.kubernetes.io/instance=dex-ldap-umbrella" -o jsonpath="{.items[0].metadata.name}") &&
+kubectl -n {{.Release.Namespace}} port-forward $DEX_POD_NAME 32000:5556
+
+Add `dex` to your `/etc/hosts` file as an alias for `localhost`
+
+Browse to http://dex:32000/.well-known/openid-configuration to see the configuration.
