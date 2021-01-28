@@ -3,7 +3,7 @@ name: onos-gui
 description: ONOS Graphical User Interface
 kubeVersion: ">=1.15.0"
 type: application
-version: 1.0.0
+version: 1.0.1
 appVersion: v0.7.0
 keywords:
   - onos
