@@ -96,3 +96,8 @@ logging:
     stdout:
       type: stdout
       stdout: {}
+
+# Enable by giving a value like http://dex:32000
+# make sure this is reachable at http://dex:32000/.well-known/openid-configuration
+openidc:
+  issuer:
