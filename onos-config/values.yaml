@@ -16,7 +16,7 @@ replicaCount: 1
 image:
   registry: ""
   repository: onosproject/onos-config
-  tag: v0.7.1
+  tag: v0.7.3
   pullPolicy: IfNotPresent
   pullSecrets: []
 
@@ -33,25 +33,25 @@ plugins:
     version: 1.0.0
     image:
       repository: onosproject/config-model-devicesim-1.0.0
-      tag: v0.6.17
+      tag: v0.6.20
       pullPolicy: IfNotPresent
   - name: stratum
     version: 1.0.0
     image:
       repository: onosproject/config-model-stratum-1.0.0
-      tag: v0.6.17
+      tag: v0.6.20
       pullPolicy: IfNotPresent
   - name: testdevice
     version: 1.0.0
     image:
       repository: onosproject/config-model-testdevice-1.0.0
-      tag: v0.6.17
+      tag: v0.6.20
       pullPolicy: IfNotPresent
   - name: testdevice
     version: 2.0.0
     image:
       repository: onosproject/config-model-testdevice-2.0.0
-      tag: v0.6.17
+      tag: v0.6.20
       pullPolicy: IfNotPresent
 
 # Variable to change to onos topo service endpoint for the default onos-topo:5150
