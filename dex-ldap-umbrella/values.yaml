@@ -112,7 +112,7 @@ dex:
   imageTag: v2.27.0
 
   config:
-    issuer: 'http://dex:32000'
+    issuer: 'http://dex-ldap-umbrella:32000'
 
     web:
       allowedOrigins: ['*']
@@ -141,7 +141,7 @@ dex:
 
     frontend:
       issuer: Aether
-      logoURL: https://www.opennetworking.org/wp-content/uploads/2020/02/aether-logo.png
+      logoURL: https://opennetworking.org/wp-content/uploads/2020/02/aether-logo.png
 
     grpc:
       address: 0.0.0.0

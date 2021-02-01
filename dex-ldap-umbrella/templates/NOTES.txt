@@ -10,14 +10,14 @@ To learn more about the release, try:
 
 When using Kind set up port-forwarding to expose the services:
 
-To expose Dex at http://dex:32000 run
+To expose Dex at http://dex-ldap-umbrella:32000 run
 
 DEX_POD_NAME=$(kubectl -n {{.Release.Namespace}} get pods -l "app.kubernetes.io/name=dex,app.kubernetes.io/instance=dex-ldap-umbrella" -o jsonpath="{.items[0].metadata.name}") &&
 kubectl -n {{.Release.Namespace}} port-forward $DEX_POD_NAME 32000:5556
 
-Add `dex` to your `/etc/hosts` file as an alias for `localhost`
+Add `dex-ldap-umbrella` to your `/etc/hosts` file as an alias for `localhost`
 
-To test it, browse to http://dex:32000/.well-known/openid-configuration to see the configuration.
+To test it, browse to http://dex-ldap-umbrella:32000/.well-known/openid-configuration to see the configuration.
 
 
 To run the PhpLDAPAdmin tool (optional):
