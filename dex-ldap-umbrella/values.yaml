@@ -135,14 +135,15 @@ dex:
         redirectURIs:
           - 'http://localhost:4200'
           - 'http://localhost:8183'
-          - 'https://aether-roc-gui.opennetworking.org'
+          - 'http://192.168.8.2:8183'
+          - 'https://roc.opennetworking.org'
         name: 'Aether ROC GUI'
         secret: YWV0aGVyIHJvY2tzCg==
 
     frontend:
       issuer: Aether
       logoURL: https://opennetworking.org/wp-content/uploads/2020/02/aether-logo.png
-
+    enablePasswordDB: false
     grpc:
       address: 0.0.0.0
 
