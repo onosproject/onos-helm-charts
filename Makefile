@@ -8,14 +8,17 @@ test: version_check
 	kubectl create ns onos-config && helmit test -n onos-config ./test -c . --suite onos-config
 	kubectl create ns onos-umbrella && helmit test -n onos-umbrella ./test -c . --suite onos-umbrella
 
-version_check: # @HELP run the version checker on the charts
+version_check: build-tools # @HELP run the version checker on the charts
 	COMPARISON_BRANCH=master ./../build-tools/chart_version_check
 	./../build-tools/chart_single_check
 
-publish: # @HELP publish version on github
+publish: build-tools # @HELP publish version on github
 	./../build-tools/publish-version ${VERSION}
 
-bumponosdeps: # @HELP update "onosproject" go dependencies and push patch to git.
+build-tools: # @HELP install the ONOS build tools if needed
+	@if [ ! -d "../build-tools" ]; then cd .. && git clone https://github.com/onosproject/build-tools.git; fi
+
+bumponosdeps: build-tools # @HELP update "onosproject" go dependencies and push patch to git.
 	./../build-tools/bump-onos-deps ${VERSION}
 
 clean: # @HELP clean up temporary files.
