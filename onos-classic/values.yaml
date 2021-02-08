@@ -7,6 +7,10 @@ image:
   pullPolicy: IfNotPresent
   pullSecrets: []
 
+initContainer:
+  repository: tutum/curl
+  tag: latest
+
 replicas: 3
 java_opts: -Xmx4G
 probe_timeout: 5
@@ -55,3 +59,14 @@ ports:
 #     log4j2.appender.console.name = Console
 #     log4j2.appender.console.layout.type = PatternLayout
 #     log4j2.appender.console.layout.pattern = %d{RFC3339} %-5level [%c{1}] %msg%n%throwable
+
+podSecurityContext:
+  runAsUser: 1000
+  fsGroup: 2000
+containerSecurityContext:
+  runAsNonRoot: true
+  readOnlyRootFilesystem: false
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL

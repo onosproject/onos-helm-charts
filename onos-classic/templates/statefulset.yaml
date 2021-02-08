@@ -34,6 +34,9 @@ spec:
         {{ toYaml . | nindent 8 }}
       {{- end }}
     spec:
+      {{- if .Values.podSecurityContext }}
+      securityContext: {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- end }}
       {{- if .Values.podAntiAffinity.enabled }}
       affinity:
         podAntiAffinity:
@@ -48,7 +51,7 @@ spec:
       {{- end }}
       initContainers:
         - name: {{ .Chart.Name }}-init
-          image: tutum/dnsutils:latest
+          image: "{{ .Values.initContainer.repository }}:{{ .Values.initContainer.tag }}"
           imagePullPolicy: IfNotPresent
           env:
             - name: ATOMIX_SERVICE
@@ -81,6 +84,9 @@ spec:
         {{- end }}
       containers:
       - name: {{ .Chart.Name }}
+        {{- if .Values.containerSecurityContext }}
+        securityContext: {{- toYaml .Values.containerSecurityContext | nindent 10 }}
+        {{- end }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         resources:
@@ -146,11 +152,11 @@ spec:
         - name: init-scripts
           configMap:
             name: {{ template "fullname" . }}-init-scripts
-            defaultMode: 0744
+            defaultMode: 0777
         - name: probe-scripts
           configMap:
             name: {{ template "fullname" . }}-probe-scripts
-            defaultMode: 0744
+            defaultMode: 0777
         - name: config
           emptyDir: {}
         {{- if .Values.logging }}

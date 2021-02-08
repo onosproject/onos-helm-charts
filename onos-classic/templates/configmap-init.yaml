@@ -59,6 +59,6 @@ data:
     ATOMIX_SERVICE=$1
     ATOMIX_REPLICAS=$2
 
-    until nslookup "$ATOMIX_SERVICE-api" > /dev/null 2>&1; do sleep 2; done;
+    until curl -sS -f "$ATOMIX_SERVICE-api:5678/v1/status"; do sleep 10; done;
 
     print_config
