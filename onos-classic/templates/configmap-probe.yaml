@@ -13,8 +13,9 @@ data:
     #!/bin/bash
 
     # Wait for {{ .Values.probe_timeout }}s before timing out
-    host=$(hostname -s)
-    result=$(curl -m {{ .Values.probe_timeout }} -s -f http://$host:8181/onos/v1/cluster/$host --user onos:rocks)
+    host=`hostname -s`
+    id=onos-`hostname -s | awk -F '-' '{print $NF}'`
+    result=$(curl -m {{ .Values.probe_timeout }} -s -f http://$host:8181/onos/v1/cluster/$id --user onos:rocks)
     echo $result
 
     if ! printf '%q' $result | grep -q -i "READY"; then

@@ -14,6 +14,7 @@ data:
 
     HOST=`hostname -s`
     DOMAIN=`hostname -d`
+    ID=onos-`hostname -s | awk -F '-' '{print $NF}'`
 
     function print_config() {
         echo "{"
@@ -29,7 +30,7 @@ data:
 
     function print_node() {
         echo "  \"node\": {"
-        echo "    \"id\": \"$HOST\","
+        echo "    \"id\": \"$ID\","
         echo "    \"host\": \"$HOST.$DOMAIN\","
         echo "    \"port\": 9876"
         echo "  },"
