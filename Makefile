@@ -18,6 +18,7 @@ version_check: build-tools # @HELP run the version checker on the charts
 
 publish: build-tools # @HELP publish version on github
 	./../build-tools/publish-version ${VERSION}
+	./../build-tools/release-chart-merge-commit https://charts.onosproject.org $WEBSITE_USER $WEBSITE_PASSWORD
 
 build-tools: # @HELP install the ONOS build tools if needed
 	@if [ ! -d "../build-tools" ]; then cd .. && git clone https://github.com/onosproject/build-tools.git; fi
