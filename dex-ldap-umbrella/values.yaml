@@ -138,7 +138,8 @@ dex:
           - 'http://192.168.8.2:8183'
           - 'https://roc.opennetworking.org'
         name: 'Aether ROC GUI'
-        secret: YWV0aGVyIHJvY2tzCg==
+        public: true
+#        secret: YWV0aGVyIHJvY2tzCg==
 
     frontend:
       issuer: Aether
