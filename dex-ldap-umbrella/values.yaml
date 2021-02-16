@@ -123,7 +123,7 @@ dex:
           - 'http://localhost:4200'
           - 'http://localhost:8182'
         name: 'ONOS GUI'
-        secret: ZXhhbXBsZS1hcHAtc2VjcmV0
+        public: true
 
       - id: example-app
         redirectURIs:
