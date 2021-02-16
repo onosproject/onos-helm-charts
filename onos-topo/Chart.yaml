@@ -1,4 +1,5 @@
 apiVersion: v2
+
 name: onos-topo
 description: ONOS Topology service
 kubeVersion: ">=1.17.0"
