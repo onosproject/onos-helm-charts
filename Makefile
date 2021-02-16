@@ -17,6 +17,7 @@ test: version_check
 version_check: build-tools # @HELP run the version checker on the charts
 	git remote add upstream $(UPSTREAM)
 	git fetch upstream
+	git log -20
 	COMPARISON_BRANCH=upstream/master ./../build-tools/chart_version_check
 	./../build-tools/chart_single_check
 
