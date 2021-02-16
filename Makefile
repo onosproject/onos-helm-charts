@@ -13,6 +13,7 @@ test: version_check
 	kubectl create ns onos-umbrella && helmit test -n onos-umbrella ./test -c . --suite onos-umbrella
 
 version_check: build-tools # @HELP run the version checker on the charts
+	git log -5
 	COMPARISON_BRANCH=upstream/master ./../build-tools/chart_version_check
 	./../build-tools/chart_single_check
 
