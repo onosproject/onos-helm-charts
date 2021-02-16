@@ -15,8 +15,7 @@ test: version_check
 	kubectl create ns onos-umbrella && helmit test -n onos-umbrella ./test -c . --suite onos-umbrella
 
 version_check: build-tools # @HELP run the version checker on the charts
-	git log --pretty=oneline | awk '{print $$5}'
-	COMPARISON_BRANCH=`git log --pretty=oneline | awk '{print $$5}'` ./../build-tools/chart_version_check
+	COMPARISON_BRANCH=`git log --pretty=oneline | awk '{print $$5}'` && ./../build-tools/chart_version_check
 	./../build-tools/chart_single_check
 
 publish: build-tools # @HELP publish version on github
