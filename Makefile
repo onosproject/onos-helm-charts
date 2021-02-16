@@ -1,6 +1,6 @@
 .PHONY: all test clean
 
-UPSTREAM := 'git@github.com:onosproject/onos-helm-charts.git'
+UPSTREAM := git@github.com:onosproject/onos-helm-charts.git
 
 all: test
 
