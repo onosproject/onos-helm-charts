@@ -2,7 +2,7 @@
 
 all: test
 
-jenkins-test: version_check # @HELP run the jenkins verification tests
+jenkins-test: jenkins_version_check # @HELP run the jenkins verification tests
 	docker pull quay.io/helmpack/chart-testing:v2.4.0
 	docker run --rm --name ct --volume `pwd`:/charts quay.io/helmpack/chart-testing:v3.0.0-beta.1 sh -c "ct lint --charts charts/onos-config,charts/onos-topo,charts/onos-cli,charts/onos-gui,charts/device-simulator --debug --validate-maintainers=false"
 
@@ -14,6 +14,10 @@ test: version_check
 
 version_check: build-tools # @HELP run the version checker on the charts
 	COMPARISON_BRANCH=master ./../build-tools/chart_version_check
+	./../build-tools/chart_single_check
+
+jenkins_version_check: build-tools # @HELP run the version checker on the charts
+	export COMPARISON_BRANCH=`git log --pretty=oneline -1 | awk '{print $$5}'` && echo $(COMPARISON_BRANCH) && WORKSPACE=`pwd` && ./../build-tools/chart_version_check
 	./../build-tools/chart_single_check
 
 publish: build-tools # @HELP publish version on github
