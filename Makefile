@@ -14,7 +14,7 @@ test: version_check
 
 version_check: build-tools # @HELP run the version checker on the charts
 	git log -5
-	COMPARISON_BRANCH=upstream/master ./../build-tools/chart_version_check
+	COMPARISON_BRANCH=onos-helm-charts/master ./../build-tools/chart_version_check
 	./../build-tools/chart_single_check
 
 publish: build-tools # @HELP publish version on github
