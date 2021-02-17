@@ -18,7 +18,7 @@ version_check: build-tools # @HELP run the version checker on the charts
 
 jenkins_version_check: build-tools # @HELP run the version checker on the charts
 	git log --decorate
-	export COMPARISON_BRANCH=`git log --pretty=oneline -1 | awk '{print $$5}'` && echo $(COMPARISON_BRANCH) && WORKSPACE=`pwd` && ./../build-tools/chart_version_check
+	export COMPARISON_BRANCH=origin/master && echo $(COMPARISON_BRANCH) && WORKSPACE=`pwd` && ./../build-tools/chart_version_check
 	./../build-tools/chart_single_check
 
 publish: build-tools # @HELP publish version on github
