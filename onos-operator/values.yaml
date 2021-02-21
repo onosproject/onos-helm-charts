@@ -3,7 +3,7 @@ nameOverride: ""
 fullnameOverride: "onos-operator"
 
 global:
-  scope: Namespace
+  scope: Cluster
   image:
     registry: ""
     tag: ""

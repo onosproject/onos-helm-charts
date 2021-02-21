@@ -7,7 +7,7 @@ global:
     registry: ""
     tag: ""
 
-scope: Namespace
+scope: Cluster
 replicas: 1
 image:
   registry: ""
