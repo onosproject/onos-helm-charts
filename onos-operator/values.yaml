@@ -11,8 +11,5 @@ global:
 config-operator:
   nameOverride: "config"
 
-core-operator:
-  nameOverride: "core"
-
 topo-operator:
   nameOverride: "topo"
