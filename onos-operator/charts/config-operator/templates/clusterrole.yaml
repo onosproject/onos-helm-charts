@@ -9,7 +9,7 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 rules:
-  {{- $scope := include "core-operator.scope" . }}
+  {{- $scope := include "config-operator.scope" . }}
   {{- if eq $scope "cluster" }}
   - apiGroups:
       - ""

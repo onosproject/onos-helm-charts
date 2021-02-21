@@ -1,4 +1,4 @@
-{{- $scope := include "core-operator.scope" . }}
+{{- $scope := include "config-operator.scope" . }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
