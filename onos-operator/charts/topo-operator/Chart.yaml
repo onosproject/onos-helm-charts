@@ -1,0 +1,13 @@
+apiVersion: v2
+name: topo-operator
+version: 0.1.0
+kubeVersion: ">=1.17.0"
+appVersion: v0.1.0
+description: µONOS Topology Operator
+keywords:
+  - onos
+  - sdn
+home: https://onosproject.org
+maintainers:
+  - name: ONOS Support
+    email: support@opennetworking.org

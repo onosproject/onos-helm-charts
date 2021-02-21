@@ -1,0 +1,64 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: relations.topo.onosproject.org
+spec:
+  group: topo.onosproject.org
+  scope: Namespaced
+  names:
+    kind: Relation
+    listKind: RelationList
+    plural: relations
+    singular: relation
+    shortNames:
+      - rel
+  versions:
+    - name: v1beta1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              required:
+                - kind
+                - source
+                - target
+              properties:
+                kind:
+                  type: object
+                  required:
+                    - name
+                  properties:
+                    name:
+                      type: string
+                    namespace:
+                      type: string
+                source:
+                  type: object
+                  required:
+                    - name
+                  properties:
+                    name:
+                      type: string
+                    namespace:
+                      type: string
+                target:
+                  type: object
+                  required:
+                    - name
+                  properties:
+                    name:
+                      type: string
+                    namespace:
+                      type: string
+                attributes:
+                  type: object
+                  additionalProperties:
+                    type: string
+            status:
+              type: object

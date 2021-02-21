@@ -1,0 +1,62 @@
+{{- $scope := include "topo-operator.scope" . }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "topo-operator.fullname" . }}
+  namespace: {{ .Release.Namespace | default "kube-system" }}
+  labels:
+    app: {{ template "topo-operator.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      name: {{ template "topo-operator.fullname" . }}
+  template:
+    metadata:
+      labels:
+        name: {{ template "topo-operator.fullname" . }}
+    spec:
+      serviceAccountName: {{ template "topo-operator.fullname" . }}
+      containers:
+        - name: controller
+          image: onosproject/topo-operator:latest
+          ports:
+            - containerPort: 60000
+              name: metrics
+          imagePullPolicy: IfNotPresent
+          readinessProbe:
+            exec:
+              command:
+                - stat
+                - /tmp/onos-operator-ready
+            initialDelaySeconds: 4
+            periodSeconds: 10
+            failureThreshold: 1
+          env:
+            - name: CONTROLLER_NAME
+              value: {{ template "topo-operator.fullname" . }}
+            - name: CONTROLLER_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: CONTROLLER_SCOPE
+              value: {{ $scope }}
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          volumeMounts:
+            - name: config
+              mountPath: /etc/onos/config
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: {{ template "topo-operator.fullname" . }}-config

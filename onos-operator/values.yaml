@@ -1,0 +1,15 @@
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: "onos-operator"
+
+global:
+  scope: Cluster
+  image:
+    registry: ""
+    tag: ""
+
+config-operator:
+  nameOverride: "config"
+
+topo-operator:
+  nameOverride: "topo"
