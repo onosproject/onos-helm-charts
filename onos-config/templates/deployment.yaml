@@ -23,13 +23,13 @@ spec:
         resource: {{ template "onos-config.fullname" . }}
         {{- include "onos-config.selectorLabels" . | nindent 8 }}
       annotations:
-        "seccomp.security.alpha.kubernetes.io/pod": "unconfined"
-        registry.config.onosproject.org/inject: {{ template "onos-config.fullname" . }}
+        registry.config.onosproject.org/inject: "true"
+        registry.config.onosproject.org/name: {{ template "onos-config.fullname" . }}
         registry.config.onosproject.org/path: /etc/onos/plugins
-        compiler.config.onosproject.org/language: go
-        compiler.config.onosproject.org/version: latest
-        compiler.config.onosproject.org/go-mod-target: github.com/onosproject/onos-config
-        compiler.config.onosproject.org/go-mod-replace: github.com/kuujo/onos-config@f4d3d81
+        plugin.config.onosproject.org/api-version: v0.1.0
+        plugin.config.onosproject.org/golang-build-version: v0.6.3
+        plugin.config.onosproject.org/go-mod-target: github.com/onosproject/onos-config
+        plugin.config.onosproject.org/go-mod-replace: github.com/kuujo/onos-config@6cdca48
         {{- range $key, $value := .Values.annotations }}
         {{ $key }}: {{ $value }}
         {{- end }}
