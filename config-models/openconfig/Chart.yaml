@@ -1,6 +1,6 @@
 apiVersion: v2
 name: config-model-openconfig
-version: 1.0.0
+version: 1.0.1
 kubeVersion: ">=1.18.0"
 appVersion: 1.0.0
 description: OpenConfig model
@@ -15,4 +15,4 @@ maintainers:
 dependencies:
   - name: config-model-ietf
     repository: https://charts.onosproject.org
-    version: 1.0.0
+    version: 1.0.1
