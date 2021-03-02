@@ -6,6 +6,6 @@ metadata:
   labels:
     {{- include "onos-config.labels" . | nindent 4 }}
 spec:
-  volume:
+  cache:
     name: {{ template "onos-config.fullname" . }}
     emptyDir: {}
