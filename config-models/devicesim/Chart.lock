@@ -1,6 +1,0 @@
-dependencies:
-- name: config-model-openconfig
-  repository: file://../openconfig
-  version: 1.0.0
-digest: sha256:9fcbf78fd3eee76b89b9ab5ead27a72b328857501559b1618fcdca70d8e2bd68
-generated: "2020-12-15T01:04:50.11115-08:00"
