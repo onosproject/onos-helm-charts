@@ -12,7 +12,7 @@ replicas: 1
 image:
   registry: ""
   repository: onosproject/config-operator
-  tag: latest
+  tag: v0.1.0
   pullPolicy: IfNotPresent
   pullSecrets: []
 
