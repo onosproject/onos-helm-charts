@@ -1,0 +1,31 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: kinds.topo.onosproject.org
+spec:
+  group: topo.onosproject.org
+  scope: Namespaced
+  names:
+    kind: Kind
+    listKind: KindList
+    plural: kinds
+    singular: kind
+  versions:
+    - name: v1beta1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                attributes:
+                  type: object
+                  additionalProperties:
+                    type: string
+            status:
+              type: object

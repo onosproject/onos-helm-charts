@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "config-operator.fullname" . }}-config
+  labels:
+    app: {{ template "config-operator.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+data:
+  logging.yaml: |-
+{{ toYaml .Values.logging | indent 4 }}
