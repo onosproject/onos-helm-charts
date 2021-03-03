@@ -23,7 +23,9 @@ spec:
         resource: {{ template "onos-config.fullname" . }}
         {{- include "onos-config.selectorLabels" . | nindent 8 }}
       annotations:
-        "seccomp.security.alpha.kubernetes.io/pod": "unconfined"
+        registry.config.onosproject.org/inject: {{ template "onos-config.fullname" . }}
+        compiler.config.onosproject.org/version: {{ .Values.plugin.compiler.version | quote }}
+        compiler.config.onosproject.org/target: {{ .Values.plugin.compiler.target | quote }}
         {{- range $key, $value := .Values.annotations }}
         {{ $key }}: {{ $value }}
         {{- end }}
@@ -34,21 +36,6 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      initContainers:
-        # Run model plugins as init containers to load plugins onto the shared volume
-        {{- range $key, $plugin := .Values.plugins }}
-        - name: {{ printf "config-model-%s-%s" $plugin.name $plugin.version | replace "." "-" }}
-          image: {{ printf "%s:%s" $plugin.image.repository $plugin.image.tag }}
-          imagePullPolicy: {{ $plugin.image.pullPolicy }}
-          command:
-            - "/copylibandstay"
-          args:
-            - {{ printf "%s.so.%s" $plugin.name $plugin.version }}
-            - {{ printf "/usr/local/lib/%s.so.%s" $plugin.name $plugin.version }}
-          volumeMounts:
-            - name: shared-data
-              mountPath: /usr/local/lib
-        {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: {{ include "onos-config.imagename" . | quote }}
@@ -80,9 +67,6 @@ spec:
             - "-caPath=/etc/onos/certs/tls.cacrt"
             - "-keyPath=/etc/onos/certs/tls.key"
             - "-certPath=/etc/onos/certs/tls.crt"
-            {{- range $key, $plugin := .Values.plugins }}
-            - {{ printf "-modelPlugin=/usr/local/lib/shared/%s.so.%s" $plugin.name $plugin.version }}
-              {{- end }}
             {{- if .Values.topoEndpoint }}
             - {{ printf "-topoEndpoint=%s" .Values.topoEndpoint }}
             {{- end }}
@@ -117,8 +101,6 @@ spec:
             - name: secret
               mountPath: /etc/onos/certs
               readOnly: true
-            - name: shared-data
-              mountPath: /usr/local/lib/shared
           # Enable ptrace for debugging
           securityContext:
             {{- if .Values.debug }}
@@ -134,8 +116,6 @@ spec:
         - name: secret
           secret:
             secretName: {{ template "onos-config.fullname" . }}-secret
-        - name: shared-data
-          emptyDir: {}
     {{- with .Values.nodeSelector }}
     nodeSelector:
       {{- toYaml . | nindent 8 }}

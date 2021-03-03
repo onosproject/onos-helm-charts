@@ -16,7 +16,7 @@ replicaCount: 1
 image:
   registry: ""
   repository: onosproject/onos-config
-  tag: v0.7.7
+  tag: v0.7.9
   pullPolicy: IfNotPresent
   pullSecrets: []
 
@@ -28,34 +28,13 @@ debug: false
 
 devices: []
 
-plugins:
-  - name: devicesim
-    version: 1.0.0
-    image:
-      repository: onosproject/config-model-devicesim-1.0.0
-      tag: v0.6.20
-      pullPolicy: IfNotPresent
-  - name: stratum
-    version: 1.0.0
-    image:
-      repository: onosproject/config-model-stratum-1.0.0
-      tag: v0.6.20
-      pullPolicy: IfNotPresent
-  - name: testdevice
-    version: 1.0.0
-    image:
-      repository: onosproject/config-model-testdevice-1.0.0
-      tag: v0.6.20
-      pullPolicy: IfNotPresent
-  - name: testdevice
-    version: 2.0.0
-    image:
-      repository: onosproject/config-model-testdevice-2.0.0
-      tag: v0.6.20
-      pullPolicy: IfNotPresent
-
 # Variable to change to onos topo service endpoint for the default onos-topo:5150
 # topoEndpoint: onos-topo-classic:5150
+
+plugin:
+  compiler:
+    version: v0.1.2
+    target: github.com/onosproject/onos-config@v0.7.9
 
 storage:
   controller: "atomix-controller.kube-system.svc.cluster.local:5679"

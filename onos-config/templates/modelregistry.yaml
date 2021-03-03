@@ -1,0 +1,11 @@
+apiVersion: config.onosproject.org/v1beta1
+kind: ModelRegistry
+metadata:
+  name: {{ template "onos-config.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "onos-config.labels" . | nindent 4 }}
+spec:
+  cache:
+    name: {{ template "onos-config.fullname" . }}
+    emptyDir: {}
