@@ -1,0 +1,14 @@
+apiVersion: v2
+name: config-model-aether
+version: 2.0.0
+kubeVersion: ">=1.18.0"
+appVersion: 2.0.0
+description: Aether config model
+keywords:
+  - onos
+  - sdn
+  - config
+home: https://onosproject.org
+maintainers:
+  - name: ONOS Support
+    email: support@opennetworking.org
