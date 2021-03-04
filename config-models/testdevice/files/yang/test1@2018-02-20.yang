@@ -2,18 +2,11 @@ module test1 {
   namespace "http://opennetworking.org/devicesim/test1";
   prefix t1;
 
-  import test1-identities { prefix t1id; }
-
   organization "Open Networking Foundation.";
   contact "Sean Condon";
   description "To generate JSON from this use command
     pyang -f jtoxx test1.yang | python3 -m json.tool > test1.json
     Copied from YangUIComponents project";
-
-  revision "2019-06-10" {
-    description "Extended with new attributes on leaf2d, list2b";
-    reference "RFC 6087";
-  }
 
   revision "2018-02-20" {
     description "Used for testing different data node types";
@@ -101,13 +94,6 @@ module test1 {
         units mW;
         description "Transmit power";
       }
-      leaf rx-power {
-        type uint16 {
-          range 20..30;
-        }
-        units mW;
-        description "Receive power";
-      }
     }
 
 
@@ -125,18 +111,13 @@ module test1 {
     description "A second top level container - this one for state attributes. Edit symbol should not be visible";
 
     list list2b {
-      key "index1 index2";
+      key index;
       config false;
-      description "A simple list of state items, with a double key";
+      description "A simple list of state items";
 
-      leaf index1 {
+      leaf index {
         type uint8;
         description "The list index";
-      }
-
-      leaf index2 {
-          type uint8;
-          description "The list index";
       }
 
       leaf leaf3c {
@@ -145,13 +126,6 @@ module test1 {
           length 1..20;
         }
         description "A string attribute in the list";
-      }
-
-      leaf leaf3d {
-        type identityref {
-            base t1id:MYBASE;
-        }
-        description "An identityref attribute in the list";
       }
     }
 
@@ -162,21 +136,6 @@ module test1 {
       }
       units mm;
       description "A state attribute";
-    }
-
-    container cont2c {
-      description "This is a new container added in the 2019 version.  We don't have to say it's 'config false' - implied by parent";
-
-      leaf leaf3a {
-        type boolean;
-        description "Another boolean variable";
-      }
-      leaf leaf3b {
-        type string {
-            length 5..10;
-        }
-        description "Another string variable";
-      }
     }
   }
 }

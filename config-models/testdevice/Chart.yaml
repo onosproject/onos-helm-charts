@@ -1,8 +1,8 @@
 apiVersion: v2
 name: config-model-testdevice
-version: 2.0.0
+version: 1.0.0
 kubeVersion: ">=1.18.0"
-appVersion: 2.0.0
+appVersion: 1.0.0
 description: TestDevice model
 keywords:
   - onos
