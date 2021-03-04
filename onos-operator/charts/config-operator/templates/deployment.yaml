@@ -54,13 +54,13 @@ spec:
               mountPath: /etc/webhook/certs
       containers:
         - name: controller
-          image: onosproject/config-operator:latest
+          image: {{ include "config-operator.imagename" . | quote }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: 60000
               name: metrics
             - containerPort: 443
               name: webhook-server
-          imagePullPolicy: IfNotPresent
           securityContext:
             allowPrivilegeEscalation: false
             runAsUser: 0

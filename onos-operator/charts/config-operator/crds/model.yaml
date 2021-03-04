@@ -35,34 +35,27 @@ spec:
                     type: string
                   version:
                     type: string
-              dependencies:
-                type: array
-                items:
-                  type: object
-                  required:
-                  - name
-                  properties:
-                    name:
-                      type: string
-                    namespace:
-                      type: string
               modules:
                 type: array
                 items:
                   type: object
                   required:
                   - name
-                  - version
-                  - data
+                  - revision
+                  - file
                   properties:
                     name:
                       type: string
                     organization:
                       type: string
-                    version:
+                    revision:
                       type: string
-                    data:
+                    file:
                       type: string
+              files:
+                type: object
+                additionalProperties:
+                  type: string
           status:
             type: object
             properties:

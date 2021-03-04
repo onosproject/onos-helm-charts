@@ -22,11 +22,11 @@ spec:
       serviceAccountName: {{ template "topo-operator.fullname" . }}
       containers:
         - name: controller
-          image: onosproject/topo-operator:latest
+          image: {{include "topo-operator.imagename" . | quote}}
+          imagePullPolicy: {{.Values.image.pullPolicy}}
           ports:
             - containerPort: 60000
               name: metrics
-          imagePullPolicy: IfNotPresent
           readinessProbe:
             exec:
               command:
