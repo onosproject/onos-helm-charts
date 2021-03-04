@@ -1,0 +1,80 @@
+module apn-profile {
+  namespace "http://opennetworking.org/aether/apn-profile";
+  prefix pro;
+
+  import ietf-inet-types { prefix inet; }
+
+  organization "Open Networking Foundation.";
+  contact "Scott Baker";
+  description "To generate JSON from this use command
+    pyang -f jtoxx test1.yang | python3 -m json.tool > test1.json
+    Copied from YangUIComponents project";
+
+  revision "2020-08-18" {
+    description "An Aether APN Profile";
+    reference "RFC 6087";
+  }
+
+  // TODO: Think more on whether this should be a UUID or
+  // simply a unique name. If it's a UUID, could fix the 
+  // string length.
+  typedef apn-profile-id {
+        type string {
+            length 1..32;
+        }
+  }
+
+  container apn-profile {
+    description "The top level container";
+
+    list apn-profile {
+      key "id";
+      description
+        "List of apn profiles";
+
+      leaf id {
+        type apn-profile-id;
+        description "ID for this apn profile.";
+      }
+
+      leaf apn-name {
+        type string {
+          length 1..32;
+        }
+        description "apn name";
+      }
+
+      leaf dns-primary {
+        type inet:ip-address;
+        description "primary dns server name";
+      }
+
+      leaf dns-secondary {
+        type inet:ip-address;
+        description "secondary dns server name";
+      }
+
+      leaf mtu {
+        type uint32 {
+          range 68..65535;
+        }
+        units bytes;
+        default 1460;
+        description "maximum transmission unit";
+      }
+
+      leaf gx-enabled {
+        type boolean;
+        default false;
+        description "enable gx interface";
+      }
+
+      leaf description {
+        type string {
+          length 1..100;
+        }
+        description "description of this profile";
+      }      
+    }
+  } 
+}
