@@ -1,0 +1,21 @@
+apiVersion: config.onosproject.org/v1beta1
+kind: Model
+metadata:
+  name: {{ template "testdevice.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "testdevice.labels" . | nindent 4 }}
+spec:
+  plugin:
+    type: TestDevice
+    version: {{ .Chart.AppVersion | quote }}
+  modules:
+  - name: test1
+    organization: Open Networking Foundation
+    revision: 2018-02-20
+    file: test1@2018-02-20.yang
+  files:
+    {{- range $path, $_  := $.Files.Glob "files/yang/*.yang" }}
+    {{ base $path }}: |
+{{ $.Files.Get $path | indent 6 }}
+    {{- end }}
