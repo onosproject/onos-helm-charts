@@ -1,0 +1,67 @@
+module access-profile {
+  namespace "http://opennetworking.org/aether/access-profile";
+  prefix pro;
+
+  organization "Open Networking Foundation.";
+  contact "Scott Baker";
+  description "To generate JSON from this use command
+    pyang -f jtoxx test1.yang | python3 -m json.tool > test1.json
+    Copied from YangUIComponents project";
+
+  revision "2020-10-22" {
+    description "An Aether access Profile";
+    reference "RFC 6087";
+  }
+
+  // TODO: Think more on whether this should be a UUID or
+  // simply a unique name. If it's a UUID, could fix the 
+  // string length.
+  typedef access-profile-id {
+        type string {
+            length 1..32;
+        }
+  }
+
+  container access-profile {
+    description "The top level container";
+
+    list access-profile {
+      key "id";
+      description
+        "List of access profiles";
+
+      leaf id {
+        type access-profile-id;
+        description "ID for this access profile.";
+      }
+
+      leaf display-name {
+        type string {
+            length 1..80;
+        }
+        description "display name to use in GUI or CLI";
+      }     
+
+      leaf type {
+        type string {
+          length 1..32;
+        }
+        description "type of profile";
+      }
+  
+      leaf filter {
+        type string {
+          length 0..32;
+        }
+        description "filter";
+      }
+
+      leaf description {
+        type string {
+          length 1..100;
+        }
+        description "description of this profile";
+      }
+    }
+  } 
+}
