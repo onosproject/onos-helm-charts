@@ -11,7 +11,7 @@ spec:
       port: 8181
       nodePort: {{ .Values.onosApiPort }}
   selector:
-    app: {{ template "fullname" . }}
+    app: onos-classic
   {{- end}}
 ---
   {{- if .Values.onosSshPort }}
@@ -26,7 +26,7 @@ spec:
       port: 8101
       nodePort: {{ .Values.onosSshPort }}
   selector:
-    app: {{ template "fullname" . }}
+    app: onos-classic
   {{- end}}
 
 # workaround for . not working, see

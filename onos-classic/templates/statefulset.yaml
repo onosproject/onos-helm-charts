@@ -12,7 +12,8 @@ kind: StatefulSet
 metadata:
   name: {{ template "fullname" . }}
   labels:
-    app: {{ template "fullname" . }}
+    app: onos-classic
+    name: {{ template "fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
@@ -20,7 +21,7 @@ spec:
   serviceName: {{ template "fullname" . }}-hs
   selector:
     matchLabels:
-      app: {{ template "fullname" . }}
+      app: onos-classic
   replicas: {{ .Values.replicas }}
   updateStrategy:
     type: RollingUpdate
@@ -28,7 +29,8 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ template "fullname" . }}
+        app: onos-classic
+        name: {{ template "fullname" . }}
       {{- with .Values.annotations }}
       annotations:
         {{ toYaml . | nindent 8 }}
