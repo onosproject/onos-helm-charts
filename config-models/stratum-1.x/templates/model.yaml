@@ -1,0 +1,97 @@
+apiVersion: config.onosproject.org/v1beta1
+kind: Model
+metadata:
+  name: {{ template "stratum.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "stratum.labels" . | nindent 4 }}
+spec:
+  plugin:
+    type: Stratum
+    version: {{ .Chart.AppVersion | quote }}
+  modules:
+  - name: iana-if-type
+    revision: 2017-01-19
+    file: iana-if-type@2017-01-19.yang
+  - name: ietf-inet-types
+    revision: 2013-07-15
+    file: ietf-inet-types@2013-07-15.yang
+  - name: ietf-interfaces
+    revision: 2014-05-08-modified
+    file: ietf-interfaces@2014-05-08-modified.yang
+  - name: ietf-yang-types
+    revision: 2013-07-15
+    file: ietf-yang-types@2013-07-15.yang
+  - name: openconfig-interfaces
+    organization: OpenConfig working group
+    revision: 2018-11-21
+    file: openconfig-interfaces@2018-11-21.yang
+  - name: openconfig-if-ip
+    organization: OpenConfig working group
+    revision: 2018-11-21
+    file: openconfig-if-ip@2018-11-21.yang
+  - name: openconfig-lacp
+    organization: OpenConfig working group
+    revision: 2018-11-21
+    file: openconfig-lacp@2018-11-21.yang
+  - name: openconfig-platform
+    organization: OpenConfig working group
+    revision: 2019-04-16
+    file: openconfig-platform@2019-04-16.yang
+  - name: openconfig-platform-linecard
+    organization: OpenConfig working group
+    revision: 2018-11-21
+    file: openconfig-platform-linecard@2018-11-21.yang
+  - name: openconfig-platform-port
+    organization: OpenConfig working group
+    revision: 2018-11-21
+    file: openconfig-platform-port@2018-11-21.yang
+  - name: openconfig-platform-transceiver
+    organization: OpenConfig working group
+    revision: 2018-11-25
+    file: openconfig-platform-transceiver@2018-11-25.yang
+  - name: openconfig-vlan
+    organization: OpenConfig working group
+    revision: 2018-11-21
+    file: openconfig-vlan@2018-11-21.yang
+  - name: openconfig-system
+    organization: OpenConfig working group
+    revision: 2019-01-29
+    file: openconfig-system@2019-01-29.yang
+  - name: openconfig-hercules-platform-linecard
+    organization: OpenConfig working group
+    revision: 2018-06-01
+    file: openconfig-hercules-platform-linecard@2018-06-01.yang
+  - name: openconfig-hercules-qos
+    organization: OpenConfig working group
+    revision: 2018-06-01
+    file: openconfig-hercules-qos@2018-06-01.yang
+  - name: openconfig-hercules-platform
+    organization: OpenConfig working group
+    revision: 2018-06-01
+    file: openconfig-hercules-platform@2018-06-01.yang
+  - name: openconfig-hercules-platform-chassis
+    organization: OpenConfig working group
+    revision: 2018-06-01
+    file: openconfig-hercules-platform-chassis@2018-06-01.yang
+  - name: openconfig-hercules-platform-port
+    organization: OpenConfig working group
+    revision: 2018-06-01
+    file: openconfig-hercules-platform-port@2018-06-01.yang
+  - name: openconfig-hercules
+    organization: OpenConfig working group
+    revision: 2018-06-01
+    file: openconfig-hercules@2018-06-01.yang
+  - name: openconfig-hercules-interfaces
+    organization: OpenConfig working group
+    revision: 2018-06-01
+    file: openconfig-hercules-interfaces@2018-06-01.yang
+  - name: openconfig-hercules-platform-node
+    organization: OpenConfig working group
+    revision: 2018-06-01
+    file: openconfig-hercules-platform-node@2018-06-01.yang
+  files:
+    {{- range $path, $_  := $.Files.Glob "files/yang/*.yang" }}
+    {{ base $path }}: |
+{{ $.Files.Get $path | indent 6 }}
+    {{- end }}
