@@ -1,0 +1,143 @@
+module aether-subscriber {
+  namespace "http://opennetworking.org/aether/subscriber";
+  prefix sub;
+
+  import apn-profile{ prefix apn; }
+  import qos-profile{ prefix qos; }
+  import up-profile{ prefix up; }
+  import access-profile{ prefix ap; }
+
+  organization "Open Networking Foundation.";
+  contact "Scott Baker";
+  description "To generate JSON from this use command
+    pyang -f jtoxx test1.yang | python3 -m json.tool > test1.json
+    Copied from YangUIComponents project";
+
+  revision "2020-08-18" {
+    description "An Aether Subscriber";
+    reference "RFC 6087";
+  }
+
+  // User Equipment ID (UEID), Basically an IMSI range
+  // examples:
+  //    123456789???????  ... wildcard at the end
+  //    123456???0123455  ... wildcard in the middle
+  //    1234567890000000-123456789000005 ... range
+  typedef ueid {
+      type string {
+          length 1..31;
+      }
+  }
+
+  typedef mcc {
+      type uint32 {
+        range 0..999;
+      }
+  }
+
+  typedef mnc {
+      type uint32 {
+        range 0..999;
+      }
+  }
+
+  typedef tac {
+      type uint32 {
+        range 0..99999999;
+      }
+  }
+
+  container subscriber {
+    description "The top level container";
+
+    list ue {
+      key "ueid";
+      description
+        "List of subscriber devices";
+
+      leaf ueid {
+        description "identifier for this subscriber, may or may not be an IMSI";
+        type ueid;
+      }
+
+      container serving-plmn {
+        leaf mcc {
+          type mcc;
+          description "mobile country code";
+        }
+        leaf mnc {
+          type mnc;
+          description "mobile network code";
+        }
+        leaf tac {
+          type tac;
+          description "type allocation code";
+        }
+      }
+
+      leaf requested-apn {
+        type string {
+            length 1..31;
+        }
+        description "requested access point name";
+      }
+
+      leaf priority {
+        type uint32 {
+          range 0..1000;
+        }
+        default 0;
+        description
+          "Priority for this subscriber range";
+      }
+
+      leaf enabled {
+        type boolean;
+        default false;
+        description
+          "Enable or disable this ue";
+      }
+
+      container profiles {
+        leaf apn-profile {
+          type leafref {
+            path "/apn:apn-profile/apn:apn-profile/apn:id";
+          }
+          description
+            "Link to apn profile";
+        }
+        leaf up-profile {
+          type leafref {
+            path "/up:up-profile/up:up-profile/up:id";
+          }          
+          description
+            "Link to user plane profile";
+        }
+        leaf qos-profile {
+          type leafref {
+            path "/qos:qos-profile/qos:qos-profile/qos:id";
+          }              
+          description
+            "Link to qos profile";
+        }
+        list access-profile {
+          key "access-profile";
+          leaf access-profile {
+            type leafref {
+              path "/ap:access-profile/ap:access-profile/ap:id";
+            }            
+//            type ap:access-profile-id;
+            description
+                "Link to access profile";
+          }
+          leaf allowed {
+            type boolean;
+            default true;
+            description
+              "Allow or disallow this ue to use this access profile";
+          }
+        }
+      }
+    }
+  } 
+}

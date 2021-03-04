@@ -1,0 +1,37 @@
+apiVersion: config.onosproject.org/v1beta1
+kind: Model
+metadata:
+  name: {{ template "aether.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "aether.labels" . | nindent 4 }}
+spec:
+  plugin:
+    type: Aether
+    version: {{ .Chart.AppVersion | quote }}
+  modules:
+  - name: aether-subscriber
+    organization: Open Networking Foundation
+    revision: 2020-08-18
+    file: aether-subscriber@2020-08-18.yang
+  - name: apn-profile
+    organization: Open Networking Foundation
+    revision: 2020-08-18
+    file: apn-profile@2020-08-18.yang
+  - name: up-profile
+    organization: Open Networking Foundation
+    revision: 2020-08-18
+    file: up-profile@2020-08-18.yang
+  - name: qos-profile
+    organization: Open Networking Foundation
+    revision: 2020-08-18
+    file: qos-profile@2020-08-18.yang
+  - name: access-profile
+    organization: Open Networking Foundation
+    revision: 2020-08-18
+    file: access-profile@2020-08-18.yang
+  files:
+    {{- range $path, $_  := $.Files.Glob "files/yang/*.yang" }}
+    {{ base $path }}: |
+{{ $.Files.Get $path | indent 6 }}
+    {{- end }}
