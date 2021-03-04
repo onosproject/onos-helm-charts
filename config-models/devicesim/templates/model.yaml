@@ -8,7 +8,26 @@ metadata:
 spec:
   plugin:
     type: Devicesim
-    version: 1.0.0
-  dependencies:
-  - name: {{ template "openconfig.fullname" . }}
-    namespace: {{ .Release.Namespace }}
+    version: {{ .Chart.AppVersion | quote }}
+  modules:
+  - name: openconfig-interfaces
+    organization: OpenConfig working group
+    revision: 2017-07-14
+    file: openconfig-interfaces@2017-07-14.yang
+  - name: openconfig-openflow
+    organization: OpenConfig working group
+    revision: 2017-06-01
+    file: openconfig-openflow@2017-06-01.yang
+  - name: openconfig-platform
+    organization: OpenConfig working group
+    revision: 2016-12-22
+    file: openconfig-platform@2016-12-22.yang
+  - name: openconfig-system
+    organization: OpenConfig working group
+    revision: 2017-07-06
+    file: openconfig-system@2017-07-06.yang
+  files:
+    {{- range $path, $_  := $.Files.Glob "files/yang/*.yang" }}
+    {{ base $path }}: |
+{{ $.Files.Get $path | indent 6 }}
+    {{- end }}
