@@ -1,0 +1,49 @@
+module rbac-identities {
+    namespace "http://opennetworking.org/aether/rbac-identities";
+    prefix rbid;
+
+    import ietf-yang-types { prefix yang; }
+
+    organization "Open Networking Foundation.";
+    contact "Sean Condon";
+    description "Identities related to Role Based Access Control";
+
+    revision "2020-08-10" {
+        description "Initial Version";
+        reference "AETHER-308";
+    }
+
+    identity PERMISSION {
+      description "A permission identity";
+    }
+
+    identity CREATE {
+      base PERMISSION;
+      description "Create permission";
+    }
+
+    identity READ {
+      base PERMISSION;
+      description "Read permission";
+    }
+
+    identity ALL {
+      base PERMISSION;
+      description "all permissions";
+    }
+
+
+    identity NOUNTYPE {
+        description "A resource type protected by RBAC";
+    }
+
+    identity CONFIG {
+        base NOUNTYPE;
+        description "A config path - for nouns in onos-config";
+    }
+
+    identity GRPC {
+        base NOUNTYPE;
+        description "A grpc entity, service and rpc";
+    }
+}

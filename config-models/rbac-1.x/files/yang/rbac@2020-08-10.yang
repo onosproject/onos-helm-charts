@@ -1,0 +1,96 @@
+module rbac {
+  namespace "http://opennetworking.org/aether/rbac";
+  prefix rbac;
+
+  import ietf-yang-types { prefix yang; }
+  import rbac-identities { prefix rbid; }
+
+  organization "Open Networking Foundation.";
+  contact "Sean Condon";
+  description "Configuration of Role Based Access Control
+    To generate tree view from this use command
+    pyang -f tree yang/rbac@2020-08-10.yang -p yang";
+
+  revision "2020-08-10" {
+    description "Initial Version";
+    reference "AETHER-308";
+  }
+
+  container rbac {
+    description "The top level RBAC container";
+
+    list role {
+      key roleid;
+      description "A role";
+
+      leaf roleid {
+        type yang:yang-identifier;
+        description "A unique role ID";
+      }
+
+      leaf description {
+        type string {
+            length 1..100;
+        }
+        description "A role description";
+      }
+
+      container permission {
+        leaf operation {
+          type identityref {
+            base rbid:PERMISSION;
+          }
+        }
+
+        leaf type {
+          type identityref {
+            base rbid:NOUNTYPE;
+          }
+          description "the type of permission GRPC or CONFIG";
+        }
+
+        leaf-list noun {
+          type string {
+            length 1..200;
+            pattern '/[a-zA-Z0-9\-/_.*?]*';
+          }
+          description "The noun name - in path format (must start with /)
+            Can include wildcards (*, ?).
+            Wilder entries will eclipse a narrower entry";
+        }
+      }
+    }
+
+    list group {
+      key groupid;
+      description "A user group similar to OS level group";
+
+      leaf groupid {
+        type yang:yang-identifier;
+        description "A unique group ID";
+      }
+
+      leaf description {
+        type string {
+            length 1..100;
+        }
+        description "A group description";
+      }
+
+      list role {
+        key roleid;
+        description "The list of role IDs that the group is mapped to";
+        leaf roleid {
+          type leafref {
+            path "/rbac/role/roleid";
+          }
+        }
+        leaf description {
+          type string {
+            length 1..100;
+          }
+        }
+      }
+    }
+  }
+}
