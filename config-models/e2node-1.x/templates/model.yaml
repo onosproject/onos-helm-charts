@@ -1,0 +1,21 @@
+apiVersion: config.onosproject.org/v1beta1
+kind: Model
+metadata:
+  name: {{ template "e2node.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "e2node.labels" . | nindent 4 }}
+spec:
+  plugin:
+    type: E2Node
+    version: {{ .Chart.AppVersion | quote }}
+  modules:
+  - name: e2node
+    organization: Open Networking Foundation
+    revision: 2020-05-01
+    file: e2node@2020-05-01.yang
+  files:
+    {{- range $path, $_  := $.Files.Glob "files/yang/*.yang" }}
+    {{ base $path }}: |
+{{ $.Files.Get $path | indent 6 }}
+    {{- end }}
