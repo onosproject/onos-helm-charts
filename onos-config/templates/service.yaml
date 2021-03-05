@@ -19,3 +19,5 @@ spec:
   ports:
     - name: grpc
       port: 5150
+    - name: registry
+      port: 5151
