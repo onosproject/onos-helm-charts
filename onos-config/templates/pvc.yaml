@@ -1,0 +1,16 @@
+{{- if .Values.plugin.cache }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ template "onos-config.fullname" .}}-registry
+  namespace: {{.Release.Namespace}}
+  labels:
+    {{- include "onos-config.labels" . | nindent 4}}
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: local-path
+  resources:
+    requests:
+      storage: 1Gi
+{{- end }}

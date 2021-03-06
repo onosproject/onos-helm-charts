@@ -8,4 +8,9 @@ metadata:
 spec:
   cache:
     name: {{ template "onos-config.fullname" . }}
+    {{- if .Values.plugin.cache }}
+    persistentVolumeClaim:
+      claimName: {{ template "onos-config.fullname" .}}-registry
+    {{- else }}
     emptyDir: {}
+    {{- end }}
