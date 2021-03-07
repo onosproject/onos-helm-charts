@@ -1,4 +1,4 @@
-{{- if .Values.plugin.cache }}
+{{- if .Values.plugin.cache.enabled }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -9,8 +9,8 @@ metadata:
 spec:
   accessModes:
   - ReadWriteOnce
-  storageClassName: local-path
+  storageClassName: {{ .Values.plugin.cache.storage.class | quote }}
   resources:
     requests:
-      storage: 1Gi
+      storage: {{ .Values.plugin.cache.storage.size }}
 {{- end }}

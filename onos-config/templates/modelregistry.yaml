@@ -8,7 +8,7 @@ metadata:
 spec:
   cache:
     name: {{ template "onos-config.fullname" . }}
-    {{- if .Values.plugin.cache }}
+    {{- if .Values.plugin.cache.enabled }}
     persistentVolumeClaim:
       claimName: {{ template "onos-config.fullname" .}}-registry
     {{- else }}
