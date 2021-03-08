@@ -44,23 +44,23 @@ onos-config:
       enabled: false
   models:
     aether:
-      1.0.0:
+      v1:
         enabled: false
-      2.0.0:
+      v2:
         enabled: false
     devicesim:
-      1.0.0:
+      v1:
         enabled: true
     rbac:
-      1.0.0:
+      v1:
         enabled: false
     stratum:
-      1.0.0:
+      v1:
         enabled: true
     testdevice:
-      1.0.0:
+      v1:
         enabled: false
-      2.0.0:
+      v2:
         enabled: false
 
 # ONOS-GUI
