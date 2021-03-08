@@ -85,7 +85,7 @@ spec:
             {{- end }}
             {{- end }}
             {{- range $key, $value := .Values.onosservices }}
-            - name: {{ printf "%s-%s" $key "port" | trunc 15 }}
+            - name: {{ printf "%s-%s" $key "port" | replace "-" "" | trunc 15 }}
               containerPort: {{ $value.proxy }}
               protocol: TCP
             {{- end }}

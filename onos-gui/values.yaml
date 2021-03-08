@@ -71,6 +71,11 @@ onosservices:
     grpc: 5150
     proxy: 8084
     streamTimeout: 3600
+  model-registry:
+    grpc: 5151
+    proxy: 8085
+    host: onos-config
+    streamTimeout: 3600
 #  control:
 #    grpc: 5150
 #    proxy: 8082
@@ -236,7 +241,7 @@ Envoy:
             http2_protocol_options: {}
             lb_policy: round_robin
             # win/mac hosts: Use address: host.docker.internal instead of address: localhost in the line below
-            hosts: [{ socket_address: { address: {{$key}}, port_value: {{ $value.grpc }} }}]
+            hosts: [{ socket_address: { address: {{if $value.host}}{{$value.host}}{{else}}{{$key}}{{end}}, port_value: {{ $value.grpc }} }}]
             tls_context:
               common_tls_context:
                 tls_certificates:
