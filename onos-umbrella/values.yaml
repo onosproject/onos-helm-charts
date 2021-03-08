@@ -42,6 +42,26 @@ onos-config:
     controller: ""
     consensus:
       enabled: false
+  models:
+    aether:
+      v1:
+        enabled: false
+      v2:
+        enabled: false
+    devicesim:
+      v1:
+        enabled: true
+    rbac:
+      v1:
+        enabled: false
+    stratum:
+      v1:
+        enabled: true
+    testdevice:
+      v1:
+        enabled: false
+      v2:
+        enabled: false
 
 # ONOS-GUI
 onos-gui: {}
