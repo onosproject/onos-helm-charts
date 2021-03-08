@@ -25,7 +25,11 @@ spec:
       annotations:
         registry.config.onosproject.org/inject: {{ template "onos-config.fullname" . }}
         compiler.config.onosproject.org/version: {{ .Values.plugin.compiler.version | quote }}
+        {{- if .Values.plugin.compiler.target }}
         compiler.config.onosproject.org/target: {{ .Values.plugin.compiler.target | quote }}
+        {{- else }}
+        compiler.config.onosproject.org/target: {{ printf "github.com/onosproject/onos-config@%s" .Values.image.tag | quote }}
+        {{- end }}
         {{- range $key, $value := .Values.annotations }}
         {{ $key }}: {{ $value }}
         {{- end }}
