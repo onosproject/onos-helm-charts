@@ -38,7 +38,7 @@ plugin:
       class: "standard"
       size: 1Gi
   compiler:
-    version: v0.4.1
+    version: v0.4.3
     target: ""
 
 storage:
