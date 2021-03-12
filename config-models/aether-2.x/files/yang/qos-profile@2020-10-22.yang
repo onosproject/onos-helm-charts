@@ -62,6 +62,39 @@ module qos-profile {
             "Downstream aggregate maximum bit rate";
         }        
       }
+
+      leaf qci {
+        type uint32 {
+          range 0..85;
+        }
+        default 9;
+        description
+          "QoS Class Identifier";
+      }
+
+      container arp {
+        leaf priority {
+          type uint32 {
+            range 0..15;
+          }          
+          default 0;
+          description
+            "Priority";
+        }        
+        leaf preemption-capability {
+          type boolean;
+          default true;
+          description
+            "True if a bearer with lower priority should be dropped";
+        }
+        leaf preemption-vulnerability {
+          type boolean;
+          default true;
+          description
+            "This bearer may be dropped for a bearer with higher priority";
+        }
+        description "Evolved-ARP";
+      }        
       
       leaf description {
         type string {

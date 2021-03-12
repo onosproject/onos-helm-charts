@@ -1,0 +1,69 @@
+module enterprise {
+  namespace "http://opennetworking.org/aether/enterprise";
+  prefix ent;
+
+  import connectivity-service { prefix cs; }
+
+  organization "Open Networking Foundation.";
+  contact "Scott Baker";
+  description "To generate JSON from this use command
+    pyang -f jtoxx test1.yang | python3 -m json.tool > test1.json
+    Copied from YangUIComponents project";
+
+  revision "2020-11-30" {
+    description "An Aether Enterprise. Used to distinguish ownership of devices and other resources as well as a domain of configuration.";
+    reference "RFC 6087";
+  }
+
+  typedef enterprise-id {
+        type string {
+            length 1..32;
+        }
+  }
+
+  container enterprise {
+    description "The top level container";
+
+    list enterprise {
+      key "id";
+      description
+        "List of enterprises";
+
+      leaf id {
+        type enterprise-id;
+        description "ID for this enterprise.";
+      }
+
+      leaf display-name {
+        type string {
+            length 1..80;
+        }
+        description "display name to use in GUI or CLI";
+      }     
+
+      leaf description {
+        type string {
+          length 1..100;
+        }
+        description "description of this enterprise";
+      }
+
+      list connectivity-service {
+        key "connectivity-service";
+        leaf connectivity-service {
+          type leafref {
+            path "/cs:connectivity-service/cs:connectivity-service/cs:id";
+          }            
+          description
+            "Link to connectivity services where configuration should be pushed for this enterprise's devices";
+        }
+        leaf enabled {
+          type boolean;
+          default true;
+          description
+            "Allow or disallow pushes to this connectivity service";
+        }
+      }              
+    }
+  } 
+}

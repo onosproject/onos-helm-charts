@@ -6,6 +6,8 @@ module aether-subscriber {
   import qos-profile{ prefix qos; }
   import up-profile{ prefix up; }
   import access-profile{ prefix ap; }
+  import security-profile{ prefix sec; }
+  import enterprise{ prefix ent; }  
   import ietf-yang-types{ prefix ietf; }
 
   organization "Open Networking Foundation.";
@@ -113,6 +115,14 @@ module aether-subscriber {
           "Enable or disable this ue";
       }
 
+      leaf enterprise {
+        type leafref {
+          path "/ent:enterprise/ent:enterprise/ent:id";
+        }              
+        description
+          "Link to enterprise that owns this UE range";
+      }
+
       container profiles {
         leaf apn-profile {
           type leafref {
@@ -150,6 +160,13 @@ module aether-subscriber {
             description
               "Allow or disallow this ue to use this access profile";
           }
+        }
+        leaf security-profile {
+          type leafref {
+            path "/sec:security-profile/sec:security-profile/sec:id";
+          }              
+          description
+            "Link to security profile";
         }
       }
     }
