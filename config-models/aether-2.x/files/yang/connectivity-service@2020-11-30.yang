@@ -1,0 +1,62 @@
+module connectivity-service {
+  namespace "http://opennetworking.org/aether/connectivity-service";
+  prefix cs;
+
+  import ietf-inet-types { prefix inet; }
+
+  organization "Open Networking Foundation.";
+  contact "Scott Baker";
+  description "To generate JSON from this use command
+    pyang -f jtoxx test1.yang | python3 -m json.tool > test1.json
+    Copied from YangUIComponents project";
+
+  revision "2020-11-30" {
+    description "An Aether Connectivity Service. Specifies the endpoints where the sdcore-adapter should push configuration to. A single connectivity service may be attached to multiple Enterprises.";
+    reference "RFC 6087";
+  }
+
+  typedef connectivity-service-id {
+        type string {
+            length 1..32;
+        }
+  }
+
+  container connectivity-service {
+    description "The top level container";
+
+    list connectivity-service {
+      key "id";
+      description
+        "List of connectivity services";
+
+      leaf id {
+        type connectivity-service-id;
+        description "ID for this connectivity service.";
+      }
+
+      leaf display-name {
+        type string {
+            length 1..80;
+        }
+        description "display name to use in GUI or CLI";
+      }     
+
+      leaf description {
+        type string {
+          length 1..100;
+        }
+        description "description of this connectivity service";
+      }
+
+      leaf spgwc-endpoint {
+        type inet:uri;
+        description "url of the spgwc service";
+      }
+
+      leaf hss-endpoint {
+        type inet:uri;
+        description "url of the hss service";
+      }      
+    }
+  } 
+}
