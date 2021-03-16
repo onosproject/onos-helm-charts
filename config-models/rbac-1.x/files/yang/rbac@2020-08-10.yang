@@ -58,8 +58,8 @@ module rbac {
             Can include wildcards (* or ...)
             Wilder entries will eclipse a narrower entry";
           reference:
-            gNMI Path Wildcards
-            https://github.com/openconfig/reference/blob/master/rpc/gnmi/gnmi-path-conventions.md#wildcards-in-paths
+            "gNMI Path Wildcards
+            https://github.com/openconfig/reference/blob/master/rpc/gnmi/gnmi-path-conventions.md#wildcards-in-paths"
         }
       }
     }
