@@ -1,6 +1,6 @@
 apiVersion: v2
 name: config-model-rbac
-version: 1.0.2
+version: 1.0.3
 kubeVersion: ">=1.18.0"
 appVersion: 1.0.0
 description: RBAC config model
