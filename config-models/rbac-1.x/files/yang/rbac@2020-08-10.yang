@@ -57,9 +57,9 @@ module rbac {
           description "A set of noun patterns - each in path format (must start with /)
             Can include wildcards (* or ...)
             Wilder entries will eclipse a narrower entry";
-          reference:
+          reference
             "gNMI Path Wildcards
-            https://github.com/openconfig/reference/blob/master/rpc/gnmi/gnmi-path-conventions.md#wildcards-in-paths"
+            https://github.com/openconfig/reference/blob/master/rpc/gnmi/gnmi-path-conventions.md#wildcards-in-paths";
         }
       }
     }
