@@ -13,9 +13,9 @@ If release name contains chart name it will be used as a full name.
 */}}
 {{- define "aether.fullname" -}}
 {{- if contains "config-model-aether" .Release.Name -}}
-{{- .Release.Name | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s" .Release.Name .Chart.Version | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
-{{- printf "%s-config-model-aether" .Release.Name | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s-config-model-aether" .Release.Name .Chart.Version | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 {{- end -}}
 
