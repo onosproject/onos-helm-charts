@@ -16,7 +16,7 @@ replicaCount: 1
 image:
   registry: ""
   repository: onosproject/onos-config
-  tag: v0.7.15
+  tag: v0.7.16
   pullPolicy: IfNotPresent
   pullSecrets: []
 
@@ -85,3 +85,4 @@ logging:
 # make sure this is reachable at http://dex:32000/.well-known/openid-configuration
 openidc:
   issuer:
+  admingroup: AetherROCAdmin
