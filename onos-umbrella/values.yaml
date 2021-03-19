@@ -51,9 +51,6 @@ onos-config:
     devicesim:
       v1:
         enabled: true
-    rbac:
-      v1:
-        enabled: false
     stratum:
       v1:
         enabled: true
