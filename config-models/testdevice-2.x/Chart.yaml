@@ -1,6 +1,6 @@
 apiVersion: v2
 name: config-model-testdevice
-version: 2.0.1
+version: 2.0.2
 kubeVersion: ">=1.18.0"
 appVersion: 2.0.0
 description: TestDevice model
