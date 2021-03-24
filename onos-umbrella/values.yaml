@@ -43,11 +43,6 @@ onos-config:
     consensus:
       enabled: false
   models:
-    aether:
-      v1:
-        enabled: false
-      v2:
-        enabled: false
     devicesim:
       v1:
         enabled: true

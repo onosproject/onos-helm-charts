@@ -36,6 +36,7 @@ clean: # @HELP clean up temporary files.
 	rm -rf onos-umbrella/charts onos-umbrella/Chart.lock
 
 deps: # @HELP build dependencies for local charts.
+deps: clean
 	helm dep build onos-umbrella
 
 help:

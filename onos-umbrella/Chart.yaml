@@ -3,7 +3,7 @@ name: onos-umbrella
 description: Umbrella chart to deploy all µONOS
 kubeVersion: ">=1.17.0"
 type: application
-version: 0.1.8
+version: 0.1.9
 appVersion: v0.0.0
 keywords:
   - onos
@@ -29,33 +29,23 @@ dependencies:
     condition: import.onos-cli.enabled
     repository: https://charts.onosproject.org
     version: 1.0.5
-  - name: config-model-aether
-    condition: onos-config.models.aether.v1.enabled
-    repository: https://charts.onosproject.org
-    version: 1.0.1
-    alias: config-model-aether-1-0-0
-  - name: config-model-aether
-    condition: onos-config.models.aether.v2.enabled
-    repository: https://charts.onosproject.org
-    version: 2.1.1
-    alias: config-model-aether-2-0-0
   - name: config-model-devicesim
     condition: onos-config.models.devicesim.v1.enabled
     repository: https://charts.onosproject.org
-    version: 1.0.3
+    version: 1.0.4
     alias: config-model-devicesim-1-0-0
   - name: config-model-stratum
     condition: onos-config.models.stratum.v1.enabled
     repository: https://charts.onosproject.org
-    version: 1.0.0
+    version: 1.0.1
     alias: config-model-stratum-1-0-0
   - name: config-model-testdevice
     condition: onos-config.models.testdevice.v1.enabled
     repository: https://charts.onosproject.org
-    version: 1.0.1
+    version: 1.0.2
     alias: config-model-testdevice-1-0-0
   - name: config-model-testdevice
     condition: onos-config.models.testdevice.v2.enabled
     repository: https://charts.onosproject.org
-    version: 2.0.1
+    version: 2.0.2
     alias: config-model-testdevice-2-0-0
