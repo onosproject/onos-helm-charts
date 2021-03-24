@@ -13,9 +13,9 @@ If release name contains chart name it will be used as a full name.
 */}}
 {{- define "testdevice.fullname" -}}
 {{- if contains "config-model-testdevice" .Release.Name -}}
-{{- printf "%s-%s" .Release.Name .Chart.Version | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s" .Release.Name .Chart.AppVersion | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
-{{- printf "%s-%s-config-model-testdevice" .Release.Name .Chart.Version | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s-config-model-testdevice" .Release.Name .Chart.AppVersion | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 {{- end -}}
 
