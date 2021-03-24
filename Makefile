@@ -24,7 +24,7 @@ publish: build-tools # @HELP publish version on github
 	./../build-tools/publish-version ${VERSION}
 
 jenkins-publish: build-tools # @HELP publish version on github
-	pushd .. && GO111MODULE=on go get github.com/mikefarah/yq/v4 && popd
+	cd .. && GO111MODULE=on go get github.com/mikefarah/yq/v4
 	./../build-tools/release-chart-merge-commit https://charts.onosproject.org ${WEBSITE_USER} ${WEBSITE_PASSWORD}
 
 build-tools: # @HELP install the ONOS build tools if needed
