@@ -33,73 +33,71 @@ openldap:
       objectclass: organizationalRole
       objectclass: top
 
-      # Test user (password is 'password')
-      dn: cn=Test User,cn=users,dc=opennetworking,dc=org
-      cn: Test User
-      givenname: Test
-      homedirectory: /home/users/tuser
-      mail: test@opennetworking.org
+      # Alice Admin (password is 'password')
+      dn: cn=Alice Admin,cn=users,dc=opennetworking,dc=org
+      cn: Alice Admin
+      givenname: Alice
+      homedirectory: /home/users/alicea
+      mail: alicea@opennetworking.org
       gidNumber: 500
       objectclass: inetOrgPerson
       objectclass: posixAccount
       objectclass: top
-      sn: User
-      uid: tuser
+      sn: Admin
+      uid: alicea
       uidnumber: 1000
       userpassword: {MD5}X03MO1qnZdYdgyfeuILPmQ==
 
-      # Test user 1 (password is 'password')
-      dn: cn=Test One,cn=users,dc=opennetworking,dc=org
-      cn: Test One
-      givenname: Test
-      homedirectory: /home/users/tuser1
-      mail: test1@opennetworking.org
+      # Bob Cratchit (password is 'password')
+      dn: cn=Bob Cratchit,cn=users,dc=opennetworking,dc=org
+      cn: Bob Cratchit
+      givenname: Bob
+      homedirectory: /home/users/bobc
+      mail: bobc@opennetworking.org
       gidNumber: 500
       objectclass: inetOrgPerson
       objectclass: posixAccount
       objectclass: top
-      sn: One
-      uid: tuser1
+      sn: Cratchit
+      uid: bobc
       uidnumber: 1001
       userpassword: {MD5}X03MO1qnZdYdgyfeuILPmQ==
 
-      # Test user 2 (password is 'password')
-      dn: cn=Test Two,cn=users,dc=opennetworking,dc=org
-      cn: Test Two
-      givenname: Test
-      homedirectory: /home/users/tuser2
-      mail: test2@opennetworking.org
+      # Charlie Brown (password is 'password')
+      dn: cn=Charlie Brown,cn=users,dc=opennetworking,dc=org
+      cn: Charlie Brown
+      givenname: Charlie
+      homedirectory: /home/users/charlieb
+      mail: charlieb@opennetworking.org
       gidNumber: 500
       objectclass: inetOrgPerson
       objectclass: posixAccount
       objectclass: top
-      sn: Two
-      uid: tuser2
+      sn: Brown
+      uid: charlieb
       uidnumber: 1002
       userpassword: {MD5}X03MO1qnZdYdgyfeuILPmQ==
 
-      dn: cn=testGroup,cn=groups,dc=opennetworking,dc=org
-      cn: testGroup
+      dn: cn=mixedGroup,cn=groups,dc=opennetworking,dc=org
+      cn: mixedGroup
       gidnumber: 500
-      memberUid: tuser
-      memberUid: tuser1
-      memberUid: tuser2
+      memberUid: alicea
+      memberUid: bobc
       objectclass: posixGroup
       objectclass: top
 
-      dn: cn=secondGroup,cn=groups,dc=opennetworking,dc=org
-      cn: secondGroup
+      dn: cn=charactersGroup,cn=groups,dc=opennetworking,dc=org
+      cn: charactersGroup
       gidnumber: 502
-      memberUid: tuser
-      memberUid: tuser1
+      memberUid: bobc
+      memberUid: charlieb
       objectclass: posixGroup
       objectclass: top
 
-      dn: cn=thirdGroup,cn=groups,dc=opennetworking,dc=org
-      cn: thirdGroup
+      dn: cn=AetherONFAdmin,cn=groups,dc=opennetworking,dc=org
+      cn: AetherONFAdmin
       gidnumber: 503
-      memberUid: tuser1
-      memberUid: tuser2
+      memberUid: alicea
       objectclass: posixGroup
       objectclass: top
 

@@ -21,13 +21,35 @@ Deploy with
 helm -n micro-onos install dex-ldap-umbrella onosproject/dex-ldap-umbrella
 ```
 
-It will display details of Port Forwarding that need to be made.
+It will display details of Port Forwarding that need to be made
 
-* Add `dex` to your `/etc/hosts` file as an alias for localhost
+> These details are not given here, as they will vary by namespace.
+
+* Add `dex-ldap-umbrella` to your `/etc/hosts` file as an alias for localhost
 * Port forward the `dex` service to 32000
 
-Now GUI applications with security enabled will redirect to this `dex:32000`
+Now GUI applications with security enabled will redirect to this `dex-ldap-umbrella:32000`
 and when login is successful will redirect to an authenticated GUI.
+
+> To test it, browse to http://dex-ldap-umbrella:32000/.well-known/openid-configuration to see the configuration.
+
+
+There are 3 users in 3 groups with the LDIF defined in `values.yaml`
+
+```
+User            login                 Group:   mixedGroup      charactersGroup    AetherONFAdmin
+===============================================================================================
+Alice Admin     alicea@opennetworking.org         ✓                                   ✓
+Bob Cratchit    bobc@opennetworking.org           ✓              ✓
+Charlie Brown   charlieb@opennetworking.org                       ✓
+```
+
+The password for each is `password`
+
+To use this service with `onos-umbrella` chart, deploy in Helm with the following flags:
+```
+helm -n micro-onos install onos-umbrella onosproject/onos-umbrella --set onos-config.openidc.issuer=http://dex-ldap-umbrella:32000 --set onos-gui.openidc.issuer=http://dex-ldap-umbrella:32000
+```
 
 ## Testing with Dex's example app (optional)
 Get the DEX client app to run a test:
