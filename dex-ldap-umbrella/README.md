@@ -37,7 +37,7 @@ and when login is successful will redirect to an authenticated GUI.
 There are 3 users in 3 groups with the LDIF defined in `values.yaml`
 
 ```
-User            login                 Group:   mixedGroup      charactersGroup    AetherONFAdmin
+User            login                 Group:   mixedGroup      charactersGroup    AetherROCAdmin
 ===============================================================================================
 Alice Admin     alicea@opennetworking.org         ✓                                   ✓
 Bob Cratchit    bobc@opennetworking.org           ✓              ✓
