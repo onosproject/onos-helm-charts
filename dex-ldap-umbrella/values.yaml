@@ -94,8 +94,8 @@ openldap:
       objectclass: posixGroup
       objectclass: top
 
-      dn: cn=AetherONFAdmin,cn=groups,dc=opennetworking,dc=org
-      cn: AetherONFAdmin
+      dn: cn=AetherROCAdmin,cn=groups,dc=opennetworking,dc=org
+      cn: AetherROCAdmin
       gidnumber: 503
       memberUid: alicea
       objectclass: posixGroup
