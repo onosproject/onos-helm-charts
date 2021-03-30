@@ -62,7 +62,7 @@ spec:
   containers:
     # Push config to ONOS REST API
     - name: config-setter
-      image: curlimages/curl
+      image: badouralix/curl-jq:alpine
       imagePullPolicy: IfNotPresent
       env:
         - name: USER
@@ -82,10 +82,13 @@ spec:
         - name: CFG_FILE
           value: {{ .Values.config.file }}
       workingDir: {{ printf "%s/%s" $configDir .Values.config.repo }}
-      command: ["sh", "-c", "curl -v -u $USER:$PASSWD POST -H 'Content-Type: application/json' $NETCFG_URL -d@$CFG_FOLDER/$CFG_FILE"]
+      command: ["sh", "-c", "/usr/bin/onos-setter"]
       volumeMounts:
         - name: config-dir
           mountPath: {{ $configDir }}
+        - name: configmap-config
+          mountPath: /usr/bin/onos-setter
+          subPath: onos-setter
   volumes:
   - name: config-dir
     emptyDir: {}
