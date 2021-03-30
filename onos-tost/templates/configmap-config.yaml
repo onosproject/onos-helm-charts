@@ -9,6 +9,18 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 data:
+  onos-setter: |
+    #!/bin/sh
+    while true
+    set -e -x
+    do
+        DEVICE_COUNT=$(curl -s -u $USER:$PASSWD -X GET --header 'Accept: application/json' $NETCFG_URL | jq -r '.devices' | jq length)
+        if [ $DEVICE_COUNT = 0 ]; then
+          curl -v -u $USER:$PASSWD -X POST -H 'Content-Type: application/json' $NETCFG_URL -d@$CFG_FOLDER/$CFG_FILE
+        fi
+        sleep 30s
+    done
+
   onos-config: |
     #!/bin/sh
     set -e -x
