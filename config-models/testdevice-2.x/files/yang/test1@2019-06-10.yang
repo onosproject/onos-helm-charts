@@ -39,7 +39,7 @@ module test1 {
       leaf leaf2b {
         type decimal64 {
           fraction-digits 3;
-          range 0.001..2.000;
+          range -0.001..2.000;
         }
         units mV;
         config true;
