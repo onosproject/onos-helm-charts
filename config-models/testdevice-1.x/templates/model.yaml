@@ -14,6 +14,10 @@ spec:
     organization: Open Networking Foundation
     revision: 2018-02-20
     file: test1@2018-02-20.yang
+  - name: test1-extra
+    organization: Open Networking Foundation
+    revision: 2021-04-01
+    file: test1-extra@2021-04-01.yang
   files:
     {{- range $path, $_  := $.Files.Glob "files/yang/*.yang" }}
     {{ base $path }}: |
