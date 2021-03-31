@@ -21,7 +21,7 @@ service:
   name: onos-gui
   type: LoadBalancer
   external:
-    nodePort: 31180
+    nodePort: 31190
 
 ingress:
   enabled: true
