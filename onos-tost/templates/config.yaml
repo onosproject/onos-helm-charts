@@ -46,7 +46,7 @@ spec:
   containers:
     # Push config to ONOS REST API
     - name: config-setter
-      image: hwchiu/kubectl-tools:1.20
+      image: opennetworking/utils:jq-kubectl-curl
       imagePullPolicy: IfNotPresent
       env:
         - name: USER
