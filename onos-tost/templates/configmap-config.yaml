@@ -13,12 +13,21 @@ data:
     #!/bin/sh
     while true
     set -e -x
+    REPLICAS=$(kubectl -n $NAMESPACE get --no-headers sts -lapp=$APP_LABEL -o custom-columns=':.spec.replicas')
+
     do
+      echo 'Checking Pod: Running'
+      RUNNING_POD=$(kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL | grep Running | wc -l)
+      READY_POD=$(kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL -o custom-columns=':.status.containerStatuses[*].ready' | grep true | wc -l)
+      if [ $REPLICAS -eq $RUNNING_POD ] && [ $REPLICAS -eq $READY_POD ]; then
+        echo 'Checking Devices'
         DEVICE_COUNT=$(curl -s -u $USER:$PASSWD -X GET --header 'Accept: application/json' $NETCFG_URL | jq -r '.devices' | jq length)
         if [ $DEVICE_COUNT = 0 ]; then
-          curl -v -u $USER:$PASSWD -X POST -H 'Content-Type: application/json' $NETCFG_URL -d@$CFG_FOLDER/$CFG_FILE
+            curl -v -u $USER:$PASSWD -X POST -H 'Content-Type: application/json' $NETCFG_URL -d@$CFG_FOLDER/$CFG_FILE
         fi
-        sleep 30s
+      fi
+
+      sleep 30s
     done
 
   onos-config: |
@@ -43,19 +52,3 @@ data:
         fi
         cp $REMOTE_CHASSIS_CONFIG $LOCAL_CHASSIS_CONFIG
     fi
-  wait-onos: |
-    #!/bin/sh
-    set -e -x
-    replicas=$(kubectl -n $NAMESPACE get --no-headers sts -lapp=$APP_LABEL -o custom-columns=':.spec.replicas')
-    until [ $replicas -eq $(kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL | grep Running | wc -l) ]; do
-    echo 'Waiting for ONOS POD running';
-    sleep 5;
-    done
-    echo 'kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL'
-
-    until [ 0 -eq $(kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL -o custom-columns=':.status.containerStatuses[*].ready' | grep false | wc -l) ]; do
-    echo 'Waiting for ONOS pod ready';
-    kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL;
-    sleep 5;
-    done
-    kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL -o custom-columns=':.status.containerStatuses[*].ready'

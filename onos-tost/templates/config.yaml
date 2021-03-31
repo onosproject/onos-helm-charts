@@ -8,22 +8,6 @@ metadata:
 spec:
   serviceAccountName: {{ .Values.service_account_name }}
   initContainers:
-    # Wait for ONOS to be fully ready
-    - name: wait-onos
-      image: alpine/k8s:1.18.2
-      imagePullPolicy: IfNotPresent
-      env:
-        - name: NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
-        - name: APP_LABEL
-          value: {{ index .Values "onos-classic" "app_label" | quote }}
-      volumeMounts:
-        - name: configmap-config
-          mountPath: /usr/bin/wait-onos
-          subPath: wait-onos
-      command: ["sh", "-c", "/usr/bin/wait-onos"]
     # Pull config from the git repository
     - name: config-getter
       image: alpine/git
@@ -62,7 +46,7 @@ spec:
   containers:
     # Push config to ONOS REST API
     - name: config-setter
-      image: badouralix/curl-jq:alpine
+      image: hwchiu/kubectl-tools:1.20
       imagePullPolicy: IfNotPresent
       env:
         - name: USER
@@ -81,6 +65,12 @@ spec:
           value: {{ .Values.config.folder }}
         - name: CFG_FILE
           value: {{ .Values.config.file }}
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: APP_LABEL
+          value: {{ index .Values "onos-classic" "app_label" | quote }}
       workingDir: {{ printf "%s/%s" $configDir .Values.config.repo }}
       command: ["sh", "-c", "/usr/bin/onos-setter"]
       volumeMounts:
