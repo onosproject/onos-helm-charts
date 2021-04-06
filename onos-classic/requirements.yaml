@@ -1,5 +1,5 @@
 ---
 dependencies:
 - name: atomix
-  version: 0.1.4
+  version: 0.1.5
   repository: https://charts.atomix.io
