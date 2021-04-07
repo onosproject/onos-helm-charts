@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: {{ template "fullname" . }}-hs
   labels:
-    app: onos-classic
+    app: "{{ .Values.app_label }}"
     name: {{ template "fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: "{{ .Release.Name }}"
@@ -24,4 +24,4 @@ spec:
   publishNotReadyAddresses: true
   clusterIP: None
   selector:
-    app: onos-classic
+    app: "{{ .Values.app_label }}"
