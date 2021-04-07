@@ -70,7 +70,6 @@ onos-classic:
     replicas: 3
     persistence:
       enabled: false
-  app_label: onos-tost-onos-classic
 
 service_account_name: internal-kubectl
 
