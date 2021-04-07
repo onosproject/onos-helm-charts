@@ -4,7 +4,7 @@ kind: ConfigMap
 metadata:
   name: {{ template "fullname" . }}-probe-scripts
   labels:
-    app: onos-classic
+    app: "{{ .Values.app_label }}"
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
