@@ -38,9 +38,6 @@ storage:
     replicas: 1
     partitionsPerCluster: 1
 
-ingress:
-  enabled: false
-
 resources: {}
 
 service:
