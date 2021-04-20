@@ -41,7 +41,17 @@ Selector labels
 config-operator image name
 */}}
 {{- define "config-operator.imagename" -}}
-{{ include "onos-operator.imagename" . }}
+{{- if .Values.global.image.registry -}}
+{{- printf "%s/" .Values.global.image.registry -}}
+{{- else if .Values.image.registry -}}
+{{- printf "%s/" .Values.image.registry -}}
+{{- end -}}
+{{- printf "%s:" .Values.image.repository -}}
+{{- if .Values.global.image.tag -}}
+{{- .Values.global.image.tag -}}
+{{- else -}}
+{{- .Values.image.tag -}}
+{{- end -}}
 {{- end -}}
 
 {{/*
