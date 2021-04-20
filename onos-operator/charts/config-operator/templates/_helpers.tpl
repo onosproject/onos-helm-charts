@@ -55,6 +55,23 @@ config-operator image name
 {{- end -}}
 
 {{/*
+config-operator-init image name
+*/}}
+{{- define "config-operator-init.imagename" -}}
+{{- if .Values.global.image.registry -}}
+{{- printf "%s/" .Values.global.image.registry -}}
+{{- else if .Values.image.registry -}}
+{{- printf "%s/" .Values.image.registry -}}
+{{- end -}}
+{{- printf "%s-init:" .Values.image.repository -}}
+{{- if .Values.global.image.tag -}}
+{{- .Values.global.image.tag -}}
+{{- else -}}
+{{- .Values.image.tag -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
 config-operator scope
 */}}
 {{- define "config-operator.scope" -}}
