@@ -63,7 +63,7 @@ config-operator-init image name
 {{- else if .Values.image.registry -}}
 {{- printf "%s/" .Values.image.registry -}}
 {{- end -}}
-{{- printf "%s-init:" .Values.image.repository -}}
+{{- printf "onosproject/config-operator-init:" -}}
 {{- if .Values.global.image.tag -}}
 {{- .Values.global.image.tag -}}
 {{- else -}}
