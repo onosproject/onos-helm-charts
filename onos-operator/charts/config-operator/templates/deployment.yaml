@@ -22,7 +22,7 @@ spec:
       serviceAccountName: {{ template "config-operator.fullname" . }}
       initContainers:
         - name: init-certs
-          image: onosproject/config-operator-init:{{ .Values.image.tag }}
+          image: {{ include "config-operator-init.imagename" . | quote }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           securityContext:
             allowPrivilegeEscalation: false
