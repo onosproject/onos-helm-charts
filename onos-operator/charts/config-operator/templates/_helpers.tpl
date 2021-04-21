@@ -77,4 +77,3 @@ config-operator scope
 {{- define "config-operator.scope" -}}
 {{ include "onos-operator.scope" . }}
 {{- end -}}
-
