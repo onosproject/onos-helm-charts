@@ -45,7 +45,7 @@ spec:
                 fieldRef:
                   fieldPath: metadata.namespace
             - name: GLOBAL_IMAGE_REGISTRY
-              value: {{ include "config-operator.imageregistry" . | quote }}
+              value: {{ .Values.global.image.registry | quote }}
           volumeMounts:
             - name: config
               mountPath: /etc/onos/config
