@@ -51,7 +51,7 @@ spec:
 {{- end}}
 
 # Sometimes, it is very hard monitoring or taking the snapshots through the proxy
-{{- if .Values.profiler.enabled }}
+{{- if .Values.profiler.exposeNodePort }}
 {{- $root := . -}}
 {{ range $k, $index := until (atoi (quote .Values.replicas) | default 3) }}
 ---

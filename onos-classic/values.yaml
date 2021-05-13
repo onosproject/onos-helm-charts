@@ -34,7 +34,7 @@ individualOpenFlowNodePorts: false
 # Adds an additional nodeport to allow profiler connection.
 # When false, profiler can still connect through proxy/port-forward
 profiler:
-  enabled: false
+  exposeNodePort: false
 
 ports:
   - name: openflow
