@@ -31,6 +31,11 @@ resources:
 
 individualOpenFlowNodePorts: false
 
+# Adds an additional nodeport to allow profiler connection.
+# When false, profiler can still connect through proxy/port-forward
+profiler:
+  exposeNodePort: false
+
 ports:
   - name: openflow
     port: 6653
