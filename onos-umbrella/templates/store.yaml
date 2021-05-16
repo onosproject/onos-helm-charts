@@ -1,0 +1,25 @@
+apiVersion: atomix.io/v2beta1
+kind: Store
+metadata:
+  name: {{ template "global.store.consensus.name" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  protocol:
+    apiVersion: storage.atomix.io/v2beta1
+    kind: MultiRaftProtocol
+    spec:
+      clusters: {{ .Values.global.store.consensus.clusters }}
+      partitions: {{ .Values.global.store.consensus.partitions }}
+      replicas: {{ .Values.global.store.consensus.replicas }}
+      image: {{ template "global.store.consensus.imagename" . }}
+      imagePullPolicy: {{ .Values.global.store.consensus.image.pullPolicy }}
+      {{- if .Values.global.store.consensus.persistence.storageClass }}
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+          - ReadWriteOnce
+          storageClassName: {{ .Values.global.store.consensus.persistence.storageClass | quote }}
+          resources:
+            requests:
+              storage: {{ .Values.global.store.consensus.persistence.storageSize }}
+      {{- end }}

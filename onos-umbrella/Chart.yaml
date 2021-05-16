@@ -15,11 +15,11 @@ maintainers:
 dependencies:
   - name: onos-topo
     condition: import.onos-topo.enabled
-    repository: https://charts.onosproject.org
+    repository: file://../onos-topo
     version: 1.0.6
   - name: onos-config
     condition: import.onos-config.enabled
-    repository: https://charts.onosproject.org
+    repository: file://../onos-config
     version: 1.1.19
   - name: onos-gui
     condition: import.onos-gui.enabled
