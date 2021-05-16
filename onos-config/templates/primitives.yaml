@@ -1,0 +1,90 @@
+apiVersion: primitives.atomix.io/v2beta1
+kind: IndexedMap
+metadata:
+  name: {{ template "onos-config.fullname" . }}-network-changes
+  namespace: {{ .Release.Namespace }}
+spec:
+  store:
+    {{- if .Values.global.store.consensus.enabled}}
+    name: {{template "global.store.consensus.name" .}}
+    {{- else}}
+    name: {{template "onos-config.store.consensus.name" .}}
+    {{- end}}
+---
+apiVersion: primitives.atomix.io/v2beta1
+kind: IndexedMap
+metadata:
+  name: {{ template "onos-config.fullname" . }}-device-changes
+  namespace: {{ .Release.Namespace }}
+spec:
+  store:
+    {{- if .Values.global.store.consensus.enabled}}
+    name: {{template "global.store.consensus.name" .}}
+    {{- else}}
+    name: {{template "onos-config.store.consensus.name" .}}
+    {{- end}}
+---
+apiVersion: primitives.atomix.io/v2beta1
+kind: IndexedMap
+metadata:
+  name: {{ template "onos-config.fullname" . }}-network-snapshots
+  namespace: {{ .Release.Namespace }}
+spec:
+  store:
+    {{- if .Values.global.store.consensus.enabled}}
+    name: {{template "global.store.consensus.name" .}}
+    {{- else}}
+    name: {{template "onos-config.store.consensus.name" .}}
+    {{- end}}
+---
+apiVersion: primitives.atomix.io/v2beta1
+kind: Map
+metadata:
+  name: {{ template "onos-config.fullname" . }}-device-snapshots
+  namespace: {{ .Release.Namespace }}
+spec:
+  store:
+    {{- if .Values.global.store.consensus.enabled}}
+    name: {{template "global.store.consensus.name" .}}
+    {{- else}}
+    name: {{template "onos-config.store.consensus.name" .}}
+    {{- end}}
+---
+apiVersion: primitives.atomix.io/v2beta1
+kind: Map
+metadata:
+  name: {{ template "onos-config.fullname" . }}-snapshots
+  namespace: {{ .Release.Namespace }}
+spec:
+  store:
+    {{- if .Values.global.store.consensus.enabled}}
+    name: {{template "global.store.consensus.name" .}}
+    {{- else}}
+    name: {{template "onos-config.store.consensus.name" .}}
+    {{- end}}
+---
+apiVersion: primitives.atomix.io/v2beta1
+kind: Election
+metadata:
+  name: {{ template "onos-config.fullname" . }}-leaderships
+  namespace: {{ .Release.Namespace }}
+spec:
+  store:
+    {{- if .Values.global.store.consensus.enabled}}
+    name: {{template "global.store.consensus.name" .}}
+    {{- else}}
+    name: {{template "onos-config.store.consensus.name" .}}
+    {{- end}}
+---
+apiVersion: primitives.atomix.io/v2beta1
+kind: Election
+metadata:
+  name: {{ template "onos-config.fullname" . }}-masterships
+  namespace: {{ .Release.Namespace }}
+spec:
+  store:
+    {{- if .Values.global.store.consensus.enabled}}
+    name: {{template "global.store.consensus.name" .}}
+    {{- else}}
+    name: {{template "onos-config.store.consensus.name" .}}
+    {{- end}}

@@ -30,10 +30,13 @@ spec:
         {{- else }}
         compiler.config.onosproject.org/target: {{ printf "github.com/onosproject/onos-config@%s" .Values.image.tag | quote }}
         {{- end }}
+        broker.atomix.io/inject: "true"
+        raft.storage.atomix.io/inject: "true"
         {{- range $key, $value := .Values.annotations }}
         {{ $key }}: {{ $value }}
         {{- end }}
     spec:
+      serviceAccountName: {{ template "onos-config.fullname" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       {{- with .Values.imagePullSecrets }}

@@ -68,3 +68,14 @@ onos-config image name
 {{- .Values.image.tag -}}
 {{- end -}}
 {{- end -}}
+
+{{/*
+onos-config store name
+*/}}
+{{- define "onos-config.store.consensus.name" -}}
+{{- if .Values.store.consensus.name -}}
+{{- printf "%s" .Values.store.consensus.name -}}
+{{- else -}}
+{{- printf "%s-consensus-db" ( include "onos-config.fullname" . ) -}}
+{{- end -}}
+{{- end -}}
