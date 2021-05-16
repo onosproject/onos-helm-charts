@@ -9,28 +9,8 @@ metadata:
     heritage: "{{ .Release.Service }}"
 data:
   onos.yaml: |-
-    atomix:
-      {{- if .Values.global.storage.controller }}
-      controller: {{ .Values.global.storage.controller }}
-      {{- else }}
-      controller: {{ .Values.storage.controller }}
-      {{- end }}
-      namespace: {{ .Release.Namespace }}
-      scope: {{ template "onos-topo.fullname" . }}
-      {{- if .Values.storage.consensus.enabled }}
-      databases:
-        {{- if .Values.storage.consensus.name }}
-        config: {{ .Values.storage.consensus.name }}
-        {{- else }}
-        config: {{ template "onos-topo.fullname" . }}-consensus-db
-        {{- end }}
-      {{- else if .Values.global.storage.consensus.enabled }}
-      databases:
-        {{- if .Values.global.storage.consensus.name }}
-        config: {{ .Values.global.storage.consensus.name }}
-        {{- else }}
-        config: {{ template "global.fullname" . }}-consensus-db
-        {{- end }}
-      {{- end }}
+{{ toYaml .Values.logging | indent 4 }}
+  atomix.yaml: |-
+{{ toYaml .Values.atomix.logging | indent 4 }}
   logging.yaml: |-
 {{ toYaml .Values.logging | indent 4 }}

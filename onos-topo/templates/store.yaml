@@ -1,0 +1,27 @@
+{{- if .Values.store.consensus.enabled }}
+apiVersion: atomix.io/v2beta1
+kind: Store
+metadata:
+  name: {{ template "onos-topo.store.consensus.name" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  protocol:
+    apiVersion: storage.atomix.io/v2beta1
+    kind: MultiRaftProtocol
+    spec:
+      clusters: {{ .Values.store.consensus.clusters }}
+      partitions: {{ .Values.store.consensus.partitions }}
+      replicas: {{ .Values.store.consensus.replicas }}
+      image: {{ template "onos-topo.store.consensus.imagename" . }}
+      imagePullPolicy: {{ .Values.store.consensus.image.pullPolicy }}
+      {{- if .Values.store.consensus.persistence.storageClass }}
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+          - ReadWriteOnce
+          storageClassName: {{ .Values.store.consensus.persistence.storageClass | quote }}
+          resources:
+            requests:
+              storage: {{ .Values.store.consensus.persistence.storageSize }}
+      {{- end }}
+{{- end }}
