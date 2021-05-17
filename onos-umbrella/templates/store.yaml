@@ -13,6 +13,14 @@ spec:
       replicas: {{ .Values.global.store.consensus.replicas }}
       image: {{ template "global.store.consensus.imagename" . }}
       imagePullPolicy: {{ .Values.global.store.consensus.image.pullPolicy }}
+      {{- with .Values.global.store.consensus.image.pullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.global.store.consensus.securityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- if .Values.global.store.consensus.persistence.storageClass }}
       volumeClaimTemplate:
         spec:
