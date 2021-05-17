@@ -9,8 +9,8 @@ metadata:
     heritage: "{{ .Release.Service }}"
 data:
   onos.yaml: |-
-{{ toYaml .Values.logging | indent 4 }}
+    {{ toYaml .Values.logging | nindent 4 }}
   atomix.yaml: |-
-{{ toYaml .Values.atomix.logging | indent 4 }}
+    {{ toYaml .Values.atomix.logging | nindent 4 }}
   logging.yaml: |-
-{{ toYaml .Values.logging | indent 4 }}
+    {{ toYaml .Values.logging | nindent 4 }}
