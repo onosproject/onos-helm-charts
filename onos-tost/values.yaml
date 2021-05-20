@@ -83,12 +83,13 @@ service_account_name: internal-kubectl
 #
 config:
   secretName: onos-git-secret
+  onos_ready_checker_path: /usr/bin/onos-ready-checker
 #   server: gerrit.opencord.org
 #   repo: aether-pod-configs
 #   folder: deployment-configs/aether/apps/menlo-prd
 #   file: onos-netcfg.json
 #   review: 12345    # Optional. Must be used with config.patchset
 #   patchset: 1      # Optional. Must be used with config.review
-#   netcfgUrl: http://onos-tost-onos-classic-hs.onos-tost.svc:8181/onos/v1/network/configuration
-#   clusterUrl: http://onos-tost-onos-classic-hs.onos-tost.svc:8181/onos/v1/cluster
+#   netcfgUrl: http://onos-tost-onos-classic-hs.tost.svc:8181/onos/v1/network/configuration
+#   clusterUrl: http://onos-tost-onos-classic-hs.tost.svc:8181/onos/v1/cluster
 #
