@@ -9,17 +9,28 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 data:
+  onos-ready-checker: |
+    #!/bin/sh
+    REPLICAS=$(kubectl -n $NAMESPACE get --no-headers sts -lapp=$APP_LABEL -o custom-columns=':.spec.replicas')
+    RUNNING_POD=$(kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL | grep Running | wc -l)
+    READY_POD=$(kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL -o custom-columns=':.status.containerStatuses[*].ready' | grep true | wc -l)
+    if ! [ $REPLICAS -eq $RUNNING_POD ]; then
+      echo "Not all ONOS Pods are running"
+      exit 1
+    fi
+    if ! [ $REPLICAS -eq $READY_POD ]; then
+      echo "Not all ONOS Pods are ready"
+      exit 1
+    fi
+    exit 0
+
   onos-setter: |
     #!/bin/sh
     while true
     set -e -x
-    REPLICAS=$(kubectl -n $NAMESPACE get --no-headers sts -lapp=$APP_LABEL -o custom-columns=':.spec.replicas')
-
     do
       echo 'Checking Pod: Running'
-      RUNNING_POD=$(kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL | grep Running | wc -l)
-      READY_POD=$(kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL -o custom-columns=':.status.containerStatuses[*].ready' | grep true | wc -l)
-      if [ $REPLICAS -eq $RUNNING_POD ] && [ $REPLICAS -eq $READY_POD ]; then
+      if sh {{ .Values.config.onos_ready_checker_path }}; then
         echo 'Checking Devices'
         DEVICE_COUNT=$(curl -s -u $USER:$PASSWD -X GET --header 'Accept: application/json' $NETCFG_URL | jq -r '.devices' | jq length)
         if [ $DEVICE_COUNT = 0 ]; then
