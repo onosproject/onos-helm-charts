@@ -16,7 +16,7 @@ replicaCount: 1
 image:
   registry: ""
   repository: onosproject/onos-config
-  tag: v0.7.25
+  tag: v0.7.27
   pullPolicy: IfNotPresent
   pullSecrets: []
 
@@ -38,7 +38,7 @@ plugin:
       class: "standard"
       size: 1Gi
   compiler:
-    version: v0.4.6
+    version: v0.4.7
     target: ""
 
 storage:
