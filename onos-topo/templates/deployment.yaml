@@ -23,8 +23,11 @@ spec:
         resource: {{ template "onos-topo.fullname" . }}
         {{- include "onos-topo.selectorLabels" . | nindent 8 }}
       annotations:
-        "seccomp.security.alpha.kubernetes.io/pod": "unconfined"
+        seccomp.security.alpha.kubernetes.io/pod: "unconfined"
+        broker.atomix.io/inject: "true"
+        raft.storage.atomix.io/inject: "true"
     spec:
+      serviceAccountName: {{ template "onos-topo.fullname" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       {{- with .Values.imagePullSecrets }}
