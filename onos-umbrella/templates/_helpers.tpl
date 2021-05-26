@@ -50,3 +50,25 @@ Selector labels
 app.kubernetes.io/name: {{ include "global.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
+
+{{/*
+global consensus image name
+*/}}
+{{- define "global.store.consensus.imagename" -}}
+{{- if .Values.global.store.consensus.image.registry -}}
+{{- printf "%s/" .Values.global.store.consensus.image.registry -}}
+{{- end -}}
+{{- printf "%s:" .Values.global.store.consensus.image.repository -}}
+{{- .Values.global.store.consensus.image.tag -}}
+{{- end -}}
+
+{{/*
+global consensus store name
+*/}}
+{{- define "global.store.consensus.name" -}}
+{{- if .Values.global.store.consensus.name -}}
+{{- printf "%s" .Values.global.store.consensus.name -}}
+{{- else -}}
+{{- printf "%s-consensus-store" ( include "global.fullname" . ) -}}
+{{- end -}}
+{{- end -}}
