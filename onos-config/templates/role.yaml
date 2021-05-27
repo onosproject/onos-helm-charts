@@ -1,0 +1,21 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  creationTimestamp: null
+  name: {{ template "onos-config.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+rules:
+- apiGroups:
+  - primitives.atomix.io
+  resources:
+  - '*'
+  resourceNames:
+  - {{ template "onos-config.fullname" . }}-leaderships
+  - {{ template "onos-config.fullname" . }}-masterships
+  - {{ template "onos-config.fullname" . }}-network-changes
+  - {{ template "onos-config.fullname" . }}-device-changes
+  - {{ template "onos-config.fullname" . }}-snapshots
+  - {{ template "onos-config.fullname" . }}-network-snapshots
+  - {{ template "onos-config.fullname" . }}-device-snapshots
+  verbs:
+  - '*'
