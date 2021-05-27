@@ -110,5 +110,4 @@ spec:
         configMap:
           name: onos-config-scripts
           defaultMode: 0744
-      restartPolicy: Never
 {{ end }}
