@@ -38,7 +38,7 @@ data:
         # Update if there is difference between two configs(actual_config and expect_config)
         # Do the one-direction comparison
         # Everything in expect_config should be in the actual_config
-        if ! jd actual_config expect_config | grep "^+"; then
+        if jd actual_config expect_config | grep "^+"; then
             echo "Update netcfg"
             curl -v -u $USER:$PASSWD -X POST -H 'Content-Type: application/json' $NETCFG_URL -d@$CFG_FOLDER/$CFG_FILE
         fi
