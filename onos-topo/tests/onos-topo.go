@@ -27,23 +27,9 @@ type ONOSTopoSuite struct {
 	test.Suite
 }
 
-const onosRicComponentName = "onos-topo"
-const testName = "chart-test"
-
 // TestInstall tests installing the onos-topo chart
 func (s *ONOSTopoSuite) TestInstall(t *testing.T) {
-	atomix := helm.Chart(onostest.ControllerChartName, onostest.AtomixChartRepo).
-		Release(onostest.AtomixName(testName, onosRicComponentName)).
-		Set("scope", "Namespace")
-	assert.NoError(t, atomix.Install(true))
-
-	raft := helm.Chart(onostest.RaftStorageControllerChartName, onostest.AtomixChartRepo).
-		Release(onostest.RaftReleaseName(onosRicComponentName)).
-		Set("scope", "Namespace")
-	assert.NoError(t, raft.Install(true))
-
 	topo := helm.Chart("onos-topo", onostest.SdranChartRepo).
-		Release("onos-topo").
-		Set("storage.controller", onostest.AtomixController(testName, onosRicComponentName))
+		Release("onos-topo")
 	assert.NoError(t, topo.Install(true))
 }
