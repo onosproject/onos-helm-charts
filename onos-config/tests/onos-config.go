@@ -17,6 +17,7 @@ package tests
 import (
 	"github.com/golangplus/testing/assert"
 	"github.com/onosproject/helmit/pkg/helm"
+	"github.com/onosproject/helmit/pkg/input"
 	"github.com/onosproject/helmit/pkg/test"
 	"github.com/onosproject/onos-test/pkg/onostest"
 	"testing"
@@ -25,30 +26,26 @@ import (
 // ONOSConfigSuite is the onos-config chart test suite
 type ONOSConfigSuite struct {
 	test.Suite
+	c *input.Context
 }
 
-const onosComponentName = "onos-config"
-const testName = "chart-test"
+// SetupTestSuite sets up the onos-topo test suite
+func (s *ONOSConfigSuite) SetupTestSuite(c *input.Context) error {
+	s.c = c
+	return nil
+}
 
 // TestInstall tests installing the onos-config chart
 func (s *ONOSConfigSuite) TestInstall(t *testing.T) {
-	atomix := helm.Chart(onostest.ControllerChartName, onostest.AtomixChartRepo).
-		Release(onostest.AtomixName(testName, onosComponentName)).
-		Set("scope", "Namespace")
-	assert.NoError(t, atomix.Install(true))
-
-	raft := helm.Chart(onostest.RaftStorageControllerChartName, onostest.AtomixChartRepo).
-		Release(onostest.RaftReleaseName(onosComponentName)).
-		Set("scope", "Namespace")
-	assert.NoError(t, raft.Install(true))
+	registry := s.c.GetArg("registry").String("")
 
 	topo := helm.Chart("onos-topo", onostest.OnosChartRepo).
 		Release("onos-topo").
-		Set("storage.controller", onostest.AtomixController(testName, onosComponentName))
+		Set("global.image.registry", registry)
 	assert.NoError(t, topo.Install(false))
 
 	config := helm.Chart("onos-config", onostest.OnosChartRepo).
 		Release("onos-config").
-		Set("storage.controller", onostest.AtomixController(testName, onosComponentName))
+		Set("global.image.registry", registry)
 	assert.NoError(t, config.Install(true))
 }

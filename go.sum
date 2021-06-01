@@ -414,6 +414,8 @@ github.com/oklog/ulid v1.3.1/go.mod h1:CirwcVhetQ6Lv90oh/F+FBtV6XMibvdAFo93nm5qn
 github.com/olekukonko/tablewriter v0.0.0-20170122224234-a0225b3f23b5/go.mod h1:vsDQFd/mU46D+Z4whnwzcISnGGzXWMclvtLoiIKAKIo=
 github.com/onosproject/helmit v0.6.11 h1:zhWrpNRIdgo4bR8P9nNqkGsOJJhtEPIUcCfFBDqil3c=
 github.com/onosproject/helmit v0.6.11/go.mod h1:1YWAcvSyg1USHaMHBuRizvZPcOsZ/z9vi/8ROZMuxEg=
+github.com/onosproject/helmit v0.6.12 h1:8dJysPNYAwojiIPLRSKMVev6vmNsl29s66pQby2QeWo=
+github.com/onosproject/helmit v0.6.12/go.mod h1:1YWAcvSyg1USHaMHBuRizvZPcOsZ/z9vi/8ROZMuxEg=
 github.com/onosproject/onos-lib-go v0.7.10 h1:4lfrfjmKyte9RwFbGgcKhRdsEF9qzRNCKVOLXXyNz9I=
 github.com/onosproject/onos-lib-go v0.7.10/go.mod h1:/QjMn+Lb+vxZfnCFLtoxhwHAAuHQnRjjOj3qCbcknhQ=
 github.com/onosproject/onos-test v0.6.2 h1:eKnMXFBsMwfls+tMijeUlPKCmmj1XeHPBbrkkB8xK8s=
