@@ -38,7 +38,7 @@ func (s *ONOSTopoSuite) SetupTestSuite(c *input.Context) error {
 // TestInstall tests installing the onos-topo chart
 func (s *ONOSTopoSuite) TestInstall(t *testing.T) {
 	registry := s.c.GetArg("registry").String("")
-	topo := helm.Chart("onos-topo", onostest.SdranChartRepo).
+	topo := helm.Chart("onos-topo", onostest.OnosChartRepo).
 		Release("onos-topo").
 		Set("global.image.registry", registry)
 	assert.NoError(t, topo.Install(true))
