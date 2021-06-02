@@ -11,7 +11,7 @@ spec:
       port: 8181
       nodePort: {{ .Values.onosApiPort }}
   selector:
-    app: onos-classic
+    app: "{{ .Values.app_label }}"
   {{- end}}
 ---
   {{- if .Values.onosSshPort }}
@@ -26,7 +26,7 @@ spec:
       port: 8101
       nodePort: {{ .Values.onosSshPort }}
   selector:
-    app: onos-classic
+    app: "{{ .Values.app_label }}"
   {{- end}}
 
 # workaround for . not working, see
@@ -46,6 +46,26 @@ spec:
       port: 6653
       nodePort: {{ add $index 31653 }}
   selector:
-      statefulset.kubernetes.io/pod-name: onos-onos-classic-{{ $index }}
+      statefulset.kubernetes.io/pod-name: {{ template "fullname" $root }}-{{ $index }}
+{{ end }}
+{{- end}}
+
+# Sometimes, it is very hard monitoring or taking the snapshots through the proxy
+{{- if .Values.profiler.exposeNodePort }}
+{{- $root := . -}}
+{{ range $k, $index := until (atoi (quote .Values.replicas) | default 3) }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: onos-profiler-{{ $index }}
+spec:
+  type: NodePort
+  ports:
+    - name: onos-profiler-{{ $index }}
+      port: 10001
+      nodePort: {{ add $index 31004 }}
+  selector:
+      statefulset.kubernetes.io/pod-name: {{ template "fullname" $root }}-{{ $index }}
 {{ end }}
 {{- end}}

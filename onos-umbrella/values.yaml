@@ -5,6 +5,23 @@
 global:
   fullnameOverride: "onos"
   nameOverride: ""
+  store:
+    consensus:
+      enabled: true
+      name: ""
+      image:
+        registry: ""
+        repository: atomix/atomix-raft-storage-node
+        tag: v0.6.6
+        pullPolicy: IfNotPresent
+        pullSecrets: []
+      clusters: 1
+      replicas: 1
+      partitions: 1
+      persistence:
+        storageClass: ""
+        storageSize: 1Gi
+  # Deprecated: use 'store' instead
   storage:
     controller: "atomix-controller.kube-system.svc.cluster.local:5679"
     consensus:
@@ -31,6 +48,10 @@ import:
 
 # ONOS-TOPO
 onos-topo:
+  store:
+    consensus:
+      enabled: false
+  # Deprecated: use 'store' instead
   storage:
     controller: ""
     consensus:
@@ -38,6 +59,10 @@ onos-topo:
 
 # ONOS-CONFIG
 onos-config:
+  store:
+    consensus:
+      enabled: false
+  # Deprecated: use 'store' instead
   storage:
     controller: ""
     consensus:

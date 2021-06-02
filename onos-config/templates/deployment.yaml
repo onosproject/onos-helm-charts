@@ -23,6 +23,8 @@ spec:
         resource: {{ template "onos-config.fullname" . }}
         {{- include "onos-config.selectorLabels" . | nindent 8 }}
       annotations:
+        broker.atomix.io/inject: "true"
+        raft.storage.atomix.io/inject: "true"
         registry.config.onosproject.org/inject: {{ template "onos-config.fullname" . }}
         compiler.config.onosproject.org/version: {{ .Values.plugin.compiler.version | quote }}
         {{- if .Values.plugin.compiler.target }}
@@ -34,6 +36,7 @@ spec:
         {{ $key }}: {{ $value }}
         {{- end }}
     spec:
+      serviceAccountName: {{ template "onos-config.fullname" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       {{- with .Values.imagePullSecrets }}

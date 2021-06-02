@@ -2,6 +2,11 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+global:
+  image:
+    registry: ""
+    tag: ""
+
 replicaCount: 1
 
 image:
@@ -21,7 +26,7 @@ service:
   name: onos-gui
   type: LoadBalancer
   external:
-    nodePort: 31180
+    nodePort: 31191
 
 ingress:
   enabled: true

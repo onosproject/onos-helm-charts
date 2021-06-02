@@ -33,7 +33,7 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: {{ include "onos-gui.imagename" . | quote }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: NAMESPACE
@@ -67,7 +67,8 @@ spec:
               mountPath: /usr/share/certs
               readOnly: true
         - name: onos-envoy
-          image: "{{ .Values.Envoy.image.repository }}:{{ .Values.Envoy.image.tag }}"
+          {{ $registry := include "onos-gui.registryname" . }}
+          image: "{{$registry}}{{ .Values.Envoy.image.repository }}:{{ .Values.Envoy.image.tag }}"
           imagePullPolicy: {{ .Values.Envoy.image.pullPolicy }}
           command:
             {{ toYaml .Values.Envoy.command | nindent 12 }}

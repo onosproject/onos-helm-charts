@@ -3,8 +3,8 @@ name: onos-umbrella
 description: Umbrella chart to deploy all µONOS
 kubeVersion: ">=1.17.0"
 type: application
-version: 0.1.13
-appVersion: v0.0.0
+version: 1.1.8
+appVersion: v1.1.0
 keywords:
   - onos
   - sdn
@@ -16,36 +16,36 @@ dependencies:
   - name: onos-topo
     condition: import.onos-topo.enabled
     repository: https://charts.onosproject.org
-    version: 1.0.4
+    version: 1.0.11
   - name: onos-config
     condition: import.onos-config.enabled
     repository: https://charts.onosproject.org
-    version: 1.1.11
+    version: 1.1.23
   - name: onos-gui
     condition: import.onos-gui.enabled
     repository: https://charts.onosproject.org
-    version: 1.0.4
+    version: 1.0.8
   - name: onos-cli
     condition: import.onos-cli.enabled
     repository: https://charts.onosproject.org
-    version: 1.0.5
+    version: 1.0.12
   - name: config-model-devicesim
     condition: onos-config.models.devicesim.v1.enabled
     repository: https://charts.onosproject.org
-    version: 1.0.4
+    version: 1.0.5
     alias: config-model-devicesim-1-0-0
   - name: config-model-stratum
     condition: onos-config.models.stratum.v1.enabled
     repository: https://charts.onosproject.org
-    version: 1.0.1
+    version: 1.0.2
     alias: config-model-stratum-1-0-0
   - name: config-model-testdevice
     condition: onos-config.models.testdevice.v1.enabled
     repository: https://charts.onosproject.org
-    version: 1.0.2
+    version: 1.0.3
     alias: config-model-testdevice-1-0-0
   - name: config-model-testdevice
     condition: onos-config.models.testdevice.v2.enabled
     repository: https://charts.onosproject.org
-    version: 2.0.2
+    version: 2.0.3
     alias: config-model-testdevice-2-0-0

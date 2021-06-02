@@ -22,7 +22,7 @@ spec:
       serviceAccountName: {{ template "config-operator.fullname" . }}
       initContainers:
         - name: init-certs
-          image: onosproject/config-operator-init:{{ .Values.image.tag }}
+          image: {{ include "config-operator-init.imagename" . | quote }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           securityContext:
             allowPrivilegeEscalation: false
@@ -44,6 +44,8 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
+            - name: GLOBAL_IMAGE_REGISTRY
+              value: {{ .Values.global.image.registry | quote }}
           volumeMounts:
             - name: config
               mountPath: /etc/onos/config
@@ -89,6 +91,8 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
+            - name: GLOBAL_IMAGE_REGISTRY
+              value: {{ .Values.global.image.registry | quote }}
           volumeMounts:
             - name: config
               mountPath: /etc/onos/config

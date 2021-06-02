@@ -1,97 +1,113 @@
 # Fetch netcfg from pod config repository and push to ONOS once it is READY
 {{ if .Values.config }}
 {{ $configDir := "/config" }}
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: config
+  labels:
+    component: "onos-tost-config"
 spec:
-  serviceAccountName: {{ .Values.service_account_name }}
-  initContainers:
-    # Wait for ONOS to be fully ready
-    - name: wait-onos
-      image: alpine/k8s:1.18.2
-      imagePullPolicy: IfNotPresent
-      env:
-        - name: NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
-        - name: APP_LABEL
-          value: {{ index .Values "onos-classic" "app_label" | quote }}
-      volumeMounts:
-        - name: configmap-config
-          mountPath: /usr/bin/wait-onos
-          subPath: wait-onos
-      command: ["sh", "-c", "/usr/bin/wait-onos"]
-    # Pull config from the git repository
-    - name: config-getter
-      image: alpine/git
-      imagePullPolicy: IfNotPresent
-      env:
-        - name: USER
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.config.secretName }}
-              key: username
-        - name: PASSWD
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.config.secretName }}
-              key: password
-        - name: CFG_SERVER
-          value: {{ .Values.config.server }}
-        - name: CFG_REPO
-          value: {{ .Values.config.repo }}
-        {{ if .Values.config.review }}
-        - name: CFG_REVIEW
-          value: {{ .Values.config.review | quote }}
-        {{ end }}
-        {{ if .Values.config.patchset }}
-        - name: CFG_PATCHSET
-          value: {{ .Values.config.patchset | quote }}
-        {{ end }}
-      workingDir: {{ $configDir }}
-      command: ["sh", "-c", "/usr/bin/onos-config"]
-      volumeMounts:
-        - name: config-dir
-          mountPath: {{ $configDir }}
-        - name: configmap-config
-          mountPath: /usr/bin/onos-config
-          subPath: onos-config
-  containers:
-    # Push config to ONOS REST API
-    - name: config-setter
-      image: curlimages/curl
-      imagePullPolicy: IfNotPresent
-      env:
-        - name: USER
-          valueFrom:
-            secretKeyRef:
-              name: onos-secret
-              key: username
-        - name: PASSWD
-          valueFrom:
-            secretKeyRef:
-              name: onos-secret
-              key: password
-        - name: NETCFG_URL
-          value: {{ .Values.config.netcfgUrl }}
-        - name: CFG_FOLDER
-          value: {{ .Values.config.folder }}
-        - name: CFG_FILE
-          value: {{ .Values.config.file }}
-      workingDir: {{ printf "%s/%s" $configDir .Values.config.repo }}
-      command: ["sh", "-c", "curl -v -u $USER:$PASSWD POST -H 'Content-Type: application/json' $NETCFG_URL -d@$CFG_FOLDER/$CFG_FILE"]
-      volumeMounts:
-        - name: config-dir
-          mountPath: {{ $configDir }}
-  volumes:
-  - name: config-dir
-    emptyDir: {}
-  - name: configmap-config
-    configMap:
-      name: onos-config-scripts
-      defaultMode: 0744
-  restartPolicy: Never
+  replicas: 1
+  selector:
+    matchLabels:
+      component: "onos-tost-config"
+  template:
+    metadata:
+      labels:
+        component: "onos-tost-config"
+    spec:
+      serviceAccountName: {{ .Values.service_account_name }}
+      initContainers:
+        # Pull config from the git repository
+        - name: config-getter
+          image: alpine/git
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.config.secretName }}
+                  key: username
+            - name: PASSWD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.config.secretName }}
+                  key: password
+            - name: CFG_SERVER
+              value: {{ .Values.config.server }}
+            - name: CFG_REPO
+              value: {{ .Values.config.repo }}
+            {{ if .Values.config.review }}
+            - name: CFG_REVIEW
+              value: {{ .Values.config.review | quote }}
+            {{ end }}
+            {{ if .Values.config.patchset }}
+            - name: CFG_PATCHSET
+              value: {{ .Values.config.patchset | quote }}
+            {{ end }}
+          workingDir: {{ $configDir }}
+          command: ["sh", "-c", "/usr/bin/onos-config"]
+          volumeMounts:
+            - name: config-dir
+              mountPath: {{ $configDir }}
+            - name: configmap-config
+              mountPath: /usr/bin/onos-config
+              subPath: onos-config
+      containers:
+        # Push config to ONOS REST API
+        - name: config-setter
+          image: opennetworking/utils:0.2.0
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: USER
+              valueFrom:
+                secretKeyRef:
+                  name: onos-secret
+                  key: username
+            - name: PASSWD
+              valueFrom:
+                secretKeyRef:
+                  name: onos-secret
+                  key: password
+            - name: NETCFG_URL
+              value: {{ .Values.config.netcfgUrl }}
+            - name: CFG_FOLDER
+              value: {{ .Values.config.folder }}
+            - name: CFG_FILE
+              value: {{ .Values.config.file }}
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: APP_LABEL
+              value: {{ index .Values "onos-classic" "app_label" | quote }}
+          workingDir: {{ printf "%s/%s" $configDir .Values.config.repo }}
+          command: ["sh", "-c", "/usr/bin/onos-setter"]
+          readinessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - {{ .Values.config.onos_ready_checker_path }}
+            initialDelaySeconds: 20
+            periodSeconds: 15
+            failureThreshold: 1
+            timeoutSeconds: 5
+          volumeMounts:
+            - name: config-dir
+              mountPath: {{ $configDir }}
+            - name: configmap-config
+              mountPath: /usr/bin/onos-setter
+              subPath: onos-setter
+            - name: configmap-config
+              mountPath: {{ .Values.config.onos_ready_checker_path }}
+              subPath: onos-ready-checker
+      volumes:
+      - name: config-dir
+        emptyDir: {}
+      - name: configmap-config
+        configMap:
+          name: onos-config-scripts
+          defaultMode: 0744
 {{ end }}

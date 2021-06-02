@@ -33,4 +33,4 @@ data:
         {{- end }}
       {{- end }}
   logging.yaml: |-
-{{ toYaml .Values.logging | indent 4 }}
+    {{ toYaml .Values.logging | nindent 4 }}

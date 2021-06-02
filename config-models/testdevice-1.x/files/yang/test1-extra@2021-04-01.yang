@@ -1,0 +1,85 @@
+module test1-extra {
+    namespace "http://opennetworking.org/devicesim/test1-extra";
+    prefix t1e;
+
+    import test1 { prefix t1; }
+
+    organization "Open Networking Foundation.";
+    contact "Sean Condon";
+    description "An extension of test1 to show leafrefs as list indices";
+
+    revision "2021-04-01" {
+      description "Augmented with new list with leafref as list indices";
+      reference "RFC 6087";
+    }
+
+    augment "/t1:cont1a" {
+        list list4 {
+            key id;
+            description "A list with a leafref index";
+
+            leaf id {
+                type leafref {
+                    path "/t1:cont1a/t1:list2a/t1:name";
+                }
+                description "Link to list2a names";
+            }
+
+            leaf leaf4b {
+                type string {
+                    length 1..20;
+                }
+                description "leaf 4a on list4a elements";
+            }
+
+            list list4a {
+                key "fkey1 fkey2";
+                description "A list within a list with 2 keys as leaf refs";
+
+                leaf fkey1 {
+                    type leafref {
+                        path "/t1:cont1a/t1e:list5/t1e:key1";
+                    }
+                    description "foreign key 1 - ref to list5a/key1";
+                }
+                leaf fkey2 {
+                    type leafref {
+                        path "/t1:cont1a/t1e:list5/t1e:key2";
+                    }
+                    description "foreign key 2 - ref to list5a/key2";
+                }
+                leaf displayname {
+                    type string {
+                        length "1..5 | 10..20";
+                    }
+                    description "an optional display name attribute with 2 different length ranges";
+                }
+            }
+        }
+
+        list list5 {
+            key "key1 key2";
+            description "A list with 2 keys";
+
+            leaf key1 {
+                type string {
+                    length 1..20;
+                }
+                description "key1 of list 5 - string";
+            }
+            leaf key2 {
+                type uint8 {
+                    range 2..10;
+                }
+                description "key2 of list 5 - number";
+            }
+            leaf leaf5a {
+                type string {
+                    length 1..20;
+                }
+                description "non key attribute of list 5 - string";
+            }
+
+        }
+    }
+}

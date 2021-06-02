@@ -9,6 +9,44 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 data:
+  onos-ready-checker: |
+    #!/bin/sh
+    REPLICAS=$(kubectl -n $NAMESPACE get --no-headers sts -lapp=$APP_LABEL -o custom-columns=':.spec.replicas')
+    RUNNING_POD=$(kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL | grep Running | wc -l)
+    READY_POD=$(kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL -o custom-columns=':.status.containerStatuses[*].ready' | grep true | wc -l)
+    if ! [ $REPLICAS -eq $RUNNING_POD ]; then
+      echo "Not all ONOS Pods are running"
+      exit 1
+    fi
+    if ! [ $REPLICAS -eq $READY_POD ]; then
+      echo "Not all ONOS Pods are ready"
+      exit 1
+    fi
+    exit 0
+
+  onos-setter: |
+    #!/bin/sh
+    while true
+    set -e -x
+    do
+      echo 'Checking Pod: Running'
+      if sh {{ .Values.config.onos_ready_checker_path }}; then
+        echo 'Checking Difference between ONOS config and target config'
+        # Upper all MAC address
+        sed -E "s/([[:xdigit:]]{2}:)[[:xdigit:]]{2}/\U&/g" $CFG_FOLDER/$CFG_FILE > expect_config
+        curl -s -u $USER:$PASSWD -X GET --header 'Accept: application/json' $NETCFG_URL | jq > actual_config
+        # Update if there is difference between two configs(actual_config and expect_config)
+        # Do the one-direction comparison
+        # Everything in expect_config should be in the actual_config
+        if jd actual_config expect_config | grep "^+"; then
+            echo "Update netcfg"
+            curl -v -u $USER:$PASSWD -X POST -H 'Content-Type: application/json' $NETCFG_URL -d@$CFG_FOLDER/$CFG_FILE
+        fi
+      fi
+
+      sleep 30s
+    done
+
   onos-config: |
     #!/bin/sh
     set -e -x
@@ -31,19 +69,3 @@ data:
         fi
         cp $REMOTE_CHASSIS_CONFIG $LOCAL_CHASSIS_CONFIG
     fi
-  wait-onos: |
-    #!/bin/sh
-    set -e -x
-    replicas=$(kubectl -n $NAMESPACE get --no-headers sts -lapp=$APP_LABEL -o custom-columns=':.spec.replicas')
-    until [ $replicas -eq $(kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL | grep Running | wc -l) ]; do
-    echo 'Waiting for ONOS POD running';
-    sleep 5;
-    done
-    echo 'kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL'
-
-    until [ 0 -eq $(kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL -o custom-columns=':.status.containerStatuses[*].ready' | grep false | wc -l) ]; do
-    echo 'Waiting for ONOS pod ready';
-    kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL;
-    sleep 5;
-    done
-    kubectl -n $NAMESPACE get --no-headers pods -lapp=$APP_LABEL -o custom-columns=':.status.containerStatuses[*].ready'

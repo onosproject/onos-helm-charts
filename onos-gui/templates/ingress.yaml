@@ -1,5 +1,5 @@
 {{- if .Values.ingress.enabled }}
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ template "onos-gui.fullname" . }}-ingress
@@ -21,7 +21,11 @@ spec:
     - host: onos-gui.onosproject.org
       http:
         paths:
-          - backend:
-              serviceName: {{ template "onos-gui.fullname" . }}
-              servicePort: web
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                 name: {{ template "onos-gui.fullname" . }}
+                 port:
+                    number: {{ .Values.ports.web.containerPort }}
   {{- end }}
