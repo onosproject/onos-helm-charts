@@ -29,7 +29,7 @@ type OnosUmbrellaSuite struct {
 	c *input.Context
 }
 
-// SetupTestSuite sets up the onos-topo test suite
+// SetupTestSuite sets up the onos umbrella test suite
 func (s *OnosUmbrellaSuite) SetupTestSuite(c *input.Context) error {
 	s.c = c
 	return nil
