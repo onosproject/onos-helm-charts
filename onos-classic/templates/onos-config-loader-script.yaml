@@ -1,0 +1,90 @@
+# Copyright 2021-present Open Networking Foundation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+{{ if .Values.config.enabled }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-onos-configs-loader
+data:
+  loader.sh: >
+    set -euo pipefail
+
+    # onos-config-loader most likely start before ONOS is deployed, so check for ONOS before waiting for it to be ready
+
+    has_onos=$(kubectl get pods -l app=onos-classic -n {{ .Release.Namespace }} | wc -l);
+
+    while [[ $has_onos == 0 ]]; do
+      echo -e "Waiting for ONOS to be deployed";
+      sleep 5;
+      has_onos=$(kubectl get pods -l app=onos-classic -n {{ .Release.Namespace }} | wc -l);
+    done
+
+    # wait all ONOS pods to be ready
+
+    onos_starting=$(kubectl get pods -l app=onos-classic -n {{ .Release.Namespace }} --field-selector=status.phase!=Running | wc -l);
+
+    while [[ $onos_starting != 0 ]]; do
+      echo -e "$onos_starting ONOS instances are still starting...";
+      sleep 5;
+      onos_starting=$(kubectl get pods -n {{ .Release.Namespace }} -l app=onos-classic | grep "0/" | wc -l);
+    done
+
+    # a POST to a non ready netcfg return 207 in case of failure, while a GET returns 404,
+    # check the apps key is ready to accept data before sending them
+
+    until curl --fail -sSL --user {{ .Values.config.username }}:{{ .Values.config.password }} -X GET -H 'Accept: application/json' "http://{{ .Release.Name }}-onos-classic-hs:8181/onos/v1/network/configuration/apps";
+    do
+      echo -e "Waiting for netcfg to be active";
+      sleep 5;
+    done
+
+    echo -e "\n\nLoading netcfg into ONOS\n";
+    cat /opt/configs/netcfg.json;
+    responseCode=$(curl --write-out '%{http_code}' --fail -sSL --user {{ .Values.config.username }}:{{ .Values.config.password }} -X POST "http://{{ .Release.Name }}-onos-classic-hs:8181/onos/v1/network/configuration/" -H Content-type:application/json -d @/opt/configs/netcfg.json);
+    if [[ $responseCode == 207 ]]; then
+      echo "Failed to load netcfg, exiting..."
+      exit 1
+    fi
+
+    sleep 5;
+    echo -e "Updated netconfig is:";
+    curl --fail -sSL --user {{ .Values.config.username }}:{{ .Values.config.password }} -X GET -H 'Accept: application/json' "http://{{ .Release.Name }}-onos-classic-hs:8181/onos/v1/network/configuration";
+    echo -e "\nCompleted on: ";
+    date;
+
+    echo -e "\n\n\nLoading component configs into ONOS\n";
+    CFGS=$(ls /opt/configs | grep -v netcfg.json);
+    for CFG in ${CFGS};
+    do
+      echo -e "Check that component $CFG is active";
+      until curl --fail -sSL --user {{ .Values.config.username }}:{{ .Values.config.password }} -X GET "http://{{ .Release.Name }}-onos-classic-hs:8181/onos/v1/configuration/$CFG";
+      do
+        echo -e "Waiting for $CFG to be active";
+        sleep 5;
+      done
+      echo -e "\nLoading $CFG config";
+      cat /opt/configs/$CFG;
+      responseCode=$(curl --write-out '%{http_code}' --fail -sSL --user {{ .Values.config.username }}:{{ .Values.config.password }} -X POST "http://{{ .Release.Name }}-onos-classic-hs:8181/onos/v1/configuration/$CFG" -H Content-type:application/json -d @/opt/configs/$CFG);
+      if [[ $responseCode == 207 ]]; then
+        echo "Failed to load $CFG, exiting..."
+        exit 1
+      fi
+      echo -e "Updated component config for $CFG is:";
+      curl --fail -sSL --user {{ .Values.config.username }}:{{ .Values.config.password }} -X GET "http://{{ .Release.Name }}-onos-classic-hs:8181/onos/v1/configuration/$CFG";
+      echo -e "\nCompleted on: ";
+      date;
+      echo -e "\n\n\n"
+    done
+{{ end }}
