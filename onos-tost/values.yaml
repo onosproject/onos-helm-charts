@@ -32,6 +32,7 @@ onos-classic:
     - org.stratumproject.fabric-tna
     - org.onosproject.inbandtelemetry
     - org.onosproject.dhcprelay
+    - org.onosproject.hostprobingprovider
 
   logging:
     karafVersion: 4.2.9
