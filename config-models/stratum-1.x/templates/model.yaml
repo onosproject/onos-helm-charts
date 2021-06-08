@@ -9,6 +9,7 @@ spec:
   plugin:
     type: Stratum
     version: {{ .Chart.AppVersion | quote }}
+    getStateMode: GetStateExplicitRoPathsExpandWildcards
   modules:
   - name: iana-if-type
     revision: 2017-01-19
