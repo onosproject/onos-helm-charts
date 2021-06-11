@@ -33,7 +33,8 @@ data:
       if sh {{ .Values.config.onos_ready_checker_path }}; then
         echo 'Checking Difference between ONOS config and target config'
         # Upper all MAC address
-        sed -E "s/([[:xdigit:]]{2}:)[[:xdigit:]]{2}/\U&/g" $CFG_FOLDER/$CFG_FILE > expect_config
+        # e.g 3c:ec:ef:1c:f3:95
+        sed -E "s/([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}/\U&/g" $CFG_FOLDER/$CFG_FILE > expect_config
         curl -s -u $USER:$PASSWD -X GET --header 'Accept: application/json' $NETCFG_URL | jq > actual_config
         # Update if there is difference between two configs(actual_config and expect_config)
         # Do the one-direction comparison
