@@ -117,11 +117,43 @@ spec:
               add:
                 - SYS_PTRACE
             {{- end }}
+        {{ if .Values.openpolicyagent.enabled }}
+        - name: openpolicyagent
+          image: {{ include "openpolicyagent.imagename" . | quote }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+          - name: http
+            containerPort: 8181
+          args:
+            - "run"
+            - "--server"
+            - "/etc/onos/rego"
+          livenessProbe:
+            httpGet:
+              scheme: HTTP              # assumes OPA listens on localhost:8181
+              port: 8181
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health?bundle=true  # Include bundle activation in readiness
+              scheme: HTTP
+              port: 8181
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          volumeMounts:
+            - name: rego
+              mountPath: /etc/onos/rego
+              readOnly: true
+        {{end}}
       # Mount volumes
       volumes:
         - name: config
           configMap:
             name: {{ template "onos-config.fullname" . }}-config
+        - name: rego
+          configMap:
+            name: {{ template "onos-config.fullname" . }}-rego
         - name: secret
           secret:
             secretName: {{ template "onos-config.fullname" . }}-secret

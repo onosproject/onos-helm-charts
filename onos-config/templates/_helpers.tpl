@@ -96,3 +96,20 @@ onos-config consensus store name
 {{- printf "%s-consensus-store" ( include "onos-config.fullname" . ) -}}
 {{- end -}}
 {{- end -}}
+
+{{/*
+openpolicyagent image name
+*/}}
+{{- define "openpolicyagent.imagename" -}}
+{{- if .Values.global.openpolicyagent.image.registry -}}
+{{- printf "%s/" .Values.global.openpolicyagent.image.registry -}}
+{{- else if .Values.openpolicyagent.image.registry -}}
+{{- printf "%s/" .Values.openpolicyagent.image.registry -}}
+{{- end -}}
+{{- printf "%s:" .Values.openpolicyagent.image.repository -}}
+{{- if .Values.global.openpolicyagent.image.tag -}}
+{{- .Values.global.openpolicyagent.image.tag -}}
+{{- else -}}
+{{- .Values.openpolicyagent.image.tag -}}
+{{- end -}}
+{{- end -}}
