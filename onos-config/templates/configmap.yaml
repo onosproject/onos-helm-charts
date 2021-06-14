@@ -45,4 +45,4 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 data:
-{{ (.Files.Glob "files/rego/*.rego").AsConfig | indent 2 }}
+{{ toYaml .Values.openpolicyagent.rego | indent 4 }}

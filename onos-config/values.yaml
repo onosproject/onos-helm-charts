@@ -120,3 +120,4 @@ openpolicyagent:
     repository: openpolicyagent/opa
     registry: ""
     tag: 0.29.4
+  rego:
