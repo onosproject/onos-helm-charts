@@ -85,6 +85,8 @@ onos-config consensus image name
 {{- else -}}
 {{- .Values.store.consensus.image.tag -}}
 {{- end -}}
+{{- else -}}
+""
 {{- end -}}
 {{- end -}}
 
