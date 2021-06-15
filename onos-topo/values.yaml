@@ -54,7 +54,7 @@ store:
 storage:
   controller: "atomix-controller.kube-system.svc.cluster.local:5679"
   consensus:
-    enabled: true
+    enabled: false
     name: ""
     type: raft
     image: ""
