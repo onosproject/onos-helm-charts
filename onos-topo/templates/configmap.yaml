@@ -24,13 +24,15 @@ data:
         {{- else }}
         config: {{ template "onos-topo.fullname" . }}-consensus-db
         {{- end }}
-      {{- else if .Values.global.storage.consensus.enabled }}
+      {{- else if .Values.global.storage.consensus }}
+      {{- if .Values.global.storage.consensus.enabled }}
       databases:
         {{- if .Values.global.storage.consensus.name }}
         config: {{ .Values.global.storage.consensus.name }}
         {{- else }}
         config: {{ template "global.fullname" . }}-consensus-db
         {{- end }}
+      {{- end }}
       {{- end }}
   logging.yaml: |-
     {{ toYaml .Values.logging | nindent 4 }}
