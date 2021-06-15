@@ -34,14 +34,18 @@ and when login is successful will redirect to an authenticated GUI.
 > To test it, browse to http://dex-ldap-umbrella:32000/.well-known/openid-configuration to see the configuration.
 
 
-There are 3 users in 3 groups with the LDIF defined in `values.yaml`
+There are 7 users in 6 groups with the LDIF defined in `values.yaml`
 
 ```
-User            login                 Group:   mixedGroup      charactersGroup    AetherROCAdmin
-===============================================================================================
-Alice Admin     alicea@opennetworking.org         ✓                                   ✓
-Bob Cratchit    bobc@opennetworking.org           ✓              ✓
-Charlie Brown   charlieb@opennetworking.org                       ✓
+User             login                 Group:   mixedGroup      charactersGroup    AetherROCAdmin  EnterpriseAdmin  starbucks   acme
+=====================================================================================================================================
+Alice Admin      alicea@opennetworking.org         ✓                                   ✓
+Bob Cratchit     bobc@opennetworking.org           ✓              ✓
+Charlie Brown    charlieb@opennetworking.org                      ✓
+Daisy Duke       daisyd@opennetworking.org                        ✓                                    ✓              ✓
+Elmer Fudd       elmerf@opennetworking.org                        ✓                                                   ✓
+Fred Flintstone  fredf@opennetworking.org                         ✓                                    ✓                          ✓
+Gandalf The Grey gandalfg@opennetworking.org                      ✓                                                               ✓
 ```
 
 The password for each is `password`
