@@ -78,6 +78,66 @@ openldap:
       uidnumber: 1002
       userpassword: {MD5}X03MO1qnZdYdgyfeuILPmQ==
 
+      # Daisy Duke (password is 'password')
+      dn: cn=Daisy Duke,cn=users,dc=opennetworking,dc=org
+      cn: Daisy Duke
+      givenname: Daisy
+      homedirectory: /home/users/daisyd
+      mail: daisyd@opennetworking.org
+      gidNumber: 500
+      objectclass: inetOrgPerson
+      objectclass: posixAccount
+      objectclass: top
+      sn: Duke
+      uid: daisyd
+      uidnumber: 1003
+      userpassword: {MD5}X03MO1qnZdYdgyfeuILPmQ==
+
+      # Elmer Fudd (password is 'password')
+      dn: cn=Elmer Fudd,cn=users,dc=opennetworking,dc=org
+      cn: Elmer Fudd
+      givenname: Elmer
+      homedirectory: /home/users/elmerf
+      mail: elmerf@opennetworking.org
+      gidNumber: 500
+      objectclass: inetOrgPerson
+      objectclass: posixAccount
+      objectclass: top
+      sn: Fudd
+      uid: elmerf
+      uidnumber: 1004
+      userpassword: {MD5}X03MO1qnZdYdgyfeuILPmQ==
+
+      # Fred Flintstone (password is 'password')
+      dn: cn=Fred Flintstone,cn=users,dc=opennetworking,dc=org
+      cn: Fred Flintstone
+      givenname: Fred
+      homedirectory: /home/users/fredf
+      mail: fredf@opennetworking.org
+      gidNumber: 500
+      objectclass: inetOrgPerson
+      objectclass: posixAccount
+      objectclass: top
+      sn: Flintstone
+      uid: fredf
+      uidnumber: 1005
+      userpassword: {MD5}X03MO1qnZdYdgyfeuILPmQ==
+
+      # Gandalf The Grey (password is 'password')
+      dn: cn=Gandalf The Grey,cn=users,dc=opennetworking,dc=org
+      cn: Gandalf The Grey
+      givenname: Gandalf
+      homedirectory: /home/users/gandalfg
+      mail: gandalfg@opennetworking.org
+      gidNumber: 500
+      objectclass: inetOrgPerson
+      objectclass: posixAccount
+      objectclass: top
+      sn: The Grey
+      uid: gandalfg
+      uidnumber: 1006
+      userpassword: {MD5}X03MO1qnZdYdgyfeuILPmQ==
+
       dn: cn=mixedGroup,cn=groups,dc=opennetworking,dc=org
       cn: mixedGroup
       gidnumber: 500
@@ -91,6 +151,10 @@ openldap:
       gidnumber: 502
       memberUid: bobc
       memberUid: charlieb
+      memberUid: daisyd
+      memberUid: elmerf
+      memberUid: fredf
+      memberUid: gandalfg
       objectclass: posixGroup
       objectclass: top
 
@@ -98,6 +162,31 @@ openldap:
       cn: AetherROCAdmin
       gidnumber: 503
       memberUid: alicea
+      objectclass: posixGroup
+      objectclass: top
+
+      dn: cn=EnterpriseAdmin,cn=groups,dc=opennetworking,dc=org
+      cn: EnterpriseAdmin
+      gidnumber: 504
+      memberUid: alicea
+      memberUid: daisyd
+      memberUid: fredf
+      objectclass: posixGroup
+      objectclass: top
+
+      dn: cn=starbucks,cn=groups,dc=opennetworking,dc=org
+      cn: starbucks
+      gidnumber: 510
+      memberUid: daisyd
+      memberUid: elmerf
+      objectclass: posixGroup
+      objectclass: top
+
+      dn: cn=acme,cn=groups,dc=opennetworking,dc=org
+      cn: acme
+      gidnumber: 511
+      memberUid: fredf
+      memberUid: gandalfg
       objectclass: posixGroup
       objectclass: top
 
