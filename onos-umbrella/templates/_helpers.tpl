@@ -55,11 +55,15 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 global consensus image name
 */}}
 {{- define "global.store.consensus.imagename" -}}
+{{- if .Values.global.store.consensus.image.tag -}}
 {{- if .Values.global.store.consensus.image.registry -}}
 {{- printf "%s/" .Values.global.store.consensus.image.registry -}}
 {{- end -}}
 {{- printf "%s:" .Values.global.store.consensus.image.repository -}}
 {{- .Values.global.store.consensus.image.tag -}}
+{{- else -}}
+""
+{{- end -}}
 {{- end -}}
 
 {{/*

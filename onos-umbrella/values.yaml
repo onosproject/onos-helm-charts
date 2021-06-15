@@ -12,7 +12,7 @@ global:
       image:
         registry: ""
         repository: atomix/atomix-raft-storage-node
-        tag: v0.6.6
+        tag: ""
         pullPolicy: IfNotPresent
         pullSecrets: []
       clusters: 1
@@ -25,7 +25,7 @@ global:
   storage:
     controller: "atomix-controller.kube-system.svc.cluster.local:5679"
     consensus:
-      enabled: true
+      enabled: false
       name: ""
       type: raft
       image: ""
