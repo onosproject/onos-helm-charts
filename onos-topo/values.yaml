@@ -23,7 +23,7 @@ replicaCount: 1
 image:
   registry: ""
   repository: onosproject/onos-topo
-  tag: v0.7.6
+  tag: v0.7.7
   pullPolicy: IfNotPresent
   pullSecrets: []
 
@@ -40,7 +40,7 @@ store:
     image:
       registry: ""
       repository: atomix/atomix-raft-storage-node
-      tag: v0.6.6
+      tag: ""
       pullPolicy: IfNotPresent
       pullSecrets: []
     clusters: 1
@@ -54,7 +54,7 @@ store:
 storage:
   controller: "atomix-controller.kube-system.svc.cluster.local:5679"
   consensus:
-    enabled: true
+    enabled: false
     name: ""
     type: raft
     image: ""

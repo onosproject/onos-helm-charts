@@ -72,6 +72,7 @@ onos-topo image name
 onos-topo consensus image name
 */}}
 {{- define "onos-topo.store.consensus.imagename" -}}
+{{- if or .Values.store.consensus.image.tag .Values.global.store.consensus.image.tag -}}
 {{- if .Values.global.store.consensus.image.registry -}}
 {{- printf "%s/" .Values.global.store.consensus.image.registry -}}
 {{- else if .Values.store.consensus.image.registry -}}
@@ -82,6 +83,9 @@ onos-topo consensus image name
 {{- .Values.global.store.consensus.image.tag -}}
 {{- else -}}
 {{- .Values.store.consensus.image.tag -}}
+{{- end -}}
+{{- else -}}
+""
 {{- end -}}
 {{- end -}}
 
