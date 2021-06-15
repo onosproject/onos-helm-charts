@@ -20,7 +20,7 @@ global:
   # Deprecated: use 'store' instead
   storage:
     controller: ""
-    config:
+    consensus:
       name: ""
 
 replicaCount: 1
