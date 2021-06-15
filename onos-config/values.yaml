@@ -28,7 +28,7 @@ replicaCount: 1
 image:
   registry: ""
   repository: onosproject/onos-config
-  tag: v0.7.28
+  tag: v0.8.0
   pullPolicy: IfNotPresent
   pullSecrets: []
 
@@ -60,7 +60,7 @@ store:
     image:
       registry: ""
       repository: atomix/atomix-raft-storage-node
-      tag: v0.6.6
+      tag: ""
       pullPolicy: IfNotPresent
       pullSecrets: []
     clusters: 1
