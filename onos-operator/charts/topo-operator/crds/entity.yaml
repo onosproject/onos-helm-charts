@@ -36,9 +36,8 @@ spec:
                       type: string
                     namespace:
                       type: string
-                attributes:
+                aspects:
                   type: object
-                  additionalProperties:
-                    type: string
+                  x-kubernetes-preserve-unknown-fields: true
             status:
               type: object
