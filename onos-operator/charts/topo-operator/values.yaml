@@ -3,6 +3,7 @@ fullnameOverride: ""
 
 global:
   scope: ""
+  clusterDomain: ""
   image:
     registry: ""
     tag: ""

@@ -4,6 +4,7 @@ fullnameOverride: "onos-operator"
 
 global:
   scope: Cluster
+  clusterDomain: ""
   image:
     registry: ""
     tag: ""

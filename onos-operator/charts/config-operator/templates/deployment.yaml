@@ -36,6 +36,10 @@ spec:
                   fieldPath: metadata.namespace
             - name: CONTROLLER_SCOPE
               value: {{ $scope }}
+            {{- if .Values.global.clusterDomain }}
+            - name: CLUSTER_DOMAIN
+              value: {{ .Values.global.clusterDomain }}
+            {{- end }}
             - name: POD_NAME
               valueFrom:
                 fieldRef:
