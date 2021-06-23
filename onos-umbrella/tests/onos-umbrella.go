@@ -21,6 +21,7 @@ import (
 	"github.com/onosproject/onos-test/pkg/onostest"
 	"github.com/stretchr/testify/assert"
 	"testing"
+	"time"
 )
 
 // OnosUmbrellaSuite is the onos-umbrella chart test suite
@@ -40,6 +41,7 @@ func (s *OnosUmbrellaSuite) TestInstall(t *testing.T) {
 	registry := s.c.GetArg("registry").String("")
 	onos := helm.Chart("onos-umbrella", onostest.OnosChartRepo).
 		Release("onos-umbrella").
+		WithTimeout(15 * time.Minute).
 		Set("import.onos-gui.enabled", false).
 		Set("import.onos-cli.enabled", false).
 	    Set("global.image.registry", registry)
