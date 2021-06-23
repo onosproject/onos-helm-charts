@@ -13,8 +13,8 @@
 # limitations under the License.
 {{ if .Values.config.enabled }}
 ---
-apiVersion: batch/v1
-kind: Job
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: {{ template "fullname" . }}-onos-config-loader
   labels:
@@ -22,7 +22,10 @@ metadata:
     chart: {{ .Chart.Name }}
     release: {{ .Release.Name }}
 spec:
-  backoffLimit: 12
+  replicas: 1
+  selector:
+    matchLabels:
+      app: onos-config-loader
   template:
     metadata:
       labels:
@@ -31,7 +34,6 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/onos-config-loader-configmap.yaml") . | sha256sum }}
     spec:
-      restartPolicy: OnFailure
       serviceAccountName: {{ .Values.config.service_account_name }}
       containers:
         - name: onos-config-loader
@@ -45,6 +47,16 @@ spec:
               mountPath: /opt/configs
             - name: onos-loader
               mountPath: /opt/loader
+          readinessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - "/opt/loader/status_check.sh"
+            initialDelaySeconds: 20
+            periodSeconds: 15
+            failureThreshold: 1
+            timeoutSeconds: 5
       volumes:
         - name: onos-configs
           configMap:

@@ -18,73 +18,117 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-onos-configs-loader
 data:
-  loader.sh: >
+  status_check.sh: |
+    #!/bin/sh
     set -euo pipefail
 
-    # onos-config-loader most likely start before ONOS is deployed, so check for ONOS before waiting for it to be ready
-
-    has_onos=$(kubectl get pods -l app=onos-classic -n {{ .Release.Namespace }} | wc -l);
-
-    while [[ $has_onos == 0 ]]; do
-      echo -e "Waiting for ONOS to be deployed";
-      sleep 5;
-      has_onos=$(kubectl get pods -l app=onos-classic -n {{ .Release.Namespace }} | wc -l);
-    done
-
-    # wait all ONOS pods to be ready
-
-    onos_starting=$(kubectl get pods -l app=onos-classic -n {{ .Release.Namespace }} --field-selector=status.phase!=Running | wc -l);
-
-    while [[ $onos_starting != 0 ]]; do
-      echo -e "$onos_starting ONOS instances are still starting...";
-      sleep 5;
-      onos_starting=$(kubectl get pods -n {{ .Release.Namespace }} -l app=onos-classic | grep "0/" | wc -l);
-    done
-
-    # a POST to a non ready netcfg return 207 in case of failure, while a GET returns 404,
-    # check the apps key is ready to accept data before sending them
-
-    until curl --fail -sSL --user {{ .Values.config.username }}:{{ .Values.config.password }} -X GET -H 'Accept: application/json' "http://{{ .Release.Name }}-onos-classic-hs:8181/onos/v1/network/configuration/apps";
-    do
-      echo -e "Waiting for netcfg to be active";
-      sleep 5;
-    done
-
-    echo -e "\n\nLoading netcfg into ONOS\n";
-    cat /opt/configs/netcfg.json;
-    responseCode=$(curl --write-out '%{http_code}' --fail -sSL --user {{ .Values.config.username }}:{{ .Values.config.password }} -X POST "http://{{ .Release.Name }}-onos-classic-hs:8181/onos/v1/network/configuration/" -H Content-type:application/json -d @/opt/configs/netcfg.json);
-    if [[ $responseCode == 207 ]]; then
-      echo "Failed to load netcfg, exiting..."
+    REPLICAS=$(kubectl -n {{ .Release.Namespace }} get --no-headers sts -lapp={{ .Values.app_label }} -o custom-columns=':.spec.replicas')
+    RUNNING_POD=$(kubectl -n {{ .Release.Namespace }} get --no-headers pods -lapp={{ .Values.app_label }} | grep Running | wc -l)
+    READY_POD=$(kubectl -n {{ .Release.Namespace }} get --no-headers pods -lapp={{ .Values.app_label }} -o custom-columns=':.status.containerStatuses[*].ready' | grep true | wc -l)
+    if ! [ $REPLICAS -eq $RUNNING_POD ]; then
+      echo "Not all ONOS Pods are running"
       exit 1
     fi
+    if ! [ $REPLICAS -eq $READY_POD ]; then
+      echo "Not all ONOS Pods are ready"
+      exit 1
+    fi
+    exit 0
+  loader.sh: >
+    #/bin/sh
+    set -euo pipefail
 
-    sleep 5;
-    echo -e "Updated netconfig is:";
-    curl --fail -sSL --user {{ .Values.config.username }}:{{ .Values.config.password }} -X GET -H 'Accept: application/json' "http://{{ .Release.Name }}-onos-classic-hs:8181/onos/v1/network/configuration";
-    echo -e "\nCompleted on: ";
-    date;
+    USER="{{ .Values.config.username }}"
+    PASSWORD="{{ .Values.config.password }}"
+    ONOS_V1_URL="http://{{ .Release.Name }}-onos-classic-hs:8181/onos/v1"
+    NETCFG_URL="${ONOS_V1_URL}/network/configuration/"
+    COMPONENT_CFG_URL="${ONOS_V1_URL}/configuration"
+    NETCFG="/opt/configs/netcfg.json"
+    RECONCILE_MODE="{{ .Values.config.reconcile_mode }}";
 
-    echo -e "\n\n\nLoading component configs into ONOS\n";
-    CFGS=$(ls /opt/configs | grep -v netcfg.json);
-    for CFG in ${CFGS};
-    do
-      echo -e "Check that component $CFG is active";
-      until curl --fail -sSL --user {{ .Values.config.username }}:{{ .Values.config.password }} -X GET "http://{{ .Release.Name }}-onos-classic-hs:8181/onos/v1/configuration/$CFG";
-      do
-        echo -e "Waiting for $CFG to be active";
-        sleep 5;
-      done
-      echo -e "\nLoading $CFG config";
-      cat /opt/configs/$CFG;
-      responseCode=$(curl --write-out '%{http_code}' --fail -sSL --user {{ .Values.config.username }}:{{ .Values.config.password }} -X POST "http://{{ .Release.Name }}-onos-classic-hs:8181/onos/v1/configuration/$CFG" -H Content-type:application/json -d @/opt/configs/$CFG);
-      if [[ $responseCode == 207 ]]; then
-        echo "Failed to load $CFG, exiting..."
-        exit 1
+    while true; do
+      echo "-----------------------------------------"
+      echo "Timestamp is "; date
+      echo "-----------------------------------------"
+      echo 'Waiting for ONOS Cluster to be ready';
+      if ! sh "/opt/loader/status_check.sh" ; then
+        sleep 10s;
+        continue
       fi
-      echo -e "Updated component config for $CFG is:";
-      curl --fail -sSL --user {{ .Values.config.username }}:{{ .Values.config.password }} -X GET "http://{{ .Release.Name }}-onos-classic-hs:8181/onos/v1/configuration/$CFG";
-      echo -e "\nCompleted on: ";
+
+      echo "-----------------------------------------"
+      echo "Loading netcfg into ONOS";
+      echo "-----------------------------------------"
+      cat ${NETCFG}
+      # Upper all MAC addresses
+      # ONOS will convert all MAC addresses to upper so we have to ensure all MAC addresses are upper in netcfg
+      sed -E "s/([[:xdigit:]]{2}:)[[:xdigit:]]{2}/\U&/g" ${NETCFG} > expect_config
+      curl -sSL -u $USER:$PASSWORD -X GET --header 'Accept: application/json' $NETCFG_URL | jq > actual_config
+      # Update if there is difference between two configs(actual_config and expect_config)
+      # Do the one-direction comparison
+      # Everything in expect_config should be in the actual_config
+      if jd actual_config expect_config | grep "^+"; then
+          echo "Update netcfg due to the difference"
+          curl -sSL -u $USER:$PASSWORD -X POST -H 'Content-Type: application/json' $NETCFG_URL -d@${NETCFG}
+          responseCode=$(curl --write-out '%{http_code}' --fail -sSL -u $USER:$PASSWORD -X POST -H 'Content-Type: application/json' $NETCFG_URL -d@${NETCFG})
+          if [[ $responseCode == 207 ]]; then
+            echo "Failed to load NETCFG, skip this round and try again later"
+          else
+            echo "Updated netcfg is:";
+            curl -sSL -u $USER:$PASSWORD -X GET --header 'Accept: application/json' $NETCFG_URL | jq
+          fi
+      else
+        echo "Update is unnecessary since the netcfg on the ONOS cluster is up to date"
+      fi
+
+      echo "-----------------------------------------"
+      echo "Loading component configs into ONOS";
+      echo "-----------------------------------------"
+      CFGS=$(ls /opt/configs | grep -v netcfg.json);
+      for CFG in ${CFGS};
+      do
+        CFG_FILE="/opt/configs/$CFG"
+        echo "-----------------------------------------"
+        echo "Check that component $CFG is active";
+        echo "-----------------------------------------"
+        until curl --fail -sSL -u $USER:$PASSWORD -X GET "${COMPONENT_CFG_URL}/$CFG";
+        do
+          echo "Waiting for $CFG to be active";
+          sleep 5;
+        done
+
+        echo "Prepare to update $CFG config"
+        cat $CFG_FILE
+        curl --fail -sSL -u $USER:$PASSWORD -X GET "${COMPONENT_CFG_URL}/$CFG"  | jq --arg key "${CFG}" '.[$key]' > actual_config
+        # Update if there is difference between two configs(actual_config and expect_config)
+        # Do the one-direction comparison
+        # Everything in expect_config should be in the actual_config
+        if jd actual_config ${CFG_FILE} | grep "^+"; then
+          echo "Update $CFG config"
+          responseCode=$(curl --write-out '%{http_code}' --fail -sSL -u $USER:$PASSWORD -X POST "${COMPONENT_CFG_URL}/$CFG" -H Content-type:application/json -d @${CFG_FILE});
+          if [[ $responseCode == 207 ]]; then
+            echo "Failed to load $CFG, skip this round and try again later"
+          else
+            echo "Updated Component config for $CFG is:";
+            curl --fail -sSL -u $USER:$PASSWORD -X GET "${COMPONENT_CFG_URL}/$CFG";
+          fi
+        else
+          echo "Update is unnecessary since the $CFG on the ONOS cluster is up to date"
+        fi
+      done
+
+      if [ "${RECONCILE_MODE}" != "true" ]; then
+        echo "Break from reconcile loop";
+        break;
+      fi
+
+      echo "Completed on: ";
       date;
-      echo -e "\n\n\n"
+      sleep {{ .Values.config.reconcile_interval }}
     done
+
+    echo "For non-reconcile_mode, keep running to act as daemon;"
+
+    sleep infinite
+
 {{ end }}

@@ -68,6 +68,8 @@ app_label: onos-classic
 # used in the job "onos-config-loader"
 config:
   enabled: false
+  reconcile_mode: true
+  reconcile_interval: 30s
   image:
     registry: ""
     repository: opennetworking/utils
