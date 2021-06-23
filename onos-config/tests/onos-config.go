@@ -21,6 +21,7 @@ import (
 	"github.com/onosproject/helmit/pkg/test"
 	"github.com/onosproject/onos-test/pkg/onostest"
 	"testing"
+	"time"
 )
 
 // ONOSConfigSuite is the onos-config chart test suite
@@ -46,6 +47,7 @@ func (s *ONOSConfigSuite) TestInstall(t *testing.T) {
 
 	config := helm.Chart("onos-config", onostest.OnosChartRepo).
 		Release("onos-config").
+		WithTimeout(15 * time.Minute).
 		Set("global.image.registry", registry)
 	assert.NoError(t, config.Install(true))
 }
