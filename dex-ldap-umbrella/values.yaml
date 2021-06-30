@@ -222,7 +222,11 @@ dex:
         redirectURIs:
           - 'http://localhost:4200'
           - 'http://localhost:8183'
-          - 'http://192.168.8.2:8183'
+          - 'http://localhost:3000'
+          - 'http://localhost:3000/grafana/login/generic_oauth'
+          - 'http://aether-roc-gui:3000'
+          - 'http://aether-roc-gui:3000/grafana/login/generic_oauth'
+          - 'http://aether-roc-gui:8183'
           - 'https://roc.opennetworking.org'
         name: 'Aether ROC GUI'
         public: true
