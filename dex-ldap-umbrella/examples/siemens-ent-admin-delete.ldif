@@ -1,0 +1,4 @@
+dn: cn=EnterpriseAdmin,cn=groups,dc=opennetworking,dc=org
+changetype: modify
+delete: memberuid
+memberUid: harryp

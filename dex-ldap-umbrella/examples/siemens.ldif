@@ -1,0 +1,39 @@
+# Harry Potter (password is 'password')
+dn: cn=Harry Potter,cn=users,dc=opennetworking,dc=org
+cn: Harry Potter
+givenname: Harry
+homedirectory: /home/users/harryp
+mail: harryp@opennetworking.org
+gidNumber: 500
+objectclass: inetOrgPerson
+objectclass: posixAccount
+objectclass: top
+sn: Potter
+uid: harryp
+uidnumber: 1010
+userpassword: {MD5}X03MO1qnZdYdgyfeuILPmQ==
+
+# Indiana Jones (password is 'password')
+dn: cn=Indiana Jones,cn=users,dc=opennetworking,dc=org
+cn: Indiana Jones
+givenname: Indiana
+homedirectory: /home/users/indianaj
+mail: indianaj@opennetworking.org
+gidNumber: 500
+objectclass: inetOrgPerson
+objectclass: posixAccount
+objectclass: top
+sn: Jones
+uid: indianaj
+uidnumber: 1011
+userpassword: {MD5}X03MO1qnZdYdgyfeuILPmQ==
+
+
+
+dn: cn=siemens,cn=groups,dc=opennetworking,dc=org
+cn: siemens
+gidnumber: 512
+memberUid: harryp
+memberUid: indianaj
+objectclass: posixGroup
+objectclass: top
