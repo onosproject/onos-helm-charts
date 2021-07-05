@@ -55,6 +55,9 @@ To use this service with `onos-umbrella` chart, deploy in Helm with the followin
 helm -n micro-onos install onos-umbrella onosproject/onos-umbrella --set onos-config.openidc.issuer=http://dex-ldap-umbrella:32000 --set onos-gui.openidc.issuer=http://dex-ldap-umbrella:32000
 ```
 
+## Adding an organization
+See [examples](examples/README.md) on how to add another organization and users at runtime.
+
 ## Testing with Dex's example app (optional)
 Get the DEX client app to run a test:
 ```
