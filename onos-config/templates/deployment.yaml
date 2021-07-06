@@ -64,14 +64,15 @@ spec:
                   fieldPath: metadata.namespace
             - name: OIDC_SERVER_URL
               value: {{ .Values.openidc.issuer }}
-            - name: ADMINGROUP
-              value: {{ .Values.openidc.admingroup }}
+            - name: ADMINGROUPS
+              value: {{ join "," .Values.openidc.admingroups }}
             - name: SERVICE_NAME
               value: {{ template "onos-config.fullname" . }}
             - name: NODE_ID
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
+
           args:
             - "-caPath=/etc/onos/certs/tls.cacrt"
             - "-keyPath=/etc/onos/certs/tls.key"
