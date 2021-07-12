@@ -1,0 +1,12 @@
+{{ if .Values.openpolicyagent.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "onos-config.fullname" . }}-openpolicyagent
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+data:
+{{ (.Files.Glob "files/openpolicyagent/*.rego").AsConfig | indent 2 }}
+{{end}}
