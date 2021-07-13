@@ -143,7 +143,7 @@ spec:
             initialDelaySeconds: 10
             periodSeconds: 10
           volumeMounts:
-            - name: rego
+            - name: openpolicyagent
               mountPath: /etc/onos/rego
               readOnly: true
         {{end}}
@@ -152,12 +152,14 @@ spec:
         - name: config
           configMap:
             name: {{ template "onos-config.fullname" . }}-config
-        - name: rego
-          configMap:
-            name: {{ template "onos-config.fullname" . }}-rego
         - name: secret
           secret:
             secretName: {{ template "onos-config.fullname" . }}-secret
+        {{- if .Values.openpolicyagent.enabled }}
+        - name: openpolicyagent
+          configMap:
+            name: {{ .Values.openpolicyagent.regoConfigMap }}
+        {{- end}}
     {{- with .Values.nodeSelector }}
     nodeSelector:
       {{- toYaml . | nindent 8 }}
