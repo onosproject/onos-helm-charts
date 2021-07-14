@@ -10,7 +10,7 @@ chart that requires an OpenID provider.
 ## Helm install
 Add a couple repos to `helm`, if you don't already have them:
 ```
-helm repo add stable https://charts.helm.sh/stable
+helm repo add dex https://charts.dexidp.io
 helm repo add cetic https://cetic.github.io/helm-charts
 helm repo update
 ```
@@ -26,12 +26,12 @@ It will display details of Port Forwarding that need to be made
 > These details are not given here, as they will vary by namespace.
 
 * Add `dex-ldap-umbrella` to your `/etc/hosts` file as an alias for localhost
-* Port forward the `dex` service to 32000
+* Port forward the `dex` service to 5556
 
-Now GUI applications with security enabled will redirect to this `dex-ldap-umbrella:32000`
+Now GUI applications with security enabled will redirect to this `dex-ldap-umbrella:5556`
 and when login is successful will redirect to an authenticated GUI.
 
-> To test it, browse to http://dex-ldap-umbrella:32000/.well-known/openid-configuration to see the configuration.
+> To test it, browse to http://dex-ldap-umbrella:5556/.well-known/openid-configuration to see the configuration.
 
 
 There are 7 users in 6 groups with the LDIF defined in `values.yaml`
@@ -52,7 +52,7 @@ The password for each is `password`
 
 To use this service with `onos-umbrella` chart, deploy in Helm with the following flags:
 ```
-helm -n micro-onos install onos-umbrella onosproject/onos-umbrella --set onos-config.openidc.issuer=http://dex-ldap-umbrella:32000 --set onos-gui.openidc.issuer=http://dex-ldap-umbrella:32000
+helm -n micro-onos install onos-umbrella onosproject/onos-umbrella --set onos-config.openidc.issuer=http://dex-ldap-umbrella:5556 --set onos-gui.openidc.issuer=http://dex-ldap-umbrella:5556
 ```
 
 ## Adding an organization

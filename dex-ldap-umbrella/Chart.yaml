@@ -3,7 +3,7 @@ name: dex-ldap-umbrella
 description: Umbrella chart to deploy Dex, OpenLDAP & phpLDAPAdmin
 kubeVersion: ">=1.15.0"
 type: application
-version: 0.1.9
+version: 0.2.0
 appVersion: v0.0.0
 keywords:
   - ldap
@@ -19,8 +19,8 @@ dependencies:
     repository: https://charts.helm.sh/stable
     version: 1.2.7
   - name: dex
-    repository: https://charts.helm.sh/stable
-    version: 2.15.2
+    repository: https://charts.dexidp.io
+    version: 0.5.0
   - name: phpldapadmin
     repository: https://cetic.github.io/helm-charts
     version: 0.1.4
