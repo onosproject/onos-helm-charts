@@ -62,3 +62,29 @@ ports:
 #     log4j2.appender.console.layout.pattern = %d{RFC3339} %-5level [%c{1}] %msg%n%throwable
 #
 app_label: onos-classic
+
+
+# onos configuration
+# used in the job "onos-config-loader"
+config:
+  enabled: false
+  reconcile_mode: true
+  reconcile_interval: 30s
+  image:
+    registry: ""
+    repository: opennetworking/utils
+    tag: 0.2.0
+    pullPolicy: "IfNotPresent"
+  service_account_name: onos-config-loader
+  # NOTE that these values won't change the configuration in the ONOS container, they are only used in the script that loads the config
+  username: karaf
+  password: karaf
+  # netcfg is a JSON object that will be sent via POST to /onos/v1/network/configuration/
+  netcfg: >
+    {}
+  # componentConfig is a map containing "component-name": "json config" that will be iterated over and sent via POST to /onos/v1/configuration/<component-name>/
+  # componentConfig:
+  #   "org.onosproject.provider.lldp.impl.LldpLinkProvider": >
+  #     {
+  #       "enabled": "false"
+  #     }
