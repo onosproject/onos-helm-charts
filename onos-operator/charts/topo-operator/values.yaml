@@ -13,7 +13,7 @@ replicas: 1
 image:
   registry: ""
   repository: onosproject/topo-operator
-  tag: v0.4.5
+  tag: v0.4.6
   pullPolicy: IfNotPresent
   pullSecrets: []
 
