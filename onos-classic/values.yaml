@@ -67,7 +67,6 @@ app_label: onos-classic
 # onos configuration
 # used in the job "onos-config-loader"
 config:
-  enabled: false
   reconcile_mode: true
   reconcile_interval: 30s
   image:
@@ -80,8 +79,8 @@ config:
   username: karaf
   password: karaf
   # netcfg is a JSON object that will be sent via POST to /onos/v1/network/configuration/
-  netcfg: >
-    {}
+  #netcfg: >
+  #  {}
   # componentConfig is a map containing "component-name": "json config" that will be iterated over and sent via POST to /onos/v1/configuration/<component-name>/
   # componentConfig:
   #   "org.onosproject.provider.lldp.impl.LldpLinkProvider": >
