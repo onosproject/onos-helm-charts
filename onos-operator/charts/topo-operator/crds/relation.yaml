@@ -25,10 +25,13 @@ spec:
             spec:
               type: object
               required:
+                - uri
                 - kind
                 - source
                 - target
               properties:
+                uri:
+                  type: string
                 kind:
                   type: object
                   required:
@@ -39,23 +42,9 @@ spec:
                     namespace:
                       type: string
                 source:
-                  type: object
-                  required:
-                    - name
-                  properties:
-                    name:
-                      type: string
-                    namespace:
-                      type: string
+                  type: string
                 target:
-                  type: object
-                  required:
-                    - name
-                  properties:
-                    name:
-                      type: string
-                    namespace:
-                      type: string
+                  type: string
                 aspects:
                   type: object
                   x-kubernetes-preserve-unknown-fields: true

@@ -25,8 +25,11 @@ spec:
             spec:
               type: object
               required:
+                - uri
                 - kind
               properties:
+                uri:
+                  type: string
                 kind:
                   type: object
                   required:
