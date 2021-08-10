@@ -25,10 +25,13 @@ spec:
             spec:
               type: object
               required:
+                - uri
                 - kind
                 - source
                 - target
               properties:
+                uri:
+                  type: string
                 kind:
                   type: object
                   required:
@@ -41,20 +44,22 @@ spec:
                 source:
                   type: object
                   required:
-                    - name
+                    - uri
                   properties:
                     name:
                       type: string
-                    namespace:
+                      deprecated: true
+                    uri:
                       type: string
                 target:
                   type: object
                   required:
-                    - name
+                    - uri
                   properties:
                     name:
                       type: string
-                    namespace:
+                      deprecated: true
+                    uri:
                       type: string
                 aspects:
                   type: object
