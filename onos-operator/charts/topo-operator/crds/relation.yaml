@@ -46,18 +46,20 @@ spec:
                   required:
                     - uri
                   properties:
-                    uri:
+                    name:
                       type: string
-                    namespace:
+                      deprecated: true
+                    uri:
                       type: string
                 target:
                   type: object
                   required:
                     - uri
                   properties:
-                    uri:
+                    name:
                       type: string
-                    namespace:
+                      deprecated: true
+                    uri:
                       type: string
                 aspects:
                   type: object
