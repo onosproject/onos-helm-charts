@@ -15,26 +15,12 @@ global:
         tag: ""
         pullPolicy: IfNotPresent
         pullSecrets: []
-      clusters: 1
       replicas: 1
       partitions: 1
+      raft: {}
       persistence:
         storageClass: ""
         storageSize: 1Gi
-  # Deprecated: use 'store' instead
-  storage:
-    controller: "atomix-controller.kube-system.svc.cluster.local:5679"
-    consensus:
-      enabled: false
-      name: ""
-      type: raft
-      image: ""
-      imagePullPolicy: IfNotPresent
-      partitions: 1
-      replicas: 1
-      clusters: 1
-      class: ""
-      size: 1Gi
 
 import:
   onos-topo:
@@ -51,20 +37,10 @@ onos-topo:
   store:
     consensus:
       enabled: false
-  # Deprecated: use 'store' instead
-  storage:
-    controller: ""
-    consensus:
-      enabled: false
 
 # ONOS-CONFIG
 onos-config:
   store:
-    consensus:
-      enabled: false
-  # Deprecated: use 'store' instead
-  storage:
-    controller: ""
     consensus:
       enabled: false
   models:
