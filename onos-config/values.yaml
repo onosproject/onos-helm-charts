@@ -17,11 +17,6 @@ global:
     image:
       registry: ""
       tag: ""
-  # Deprecated: use 'store' instead
-  storage:
-    controller: ""
-    consensus:
-      name: ""
 
 replicaCount: 1
 
@@ -69,19 +64,6 @@ store:
     persistence:
       storageClass: ""
       storageSize: 1Gi
-
-# Deprecated: use 'store' instead
-storage:
-  controller: "atomix-controller.kube-system.svc.cluster.local:5679"
-  consensus:
-    enabled: true
-    name: ""
-    type: raft
-    image: ""
-    imagePullPolicy: IfNotPresent
-    partitions: 1
-    replicas: 1
-    partitionsPerCluster: 1
 
 service:
   type: ClusterIP
