@@ -40,6 +40,7 @@ store:
       pullSecrets: []
     replicas: 1
     partitions: 1
+    raft: {}
     persistence:
       storageClass: ""
       storageSize: 1Gi
