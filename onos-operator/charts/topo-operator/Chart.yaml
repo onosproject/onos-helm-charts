@@ -1,8 +1,8 @@
 apiVersion: v2
 name: topo-operator
-version: 0.4.7
+version: 0.4.8
 kubeVersion: ">=1.17.0"
-appVersion: v0.4.7
+appVersion: v0.4.8
 description: µONOS Topology Operator
 keywords:
   - onos
