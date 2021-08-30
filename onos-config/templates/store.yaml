@@ -6,12 +6,15 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   protocol:
-    apiVersion: storage.atomix.io/v2beta1
+    apiVersion: storage.atomix.io/v2beta2
     kind: MultiRaftProtocol
     spec:
-      clusters: {{ .Values.store.consensus.clusters }}
-      partitions: {{ .Values.store.consensus.partitions }}
       replicas: {{ .Values.store.consensus.replicas }}
+      groups: {{ .Values.store.consensus.partitions }}
+      {{- with .Values.store.consensus.raft }}
+      raft:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       image: {{ template "onos-config.store.consensus.imagename" . }}
       imagePullPolicy: {{ .Values.store.consensus.image.pullPolicy }}
       {{- with .Values.store.consensus.image.pullSecrets }}

@@ -28,6 +28,9 @@ resources:
   requests:
     cpu: 0.5
     memory: 512Mi
+  limits:
+    cpu: ~
+    memory: ~
 
 individualOpenFlowNodePorts: false
 

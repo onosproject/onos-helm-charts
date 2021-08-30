@@ -87,8 +87,19 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         resources:
           requests:
+            {{- if .Values.resources.requests.memory }}
             memory: {{ .Values.resources.requests.memory }}
+            {{- end }}
+            {{- if .Values.resources.requests.cpu }}
             cpu: {{ .Values.resources.requests.cpu }}
+            {{- end }}
+          limits:
+            {{- if .Values.resources.limits.memory }}
+            memory: {{ .Values.resources.limits.memory }}
+            {{- end }}
+            {{- if .Values.resources.limits.cpu }}
+            cpu: {{ .Values.resources.limits.cpu }}
+            {{- end }}
         env:
           - name: JAVA_OPTS
             value: {{ .Values.java_opts }}
