@@ -94,9 +94,14 @@ module test1 {
         units mW;
         description "Transmit power";
       }
+
+      leaf ref2d {
+        description "A reference to leaf2d in the 2a container";
+        type leafref {
+            path /cont1a/cont2a/leaf2d;
+        }
+      }
     }
-
-
   }
 
   leaf leafAtTopLevel {
