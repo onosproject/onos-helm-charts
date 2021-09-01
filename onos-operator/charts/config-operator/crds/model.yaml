@@ -35,6 +35,8 @@ spec:
                     type: string
                   version:
                     type: string
+                  getStateMode:
+                    type: string
               modules:
                 type: array
                 items:
