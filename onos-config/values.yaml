@@ -23,7 +23,7 @@ replicaCount: 1
 image:
   registry: ""
   repository: onosproject/onos-config
-  tag: v0.9.0
+  tag: v0.9.1
   pullPolicy: IfNotPresent
   pullSecrets: []
 
