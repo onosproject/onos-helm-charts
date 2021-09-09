@@ -1,8 +1,8 @@
-module test1-extra {
+module onf-test1-extra {
     namespace "http://opennetworking.org/devicesim/test1-extra";
     prefix t1e;
 
-    import test1 { prefix t1; }
+    import onf-test1 { prefix t1; }
 
     organization "Open Networking Foundation.";
     contact "Sean Condon";
@@ -14,6 +14,7 @@ module test1-extra {
     }
 
     augment "/t1:cont1a" {
+        description "Add a couple of new lists to cont1a";
         list list4 {
             key id;
             description "A list with a leafref index";
