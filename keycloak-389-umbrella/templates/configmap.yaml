@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: 2021-present Open Networking Foundation <info@opennetworking.org>
+#
+# SPDX-License-Identifier: LicenseRef-ONF-Member-Only-1.0
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-post-install-389
+  namespace: {{ .Release.Namespace }}
+data:
+{{ (.Files.Glob "files/ldif/*.ldif").AsConfig | indent 2 }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-post-install-keycloak
+  namespace: {{ .Release.Namespace }}
+data:
+{{ (.Files.Glob "files/keycloak/*").AsConfig | indent 2 }}

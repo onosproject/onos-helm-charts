@@ -1,0 +1,6 @@
+{
+  "displayName": "Aether",
+  "displayNameHtml": "<img src='https://opennetworking.org/wp-content/uploads/2020/02/aether-logo.png'></img>",
+  "accessTokenLifespan": 86400,
+  "ssoSessionMaxLifespan": 86400
+}

@@ -1,0 +1,42 @@
+Thank you for installing {{ .Chart.Name }} Helm chart.
+
+# Running a command inside Fedora 389 Directory Server
+kubectl -n {{ .Release.Namespace }} exec deployment/fedora389ds -- <COMMAND>
+
+# 389DS commands
+  dsconf, dsctl, dsidm
+
+  See examples/dsidm-commands.txt
+
+# LDAP commands
+  ldapadd, ldapcompare, ldapdelete, ldapexop, ldapmodify, ldapmodrdn
+  ldappasswd, ldapsearch, ldapur, ldapwhoami
+
+# Logs
+kubectl -n {{ .Release.Namespace }} logs deployment/fedora389ds
+
+# Port forward
+kubectl -n {{ .Release.Namespace }} port-forward service/fedora389ds 3389:389 3636:636
+
+kubectl -n {{ .Release.Namespace }}  port-forward service/{{ .Release.Name }}-keycloak 5557:80
+
+# External LDAP Access
+ldapsearch -h localhost -D "cn=Directory Manager" -W -p 3389 -b "ou=people,dc=opennetworking,dc=org"
+
+# OpenID Connect access
+The hostname must be added to `/etc/hosts` 127.0.0.1 as {{ .Release.Name }}-keycloak
+
+Together with the port forward above it should be possible to browse to
+http://{{ .Release.Name }}-keycloak:5557/auth/realms/master/.well-known/openid-configuration
+
+Applications such as `onos-config` can then set the variable when deploying helm charts like
+--set onos-config.openidc.issuer=http://{{ .Release.Name }}-keycloak:80/auth/realms/master
+and `onos-gui` as:
+--set onos-config.openidc.issuer=http://{{ .Release.Name }}-keycloak:5557/auth/realms/master
+
+** Note the different port numbers - for `onos-config` to access Keycloak, port 80 must be used, because
+Keycloak is inside the cluster with this local deployment **
+
+# Keycloak Web Access
+Then at http://{{ .Release.Name }}-keycloak:5557/auth/admin/
+Login in as {{.Values.keycloak.auth.adminUser}}/{{.Values.keycloak.auth.adminPassword}}
