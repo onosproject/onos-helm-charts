@@ -66,10 +66,19 @@ onos-classic:
   annotations:
     fluentbit.io/parser: onos
 
+  resources:
+    limits:
+      cpu: 1
+      memory: 4Gi
+
   atomix:
     replicas: 3
     persistence:
       enabled: false
+    resources:
+      limits:
+        cpu: 1
+        memory: 2Gi
 
 # Optional.
 # When configured, a pod will fetch netcfg from given git repo and push it to ONOS.
