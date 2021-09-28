@@ -1,0 +1,42 @@
+# Running a command inside
+kubectl -n {{ .Release.Namespace }} exec deployment/{{ include "389ds.fullname" . }} -- <COMMAND>
+
+# 389DS commands
+  dsconf
+  dsctl
+  dsidm
+
+# LDAP commands
+  ldapadd
+  ldapcompare
+  ldapdelete
+  ldapexop
+  ldapmodify
+  ldapmodrdn
+  ldappasswd
+  ldapsearch
+  ldapurl
+  ldapwhoami
+
+# Get LDAPI URL for container access
+LDAPI_URL=$(kubectl -n {{ .Release.Namespace }} exec deployment/{{ include "389ds.fullname" . }} -- ldapurl -S ldapi -h /data/run/slapd-localhost.socket)
+
+# Launching LDAP tools from inside container
+kubectl -n {{ .Release.Namespace }} exec -i deployment/{{ include "389ds.fullname" . }} -- ldapXXX -H $LDAPI_URL -Y EXTERNAL
+
+# Change directory manager password
+PASSWORD=$(tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c 32)
+PASSWORD_HASH=$(kubectl -n {{ .Release.Namespace }} exec -i deployment/{{ include "389ds.fullname" . }} -- pwdhash "$PASSWORD")
+kubectl -n {{ .Release.Namespace }} exec -i deployment/{{ include "389ds.fullname" . }} -- ldapmodify -H $LDAPI_URL -Y EXTERNAL <<EOF
+dn: cn=config
+changetype: modify
+replace: nsslapd-rootpw
+nsslapd-rootpw: $PASSWORD_HASH
+
+EOF
+
+# Logs
+kubectl -n {{ .Release.Namespace }} logs deployment/{{ include "389ds.fullname" . }}
+
+# Port forward
+kubectl -n {{ .Release.Namespace }} port-forward service/{{ include "389ds.fullname" . }} {{ if .Values.service.ldap.enabled }}3389:{{ .Values.service.ldap.port }}{{ end }} {{ if .Values.service.ldaps.enabled }}3636:{{ .Values.service.ldaps.port }}{{ end }}
