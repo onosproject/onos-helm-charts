@@ -1,0 +1,11 @@
+{
+  "action": "testAuthentication",
+  "connectionUrl": "$LDAP_ADDR",
+  "authType": "simple",
+  "bindDn": "cn=Directory Manager",
+  "bindCredential": "$KEYCLOAK_CLIENT_SECRET",
+  "useTruststoreSpi": "ldapsOnly",
+  "connectionTimeout": "",
+  "startTls": "",
+  "componentId": "$COMPONENT_ID"
+}

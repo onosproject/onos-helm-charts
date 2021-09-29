@@ -1,0 +1,56 @@
+# SPDX-FileCopyrightText: 2021-present Open Networking Foundation <info@opennetworking.org>
+#
+# SPDX-License-Identifier: LicenseRef-ONF-Member-Only-1.0
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Release.Name }}-keycloak"
+  labels:
+    app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
+    helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+  annotations:
+    # This is what defines this resource as a hook. Without this line, the
+    # job is considered part of the release.
+    "helm.sh/hook": post-install
+    "helm.sh/hook-weight": "-5"
+    {{- if .Values.tidyUpPostInstall }}
+    "helm.sh/hook-delete-policy": hook-succeeded
+    {{- end}}
+spec:
+  template:
+    metadata:
+      name: "{{ .Release.Name }}-keycloak"
+      labels:
+        app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+        app.kubernetes.io/instance: {{ .Release.Name | quote }}
+        helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    spec:
+      containers:
+        - name: keycloakconfigure
+          image: "onosproject/onos-cli:latest"
+          env:
+            - name: KEYCLOAK_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{.Release.Name}}-keycloak
+                  key: admin-password
+          imagePullPolicy: "IfNotPresent"
+          command: [ "/usr/local/keycloak/keycloak-configure.sh" ]
+          args:
+            - http://{{.Release.Name}}-keycloak/auth
+            - master
+            - admin
+            - "$(KEYCLOAK_PASSWORD)"
+            - /usr/local/keycloak
+          volumeMounts:
+            - name: post-install-keycloak
+              mountPath: /usr/local/keycloak
+              readOnly: true
+      volumes:
+        - name: post-install-keycloak
+          configMap:
+            name: {{ .Release.Name }}-post-install-keycloak
+            defaultMode: 0555
+      restartPolicy: OnFailure

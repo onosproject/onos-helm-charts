@@ -1,0 +1,59 @@
+# SPDX-FileCopyrightText: 2021-present Open Networking Foundation <info@opennetworking.org>
+#
+# SPDX-License-Identifier: LicenseRef-ONF-Member-Only-1.0
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Release.Name }}-389ds"
+  labels:
+    app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
+    helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+  annotations:
+    # This is what defines this resource as a hook. Without this line, the
+    # job is considered part of the release.
+    "helm.sh/hook": post-install
+    "helm.sh/hook-weight": "-5"
+    {{- if .Values.tidyUpPostInstall }}
+    "helm.sh/hook-delete-policy": hook-succeeded
+    {{- end}}
+spec:
+  template:
+    metadata:
+      name: "{{ .Release.Name }}"
+      labels:
+        app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+        app.kubernetes.io/instance: {{ .Release.Name | quote }}
+        helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    spec:
+      containers:
+        - name: 389dspopulate
+          image: "gabibbo97/389ds:fedora-32"
+          env:
+            - name: DS_DM_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: fedora389ds-env
+                  key: DS_DM_PASSWORD
+          imagePullPolicy: "IfNotPresent"
+          command: ["/usr/bin/ldapadd"]
+          args:
+            - -h
+            - fedora389ds
+            - -D
+            - "cn=Directory Manager"
+            - -w
+            - "$(DS_DM_PASSWORD)"
+            - -f
+            - /usr/share/local/aether-init.ldif
+          volumeMounts:
+            - name: post-install-389
+              mountPath: /usr/share/local/
+              readOnly: true
+      volumes:
+        - name: post-install-389
+          configMap:
+            name: {{ .Release.Name }}-post-install-389
+            defaultMode: 0644
+      restartPolicy: OnFailure
