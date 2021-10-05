@@ -20,6 +20,8 @@ rules:
       - namespaces
     verbs:
       - get
+      - list
+      - watch
   - apiGroups:
       - policy
     resources:
@@ -30,6 +32,12 @@ rules:
       - app.onosproject.org
     resources:
       - '*'
+    verbs:
+      - '*'
+  - apiGroups:
+      - admissionregistration.k8s.io
+    resources:
+      - mutatingwebhookconfigurations
     verbs:
       - '*'
 {{- end }}

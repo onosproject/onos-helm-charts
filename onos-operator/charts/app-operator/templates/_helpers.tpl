@@ -55,15 +55,15 @@ app-operator image name
 {{- end -}}
 
 {{/*
-app-operator-init image name
+config-operator-init image name
 */}}
-{{- define "app-operator-init.imagename" -}}
+{{- define "config-operator-init.imagename" -}}
 {{- if .Values.global.image.registry -}}
 {{- printf "%s/" .Values.global.image.registry -}}
 {{- else if .Values.image.registry -}}
 {{- printf "%s/" .Values.image.registry -}}
 {{- end -}}
-{{- printf "onosproject/app-operator-init:" -}}
+{{- printf "onosproject/config-operator-init:" -}}
 {{- if .Values.global.image.tag -}}
 {{- .Values.global.image.tag -}}
 {{- else -}}

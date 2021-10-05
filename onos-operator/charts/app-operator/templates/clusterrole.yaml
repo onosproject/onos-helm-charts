@@ -16,7 +16,7 @@ rules:
     resources:
       - pods
       - services
-      - appmaps
+      - configmaps
     verbs:
       - '*'
   - apiGroups:
@@ -25,6 +25,8 @@ rules:
       - namespaces
     verbs:
       - get
+      - list
+      - watch
   - apiGroups:
       - policy
     resources:

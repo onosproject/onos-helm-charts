@@ -1,17 +1,17 @@
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: {{ template "app-operator.fullname" . }}
+  name: {{ template "config-operator.fullname" . }}
   labels:
-    app: {{ template "app-operator.fullname" . }}
+    app: {{ template "config-operator.fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 subjects:
   - kind: ServiceAccount
-    name: {{ template "app-operator.fullname" . }}
+    name: {{ template "config-operator.fullname" . }}
     namespace: {{ .Release.Namespace }}
 roleRef:
   kind: ClusterRole
-  name: {{ template "app-operator.fullname" . }}
+  name: {{ template "config-operator.fullname" . }}
   apiGroup: rbac.authorization.k8s.io

@@ -22,7 +22,7 @@ spec:
       serviceAccountName: {{ template "app-operator.fullname" . }}
       initContainers:
         - name: init-certs
-          image: {{ include "app-operator-init.imagename" . | quote }}
+          image: {{ include "config-operator-init.imagename" . | quote }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           securityContext:
             allowPrivilegeEscalation: false
@@ -51,8 +51,8 @@ spec:
             - name: GLOBAL_IMAGE_REGISTRY
               value: {{ .Values.global.image.registry | quote }}
           volumeMounts:
-            - name: app
-              mountPath: /etc/onos/app
+            - name: config
+              mountPath: /etc/onos/config
               readOnly: true
             - name: plugins
               mountPath: /etc/onos/plugins
@@ -98,8 +98,8 @@ spec:
             - name: GLOBAL_IMAGE_REGISTRY
               value: {{ .Values.global.image.registry | quote }}
           volumeMounts:
-            - name: app
-              mountPath: /etc/onos/app
+            - name: config
+              mountPath: /etc/onos/config
               readOnly: true
             - name: plugins
               mountPath: /etc/onos/plugins
@@ -107,9 +107,9 @@ spec:
               mountPath: /tmp/k8s-webhook-server/serving-certs
               readOnly: true
       volumes:
-        - name: app
+        - name: config
           configMap:
-            name: {{ template "app-operator.fullname" . }}-app
+            name: {{ template "app-operator.fullname" . }}-config
         - name: certs
           emptyDir: {}
         - name: plugins

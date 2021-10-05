@@ -19,7 +19,7 @@ webhooks:
     service:
       name: {{ template "app-operator.fullname" . }}
       namespace: {{ .Release.Namespace }}
-      path: /registry
+      path: /inject-proxy
   admissionReviewVersions: ["v1beta1"]
   sideEffects: None
   failurePolicy: Ignore
