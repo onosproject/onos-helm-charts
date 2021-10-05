@@ -12,7 +12,7 @@ scope: Cluster
 replicas: 1
 image:
   registry: ""
-  repository: onosproject/topo-operator
+  repository: onosproject/app-operator
   tag: v0.4.10
   pullPolicy: IfNotPresent
   pullSecrets: []

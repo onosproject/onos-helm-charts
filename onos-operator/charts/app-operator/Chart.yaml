@@ -1,9 +1,9 @@
 apiVersion: v2
-name: onos-operator
-version: 0.4.11
+name: app-operator
+version: 0.4.10
 kubeVersion: ">=1.17.0"
 appVersion: v0.4.10
-description: µONOS Operator
+description: µONOS App Operator
 keywords:
   - onos
   - sdn

@@ -1,0 +1,14 @@
+{{- $scope := include "app-operator.scope" . }}
+{{- if eq $scope "namespace" }}
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ template "app-operator.fullname" . }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ template "app-operator.fullname" . }}
+roleRef:
+  kind: Role
+  name: {{ template "app-operator.fullname" . }}
+  apiGroup: rbac.authorization.k8s.io
+{{- end }}
