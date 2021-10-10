@@ -185,6 +185,7 @@ member: uid=elmerf,ou=people,dc=opennetworking,dc=org
 member: uid=fredf,ou=people,dc=opennetworking,dc=org
 member: uid=gandalfg,ou=people,dc=opennetworking,dc=org
 
+# TODO remove this group - add instead as roles as below
 # AetherROCAdmin, groups, opennetworking.org
 dn: cn=AetherROCAdmin,ou=groups,dc=opennetworking,dc=org
 objectClass: top
@@ -195,6 +196,7 @@ cn: AetherROCAdmin
 gidNumber: 503
 member: uid=alicea,ou=people,dc=opennetworking,dc=org
 
+# TODO remove this group - add instead as roles as below
 # EnterpriseAdmin, groups, opennetworking.org
 dn: cn=EnterpriseAdmin,ou=groups,dc=opennetworking,dc=org
 objectClass: top
@@ -206,6 +208,7 @@ gidNumber: 504
 member: uid=daisyd,ou=people,dc=opennetworking,dc=org
 member: uid=fredf,ou=people,dc=opennetworking,dc=org
 
+# Groups - these are enterprises
 # starbucks, groups, opennetworking.org
 dn: cn=starbucks,ou=groups,dc=opennetworking,dc=org
 objectClass: top
@@ -227,3 +230,19 @@ cn: acme
 gidNumber: 511
 member: uid=fredf,ou=people,dc=opennetworking,dc=org
 member: uid=gandalfg,ou=people,dc=opennetworking,dc=org
+
+# Roles - these are permissions
+# EnterpriseAdmin, permissions, opennetworking.org
+dn: cn=EnterpriseAdmin,ou=permissions,dc=opennetworking,dc=org
+objectClass: groupOfNames
+objectClass: top
+cn: EnterpriseAdmin
+member: uid=daisyd,ou=people,dc=opennetworking,dc=org
+member: uid=fredf,ou=people,dc=opennetworking,dc=org
+
+# AetherROCAdmin, permissions, opennetworking.org
+dn: cn=AetherROCAdmin,ou=permissions,dc=opennetworking,dc=org
+objectClass: groupOfNames
+objectClass: top
+cn: AetherROCAdmin
+member: uid=alicea,ou=people,dc=opennetworking,dc=org

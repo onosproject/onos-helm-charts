@@ -40,7 +40,7 @@ curl -i -X PUT "${KEYCLOAK_URL}/admin/realms/${KEYCLOAK_REALM}" \
 -H "Authorization: Bearer $TKN" \
 --data-binary "@${KEYCLOAK_PATH}/keycloak-realm-config.json"
 
-curl -i -X POST "${KEYCLOAK_URL}/admin/realms/${KEYCLOAK_REALM}/client-scopes" \
+curl -X POST "${KEYCLOAK_URL}/admin/realms/${KEYCLOAK_REALM}/client-scopes" \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer $TKN" \
 --data-binary "@${KEYCLOAK_PATH}/keycloak-client-scopes-groups.json"
@@ -54,21 +54,30 @@ export COMPONENT_ID=${COMPONENT_ID//[$'\t\r\n']}
 
 echo "Got Component ID $COMPONENT_ID"
 
-curl -i -X POST "${KEYCLOAK_URL}/admin/realms/${KEYCLOAK_REALM}/testLDAPConnection" \
+curl -X POST "${KEYCLOAK_URL}/admin/realms/${KEYCLOAK_REALM}/testLDAPConnection" \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer $TKN" \
 --data-raw "$(cat ${KEYCLOAK_PATH}/verify-ldap.json | envsubst)"
 
-curl -i -X POST "${KEYCLOAK_URL}/admin/realms/${KEYCLOAK_REALM}/components" \
+curl -X POST "${KEYCLOAK_URL}/admin/realms/${KEYCLOAK_REALM}/components" \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer $TKN" \
 --data-raw "$(cat ${KEYCLOAK_PATH}/keycloak-group-mapper.json | envsubst)"
 
-curl -i -X POST "${KEYCLOAK_URL}/admin/realms/${KEYCLOAK_REALM}/user-storage/${COMPONENT_ID}/sync?action=triggerFullSync" \
+curl -X POST "${KEYCLOAK_URL}/admin/realms/${KEYCLOAK_REALM}/components" \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer $TKN" \
+--data-raw "$(cat ${KEYCLOAK_PATH}/keycloak-role-mapper.json | envsubst)"
+
+curl -X POST "${KEYCLOAK_URL}/admin/realms/${KEYCLOAK_REALM}/user-storage/${COMPONENT_ID}/sync?action=triggerFullSync" \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer $TKN"
 
-curl -i -X POST "${KEYCLOAK_URL}/admin/realms/${KEYCLOAK_REALM}/clients" \
+CLIENT_ID=$(curl -i -X POST "${KEYCLOAK_URL}/admin/realms/${KEYCLOAK_REALM}/clients" \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer $TKN" \
---data-binary "@${KEYCLOAK_PATH}/aether-roc-gui-client.json"
+--data-binary "@${KEYCLOAK_PATH}/aether-roc-gui-client.json" | grep Location | cut -d ' ' -f2 | xargs basename)
+
+export CLIENT_ID=${CLIENT_ID//[$'\t\r\n']}
+echo
+echo "Got Client ID $CLIENT_ID"

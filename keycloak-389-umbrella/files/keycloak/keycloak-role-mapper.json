@@ -1,0 +1,38 @@
+{
+  "name": "onf-role-mapper",
+  "providerId": "role-ldap-mapper",
+  "providerType": "org.keycloak.storage.ldap.mappers.LDAPStorageMapper",
+  "parentId": "$COMPONENT_ID",
+  "config": {
+    "mode": [
+      "LDAP_ONLY"
+    ],
+    "membership.attribute.type": [
+      "DN"
+    ],
+    "user.roles.retrieve.strategy": [
+      "LOAD_ROLES_BY_MEMBER_ATTRIBUTE"
+    ],
+    "roles.dn": [
+      "ou=permissions,$LDAP_ORG"
+    ],
+    "membership.user.ldap.attribute": [
+      "uid"
+    ],
+    "membership.ldap.attribute": [
+      "member"
+    ],
+    "memberof.ldap.attribute": [
+      "memberOf"
+    ],
+    "role.name.ldap.attribute": [
+      "cn"
+    ],
+    "use.realm.roles.mapping": [
+      "true"
+    ],
+    "role.object.classes": [
+      "groupOfNames"
+    ]
+  }
+}
