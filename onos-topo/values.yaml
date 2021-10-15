@@ -18,7 +18,7 @@ replicaCount: 1
 image:
   registry: ""
   repository: onosproject/onos-topo
-  tag: v0.8.9
+  tag: v0.8.10
   pullPolicy: IfNotPresent
   pullSecrets: []
 
