@@ -12,7 +12,7 @@ global:
 image:
   registry: ""
   repository: onosproject/onos-cli
-  tag: v0.8.9
+  tag: v0.8.11
   pullPolicy: IfNotPresent
   pullSecrets: []
 
