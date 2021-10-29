@@ -1,0 +1,116 @@
+{{- $scope := include "app-operator.scope" . }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "app-operator.fullname" . }}
+  namespace: {{ .Release.Namespace | default "kube-system" }}
+  labels:
+    app: {{ template "app-operator.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      name: {{ template "app-operator.fullname" . }}
+  template:
+    metadata:
+      labels:
+        name: {{ template "app-operator.fullname" . }}
+    spec:
+      serviceAccountName: {{ template "app-operator.fullname" . }}
+      initContainers:
+        - name: init-certs
+          image: {{ include "config-operator-init.imagename" . | quote }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 0
+          env:
+            - name: CONTROLLER_NAME
+              value: {{ template "app-operator.fullname" . }}
+            - name: CONTROLLER_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: CONTROLLER_SCOPE
+              value: {{ $scope }}
+            {{- if .Values.global.clusterDomain }}
+            - name: CLUSTER_DOMAIN
+              value: {{ .Values.global.clusterDomain }}
+            {{- end }}
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: GLOBAL_IMAGE_REGISTRY
+              value: {{ .Values.global.image.registry | quote }}
+          volumeMounts:
+            - name: config
+              mountPath: /etc/onos/config
+              readOnly: true
+            - name: plugins
+              mountPath: /etc/onos/plugins
+            - name: certs
+              mountPath: /etc/webhook/certs
+      containers:
+        - name: controller
+          image: {{ include "app-operator.imagename" . | quote }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 60000
+              name: metrics
+            - containerPort: 443
+              name: webhook-server
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 0
+          readinessProbe:
+            exec:
+              command:
+                - stat
+                - /tmp/onos-operator-ready
+            initialDelaySeconds: 4
+            periodSeconds: 10
+            failureThreshold: 1
+          env:
+            - name: CONTROLLER_NAME
+              value: {{ template "app-operator.fullname" . }}
+            - name: CONTROLLER_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: CONTROLLER_SCOPE
+              value: {{ $scope }}
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: GLOBAL_IMAGE_REGISTRY
+              value: {{ .Values.global.image.registry | quote }}
+          volumeMounts:
+            - name: config
+              mountPath: /etc/onos/config
+              readOnly: true
+            - name: plugins
+              mountPath: /etc/onos/plugins
+            - name: certs
+              mountPath: /tmp/k8s-webhook-server/serving-certs
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: {{ template "app-operator.fullname" . }}-config
+        - name: certs
+          emptyDir: {}
+        - name: plugins
+          emptyDir: {}

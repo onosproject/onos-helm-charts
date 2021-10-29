@@ -1,0 +1,56 @@
+# harryp, people, opennetworking.org
+dn: uid=harryp,ou=people,dc=opennetworking,dc=org
+objectClass: top
+objectClass: nsPerson
+objectClass: nsAccount
+objectClass: nsOrgPerson
+objectClass: posixAccount
+uid: harryp
+cn: Harry Potter
+displayName: Harry Potter
+uidNumber: 1010
+gidNumber: 99999
+homeDirectory: /home/harryp
+mail: harryp@opennetworking.org
+userPassword:: e1BCS0RGMl9TSEEyNTZ9QUFBSUFJTC9GWmx3dUxkWlV6akpyaklWTmNGU0pweXp
+ taDl5Z24yVGJ4TE1TVE9qREpPWkg0OXA1YlZleS9LS1IxWWhPbGt6a2tXU1QyNTY0Y2pLekhoUnZp
+ WDZ3d1VoeU5xWW9HMmpnUk9HQmlJMGpKMDRObUo3bTNWbURjWXJFV3ZOK2h5SXJLZmxUTGhWaGJMd
+ U56YXhzdzhlS2xTd3BKc2dHMUpDZkVRMjdnR2c1UmxkUXJuT045WVdmc3BxdDhDZkp6VWhvdm11TW
+ 9WOURpUFpGd21zbFVhSVpjbXl2c1hEL2VrMUl0bklxZUZvb21GbTh4ank3cmpqeS9JZGg2N08wOXZ
+ IR2hPRHBsYUMzUC9VMTk1L2FKN0lUR3h3ZjArNGxNcEsxM1ZtTW1SbFkvV1JwQkVzRE5nT0doRjFr
+ UU81S3RLdjFqeCt6N0twc3Y0WWtoYWFEQU1SSEk0R3FRTHhCK3JpVGZ5VVNtRDF5anVRVk9ER2hoa
+ XUrU1VBdzBBUXFiamlaT1VtTytTTG9UcVpRaE5Ec1J1elp2Mk9UK2tVRlVIRVJSYVpQTXlH
+
+# indianaj, people, opennetworking.org
+dn: uid=indianaj,ou=people,dc=opennetworking,dc=org
+objectClass: top
+objectClass: nsPerson
+objectClass: nsAccount
+objectClass: nsOrgPerson
+objectClass: posixAccount
+uid: indianaj
+cn: Indiana Jones
+displayName: Indiana Jones
+uidNumber: 1011
+gidNumber: 99999
+homeDirectory: /home/indianaj
+mail: indianaj@opennetworking.org
+userPassword:: e1BCS0RGMl9TSEEyNTZ9QUFBSUFJTC9GWmx3dUxkWlV6akpyaklWTmNGU0pweXp
+ taDl5Z24yVGJ4TE1TVE9qREpPWkg0OXA1YlZleS9LS1IxWWhPbGt6a2tXU1QyNTY0Y2pLekhoUnZp
+ WDZ3d1VoeU5xWW9HMmpnUk9HQmlJMGpKMDRObUo3bTNWbURjWXJFV3ZOK2h5SXJLZmxUTGhWaGJMd
+ U56YXhzdzhlS2xTd3BKc2dHMUpDZkVRMjdnR2c1UmxkUXJuT045WVdmc3BxdDhDZkp6VWhvdm11TW
+ 9WOURpUFpGd21zbFVhSVpjbXl2c1hEL2VrMUl0bklxZUZvb21GbTh4ank3cmpqeS9JZGg2N08wOXZ
+ IR2hPRHBsYUMzUC9VMTk1L2FKN0lUR3h3ZjArNGxNcEsxM1ZtTW1SbFkvV1JwQkVzRE5nT0doRjFr
+ UU81S3RLdjFqeCt6N0twc3Y0WWtoYWFEQU1SSEk0R3FRTHhCK3JpVGZ5VVNtRDF5anVRVk9ER2hoa
+ XUrU1VBdzBBUXFiamlaT1VtTytTTG9UcVpRaE5Ec1J1elp2Mk9UK2tVRlVIRVJSYVpQTXlH
+
+# siemens, groups, opennetworking.org
+dn: cn=siemens,ou=groups,dc=opennetworking,dc=org
+objectClass: top
+objectClass: groupOfNames
+objectClass: posixGroup
+objectClass: nsMemberOf
+cn: siemens
+gidNumber: 512
+member: uid=harryp,ou=people,dc=opennetworking,dc=org
+member: uid=indianaj,ou=people,dc=opennetworking,dc=org

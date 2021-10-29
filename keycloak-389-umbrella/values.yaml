@@ -1,0 +1,35 @@
+# Default values for all µONOS Helm charts.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+global:
+  fullnameOverride: "keycloak"
+  nameOverride: ""
+
+keycloak:
+  postgresql:
+    persistence:
+      enabled: false
+  auth:
+    adminUser: admin
+    adminPassword: changeme
+
+389ds:
+  persistence:
+    enabled: false
+  directoryManagerPassword: changeme
+  initCommand: sleep 3 && /usr/sbin/dsconf localhost backend create --suffix 'dc=opennetworking,dc=org' --be-name=aether --create-entries --create-suffix > /usr/share/messages
+
+tidyUpPostInstall: true
+
+phpldapadmin:
+  service:
+    type: ClusterIP
+
+  env:
+    PHPLDAPADMIN_LDAP_HOSTS: "#PYTHON2BASH:[{'fedora389ds': [{'server': [{'tls': False}]}, {'login': [{'bind_id': 'cn=Directory Manager'}]}]}]"
+      # - fedora389ds.default.svc.cluster.local:
+      #   - server:
+    #     - tls: false
+    #   - login:
+    #     - bind_id: cn=Directory Manager

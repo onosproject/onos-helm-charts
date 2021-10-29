@@ -45,7 +45,7 @@ spec:
               - key: app
                 operator: In
                 values:
-                - {{ template "fullname" . }}
+                - {{ .Values.app_label }}
             topologyKey: kubernetes.io/hostname
       {{- end }}
       initContainers:

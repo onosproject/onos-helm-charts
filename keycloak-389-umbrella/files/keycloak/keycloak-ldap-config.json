@@ -1,0 +1,111 @@
+{
+  "name": "onf-ldap",
+  "providerId": "ldap",
+  "providerType": "org.keycloak.storage.UserStorageProvider",
+  "parentId": "master",
+  "config": {
+    "enabled": [
+      "true"
+    ],
+    "priority": [
+      "0"
+    ],
+    "fullSyncPeriod": [
+      "-1"
+    ],
+    "changedSyncPeriod": [
+      "-1"
+    ],
+    "cachePolicy": [
+      "DEFAULT"
+    ],
+    "evictionDay": [],
+    "evictionHour": [],
+    "evictionMinute": [],
+    "maxLifespan": [],
+    "batchSizeForSync": [
+      "1000"
+    ],
+    "editMode": [
+      "WRITABLE"
+    ],
+    "importEnabled": [
+      "true"
+    ],
+    "syncRegistrations": [
+      "true"
+    ],
+    "vendor": [
+      "rhds"
+    ],
+    "usePasswordModifyExtendedOp": [],
+    "usernameLDAPAttribute": [
+      "uid"
+    ],
+    "rdnLDAPAttribute": [
+      "uid"
+    ],
+    "uuidLDAPAttribute": [
+      "nsuniqueid"
+    ],
+    "userObjectClasses": [
+      "nsOrgPerson,nsPerson"
+    ],
+    "connectionUrl": [
+      "$LDAP_ADDR"
+    ],
+    "usersDn": [
+      "ou=people,$LDAP_ORG"
+    ],
+    "authType": [
+      "simple"
+    ],
+    "startTls": [],
+    "bindDn": [
+      "cn=Directory Manager"
+    ],
+    "bindCredential": [
+      "$KEYCLOAK_CLIENT_SECRET"
+    ],
+    "customUserSearchFilter": [],
+    "searchScope": [
+      "1"
+    ],
+    "validatePasswordPolicy": [
+      "false"
+    ],
+    "trustEmail": [
+      "false"
+    ],
+    "useTruststoreSpi": [
+      "ldapsOnly"
+    ],
+    "connectionPooling": [
+      "true"
+    ],
+    "connectionPoolingAuthentication": [],
+    "connectionPoolingDebug": [],
+    "connectionPoolingInitSize": [],
+    "connectionPoolingMaxSize": [],
+    "connectionPoolingPrefSize": [],
+    "connectionPoolingProtocol": [],
+    "connectionPoolingTimeout": [],
+    "connectionTimeout": [],
+    "readTimeout": [],
+    "pagination": [
+      "true"
+    ],
+    "allowKerberosAuthentication": [
+      "false"
+    ],
+    "serverPrincipal": [],
+    "keyTab": [],
+    "kerberosRealm": [],
+    "debug": [
+      "false"
+    ],
+    "useKerberosForPasswordAuthentication": [
+      "false"
+    ]
+  }
+}

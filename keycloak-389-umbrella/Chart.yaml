@@ -1,0 +1,26 @@
+apiVersion: v2
+name: keycloak-389-umbrella
+description: Umbrella chart to deploy Keycloak, 389ds & phpLDAPAdmin
+kubeVersion: ">=1.15.0"
+type: application
+version: 0.1.0
+appVersion: v0.0.0
+keywords:
+  - ldap
+  - keycloak
+  - 389
+  - onos
+home: https://onosproject.org
+maintainers:
+  - name: ONOS Support
+    email: support@opennetworking.org
+dependencies:
+  - name: 389ds
+    repository: file://../389ds
+    version: 0.1.1
+  - name: keycloak
+    repository: https://charts.bitnami.com/bitnami
+    version: 5.0.7
+  - name: phpldapadmin
+    repository: https://cetic.github.io/helm-charts
+    version: 0.1.4

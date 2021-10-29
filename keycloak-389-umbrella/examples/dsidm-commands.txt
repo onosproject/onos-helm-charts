@@ -1,0 +1,42 @@
+dsidm localhost -b "dc=opennetworking,dc=org" posixgroup create --cn mixedGroup --gid 500
+dsidm localhost -b "dc=opennetworking,dc=org" posixgroup create --cn charactersGroup --gid 502
+dsidm localhost -b "dc=opennetworking,dc=org" posixgroup create --cn AetherROCAdmin --gid 503
+dsidm localhost -b "dc=opennetworking,dc=org" posixgroup create --cn EnterpriseAdmin --gid 504
+dsidm localhost -b "dc=opennetworking,dc=org" posixgroup create --cn starbucks --gid 510
+dsidm localhost -b "dc=opennetworking,dc=org" posixgroup create --cn acme --gid 511
+
+dsidm localhost -b "dc=opennetworking,dc=org"  user create --uid alicea --cn 'Alice Admin' --displayName 'Alice Admin' --uidNumber 1000 --gidNumber 500 --homeDirectory /home/alicea
+dsidm localhost -b "dc=opennetworking,dc=org"  group add_member mixedGroup uid=alicea,ou=people,dc=opennetworking,dc=org
+dsidm localhost -b "dc=opennetworking,dc=org"  group add_member AetherROCAdmin uid=alicea,ou=people,dc=opennetworking,dc=org
+dsidm localhost -b "dc=opennetworking,dc=org" account reset_password uid=alicea,ou=people,dc=opennetworking,dc=org password
+
+dsidm localhost -b "dc=opennetworking,dc=org"  user create --uid bobc --cn 'Bob Cratchit' --displayName 'Bob Cratchit' --uidNumber 1001 --gidNumber 500 --homeDirectory /home/bobc
+dsidm localhost -b "dc=opennetworking,dc=org"  group add_member mixedGroup uid=bobc,ou=people,dc=opennetworking,dc=org
+dsidm localhost -b "dc=opennetworking,dc=org"  group add_member charactersGroup uid=bobc,ou=people,dc=opennetworking,dc=org
+dsidm localhost -b "dc=opennetworking,dc=org" account reset_password uid=bobc,ou=people,dc=opennetworking,dc=org password
+
+dsidm localhost -b "dc=opennetworking,dc=org"  user create --uid charlieb --cn 'Charlie Brown' --displayName 'Charlie Brown' --uidNumber 1002 --gidNumber 500 --homeDirectory /home/charlieb
+dsidm localhost -b "dc=opennetworking,dc=org"  group add_member charactersGroup uid=charlieb,ou=people,dc=opennetworking,dc=org
+dsidm localhost -b "dc=opennetworking,dc=org" account reset_password uid=charlieb,ou=people,dc=opennetworking,dc=org password
+
+dsidm localhost -b "dc=opennetworking,dc=org"  user create --uid daisyd --cn 'Daisy Duke' --displayName 'Daisy Duke' --uidNumber 1003 --gidNumber 500 --homeDirectory /home/daisyd
+dsidm localhost -b "dc=opennetworking,dc=org"  group add_member charactersGroup uid=daisyd,ou=people,dc=opennetworking,dc=org
+dsidm localhost -b "dc=opennetworking,dc=org"  group add_member EnterpriseAdmin uid=daisyd,ou=people,dc=opennetworking,dc=org
+dsidm localhost -b "dc=opennetworking,dc=org"  group add_member starbucks uid=daisyd,ou=people,dc=opennetworking,dc=org
+dsidm localhost -b "dc=opennetworking,dc=org" account reset_password uid=daisyd,ou=people,dc=opennetworking,dc=org password
+
+dsidm localhost -b "dc=opennetworking,dc=org"  user create --uid elmerf --cn 'Elmer Fudd' --displayName 'Elmer Fudd' --uidNumber 1004 --gidNumber 500 --homeDirectory /home/elmerf
+dsidm localhost -b "dc=opennetworking,dc=org"  group add_member charactersGroup uid=elmerf,ou=people,dc=opennetworking,dc=org
+dsidm localhost -b "dc=opennetworking,dc=org"  group add_member starbucks uid=elmerf,ou=people,dc=opennetworking,dc=org
+dsidm localhost -b "dc=opennetworking,dc=org" account reset_password uid=elmerf,ou=people,dc=opennetworking,dc=org password
+
+dsidm localhost -b "dc=opennetworking,dc=org"  user create --uid fredf --cn 'Fred Flintstone' --displayName 'Fred Flintstone' --uidNumber 1005 --gidNumber 500 --homeDirectory /home/fredf
+dsidm localhost -b "dc=opennetworking,dc=org"  group add_member charactersGroup uid=fredf,ou=people,dc=opennetworking,dc=org
+dsidm localhost -b "dc=opennetworking,dc=org"  group add_member EnterpriseAdmin uid=fredf,ou=people,dc=opennetworking,dc=org
+dsidm localhost -b "dc=opennetworking,dc=org"  group add_member acme uid=fredf,ou=people,dc=opennetworking,dc=org
+dsidm localhost -b "dc=opennetworking,dc=org" account reset_password uid=fredf,ou=people,dc=opennetworking,dc=org password
+
+dsidm localhost -b "dc=opennetworking,dc=org"  user create --uid gandalfg --cn 'Gandalf The Grey' --displayName 'Gandalf The Grey' --uidNumber 1006 --gidNumber 500 --homeDirectory /home/elmerf
+dsidm localhost -b "dc=opennetworking,dc=org"  group add_member charactersGroup uid=gandalfg,ou=people,dc=opennetworking,dc=org
+dsidm localhost -b "dc=opennetworking,dc=org"  group add_member acme uid=gandalfg,ou=people,dc=opennetworking,dc=org
+dsidm localhost -b "dc=opennetworking,dc=org" account reset_password uid=gandalfg,ou=people,dc=opennetworking,dc=org password

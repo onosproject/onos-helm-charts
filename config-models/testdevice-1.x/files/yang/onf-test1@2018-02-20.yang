@@ -1,4 +1,4 @@
-module test1 {
+module onf-test1 {
   namespace "http://opennetworking.org/devicesim/test1";
   prefix t1;
 
@@ -35,7 +35,6 @@ module test1 {
           range 0.001..2.000;
         }
         units mV;
-        config true;
         mandatory true;
         description "Voltage leaf inside Container 2a";
       }
@@ -61,6 +60,7 @@ module test1 {
         type binary {
           length 20;
         }
+        description "binary leaf inside container 2a";
       }
       leaf leaf2g {
         type boolean;
@@ -76,6 +76,11 @@ module test1 {
     }
 
     list list2a {
+      must "range-min < range-max" {
+        error-message "range-min must be less than or equal to range-max";
+        error-app-tag "range must";
+        description "this is a must statement";
+      }
       key name;
       max-elements 4;
       description "A simple list of configuration items";
@@ -96,11 +101,22 @@ module test1 {
       }
 
       leaf ref2d {
-        description "A reference to leaf2d in the 2a container";
         type leafref {
             path /cont1a/cont2a/leaf2d;
         }
+        description "A reference to leaf2d in the 2a container";
       }
+
+      leaf range-min {
+        type uint8;
+        mandatory true;
+        description "A simple range to test rules in YANG. Min must be <= max";
+      }
+      leaf range-max {
+        type uint8;
+        description "A max value for the range";
+      }
+
     }
   }
 
@@ -126,20 +142,20 @@ module test1 {
       }
 
       leaf leaf3c {
-        config false;
         type string {
           length 1..20;
         }
+        config false;
         description "A string attribute in the list";
       }
     }
 
     leaf leaf2d {
-      config false;
       type uint16 {
         range 10000..20000;
       }
       units mm;
+      config false;
       description "A state attribute";
     }
   }

@@ -1,0 +1,126 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "389ds.fullname" . }}
+  labels:
+    {{- include "389ds.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "389ds.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        fedora389ds.g4b1bb097.dev/env-checksum: {{ if .Values.directoryManagerPassword }}{{ .Values.directoryManagerPassword | sha256sum | trunc 32 }}{{ else }}{{ randAlpha 32 }}{{ end }}
+      labels:
+        {{- include "389ds.selectorLabels" . | nindent 8 }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ include "389ds.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        - name: data
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "389ds.fullname" . }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        {{- if .Values.clientCASecrets }}
+        {{- range $i, $secretName := .Values.clientCASecrets }}
+        - name: client-ca-{{ $i }}
+          secret:
+            secretName: {{ $secretName }}
+            items:
+              - key: tls.crt
+                path: ca-{{ $i }}.crt
+        {{- end }}
+        {{- end }}
+        {{- if .Values.serverCertSecret }}
+        - name: server-tls
+          secret:
+            secretName: {{ .Values.serverCertSecret }}
+            items:
+              - key: tls.crt
+                path: server.crt
+              - key: tls.key
+                path: server.key
+        {{- end }}
+        {{- if and .Values.serverCertPasswordSecretName .Values.serverCertPasswordSecretKey }}
+        - name: server-tls-password
+          secret:
+            secretName: {{ .Values.serverCertPasswordSecretName }}
+            items:
+              - key: {{ .Values.serverCertPasswordSecretKey }}
+                path: pwdfile.txt
+        {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+            - secretRef:
+                name: {{ include "389ds.fullname" . }}-env
+          ports:
+            - name: ldap
+              containerPort: 3389
+              protocol: TCP
+            - name: ldaps
+              containerPort: 3636
+              protocol: TCP
+          {{ if .Values.initCommand }}
+          lifecycle:
+            postStart:
+              exec:
+                command: [ "/bin/sh", "-c", {{ .Values.initCommand | quote }} ]
+          {{end}}
+          volumeMounts:
+            - name: data
+              mountPath: /data
+            {{- if .Values.clientCASecrets }}
+            {{- range $i, $secretName := .Values.clientCASecrets }}
+            - name: client-ca-{{ $i }}
+              mountPath: /data/tls/ca/ca-{{ $i }}.crt
+              subPath: ca-{{ $i }}.crt
+            {{- end }}
+            {{- end }}
+            {{- if .Values.serverCertSecret }}
+            - name: server-tls
+              mountPath: /data/tls
+            {{- end }}
+            {{- if and .Values.serverCertPasswordSecretName .Values.serverCertPasswordSecretKey }}
+            - name: server-tls-password
+              mountPath: /data/config/pwdfile.txt
+              subPath: pwdfile.txt
+            {{- end }}
+          livenessProbe:
+            exec:
+              command:
+                - /usr/libexec/dirsrv/dscontainer
+                - -H
+          readinessProbe:
+            exec:
+              command:
+                - /usr/libexec/dirsrv/dscontainer
+                - -H
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

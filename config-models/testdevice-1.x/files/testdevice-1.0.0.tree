@@ -1,4 +1,4 @@
-module: test1
+module: onf-test1
   +--rw cont1a!
   |  +--rw cont2a
   |  |  +--rw leaf2a?   uint8
@@ -10,9 +10,11 @@ module: test1
   |  |  +--rw leaf2g?   boolean
   |  +--rw leaf1a?      string
   |  +--rw list2a* [name]
-  |  |  +--rw name        string
-  |  |  +--rw tx-power?   uint16
-  |  |  +--rw ref2d?      -> /cont1a/cont2a/leaf2d
+  |  |  +--rw name         string
+  |  |  +--rw tx-power?    uint16
+  |  |  +--rw ref2d?       -> /cont1a/cont2a/leaf2d
+  |  |  +--rw range-min    uint8
+  |  |  +--rw range-max?   uint8
   |  +--rw t1e:list4* [id]
   |  |  +--rw t1e:id        -> /t1:cont1a/list2a/name
   |  |  +--rw t1e:leaf4b?   string

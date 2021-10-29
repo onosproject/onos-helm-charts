@@ -1,0 +1,49 @@
+{
+  "config": {
+    "groups.dn": [
+      "ou=groups,$LDAP_ORG"
+    ],
+    "group.name.ldap.attribute": [
+      "cn"
+    ],
+    "group.object.classes": [
+      "groupOfNames"
+    ],
+    "preserve.group.inheritance": [
+      "true"
+    ],
+    "ignore.missing.groups": [
+      "false"
+    ],
+    "membership.ldap.attribute": [
+      "member"
+    ],
+    "membership.attribute.type": [
+      "DN"
+    ],
+    "membership.user.ldap.attribute": [
+      "uid"
+    ],
+    "groups.ldap.filter": [],
+    "mode": [
+      "LDAP_ONLY"
+    ],
+    "user.roles.retrieve.strategy": [
+      "LOAD_GROUPS_BY_MEMBER_ATTRIBUTE"
+    ],
+    "memberof.ldap.attribute": [
+      "memberOf"
+    ],
+    "mapped.group.attributes": [],
+    "drop.non.existing.groups.during.sync": [
+      "true"
+    ],
+    "groups.path": [
+      "/"
+    ]
+  },
+  "name": "onf-group-mapper",
+  "providerId": "group-ldap-mapper",
+  "providerType": "org.keycloak.storage.ldap.mappers.LDAPStorageMapper",
+  "parentId": "$COMPONENT_ID"
+}
