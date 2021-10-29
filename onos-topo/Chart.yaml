@@ -9,6 +9,6 @@ keywords:
   - onos
   - sdn
 home: https://onosproject.org
-maintainers
+maintainers:
   - name: ONOS Support
     email: support@opennetworking.org
