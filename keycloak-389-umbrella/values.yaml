@@ -18,7 +18,7 @@ keycloak:
   persistence:
     enabled: false
   directoryManagerPassword: changeme
-  initCommand: sleep 3 && /usr/sbin/dsconf localhost backend create --suffix 'dc=opennetworking,dc=org' --be-name=aether --create-entries --create-suffix > /usr/share/messages
+  initCommand: sleep 3 && (/usr/sbin/dsconf localhost monitor server || /usr/sbin/dsconf localhost backend create --suffix 'dc=opennetworking,dc=org' --be-name=aether --create-entries --create-suffix)
 
 tidyUpPostInstall: true
 
