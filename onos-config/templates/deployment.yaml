@@ -25,13 +25,7 @@ spec:
       annotations:
         broker.atomix.io/inject: "true"
         raft.storage.atomix.io/inject: "true"
-        registry.config.onosproject.org/inject: {{ template "onos-config.fullname" . }}
-        compiler.config.onosproject.org/version: {{ .Values.plugin.compiler.version | quote }}
-        {{- if .Values.plugin.compiler.target }}
-        compiler.config.onosproject.org/target: {{ .Values.plugin.compiler.target | quote }}
-        {{- else }}
-        compiler.config.onosproject.org/target: {{ printf "github.com/onosproject/onos-config@%s" .Values.image.tag | quote }}
-        {{- end }}
+        registry.config.onosproject.org/inject-status: injected
         {{- range $key, $value := .Values.annotations }}
         {{ $key }}: {{ $value }}
         {{- end }}
@@ -44,6 +38,39 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       containers:
+        - name: model-registry
+          image: {{include "onos-config.registry.imagename" . | quote}}
+          imagePullPolicy: {{.Values.registry.image.pullPolicy}}
+          args:
+            - "--mod-path=/onos-config"
+            - "--registry-path=/etc/onos/registry"
+            - "--cache-path=/etc/onos/plugins"
+            - "--ca-cert=/etc/onos/certs/tls.cacrt"
+            - "--cert=/etc/onos/certs/tls.crt"
+            - "--key=/etc/onos/certs/tls.key"
+          startupProbe:
+            tcpSocket:
+              port: 5151
+            periodSeconds: 5
+            failureThreshold: 60
+          readinessProbe:
+            tcpSocket:
+              port: 5151
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 5151
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          volumeMounts:
+            - name: secret
+              mountPath: /etc/onos/certs
+              readOnly: true
+            - name: registry
+              mountPath: /etc/onos/registry
+            - name: plugins
+              mountPath: /etc/onos/plugins
         - name: {{ .Chart.Name }}
           image: {{ include "onos-config.imagename" . | quote }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -72,7 +99,6 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
-
           args:
             - "-caPath=/etc/onos/certs/tls.cacrt"
             - "-keyPath=/etc/onos/certs/tls.key"
@@ -110,6 +136,12 @@ spec:
               readOnly: true
             - name: secret
               mountPath: /etc/onos/certs
+              readOnly: true
+            - name: registry
+              mountPath: /etc/onos/registry
+              readOnly: true
+            - name: plugins
+              mountPath: /etc/onos/plugins
               readOnly: true
           # Enable ptrace for debugging
           securityContext:
@@ -155,6 +187,11 @@ spec:
         - name: secret
           secret:
             secretName: {{ template "onos-config.fullname" . }}-secret
+        - name: registry
+          emptyDir: {}
+        # TODO: Support PV/storage class for plugin cache
+        - name: plugins
+          emptyDir: {}
         {{- if .Values.openpolicyagent.enabled }}
         - name: openpolicyagent
           configMap:

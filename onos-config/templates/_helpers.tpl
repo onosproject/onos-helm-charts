@@ -70,6 +70,23 @@ onos-config image name
 {{- end -}}
 
 {{/*
+onos-config registry image name
+*/}}
+{{- define "onos-config.registry.imagename" -}}
+{{- if .Values.global.registry.image.registry -}}
+{{- printf "%s/" .Values.global.registry.image.registry -}}
+{{- else if .Values.registry.image.registry -}}
+{{- printf "%s/" .Values.registry.image.registry -}}
+{{- end -}}
+{{- printf "%s:" .Values.registry.image.repository -}}
+{{- if .Values.global.registry.image.tag -}}
+{{- .Values.global.registry.image.tag -}}
+{{- else -}}
+{{- .Values.registry.image.tag -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
 onos-config consensus image name
 */}}
 {{- define "onos-config.store.consensus.imagename" -}}

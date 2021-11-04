@@ -1,4 +1,4 @@
-{{- if .Values.plugin.cache.enabled }}
+{{- if .Values.registry.cache.enabled }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -9,8 +9,8 @@ metadata:
 spec:
   accessModes:
   - ReadWriteOnce
-  storageClassName: {{ .Values.plugin.cache.storage.class | quote }}
+  storageClassName: {{ .Values.registry.cache.storage.class | quote }}
   resources:
     requests:
-      storage: {{ .Values.plugin.cache.storage.size }}
+      storage: {{ .Values.registry.cache.storage.size }}
 {{- end }}

@@ -6,6 +6,10 @@ global:
   image:
     registry: ""
     tag: ""
+  registry:
+    image:
+      registry: ""
+      tag: ""
   store:
     consensus:
       name: ""
@@ -27,6 +31,19 @@ image:
   pullPolicy: IfNotPresent
   pullSecrets: []
 
+registry:
+  image:
+    registry: ""
+    repository: onosproject/config-model-registry
+    tag: v0.9.9
+    pullPolicy: IfNotPresent
+    pullSecrets: []
+  cache:
+    enabled: false
+    storage:
+      class: "standard"
+      size: 1Gi
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: "onos-config"
@@ -37,16 +54,6 @@ devices: []
 
 # Variable to change to onos topo service endpoint for the default onos-topo:5150
 # topoEndpoint: onos-topo-classic:5150
-
-plugin:
-  cache:
-    enabled: false
-    storage:
-      class: "standard"
-      size: 1Gi
-  compiler:
-    version: v1.0.1
-    target: ""
 
 store:
   consensus:
