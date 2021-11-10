@@ -1,0 +1,12 @@
+{{- if .Values.podsecuritypolicy.enabled }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: psp:onos-tost
+rules:
+- apiGroups: ['policy']
+  resources: ['podsecuritypolicies']
+  verbs:     ['use']
+  resourceNames:
+  - 1-onos-tost
+{{- end }}

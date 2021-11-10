@@ -88,3 +88,6 @@ onos-classic:
 #   kubectl -n <ONOS_NAMESPACE> create secret generic onos-secret \
 #     --from-literal=username=<ONOS_USER> --from-literal=password=<ONOS_PASS>
 #
+
+podsecuritypolicy:
+  enabled: false
