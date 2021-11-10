@@ -10,14 +10,14 @@ spec:
     type: TestDevice
     version: {{ .Chart.AppVersion | quote }}
   modules:
-  - name: test1
+  - name: onf-test1
     organization: Open Networking Foundation
     revision: 2019-06-10
     file: test1@2019-06-10.yang
-  - name: test1-augmented
+  - name: onf-test1-augmented
     organization: Open Networking Foundation
     revision: 2020-02-29
-    file: test1-augmented@2020-02-29.yang
+    file: onf-test1-augmented@2020-02-29.yang
   files:
     {{- range $path, $_  := $.Files.Glob "files/yang/*.yang" }}
     {{ base $path }}: |

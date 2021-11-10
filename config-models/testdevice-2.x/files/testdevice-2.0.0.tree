@@ -1,4 +1,4 @@
-module: test1
+module: onf-test1
   +--rw cont1a!
   |  +--rw cont2a
   |  |  +--rw leaf2a?   uint8
@@ -32,3 +32,4 @@ module: test1
      +--ro cont2c
         +--ro leaf3a?   boolean
         +--ro leaf3b?   string
+
