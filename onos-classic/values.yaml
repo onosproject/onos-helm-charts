@@ -90,3 +90,6 @@ config:
   #     {
   #       "enabled": "false"
   #     }
+
+podsecuritypolicy:
+  enabled: false
