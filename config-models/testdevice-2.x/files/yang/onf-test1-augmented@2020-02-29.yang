@@ -1,8 +1,8 @@
-module test1-augmented {
+module onf-test1-augmented {
     namespace "http://opennetworking.org/devicesim/test1-augmented";
     prefix t1a;
 
-    import test1 { prefix t1; }
+    import onf-test1 { prefix t1; }
 
 
     organization "Open Networking Foundation.";
@@ -20,29 +20,40 @@ module test1-augmented {
         container cont2d {
             leaf leaf2d3c {
                 type string;
+                description "string leaf on Container 2d augmented to cont1a";
             }
-
 
            choice snack {
                description "straight from RFC-6020";
                case sports-arena {
                    leaf pretzel {
                        type empty;
+                       description "empty leaf in case sports-arena on Container 2d augmented to cont1a";
                    }
                    leaf beer {
                        type empty;
+                       description "2nd empty leaf in case sports-arena on Container 2d augmented to cont1a";
                    }
                }
                case late-night {
                    leaf chocolate {
                        type enumeration {
-                           enum dark;
-                           enum milk;
-                           enum first-available;
+                           enum dark {
+                               description "Dark Chocolate";
+                           }
+                           enum milk {
+                               description "Milk Chocolate";
+                           }
+                           enum first-available {
+                               description "First available Chocolate";
+                           }
                        }
+                       description "enumerated leaf in case late-night on Container 2d augmented to cont1a";
                    }
                }
            }
+           description "Container 2d";
        }
+       description "Extending Container 1a";
     }
 }

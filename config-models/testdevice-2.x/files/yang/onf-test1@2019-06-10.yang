@@ -1,8 +1,8 @@
-module test1 {
+module onf-test1 {
   namespace "http://opennetworking.org/devicesim/test1";
   prefix t1;
 
-  import test1-identities { prefix t1id; }
+  import onf-test1-identities { prefix t1id; }
 
   organization "Open Networking Foundation.";
   contact "Sean Condon";
@@ -25,6 +25,9 @@ module test1 {
     description "The top level container";
 
     container cont2a {
+      must "leaf2g or leaf2a < 4" {
+        error-message "If Leaf 2a is above 4 then leaf2g must be true for the validation to pass";
+      }
       description "The 2nd level container";
 
       leaf leaf2a {
@@ -42,7 +45,6 @@ module test1 {
           range -0.001..2.000;
         }
         units mV;
-        config true;
         mandatory true;
         description "Voltage leaf inside Container 2a";
       }
@@ -68,6 +70,7 @@ module test1 {
         type binary {
           length 20;
         }
+        description "binary leaf inside Container 2a";
       }
       leaf leaf2g {
         type boolean;
@@ -83,6 +86,10 @@ module test1 {
     }
 
     list list2a {
+      must "tx-power < rx-power" {
+        error-message "tx-power is greater than or equal to rx-power";
+        description "tx-power must be less than rx-power - the only value they can share is 20";
+      }
       key name;
       max-elements 4;
       description "A simple list of configuration items";
@@ -127,6 +134,7 @@ module test1 {
     list list2b {
       key "index1 index2";
       config false;
+      max-elements 3;
       description "A simple list of state items, with a double key";
 
       leaf index1 {
@@ -140,10 +148,10 @@ module test1 {
       }
 
       leaf leaf3c {
-        config false;
         type string {
           length 1..20;
         }
+        config false;
         description "A string attribute in the list";
       }
 
@@ -156,11 +164,11 @@ module test1 {
     }
 
     leaf leaf2d {
-      config false;
       type uint16 {
         range 10000..20000;
       }
       units mm;
+      config false;
       description "A state attribute";
     }
 

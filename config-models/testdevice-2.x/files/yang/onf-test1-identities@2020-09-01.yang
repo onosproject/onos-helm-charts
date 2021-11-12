@@ -1,4 +1,4 @@
-module test1-identities {
+module onf-test1-identities {
     namespace "http://opennetworking.org/devicesim/test1-identities";
     prefix t1id;
 
@@ -8,6 +8,8 @@ module test1-identities {
 
     revision "2020-09-01" {
         description "Initial Version";
+        reference
+         "onos unit testing";
     }
 
     identity MYBASE {
