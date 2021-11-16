@@ -18,7 +18,7 @@ keycloak:
   persistence:
     enabled: false
   directoryManagerPassword: changeme
-  initCommand: sleep 10 && (/usr/sbin/dsconf localhost suffix get "dc=opennetworking,dc=org" || /usr/sbin/dsconf localhost backend create --suffix 'dc=opennetworking,dc=org' --be-name=aether --create-entries --create-suffix)
+  initCommand: sleep 60 && /usr/sbin/dsconf localhost backend create --suffix 'dc=opennetworking,dc=org' --be-name=aether --create-entries --create-suffix
 
 tidyUpPostInstall: true
 
