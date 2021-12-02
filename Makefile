@@ -7,18 +7,16 @@ jenkins-test: jenkins_version_check # @HELP run the jenkins verification tests
 	docker run --rm --name ct --volume `pwd`:/charts quay.io/helmpack/chart-testing:v3.0.0-beta.1 sh -c "ct lint --charts charts/onos-config,charts/onos-topo,charts/onos-cli,charts/onos-gui,charts/device-simulator --debug --validate-maintainers=false"
 
 test: # @HELP run the integration tests
-test: version_check yang-lint
+test: version_check yang-lint deps
 	kubectl create ns onos-topo && helmit test -n onos-topo ./test -c . --suite onos-topo
 	kubectl create ns onos-config && helmit test -n onos-config ./test -c . --suite onos-config
 	kubectl create ns onos-umbrella && helmit test -n onos-umbrella ./test -c . --suite onos-umbrella
 
 version_check: build-tools # @HELP run the version checker on the charts
 	COMPARISON_BRANCH=master ./../build-tools/chart_version_check
-	./../build-tools/chart_single_check
 
 jenkins_version_check: build-tools # @HELP run the version checker on the charts
 	export COMPARISON_BRANCH=origin/master && export WORKSPACE=`pwd` && ./../build-tools/chart_version_check
-	./../build-tools/chart_single_check
 
 publish: build-tools # @HELP publish version on github
 	./../build-tools/publish-version ${VERSION}
