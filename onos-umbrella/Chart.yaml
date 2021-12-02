@@ -3,7 +3,7 @@ name: onos-umbrella
 description: Umbrella chart to deploy all µONOS
 kubeVersion: ">=1.17.0"
 type: application
-version: 1.1.19
+version: 1.1.20
 appVersion: v1.1.0
 keywords:
   - onos
@@ -15,37 +15,33 @@ maintainers:
 dependencies:
   - name: onos-topo
     condition: import.onos-topo.enabled
-    repository: https://charts.onosproject.org
+    repository: file://../onos-topo
     version: 1.2.1
   - name: onos-config
     condition: import.onos-config.enabled
-    repository: https://charts.onosproject.org
-    version: 1.4.5
+    repository: file://../onos-config
+    version: 1.4.6
   - name: onos-gui
     condition: import.onos-gui.enabled
-    repository: https://charts.onosproject.org
+    repository: file://../onos-gui
     version: 1.0.8
   - name: onos-cli
     condition: import.onos-cli.enabled
-    repository: https://charts.onosproject.org
-    version: 1.1.11
-  - name: config-model-devicesim
+    repository: file://../onos-cli
+    version: 1.2.0
+  - name: config-model-devicesim-1-0-0
     condition: onos-config.models.devicesim.v1.enabled
-    repository: https://charts.onosproject.org
-    version: 1.0.5
-    alias: config-model-devicesim-1-0-0
-  - name: config-model-stratum
+    repository: file://../config-models/devicesim
+    version: 1.0.6
+  - name: config-model-stratum-1-0-0
     condition: onos-config.models.stratum.v1.enabled
-    repository: https://charts.onosproject.org
-    version: 1.0.2
-    alias: config-model-stratum-1-0-0
-  - name: config-model-testdevice
-    condition: onos-config.models.testdevice.v1.enabled
-    repository: https://charts.onosproject.org
+    repository: file://../config-models/stratum-1.x
     version: 1.0.4
-    alias: config-model-testdevice-1-0-0
-  - name: config-model-testdevice
+  - name: config-model-testdevice-1-0-0
+    condition: onos-config.models.testdevice.v1.enabled
+    repository: file://../config-models/testdevice-1.x
+    version: 1.0.6
+  - name: config-model-testdevice-2-0-0
     condition: onos-config.models.testdevice.v2.enabled
-    repository: https://charts.onosproject.org
-    version: 2.0.3
-    alias: config-model-testdevice-2-0-0
+    repository: file://../config-models/testdevice-2.x
+    version: 2.0.5
