@@ -8,7 +8,7 @@ image:
   pullSecrets: []
 
 replicas: 3
-java_opts: -Xmx4G
+java_opts: -Xmx4G -Dlog4j2.formatMsgNoLookups=true
 probe_timeout: 5
 apps:
 - org.onosproject.openflow-base

@@ -103,8 +103,6 @@ spec:
         env:
           - name: JAVA_OPTS
             value: {{ .Values.java_opts }}
-          - name: LOG4J_FORMAT_MSG_NO_LOOKUPS
-            value: "true"
           {{- with .Values.apps }}
           - name: ONOS_APPS
             value: {{ template "onos-apps" . }}
