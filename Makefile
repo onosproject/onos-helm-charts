@@ -2,7 +2,7 @@
 
 all: test
 
-jenkins-test: jenkins_version_check # @HELP run the jenkins verification tests
+jenkins-test: jenkins_version_check yang-lint deps# @HELP run the jenkins verification tests
 	docker pull quay.io/helmpack/chart-testing:v2.4.0
 	docker run --rm --name ct --volume `pwd`:/charts quay.io/helmpack/chart-testing:v3.0.0-beta.1 sh -c "ct lint --charts charts/onos-config,charts/onos-topo,charts/onos-cli,charts/onos-gui,charts/device-simulator --debug --validate-maintainers=false"
 
