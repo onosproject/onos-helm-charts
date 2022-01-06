@@ -158,7 +158,8 @@ spec:
         {{- $root := . -}}
         {{- range .Values.modelPlugins }}
         - name: {{ .name }}
-          image: {{ .image }}
+          image:  {{ include "modelplugin.imagename" (dict "Values" $root.Values "image" .image) | quote }}
+          # image: {{ .image }}
           imagePullPolicy: {{ $root.Values.image.pullPolicy }}
           args:
             - "{{ .port }}"
