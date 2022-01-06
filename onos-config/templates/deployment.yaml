@@ -88,6 +88,9 @@ spec:
             {{- if .Values.topoEndpoint }}
             - {{ printf "-topoEndpoint=%s" .Values.topoEndpoint }}
             {{- end }}
+            {{- range .Values.modelPlugins }}
+            - "--plugin-port={{ .port }}"
+            {{- end }}
           ports:
             - name: grpc
               containerPort: 5150
