@@ -155,6 +155,17 @@ spec:
               mountPath: /etc/onos/rego
               readOnly: true
         {{end}}
+        {{- $root := . -}}
+        {{- range .Values.modelPlugins }}
+        - name: {{ .name }}
+          image: {{ .image }}
+          imagePullPolicy: {{ $root.Values.image.pullPolicy }}
+          args:
+            - "{{ .port }}"
+          ports:
+            - name: grpc
+              containerPort: {{ .port }}
+        {{- end }}
       # Mount volumes
       volumes:
         - name: config
