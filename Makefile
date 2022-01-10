@@ -36,7 +36,7 @@ yang-lint: pyang-tool
 	pyang --lint config-models/testdevice-2.x/files/yang/*.yang
 
 pyang-tool: # @HELP install the Pyang tool if needed
-	pyang --version || python -m pip install pyang==0.2.4
+	pyang --version || python -m pip install pyang==2.5.2
 
 clean: # @HELP clean up temporary files.
 	rm -rf onos-umbrella/charts onos-umbrella/Chart.lock
