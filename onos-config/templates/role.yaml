@@ -17,5 +17,8 @@ rules:
   - {{ template "onos-config.fullname" . }}-snapshots
   - {{ template "onos-config.fullname" . }}-network-snapshots
   - {{ template "onos-config.fullname" . }}-device-snapshots
+  - {{ template "onos-config.fullname" . }}-transactions
+  - {{ template "onos-config.fullname" . }}-configurations
+
   verbs:
   - '*'
