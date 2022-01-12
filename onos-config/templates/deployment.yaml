@@ -82,11 +82,11 @@ spec:
                   fieldPath: spec.nodeName
 
           args:
-            - "-caPath=/etc/onos/certs/tls.cacrt"
-            - "-keyPath=/etc/onos/certs/tls.key"
-            - "-certPath=/etc/onos/certs/tls.crt"
+            - "--caPath=/etc/onos/certs/tls.cacrt"
+            - "--keyPath=/etc/onos/certs/tls.key"
+            - "--certPath=/etc/onos/certs/tls.crt"
             {{- if .Values.topoEndpoint }}
-            - {{ printf "-topoEndpoint=%s" .Values.topoEndpoint }}
+            - {{ printf "--topoEndpoint=%s" .Values.topoEndpoint }}
             {{- end }}
             {{- range .Values.modelPlugins }}
             - "--plugin-port={{ .port }}"

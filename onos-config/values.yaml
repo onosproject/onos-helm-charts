@@ -23,7 +23,7 @@ replicaCount: 1
 image:
   registry: ""
   repository: onosproject/onos-config
-  tag: v0.10.7
+  tag: v0.10.9
   pullPolicy: IfNotPresent
   pullSecrets: []
 
@@ -46,7 +46,7 @@ modelPlugins:
     image: onosproject/testdevice:1.0.0
     port: 5153
   - name: testdevice2
-    image: onosproject/devicesim:2.0.0
+    image: onosproject/testdevice:2.0.0
     port: 5154
 
 # Variable to change to onos topo service endpoint for the default onos-topo:5150
