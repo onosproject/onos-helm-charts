@@ -1,0 +1,16 @@
+# SPDX-FileCopyrightText: 2022-present Open Networking Foundation <info@opennetworking.org>
+#
+# SPDX-License-Identifier: LicenseRef-ONF-Member-Only-1.0
+
+{{ if ".Values.onos-config.openpolicyagent.enabled" }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-opa-rbac
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+data:
+{{ (.Files.Glob "files/opa-rbac/*.rego").AsConfig | indent 2 }}
+{{end}}
