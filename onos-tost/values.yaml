@@ -34,7 +34,7 @@ onos-classic:
     - org.onosproject.hostprobingprovider
 
   logging:
-    karafVersion: 4.2.9
+    karafVersion: 4.2.14
     config: |
       # Common pattern layout for appenders
       log4j2.stdout.pattern = %d{RFC3339} %-5level [%c{1}] %msg%n%throwable
