@@ -35,6 +35,20 @@ debug: false
 
 devices: []
 
+# model plugins list
+# deployed as a sidecar to onos-config, eg:
+
+modelPlugins:
+  - name: devicesim1
+    image: onosproject/devicesim:1.0.0
+    port: 5152
+  - name: testdevice1
+    image: onosproject/testdevice:1.0.0
+    port: 5153
+  - name: testdevice2
+    image: onosproject/devicesim:2.0.0
+    port: 5154
+
 # Variable to change to onos topo service endpoint for the default onos-topo:5150
 # topoEndpoint: onos-topo-classic:5150
 

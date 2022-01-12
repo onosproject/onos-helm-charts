@@ -88,6 +88,9 @@ spec:
             {{- if .Values.topoEndpoint }}
             - {{ printf "-topoEndpoint=%s" .Values.topoEndpoint }}
             {{- end }}
+            {{- range .Values.modelPlugins }}
+            - "--plugin-port={{ .port }}"
+            {{- end }}
           ports:
             - name: grpc
               containerPort: 5150
@@ -155,6 +158,18 @@ spec:
               mountPath: /etc/onos/rego
               readOnly: true
         {{end}}
+        {{- $root := . -}}
+        {{- range .Values.modelPlugins }}
+        - name: {{ .name }}
+          image:  {{ include "modelplugin.imagename" (dict "Values" $root.Values "image" .image) | quote }}
+          # image: {{ .image }}
+          imagePullPolicy: {{ $root.Values.image.pullPolicy }}
+          args:
+            - "{{ .port }}"
+          ports:
+            - name: grpc
+              containerPort: {{ .port }}
+        {{- end }}
       # Mount volumes
       volumes:
         - name: config

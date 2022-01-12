@@ -117,3 +117,16 @@ openpolicyagent image name
 {{- .Values.openpolicyagent.image.tag -}}
 {{- end -}}
 {{- end -}}
+
+{{/*
+  modelPlugins image names,
+  takes the image name and the .Values to add the registry if any.
+*/}}
+{{- define "modelplugin.imagename" -}}
+{{- if .Values.global.image.registry -}}
+{{- printf "%s/" .Values.global.image.registry -}}
+{{- else if .Values.image.registry -}}
+{{- printf "%s/" .Values.image.registry -}}
+{{- end -}}
+{{- printf "%s" .image -}}
+{{- end -}}
