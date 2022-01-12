@@ -1,0 +1,36 @@
+{
+  "groups": [
+    "mixedGroup",
+    "acme"
+  ],
+  "system": {
+    "config": {
+      "hostname": "host1",
+      "login-banner": "hello world",
+      "motd-banner": "happy groundhog day!"
+    },
+    "clock": {
+      "config": {
+        "timezone-name": "UTC"
+      }
+    }
+  },
+  "interfaces": {
+    "interface": [
+      {
+        "name": "acme",
+        "config": {
+          "type": "ethernet",
+          "mtu": 1234
+        }
+      },
+      {
+        "name": "eth1",
+        "config": {
+          "type": "ethernet",
+          "mtu": 5678
+        }
+      }
+    ]
+  }
+}
