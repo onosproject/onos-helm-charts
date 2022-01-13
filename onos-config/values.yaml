@@ -35,6 +35,9 @@ debug: false
 
 devices: []
 
+# whether to enable the model plugin registry for validation
+usePluginRegistry: false
+
 # model plugins list
 # deployed as a sidecar to onos-config, eg:
 
