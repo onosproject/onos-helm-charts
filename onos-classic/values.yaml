@@ -52,7 +52,7 @@ ports:
     port: 8181
 
 # logging:
-#   karafVersion: 4.2.9
+#   karafVersion: 4.2.14
 #   config: |
 #     # Just an example. See org.ops4j.pax.logging.cfg for details.
 #
