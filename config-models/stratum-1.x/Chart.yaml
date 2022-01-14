@@ -1,6 +1,6 @@
 apiVersion: v2
 name: config-model-stratum-1-0-0
-version: 1.0.4
+version: 1.0.5
 kubeVersion: ">=1.18.0"
 appVersion: 1.0.0
 description: Stratum model
