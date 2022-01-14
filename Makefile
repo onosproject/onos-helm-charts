@@ -8,9 +8,9 @@ jenkins-test: jenkins_version_check yang-lint deps# @HELP run the jenkins verifi
 
 test: # @HELP run the integration tests
 test: version_check yang-lint deps
-	kubectl create ns onos-topo && helmit test -n onos-topo ./test -c . --suite onos-topo
-	kubectl create ns onos-config && helmit test -n onos-config ./test -c . --suite onos-config
-	kubectl create ns onos-umbrella && helmit test -n onos-umbrella ./test -c . --suite onos-umbrella
+	(kubectl delete ns onos-topo || exit 0) && kubectl create ns onos-topo && helmit test -n onos-topo ./test -c . --suite onos-topo
+	(kubectl delete ns onos-config || exit 0) && kubectl create ns onos-config && helmit test -n onos-config ./test -c . --suite onos-config
+	(kubectl delete ns onos-umbrella || exit 0) && kubectl create ns onos-umbrella && helmit test -n onos-umbrella ./test -c . --suite onos-umbrella
 
 version_check: build-tools # @HELP run the version checker on the charts
 	COMPARISON_BRANCH=master ./../build-tools/chart_version_check
