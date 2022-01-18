@@ -141,6 +141,8 @@ spec:
             - "run"
             - "--server"
             - "/etc/onos/rego"
+            - "--log-level"
+            - {{ .Values.openpolicyagent.loglevel }}
           livenessProbe:
             httpGet:
               scheme: HTTP              # assumes OPA listens on localhost:8181

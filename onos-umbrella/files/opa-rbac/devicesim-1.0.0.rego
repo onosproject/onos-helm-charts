@@ -10,23 +10,30 @@ echo[config] {
 
 
 allowed[config] {
-    interface := interfaces_rule # defer to interfaces rule below
-    system := system_rule
     config := {
         "interfaces": {
             "interface": [
-                interface
+                interfaces_rule
             ]
         },
-        "system": input.system,
+        "components": {
+            "component": [
+                components_rule
+            ]
+        },
+        "system": object.get(input, "system", {})
     }
 }
 
 interfaces_rule[interface] {
-    interface := input.interfaces.interface[_] # for each interface in input
+    # for each interface in input
+    interface := input.interfaces.interface[_]
+    # Allow the interface through only if its name is in the groups list,
+    # or "AetherROCAdmin is in the groups list
     ["AetherROCAdmin", interface.name][_] == input.groups[i]
 }
 
-system_rule[system] {
-    system := input.system[_]
+components_rule[component] {
+    component := input.components.component[_]
+    ["AetherROCAdmin", component.name][_] == input.groups[i]
 }

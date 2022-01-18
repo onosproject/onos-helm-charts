@@ -1,0 +1,30 @@
+{
+    "groups": [
+      "AetherROCAdmin",
+      "mixedGroup"
+    ],
+    "interfaces": {
+      "interface": [
+        {
+          "config": {
+            "description": "ABC123",
+            "name": "starbucks"
+          },
+          "name": "starbucks"
+        }
+      ]
+    },
+    "components": {
+      "component" : [
+        {
+          "name": "starbucks"
+        },
+        {
+          "name": "acme"
+        },
+        {
+          "name": "other"
+        }
+      ]
+    }
+}
