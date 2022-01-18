@@ -123,3 +123,4 @@ openpolicyagent:
     registry: ""
     tag: 0.29.4
   regoConfigMap: onos-config-openpolicyagent
+  loglevel: info
