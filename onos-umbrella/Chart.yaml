@@ -28,7 +28,7 @@ dependencies:
   - name: onos-cli
     condition: import.onos-cli.enabled
     repository: file://../onos-cli
-    version: 1.2.2
+    version: 1.2.3
   - name: config-model-devicesim-1-0-0
     condition: onos-config.models.devicesim.v1.enabled
     repository: file://../config-models/devicesim
