@@ -25,13 +25,6 @@ spec:
       annotations:
         broker.atomix.io/inject: "true"
         raft.storage.atomix.io/inject: "true"
-        registry.config.onosproject.org/inject: {{ template "onos-config.fullname" . }}
-        compiler.config.onosproject.org/version: {{ .Values.plugin.compiler.version | quote }}
-        {{- if .Values.plugin.compiler.target }}
-        compiler.config.onosproject.org/target: {{ .Values.plugin.compiler.target | quote }}
-        {{- else }}
-        compiler.config.onosproject.org/target: {{ printf "github.com/onosproject/onos-config@%s" .Values.image.tag | quote }}
-        {{- end }}
         {{- range $key, $value := .Values.annotations }}
         {{ $key }}: {{ $value }}
         {{- end }}
@@ -90,7 +83,7 @@ spec:
             - {{ printf "--topoEndpoint=%s" .Values.topoEndpoint }}
             {{- end }}
             {{- range .Values.modelPlugins }}
-            - "--plugin-port={{ .port }}"
+            - "--plugin={{.endpoint}}:{{.port}}"
             {{- end }}
           ports:
             - name: grpc

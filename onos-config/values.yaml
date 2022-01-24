@@ -23,7 +23,7 @@ replicaCount: 1
 image:
   registry: ""
   repository: onosproject/onos-config
-  tag: v0.10.10
+  tag: '{{ .Chart.AppVersion }}'
   pullPolicy: IfNotPresent
   pullSecrets: []
 
@@ -44,12 +44,15 @@ usePluginRegistry: false
 modelPlugins:
   - name: devicesim1
     image: onosproject/devicesim:1.0.0
+    endpoint: localhost
     port: 5152
   - name: testdevice1
     image: onosproject/testdevice:1.0.0
+    endpoint: localhost
     port: 5153
   - name: testdevice2
     image: onosproject/testdevice:2.0.0
+    endpoint: localhost
     port: 5154
 
 # Variable to change to onos topo service endpoint for the default onos-topo:5150
