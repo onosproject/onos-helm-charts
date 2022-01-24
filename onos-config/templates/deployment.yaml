@@ -90,7 +90,7 @@ spec:
             - {{ printf "--topoEndpoint=%s" .Values.topoEndpoint }}
             {{- end }}
             {{- range .Values.modelPlugins }}
-            - "--plugin-port={{ .port }}"
+            - "--plugin={{.name}}:{{ .port }}"
             {{- end }}
           ports:
             - name: grpc
