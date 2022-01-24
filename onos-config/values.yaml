@@ -42,15 +42,15 @@ usePluginRegistry: false
 # deployed as a sidecar to onos-config, eg:
 
 modelPlugins:
-  - name: devicesim-1.0.x
+  - name: devicesim-1
     image: onosproject/devicesim-1.0.x:1.0.0
     endpoint: localhost
     port: 5152
-  - name: testdevice-1.0.x
+  - name: testdevice-1
     image: onosproject/testdevice-1.0.x:1.0.0
     endpoint: localhost
     port: 5153
-  - name: testdevice-2.0.x
+  - name: testdevice-2
     image: onosproject/testdevice-2.0.x:2.0.0
     endpoint: localhost
     port: 5154
