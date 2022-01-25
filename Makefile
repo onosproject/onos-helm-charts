@@ -2,12 +2,12 @@
 
 all: test
 
-jenkins-test: jenkins_version_check yang-lint deps# @HELP run the jenkins verification tests
+jenkins-test: jenkins_version_check deps# @HELP run the jenkins verification tests
 	docker pull quay.io/helmpack/chart-testing:v2.4.0
 	docker run --rm --name ct --volume `pwd`:/charts quay.io/helmpack/chart-testing:v3.0.0-beta.1 sh -c "ct lint --charts charts/onos-config,charts/onos-topo,charts/onos-cli,charts/onos-gui,charts/device-simulator --debug --validate-maintainers=false"
 
 test: # @HELP run the integration tests
-test: version_check yang-lint deps
+test: version_check deps
 	(kubectl delete ns onos-topo || exit 0) && kubectl create ns onos-topo && helmit test -n onos-topo ./test -c . --suite onos-topo
 	(kubectl delete ns onos-config || exit 0) && kubectl create ns onos-config && helmit test -n onos-config ./test -c . --suite onos-config
 	(kubectl delete ns onos-umbrella || exit 0) && kubectl create ns onos-umbrella && helmit test -n onos-umbrella ./test -c . --suite onos-umbrella
@@ -30,13 +30,6 @@ build-tools: # @HELP install the ONOS build tools if needed
 
 bumponosdeps: build-tools # @HELP update "onosproject" go dependencies and push patch to git.
 	./../build-tools/bump-onos-deps ${VERSION}
-
-yang-lint: # @HELP install the ONOS build tools if needed
-yang-lint: pyang-tool
-	pyang --lint config-models/testdevice-2.x/files/yang/*.yang
-
-pyang-tool: # @HELP install the Pyang tool if needed
-	pyang --version || python -m pip install pyang==2.5.2
 
 clean: # @HELP clean up temporary files.
 	rm -rf onos-umbrella/charts onos-umbrella/Chart.lock
