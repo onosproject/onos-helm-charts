@@ -43,15 +43,15 @@ usePluginRegistry: false
 
 modelPlugins:
   - name: devicesim-1
-    image: onosproject/devicesim-1.0.x:0.5.0
+    image: onosproject/devicesim-1.0.x:0.5.1
     endpoint: localhost
     port: 5152
   - name: testdevice-1
-    image: onosproject/testdevice-1.0.x:0.5.0
+    image: onosproject/testdevice-1.0.x:0.5.1
     endpoint: localhost
     port: 5153
   - name: testdevice-2
-    image: onosproject/testdevice-2.0.x:0.5.0
+    image: onosproject/testdevice-2.0.x:0.5.1
     endpoint: localhost
     port: 5154
 
