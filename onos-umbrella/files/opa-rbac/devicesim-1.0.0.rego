@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: LicenseRef-ONF-Member-Only-1.0
 
-package devicesim_1_0_0
+package devicesim_1_0_x_1_0_0
 
 echo[config] {
     config := input
