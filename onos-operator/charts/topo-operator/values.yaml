@@ -13,7 +13,7 @@ replicas: 1
 image:
   registry: ""
   repository: onosproject/topo-operator
-  tag: v0.4.13
+  tag: '{{ .Chart.AppVersion }}'
   pullPolicy: IfNotPresent
   pullSecrets: []
 

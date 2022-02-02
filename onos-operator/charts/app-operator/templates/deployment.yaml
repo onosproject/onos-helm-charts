@@ -18,6 +18,11 @@ spec:
     metadata:
       labels:
         name: {{ template "app-operator.fullname" . }}
+        release: {{ .Release.Name }}
+        app.kubernetes.io/name: "{{ template "app-operator.fullname" . }}"
+        app.kubernetes.io/version: {{ quote .Chart.AppVersion }}
+        app.kubernetes.io/part-of: "onos-operator"
+        helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     spec:
       serviceAccountName: {{ template "app-operator.fullname" . }}
       initContainers:

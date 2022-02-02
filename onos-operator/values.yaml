@@ -9,9 +9,6 @@ global:
     registry: ""
     tag: ""
 
-config-operator:
-  nameOverride: "config"
-
 topo-operator:
   nameOverride: "topo"
 
