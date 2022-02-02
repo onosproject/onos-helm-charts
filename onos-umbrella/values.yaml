@@ -43,18 +43,6 @@ onos-config:
   store:
     consensus:
       enabled: false
-  models:
-    devicesim:
-      v1:
-        enabled: true
-    stratum:
-      v1:
-        enabled: true
-    testdevice:
-      v1:
-        enabled: false
-      v2:
-        enabled: false
 
 # ONOS-GUI
 onos-gui: {}
