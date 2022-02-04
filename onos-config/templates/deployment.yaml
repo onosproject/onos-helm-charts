@@ -78,7 +78,6 @@ spec:
             - "--caPath=/etc/onos/certs/tls.cacrt"
             - "--keyPath=/etc/onos/certs/tls.key"
             - "--certPath=/etc/onos/certs/tls.crt"
-            - "--usePluginRegistry={{.Values.usePluginRegistry}}"
             {{- if .Values.topoEndpoint }}
             - {{ printf "--topoEndpoint=%s" .Values.topoEndpoint }}
             {{- end }}
