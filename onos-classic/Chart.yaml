@@ -1,9 +1,9 @@
 ---
 apiVersion: v1
 name: onos-classic
-version: 0.1.27
+version: 0.1.28
 kubeVersion: ">=1.10.0"
-appVersion: 2.2.8
+appVersion: 2.5.7
 description: ONOS cluster
 keywords:
 - onos

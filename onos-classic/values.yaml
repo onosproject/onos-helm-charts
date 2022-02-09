@@ -3,7 +3,7 @@ nameOverride: ""
 
 image:
   repository: onosproject/onos
-  tag: 2.2.8
+  tag: 2.5.7
   pullPolicy: IfNotPresent
   pullSecrets: []
 
