@@ -103,6 +103,10 @@ logging:
       output:
         stdout:
           sink: stdout
+    onos/grpc/retry:
+      level: error
+    atomix/grpc/retry:
+      level: error
   sinks:
     stdout:
       type: stdout
