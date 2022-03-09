@@ -102,6 +102,8 @@ spec:
                   fieldPath: metadata.namespace
             - name: GLOBAL_IMAGE_REGISTRY
               value: {{ .Values.global.image.registry | quote }}
+            - name: DEFAULT_PROXY_IMAGE
+              value: {{ .Values.proxyimage.repository }}:{{ .Values.proxyimage.tag }}
           volumeMounts:
             - name: config
               mountPath: /etc/onos/config
