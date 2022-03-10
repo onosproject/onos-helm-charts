@@ -17,6 +17,11 @@ image:
   pullPolicy: IfNotPresent
   pullSecrets: []
 
+proxyimage:
+  registry: ""
+  repository: onosproject/onos-proxy
+  tag: v0.1.2
+
 logging:
   loggers:
     root:
