@@ -18,7 +18,7 @@ replicaCount: 1
 image:
   registry: ""
   repository: onosproject/onos-topo
-  tag: v0.9.2
+  tag: '{{ .Chart.AppVersion }}'
   pullPolicy: IfNotPresent
   pullSecrets: []
 
