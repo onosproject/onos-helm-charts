@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022 2020-present Open Networking Foundation <info@opennetworking.org>
+#
+# SPDX-License-Identifier: Apache-2.0
+
 .idea/
 build/release
 build/_output
@@ -5,3 +9,4 @@ build/_output
 staging/
 requirements.lock
 **/charts/*
+build/build-tools

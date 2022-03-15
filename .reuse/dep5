@@ -1,0 +1,6 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+
+Files: VERSION .gitreview go.mod go.sum *.cacrt *.crt *.key *.json *.tree */NOTES.txt \\
+       config-models/stratum-1.x/files/yang/* 389ds/* keycloak-389-umbrella/* influxdb/* dex-ldap-umbrella/*
+Copyright: 2021 Open Networking Foundation
+License: Apache-2.0
