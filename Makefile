@@ -23,11 +23,11 @@ version_check: # @HELP run the version checker on the charts
 	COMPARISON_BRANCH=master ./build/build-tools/chart_version_check
 
 jenkins_version_check: # @HELP run the version checker on the charts
-	export COMPARISON_BRANCH=origin/master && export WORKSPACE=`pwd` && ./../build-tools/chart_version_check
+	export COMPARISON_BRANCH=origin/master && export WORKSPACE=`pwd` && ./build/build-tools/chart_version_check
 
 jenkins-publish: # @HELP publish version on github
 	cd .. && GO111MODULE=on go get github.com/mikefarah/yq/v4@v4.16.2
-	./../build-tools/release-chart-merge-commit https://charts.onosproject.org ${WEBSITE_USER} ${WEBSITE_PASSWORD}
+	./build/build-tools/release-chart-merge-commit https://charts.onosproject.org ${WEBSITE_USER} ${WEBSITE_PASSWORD}
 
 clean:: # @HELP clean up temporary files.
 	rm -rf onos-umbrella/charts onos-umbrella/Chart.lock
