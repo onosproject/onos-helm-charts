@@ -1,7 +1,11 @@
+# SPDX-FileCopyrightText: 2022 2020-present Open Networking Foundation <info@opennetworking.org>
+#
+# SPDX-License-Identifier: Apache-2.0
+
 ---
 apiVersion: v1
 name: onos-tost
-version: 0.1.42
+version: 0.1.43
 kubeVersion: ">=1.10.0"
 appVersion: stable-2020-12-15
 description: ONOS helm chart for TOST

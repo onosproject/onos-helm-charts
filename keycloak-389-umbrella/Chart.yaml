@@ -1,9 +1,12 @@
+# SPDX-FileCopyrightText: 2022 2020-present Open Networking Foundation <info@opennetworking.org>
+#
+# SPDX-License-Identifier: Apache-2.0
 apiVersion: v2
 name: keycloak-389-umbrella
 description: Umbrella chart to deploy Keycloak, 389ds & phpLDAPAdmin
 kubeVersion: ">=1.15.0"
 type: application
-version: 0.1.4
+version: 0.1.5
 appVersion: v0.0.0
 keywords:
   - ldap

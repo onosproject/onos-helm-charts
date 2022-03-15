@@ -1,6 +1,10 @@
+# SPDX-FileCopyrightText: 2022 2020-present Open Networking Foundation <info@opennetworking.org>
+#
+# SPDX-License-Identifier: Apache-2.0
+
 apiVersion: v2
 name: onos-config
-version: 1.7.1
+version: 1.7.2
 kubeVersion: ">=1.17.0"
 appVersion: v0.10.28
 description: ONOS Config Manager
