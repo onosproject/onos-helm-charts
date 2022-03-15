@@ -1,8 +1,12 @@
+# SPDX-FileCopyrightText: 2022 2020-present Open Networking Foundation <info@opennetworking.org>
+#
+# SPDX-License-Identifier: Apache-2.0
+
 apiVersion: v2
 name: device-simulator
 kubeVersion: ">=1.17.0"
 type: application
-version: 0.0.5
+version: 0.0.6
 appVersion: v0.6.3
 description: ONOS Config Device Simulator
 keywords:

@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2022 2020-present Open Networking Foundation <info@opennetworking.org>
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 This folder contains self-signed certificates for use in testing. _DO NOT USE THESE
 CERTIFICATES IN PRODUCTION!_
 
