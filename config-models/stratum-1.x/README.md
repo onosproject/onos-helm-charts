@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2022 2020-present Open Networking Foundation <info@opennetworking.org>
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # Deprecated
 This directory contains the old structure of the Stratum configuration models.
 It has been left here so that it can be retrofited to use the new sidecar config model

@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022 2020-present Open Networking Foundation <info@opennetworking.org>
+#
+# SPDX-License-Identifier: Apache-2.0
+
 # This template provides a StatefulSet for ONOS nodes.
 # The StatefulSet is used to ensure that nodes are assigned a persistent identity.
 # The StatefulSet must be used with a headless service to ensure pods can communicate with each other through

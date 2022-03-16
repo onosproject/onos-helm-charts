@@ -1,6 +1,10 @@
+# SPDX-FileCopyrightText: 2022 2020-present Open Networking Foundation <info@opennetworking.org>
+#
+# SPDX-License-Identifier: Apache-2.0
+
 apiVersion: v2
 name: topo-operator
-version: 0.5.1
+version: 0.5.2
 kubeVersion: ">=1.17.0"
 appVersion: v0.5.0
 description: µONOS Topology Operator
