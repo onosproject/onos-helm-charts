@@ -1,6 +1,6 @@
-# SPDX-FileCopyrightText: 2020 Open Networking Foundation <info@opennetworking.org>
-#
-# SPDX-License-Identifier: Apache-2.0
+// SPDX-FileCopyrightText: 2020 Open Networking Foundation <info@opennetworking.org>
+//
+// SPDX-License-Identifier: Apache-2.0
 
 package tests
 
@@ -31,10 +31,10 @@ func (s *OnosUmbrellaSuite) TestInstall(t *testing.T) {
 	registry := s.c.GetArg("registry").String("")
 	onos := helm.Chart("onos-umbrella", onostest.OnosChartRepo).
 		Release("onos-umbrella").
-		WithTimeout(15 * time.Minute).
+		WithTimeout(15*time.Minute).
 		Set("import.onos-gui.enabled", false).
 		Set("import.onos-cli.enabled", false).
-	    Set("global.image.registry", registry)
+		Set("global.image.registry", registry)
 
-		assert.NoError(t, onos.Install(true))
+	assert.NoError(t, onos.Install(true))
 }
