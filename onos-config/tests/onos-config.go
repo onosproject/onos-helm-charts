@@ -1,6 +1,6 @@
-# SPDX-FileCopyrightText: 2020 Open Networking Foundation <info@opennetworking.org>
-#
-# SPDX-License-Identifier: Apache-2.0
+// SPDX-FileCopyrightText: 2020 Open Networking Foundation <info@opennetworking.org>
+//
+// SPDX-License-Identifier: Apache-2.0
 
 package tests
 
@@ -37,7 +37,7 @@ func (s *ONOSConfigSuite) TestInstall(t *testing.T) {
 
 	config := helm.Chart("onos-config", onostest.OnosChartRepo).
 		Release("onos-config").
-		WithTimeout(15 * time.Minute).
+		WithTimeout(15*time.Minute).
 		Set("global.image.registry", registry)
 	assert.NoError(t, config.Install(true))
 }
