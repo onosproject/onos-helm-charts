@@ -27,7 +27,6 @@ spec:
         resource: {{ template "onos-topo.fullname" . }}
         {{- include "onos-topo.selectorLabels" . | nindent 8 }}
       annotations:
-        seccomp.security.alpha.kubernetes.io/pod: "unconfined"
         broker.atomix.io/inject: "true"
         raft.storage.atomix.io/inject: "true"
     spec:
