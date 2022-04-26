@@ -24,7 +24,7 @@ dependencies:
   - name: onos-config
     condition: import.onos-config.enabled
     repository: file://../onos-config
-    version: 1.7.4
+    version: 1.7.5
   - name: onos-gui
     condition: import.onos-gui.enabled
     repository: file://../onos-gui
