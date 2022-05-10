@@ -129,6 +129,6 @@ openpolicyagent:
   image:
     repository: openpolicyagent/opa
     registry: ""
-    tag: 0.29.4
+    tag: 0.40.0
   regoConfigMap: onos-config-openpolicyagent
   loglevel: info
