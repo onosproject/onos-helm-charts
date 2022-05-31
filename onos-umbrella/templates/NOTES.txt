@@ -11,9 +11,4 @@ To learn more about the release, try:
 You can attach to:
 * Onos CLI pod with
 $ kubectl -n {{.Release.Namespace}} exec -it $(kubectl -n {{.Release.Namespace}} get pods -l type=cli -o name) -- /bin/sh
-* µONOS GUI at http://<server_IP>:31191
 
-If you are using KinD as a Kubernetes server, you will have to use a "port-forward" to access the GUI e.g.
-$ kubectl -n {{.Release.Namespace}} port-forward $(kubectl -n {{.Release.Namespace}} get pods -l type=gui -o name) 8182:80
-and then access the GUI at
-* http://localhost:8182

@@ -32,7 +32,7 @@ import:
   onos-config:
     enabled: true
   onos-gui:
-    enabled: true
+    enabled: false
   onos-cli:
     enabled: true
 
