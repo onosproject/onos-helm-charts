@@ -10,7 +10,7 @@ annotations: {}
 
 image:
   repository: onosproject/device-simulator
-  tag: v0.6.3
+  tag: v0.6.6
   pullPolicy: IfNotPresent
   pullSecrets: []
 
