@@ -10,5 +10,5 @@ To learn more about the release, try:
 
 You can attach to:
 * Onos CLI pod with
-$ kubectl -n {{.Release.Namespace}} exec -it $(kubectl -n {{.Release.Namespace}} get pods -l type=cli -o name) -- /bin/sh
+$ kubectl -n {{.Release.Namespace}} exec -it deployment/onos-cli -- /bin/bash
 
