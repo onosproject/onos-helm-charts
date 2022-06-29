@@ -2,14 +2,13 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-{{- $fullName := include "stratum-simulator.fullname" . -}}
-{{- $labels := include "stratum-simulator.labels" . -}}
+
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ $fullName }}
+  name: {{ include "stratum-simulator.fullname" .}}
   labels:
-    {{ $labels | nindent 4 }}
+    {{- include "stratum-simulator.labels" . | nindent 4 }}
 spec:
   type: {{ $.Values.service.type }}
   ports:
