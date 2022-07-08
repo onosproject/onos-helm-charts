@@ -1,0 +1,25 @@
+# SPDX-FileCopyrightText: 2022-present Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "wcmp-app.fullname" . }}
+  labels:
+    app: {{ template "wcmp-app.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+    {{- include "wcmp-app.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  selector:
+    name: {{ template "wcmp-app.fullname" . }}
+    app: onos
+    type: wcmp
+    resource: {{ template "wcmp-app.fullname" . }}
+    {{- include "wcmp-app.selectorLabels" . | nindent 4 }}
+  ports:
+    - name: grpc
+      port: 5150
