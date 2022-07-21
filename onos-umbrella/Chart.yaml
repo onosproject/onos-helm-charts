@@ -7,7 +7,7 @@ name: onos-umbrella
 description: Umbrella chart to deploy all µONOS
 kubeVersion: ">=1.17.0"
 type: application
-version: 1.2.28
+version: 1.2.29
 appVersion: v1.1.0
 keywords:
   - onos
@@ -33,3 +33,8 @@ dependencies:
     condition: import.onos-cli.enabled
     repository: file://../onos-cli
     version: 1.3.4
+  - name: wcmp-app
+    condition: import.wcmp-app.enabled
+    repository: file://../wcmp-app
+    version: 0.1.1
+

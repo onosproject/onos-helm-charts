@@ -35,6 +35,8 @@ import:
     enabled: false
   onos-cli:
     enabled: true
+  wcmp-app:
+    enabled: false
 
 # ONOS-TOPO
 onos-topo:
