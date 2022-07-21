@@ -82,6 +82,16 @@ wcmp-app image name
 {{- end -}}
 {{- end -}}
 
+{{/*
+registry name
+*/}}
+{{- define "wcmp-app.registryname" -}}
+{{- if .Values.global.image.registry -}}
+{{- printf "%s/" .Values.global.image.registry -}}
+{{- else if .Values.image.registry -}}
+{{- printf "%s/" .Values.image.registry -}}
+{{- end -}}
+{{- end -}}
 
 {{/*
 wcmp-app consensus image name

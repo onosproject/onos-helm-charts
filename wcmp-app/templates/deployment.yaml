@@ -40,6 +40,23 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      initContainers:
+        # Run service model plugins as init containers to load plugins onto the shared volume
+              {{ $registry := include "wcmp-app.registryname" . }}
+              {{- range $key, $plugin := .Values.p4Plugins }}
+        - name: {{ printf "plugin-%s-%s" $plugin.name $plugin.version | replace "." "-" | replace "_" "-" }}
+          image: {{ printf "%s%s:%s" $registry $plugin.image.repository $plugin.image.tag }}
+
+          imagePullPolicy: {{ $plugin.image.pullPolicy }}
+          command:
+            - "/bin/cp"
+          args:
+            - {{ printf "%s.so.%s" $plugin.name $plugin.version }}
+            - {{ printf "/usr/local/lib/%s.so.%s" $plugin.name $plugin.version }}
+          volumeMounts:
+            - name: shared-data
+              mountPath: /usr/local/lib
+            {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: {{ include "wcmp-app.imagename" . | quote }}
@@ -82,6 +99,9 @@ spec:
             {{- if .Values.topoEndpoint }}
             - {{ printf "--topoEndpoint=%s" .Values.topoEndpoint }}
             {{- end }}
+            {{- range $key, $smplugin := .Values.p4Plugins }}
+            - {{ printf "--p4Plugin=/usr/local/lib/shared/%s.so.%s" $smplugin.name $smplugin.version }}
+             {{- end }}
           ports:
             - name: grpc
               containerPort: 5150
@@ -107,6 +127,8 @@ spec:
             - name: secret
               mountPath: /etc/onos/certs
               readOnly: true
+            - name: shared-data
+              mountPath: /usr/local/lib/shared
           # Enable ptrace for debugging
           securityContext:
             {{- if .Values.debug }}
@@ -122,6 +144,8 @@ spec:
         - name: secret
           secret:
             secretName: {{ template "wcmp-app.fullname" . }}-secret
+        - name: shared-data
+          emptyDir: {}
     {{- with .Values.nodeSelector }}
       nodeSelector:
       {{- toYaml . | nindent 8 }}
