@@ -1,0 +1,16 @@
+# SPDX-FileCopyrightText: 2022-present Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ template "fabric-sim.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+subjects:
+- kind: ServiceAccount
+  name: {{ template "fabric-sim.fullname" . }}
+roleRef:
+  kind: Role
+  name: {{ template "fabric-sim.fullname" . }}
+  apiGroup: rbac.authorization.k8s.io
