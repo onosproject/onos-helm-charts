@@ -76,6 +76,11 @@ spec:
               containerPort: 40000
               protocol: TCP
             {{- end }}
+            {{- range until 100 }}
+            - name: "agent-{{ add 20000 . }}"
+              containerPort: {{ add 20000 . }}
+              hostPort: {{ add 20000 . }}
+            {{- end }}
           startupProbe:
             tcpSocket:
               port: 5150
