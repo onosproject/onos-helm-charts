@@ -23,3 +23,7 @@ spec:
   ports:
     - name: grpc
       port: 5150
+    {{- range until 100 }}
+    - name: "agent-{{ add 20000 . }}"
+      port: {{ add 20000 . }}
+    {{- end }}
