@@ -1,0 +1,17 @@
+# SPDX-FileCopyrightText: 2022-present Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: primitives.atomix.io/v2beta1
+kind: Map
+metadata:
+  name: {{ template "wcmp-app.fullname" . }}-pipeline-configurations
+  namespace: {{ .Release.Namespace }}
+spec:
+  store:
+    {{- if .Values.global.store.consensus.enabled }}
+    name: {{ template "global.store.consensus.name" . }}
+    {{- else }}
+    name: {{ template "wcmp-app.store.consensus.name" . }}
+  {{- end }}
+---

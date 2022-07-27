@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: 2022-present Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  creationTimestamp: null
+  name: {{ template "wcmp-app.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+rules:
+  - apiGroups:
+      - primitives.atomix.io
+    resources:
+      - '*'
+    resourceNames:
+      - {{ template "wcmp-app.fullname" . }}-pipeline-configurations
+    verbs:
+      - '*'
