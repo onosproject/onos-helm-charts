@@ -6,6 +6,6 @@ apiVersion: v2
 name: wcmp-app
 description: wcmp-app Helm chart for Kubernetes
 type: application
-version: 0.1.1
-appVersion: "v0.0.3"
+version: 0.1.2
+appVersion: "v0.0.4"
 
