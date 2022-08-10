@@ -82,6 +82,9 @@ spec:
             {{- if .Values.topoEndpoint }}
             - {{ printf "--topoEndpoint=%s" .Values.topoEndpoint }}
             {{- end }}
+            {{- range $key, $smplugin := .Values.p4Plugins }}
+            - {{ printf "--p4Plugin=/var/device-provisioner/plugins/%s.%s.so" $smplugin.name $smplugin.version }}
+             {{- end }}
           ports:
             - name: grpc
               containerPort: 5150
@@ -102,7 +105,7 @@ spec:
             periodSeconds: 10
           volumeMounts:
             - name: config
-              mountPath: /etc/onos/wcmp
+              mountPath: /etc/onos/device-provisioner
               readOnly: true
             - name: secret
               mountPath: /etc/onos/certs
