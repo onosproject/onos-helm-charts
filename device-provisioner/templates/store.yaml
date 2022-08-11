@@ -1,0 +1,42 @@
+# SPDX-FileCopyrightText: 2022-present Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+{{- if .Values.store.consensus.enabled }}
+apiVersion: atomix.io/v2beta1
+kind: Store
+metadata:
+  name: {{ template "device-provisioner.store.consensus.name" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  protocol:
+    apiVersion: storage.atomix.io/v2beta2
+    kind: MultiRaftProtocol
+    spec:
+      replicas: {{ .Values.store.consensus.replicas }}
+      groups: {{ .Values.store.consensus.partitions }}
+      {{- with .Values.store.consensus.raft }}
+      raft:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      image: {{ template "device-provisioner.store.consensus.imagename" . }}
+      imagePullPolicy: {{ .Values.store.consensus.image.pullPolicy }}
+      {{- with .Values.store.consensus.image.pullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.store.consensus.securityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.store.consensus.persistence.storageClass }}
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          storageClassName: {{ .Values.store.consensus.persistence.storageClass | quote }}
+          resources:
+            requests:
+              storage: {{ .Values.store.consensus.persistence.storageSize }}
+      {{- end }}
+{{- end }}
