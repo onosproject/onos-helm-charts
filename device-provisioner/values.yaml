@@ -38,18 +38,10 @@ store:
 replicaCount: 1
 
 p4Plugins:
-  #- name: basic
-  #  version: 1.0.0
-    #image:
-    #  repository: onosproject/p4plugin-docker-basic-1.0.0
-    #  tag: latest
-    #  pullPolicy: IfNotPresent
+  - name: basic
+    version: 1.0.0
   - name: middleblock
     version: 1.0.0
-    #image:
-    #  repository: onosproject/p4plugin-docker-middleblock-1.0.0
-    #  tag: latest
-    #  pullPolicy: IfNotPresent
 
 
 image:
