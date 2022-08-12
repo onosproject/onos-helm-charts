@@ -37,4 +37,8 @@ dependencies:
     condition: import.wcmp-app.enabled
     repository: file://../wcmp-app
     version: 0.1.2
+  - name: device-provisioner
+    condition: import.device-provisioner.enabled
+    repository: file://../device-provisioner
+    version: 0.0.2
 

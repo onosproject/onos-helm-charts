@@ -17,7 +17,7 @@ spec:
       app: onos
       type: device-provisioner
       resource: {{ template "device-provisioner.fullname" . }}
-      {{- include "device-provisioner.selectorLabels" . | nindent 6 }}
+        {{- include "device-provisioner.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
@@ -25,13 +25,10 @@ spec:
         app: onos
         type: device-provisioner
         resource: {{ template "device-provisioner.fullname" . }}
-        {{- include "device-provisioner.selectorLabels" . | nindent 8 }}
+          {{- include "device-provisioner.selectorLabels" . | nindent 8 }}
       annotations:
-        broker.atomix.io/inject: "true"
-        raft.storage.atomix.io/inject: "true"
-        {{- range $key, $value := .Values.annotations }}
-        {{ $key }}: {{ $value }}
-        {{- end }}
+        proxy.storage.atomix.io/inject: "true"
+        proxy.storage.atomix.io/profile: {{ template "device-provisioner.fullname" . }}
     spec:
       serviceAccountName: {{ template "device-provisioner.fullname" . }}
       securityContext:
@@ -79,10 +76,10 @@ spec:
             - "--caPath=/etc/onos/certs/tls.cacrt"
             - "--keyPath=/etc/onos/certs/tls.key"
             - "--certPath=/etc/onos/certs/tls.crt"
-            {{- if .Values.topoEndpoint }}
+              {{- if .Values.topoEndpoint }}
             - {{ printf "--topoEndpoint=%s" .Values.topoEndpoint }}
-            {{- end }}
-            {{- range $key, $smplugin := .Values.p4Plugins }}
+              {{- end }}
+              {{- range $key, $smplugin := .Values.p4Plugins }}
             - {{ printf "--p4Plugin=/var/device-provisioner/plugins/%s.%s.so" $smplugin.name $smplugin.version }}
              {{- end }}
           ports:

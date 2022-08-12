@@ -37,6 +37,8 @@ import:
     enabled: true
   wcmp-app:
     enabled: false
+  device-provisioner:
+    enabled: false
 
 # ONOS-TOPO
 onos-topo:
