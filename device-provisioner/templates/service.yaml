@@ -11,7 +11,7 @@ metadata:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
-    {{- include "device-provisioner.labels" . | nindent 4 }}
+      {{- include "device-provisioner.labels" . | nindent 4 }}
 spec:
   type: ClusterIP
   selector:
@@ -19,7 +19,7 @@ spec:
     app: onos
     type: device-provisioner
     resource: {{ template "device-provisioner.fullname" . }}
-    {{- include "device-provisioner.selectorLabels" . | nindent 4 }}
+      {{- include "device-provisioner.selectorLabels" . | nindent 4 }}
   ports:
     - name: grpc
       port: 5150

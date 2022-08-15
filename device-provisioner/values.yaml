@@ -18,22 +18,25 @@ global:
         registry: ""
         tag: ""
 
+atomix:
+  replicas: 0
+
 store:
-  consensus:
-    enabled: false
-    name: ""
+  raft:
+    replicas: 1
+    partitions: 30
     image:
-      registry: ""
-      repository: atomix/atomix-raft-storage-node
-      tag: ""
+      repository: atomix/multi-raft-node
+      tag: latest
       pullPolicy: IfNotPresent
       pullSecrets: []
-    replicas: 1
-    partitions: 1
-    raft: {}
-    persistence:
+    config: {}
+    log:
       storageClass: ""
-      storageSize: 1Gi
+      resources:
+        requests:
+          storage: 2Gi
+    securityContext: {}
 
 replicaCount: 1
 
