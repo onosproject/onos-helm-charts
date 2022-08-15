@@ -27,7 +27,7 @@ store:
     partitions: 30
     image:
       repository: atomix/multi-raft-node
-      tag: v0.3.0
+      tag: latest
       pullPolicy: IfNotPresent
       pullSecrets: []
     config: {}
