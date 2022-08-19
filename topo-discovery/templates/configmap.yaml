@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: 2022-present Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "topo-discovery.fullname" . }}-config
+  labels:
+    app: {{ template "topo-discovery.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+data:
+  logging.yaml: |-
+{{- if .Values.logging }}
+{{ toYaml .Values.logging | indent 4 }}
+{{- end}}

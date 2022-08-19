@@ -1,0 +1,137 @@
+# SPDX-FileCopyrightText: 2022-present Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "topo-discovery.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+     {{- include "topo-discovery.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      name: {{ template "topo-discovery.fullname" . }}
+      app: onos
+      type: topo-discovery
+      resource: {{ template "topo-discovery.fullname" . }}
+        {{- include "topo-discovery.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        name: {{ template "topo-discovery.fullname" . }}
+        app: onos
+        type: topo-discovery
+        resource: {{ template "topo-discovery.fullname" . }}
+          {{- include "topo-discovery.selectorLabels" . | nindent 8 }}
+      annotations:
+        proxy.storage.atomix.io/inject: "false"
+        proxy.storage.atomix.io/profile: {{ template "topo-discovery.fullname" . }}
+    spec:
+      serviceAccountName: {{ template "topo-discovery.fullname" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ include "topo-discovery.imagename" . | quote }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            # *_NAMESPACE and *_NAME environment variables are recognized by onos-lib-go utilities.
+            # These variables should always be defined.
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: SERVICE_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+
+            - name: SERVICE_NAME
+              value: {{ template "topo-discovery.fullname" . }}
+            - name: NODE_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+
+          args:
+            - "--caPath=/etc/onos/certs/tls.cacrt"
+            - "--keyPath=/etc/onos/certs/tls.key"
+            - "--certPath=/etc/onos/certs/tls.crt"
+              {{- if .Values.topoEndpoint }}
+            - {{ printf "--topoEndpoint=%s" .Values.topoEndpoint }}
+              {{- end }}
+          ports:
+            - name: grpc
+              containerPort: 5150
+          startupProbe:
+            tcpSocket:
+              port: 5150
+            periodSeconds: 5
+            failureThreshold: 60
+          readinessProbe:
+            tcpSocket:
+              port: 5150
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 5150
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          volumeMounts:
+            - name: config
+              mountPath: /etc/onos/topo-discovery
+              readOnly: true
+            - name: secret
+              mountPath: /etc/onos/certs
+              readOnly: true
+            - name: shared-data
+              mountPath: /usr/local/lib/shared
+          # Enable ptrace for debugging
+          securityContext:
+            {{- if .Values.debug }}
+            capabilities:
+              add:
+                - SYS_PTRACE
+            {{- end }}
+      # Mount volumes
+      volumes:
+        - name: config
+          configMap:
+            name: {{ template "topo-discovery.fullname" . }}-config
+        - name: secret
+          secret:
+            secretName: {{ template "topo-discovery.fullname" . }}-secret
+        - name: shared-data
+          emptyDir: {}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+      {{- toYaml . | nindent 8 }}
+    {{- end }}
