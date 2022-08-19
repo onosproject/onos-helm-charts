@@ -39,6 +39,8 @@ import:
     enabled: false
   device-provisioner:
     enabled: false
+  topo-discovery:
+    enabled: false
 
 # ONOS-TOPO
 onos-topo:

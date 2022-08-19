@@ -7,7 +7,7 @@ name: onos-umbrella
 description: Umbrella chart to deploy all µONOS
 kubeVersion: ">=1.17.0"
 type: application
-version: 1.2.34
+version: 1.2.35
 appVersion: v1.1.0
 keywords:
   - onos
@@ -41,4 +41,9 @@ dependencies:
     condition: import.device-provisioner.enabled
     repository: file://../device-provisioner
     version: 0.0.4
+  - name: topo-discovery
+    condition: import.topo-discovery.enabled
+    repository: file://../topo-discovery
+    version: 0.0.1
+
 
