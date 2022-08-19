@@ -22,7 +22,7 @@ global:
 store:
   raft:
     replicas: 1
-    partitions: 30
+    partitions: 1
     image:
       repository: atomix/multi-raft-node
       tag: latest
