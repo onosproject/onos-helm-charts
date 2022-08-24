@@ -41,6 +41,8 @@ replicaCount: 1
 p4Plugins:
   - name: middleblock
     version: 1.0.0
+  - name: basic
+    version: 1.0.0
 
 
 image:
