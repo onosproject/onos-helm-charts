@@ -8,7 +8,7 @@ description: ONOS Command Line Interface
 kubeVersion: ">=1.17.0"
 type: application
 version: 1.3.5
-appVersion: v0.9.15
+appVersion: v0.9.18
 keywords:
   - onos
   - sdn
