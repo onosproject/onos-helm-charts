@@ -163,11 +163,11 @@ spec:
         - name: init-scripts
           configMap:
             name: {{ template "fullname" . }}-init-scripts
-            defaultMode: 0744
+            defaultMode: {{ default 0744 .Values.mode }}
         - name: probe-scripts
           configMap:
             name: {{ template "fullname" . }}-probe-scripts
-            defaultMode: 0744
+            defaultMode: {{ default 0744 .Values.mode }}
         - name: config
           emptyDir: {}
         {{- if .Values.logging }}

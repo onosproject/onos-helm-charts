@@ -27,6 +27,10 @@ spec:
         checksum/config: {{ include (print $.Template.BasePath "/onos-config-loader-configmap.yaml") . | sha256sum }}
     spec:
       serviceAccountName: {{ .Values.config.service_account_name }}
+    {{- with .Values.config.image.pullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
       containers:
         - name: onos-config-loader
           image: '{{ tpl .Values.config.image.registry . }}{{ tpl .Values.config.image.repository . }}:{{ tpl .Values.config.image.tag . }}'
