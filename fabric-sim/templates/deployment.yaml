@@ -27,8 +27,6 @@ spec:
         resource: {{ template "fabric-sim.fullname" . }}
         {{- include "fabric-sim.selectorLabels" . | nindent 8 }}
       annotations:
-        broker.atomix.io/inject: "true"
-        raft.storage.atomix.io/inject: "true"
     spec:
       serviceAccountName: {{ template "fabric-sim.fullname" . }}
       securityContext:
