@@ -16,7 +16,7 @@ spec:
   type: {{ .Values.service.type }}
   selector:
     name: {{ template "fabric-sim.fullname" . }}
-    app: onos
+    app: fabric-sim
     type: topo
     resource: {{ template "fabric-sim.fullname" . }}
     {{- include "fabric-sim.selectorLabels" . | nindent 4 }}
