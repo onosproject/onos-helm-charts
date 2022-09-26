@@ -26,7 +26,7 @@ data:
       exit 1
     fi
     exit 0
-  loader.sh: >
+  loader.sh: |
     #/bin/sh
     set -euo pipefail
 
@@ -38,6 +38,8 @@ data:
     NETCFG="/opt/configs/netcfg.json"
     RECONCILE_MODE="{{ .Values.config.reconcile_mode }}";
 
+    # run in tmp instead of root
+    cd /tmp
     while true; do
       echo "-----------------------------------------"
       echo "Timestamp is "; date
