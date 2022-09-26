@@ -165,6 +165,9 @@ spec:
           imagePullPolicy: {{ $root.Values.image.pullPolicy }}
           args:
             - "{{ .port }}"
+          env:
+            - name: PREFIXED
+              value: {{ .prefixed | quote }}
           ports:
             - name: grpc
               containerPort: {{ .port }}

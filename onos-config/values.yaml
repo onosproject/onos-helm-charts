@@ -56,6 +56,7 @@ modelPlugins:
     endpoint: localhost
     port: 5154
 
+
 # Variable to change to onos topo service endpoint for the default onos-topo:5150
 # topoEndpoint: onos-topo-classic:5150
 
