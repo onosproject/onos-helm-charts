@@ -25,6 +25,21 @@ global:
 
 replicaCount: 1
 
+grpcLogger:
+  enabled: false
+  golog_verbosity: "99"
+  severity: "info"
+  trace: "all"
+  verbosity: "debug"
+
+certManager:
+  enabled: false
+  name: onos-config-cert
+  secretName: onos-config-secret
+
+issuer:
+  name: ca-common-issuer
+
 image:
   registry: ""
   repository: onosproject/onos-config

@@ -47,6 +47,16 @@ spec:
           env:
             # *_NAMESPACE and *_NAME environment variables are recognized by onos-lib-go utilities.
             # These variables should always be defined.
+          {{ if .Values.grpcLogger.enabled }}
+            - name: GRPC_GO_LOG_VERBOSITY_LEVEL
+              value: {{ .Values.grpcLogger.golog_verbosity }}
+            - name: GRPC_GO_LOG_SEVERITY_LEVEL
+              value: {{ .Values.grpcLogger.severity }}
+            - name: GRPC_TRACE
+              value: {{ .Values.grpcLogger.trace }}
+            - name: GRPC_VERBOSITY
+              value: {{ .Values.grpcLogger.verbosity }}
+          {{- end }}
             - name: POD_NAMESPACE
               valueFrom:
                 fieldRef:
@@ -79,7 +89,11 @@ spec:
                   fieldPath: spec.nodeName
 
           args:
+            {{- if .Values.certManager.enabled }}
+            - "--caPath=/etc/onos/certs/ca.crt"
+            {{- else}}
             - "--caPath=/etc/onos/certs/tls.cacrt"
+            {{- end }}
             - "--keyPath=/etc/onos/certs/tls.key"
             - "--certPath=/etc/onos/certs/tls.crt"
             {{- if .Values.topoEndpoint }}
@@ -181,7 +195,11 @@ spec:
             name: {{ template "onos-config.fullname" . }}-config
         - name: secret
           secret:
+          {{- if .Values.certManager.enabled }}
+            secretName: {{.Values.certManager.secretName}}
+          {{- else }}
             secretName: {{ template "onos-config.fullname" . }}-secret
+          {{- end }}
         {{- if .Values.openpolicyagent.enabled }}
         - name: openpolicyagent
           configMap:
