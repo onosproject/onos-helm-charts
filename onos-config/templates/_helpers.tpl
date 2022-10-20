@@ -76,18 +76,18 @@ onos-config image name
 {{/*
 onos-config consensus image name
 */}}
-{{- define "onos-config.store.consensus.imagename" -}}
-{{- if or .Values.store.consensus.image.tag .Values.global.store.consensus.image.tag -}}
-{{- if .Values.global.store.consensus.image.registry -}}
-{{- printf "%s/" .Values.global.store.consensus.image.registry -}}
-{{- else if .Values.store.consensus.image.registry -}}
-{{- printf "%s/" .Values.store.consensus.image.registry -}}
+{{- define "onos-config.atomix.store.multiRaft.imagename" -}}
+{{- if or .Values.atomix.store.multiRaft.image.tag .Values.global.atomix.store.multiRaft.image.tag -}}
+{{- if .Values.global.atomix.store.multiRaft.image.registry -}}
+{{- printf "%s/" .Values.global.atomix.store.multiRaft.image.registry -}}
+{{- else if .Values.atomix.store.multiRaft.image.registry -}}
+{{- printf "%s/" .Values.atomix.store.multiRaft.image.registry -}}
 {{- end -}}
-{{- printf "%s:" .Values.store.consensus.image.repository -}}
-{{- if .Values.global.store.consensus.image.tag -}}
-{{- .Values.global.store.consensus.image.tag -}}
+{{- printf "%s:" .Values.atomix.store.multiRaft.image.repository -}}
+{{- if .Values.global.atomix.store.multiRaft.image.tag -}}
+{{- .Values.global.atomix.store.multiRaft.image.tag -}}
 {{- else -}}
-{{- .Values.store.consensus.image.tag -}}
+{{- .Values.atomix.store.multiRaft.image.tag -}}
 {{- end -}}
 {{- else -}}
 ""
@@ -97,9 +97,9 @@ onos-config consensus image name
 {{/*
 onos-config consensus store name
 */}}
-{{- define "onos-config.store.consensus.name" -}}
-{{- if .Values.store.consensus.name -}}
-{{- printf "%s" .Values.store.consensus.name -}}
+{{- define "onos-config.atomix.store.multiRaft.name" -}}
+{{- if .Values.atomix.store.multiRaft.name -}}
+{{- printf "%s" .Values.atomix.store.multiRaft.name -}}
 {{- else -}}
 {{- printf "%s-consensus-store" ( include "onos-config.fullname" . ) -}}
 {{- end -}}
