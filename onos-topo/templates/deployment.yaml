@@ -27,8 +27,8 @@ spec:
         resource: {{ template "onos-topo.fullname" . }}
         {{- include "onos-topo.selectorLabels" . | nindent 8 }}
       annotations:
-        broker.atomix.io/inject: "true"
-        raft.storage.atomix.io/inject: "true"
+        proxy.atomix.io/inject: "true"
+        proxy.atomix.io/profile: {{ template "onos-topo.fullname" . }}
     spec:
       serviceAccountName: {{ template "onos-topo.fullname" . }}
       securityContext:
@@ -114,15 +114,15 @@ spec:
         - name: secret
           secret:
             secretName: {{ template "onos-topo.fullname" . }}-secret
-    {{- with .Values.nodeSelector }}
-    nodeSelector:
-      {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- with .Values.affinity }}
-    affinity:
-      {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- with .Values.tolerations }}
-    tolerations:
-      {{- toYaml . | nindent 8 }}
-    {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
