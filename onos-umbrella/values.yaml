@@ -9,22 +9,51 @@
 global:
   fullnameOverride: "onos"
   nameOverride: ""
-  store:
-    consensus:
-      enabled: true
-      name: ""
+  atomix:
+    proxy:
       image:
-        registry: ""
-        repository: atomix/atomix-raft-storage-node
+        repository: atomix/runtime-proxy
         tag: ""
-        pullPolicy: IfNotPresent
-        pullSecrets: []
-      replicas: 1
-      partitions: 1
-      raft: {}
-      persistence:
-        storageClass: ""
-        storageSize: 1Gi
+        pullPolicy: ""
+      logging:
+        loggers:
+          root:
+            level: info
+            output:
+              stdout:
+                sink: stdout
+        sinks:
+          stdout:
+            stdout: {}
+    store:
+      multiRaft:
+        enabled: true
+        name: ""
+        image:
+          registry: ""
+          repository: atomix/multi-raft-node
+          tag: ""
+          pullPolicy: ""
+          pullSecrets: []
+        replicas: 3
+        partitions: 30
+        config: {}
+        log:
+          storageClass: ""
+          resources:
+            requests:
+              storage: 1Gi
+        securityContext: {}
+        logging:
+          loggers:
+            root:
+              level: info
+              output:
+                stdout:
+                  sink: stdout
+          sinks:
+            stdout:
+              stdout: {}
 
 import:
   onos-topo:
