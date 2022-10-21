@@ -97,9 +97,17 @@ onos-topo consensus image name
 onos-topo consensus store name
 */}}
 {{- define "onos-topo.atomix.store.multiRaft.name" -}}
+{{- if .Values.global.atomix.store.multiRaft.enabled -}}
+{{- if .Values.global.atomix.store.multiRaft.name -}}
+{{- printf "%s" .Values.global.atomix.store.multiRaft.name -}}
+{{- else -}}
+{{- printf "%s-consensus-store" ( include "global.fullname" . ) -}}
+{{- end -}}
+{{- else -}}
 {{- if .Values.atomix.store.multiRaft.name -}}
 {{- printf "%s" .Values.atomix.store.multiRaft.name -}}
 {{- else -}}
 {{- printf "%s-consensus-store" ( include "onos-topo.fullname" . ) -}}
+{{- end -}}
 {{- end -}}
 {{- end -}}
