@@ -73,15 +73,17 @@ import:
 
 # ONOS-TOPO
 onos-topo:
-  store:
-    consensus:
-      enabled: false
+  atomix:
+    store:
+      multiRaft:
+        enabled: false
 
 # ONOS-CONFIG
 onos-config:
-  store:
-    consensus:
-      enabled: false
+  atomix:
+    store:
+      multiRaft:
+        enabled: false
 
 # ONOS-GUI
 onos-gui: {}
