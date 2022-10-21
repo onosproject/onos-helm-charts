@@ -32,6 +32,8 @@ spec:
                 - uri
                 - kind
               properties:
+                serviceName:
+                  type: string
                 uri:
                   type: string
                 kind:
