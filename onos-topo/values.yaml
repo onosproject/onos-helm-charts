@@ -38,16 +38,18 @@ atomix:
       repository: atomix/runtime-proxy
       tag: ""
       pullPolicy: ""
-    logging:
-      loggers:
-        root:
-          level: info
-          output:
-            stdout:
-              sink: stdout
-      sinks:
-        stdout:
-          stdout: {}
+    config:
+      server: {}
+      logging:
+        loggers:
+          root:
+            level: info
+            output:
+              stdout:
+                sink: stdout
+        sinks:
+          stdout:
+            stdout: {}
   store:
     multiRaft:
       enabled: true
@@ -60,23 +62,25 @@ atomix:
         pullSecrets: []
       replicas: 3
       partitions: 30
-      config: {}
+      config:
+        server: {}
+        raft: {}
+        logging:
+          loggers:
+            root:
+              level: info
+              output:
+                stdout:
+                  sink: stdout
+          sinks:
+            stdout:
+              stdout: {}
       log:
         storageClass: ""
         resources:
           requests:
             storage: 1Gi
       securityContext: {}
-      logging:
-        loggers:
-          root:
-            level: info
-            output:
-              stdout:
-                sink: stdout
-        sinks:
-          stdout:
-            stdout: {}
 
 resources: {}
 

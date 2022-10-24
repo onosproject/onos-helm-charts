@@ -20,10 +20,8 @@ spec:
     securityContext:
       {{- toYaml . | nindent 6 }}
     {{- end }}
-    {{- with .Values.atomix.proxy.logging }}
-    logging:
-      {{- toYaml . | nindent 6 }}
-    {{- end }}
+    config:
+      {{- toYaml .Values.atomix.proxy.config | nindent 6 }}
   bindings:
     - store:
         name: {{ template "onos-config.atomix.store.multiRaft.name" . }}
