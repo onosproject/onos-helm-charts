@@ -34,6 +34,7 @@ spec:
               properties:
                 serviceName:
                   type: string
+                  default: onos-topo
                 uri:
                   type: string
                 kind:
@@ -50,3 +51,19 @@ spec:
                   x-kubernetes-preserve-unknown-fields: true
             status:
               type: object
+              default: {}
+              properties:
+                state:
+                  type: string
+                  default: Pending
+                  enum:
+                  - Pending
+                  - Adding
+                  - Added
+                  - Removing
+                  - Removed
+      additionalPrinterColumns:
+        - name: State
+          type: string
+          description: The entity state
+          jsonPath: .status.state
