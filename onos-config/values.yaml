@@ -12,7 +12,7 @@ global:
     tag: ""
   atomix:
     store:
-      multiRaft:
+      consensus:
         name: ""
         image:
           registry: ""
@@ -90,12 +90,12 @@ atomix:
           stdout:
             stdout: {}
   store:
-    multiRaft:
+    consensus:
       enabled: true
       name: ""
       image:
         registry: ""
-        repository: atomix/multi-raft-node
+        repository: atomix/consensus-node
         tag: ""
         pullPolicy: ""
         pullSecrets: []

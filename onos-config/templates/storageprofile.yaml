@@ -24,4 +24,4 @@ spec:
       {{- toYaml .Values.atomix.proxy.config | nindent 6 }}
   bindings:
     - store:
-        name: {{ template "onos-config.atomix.store.multiRaft.name" . }}
+        name: {{ template "onos-config.atomix.store.consensus.name" . }}

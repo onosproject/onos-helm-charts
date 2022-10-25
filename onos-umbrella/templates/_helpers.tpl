@@ -58,13 +58,13 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{/*
 global consensus image name
 */}}
-{{- define "global.atomix.store.multiRaft.imagename" -}}
-{{- if .Values.global.atomix.store.multiRaft.image.tag -}}
-{{- if .Values.global.atomix.store.multiRaft.image.registry -}}
-{{- printf "%s/" .Values.global.atomix.store.multiRaft.image.registry -}}
+{{- define "global.atomix.store.consensus.imagename" -}}
+{{- if .Values.global.atomix.store.consensus.image.tag -}}
+{{- if .Values.global.atomix.store.consensus.image.registry -}}
+{{- printf "%s/" .Values.global.atomix.store.consensus.image.registry -}}
 {{- end -}}
-{{- printf "%s:" .Values.global.atomix.store.multiRaft.image.repository -}}
-{{- .Values.global.atomix.store.multiRaft.image.tag -}}
+{{- printf "%s:" .Values.global.atomix.store.consensus.image.repository -}}
+{{- .Values.global.atomix.store.consensus.image.tag -}}
 {{- else -}}
 ""
 {{- end -}}
@@ -73,9 +73,9 @@ global consensus image name
 {{/*
 global consensus store name
 */}}
-{{- define "global.atomix.store.multiRaft.name" -}}
-{{- if .Values.global.atomix.store.multiRaft.name -}}
-{{- printf "%s" .Values.global.atomix.store.multiRaft.name -}}
+{{- define "global.atomix.store.consensus.name" -}}
+{{- if .Values.global.atomix.store.consensus.name -}}
+{{- printf "%s" .Values.global.atomix.store.consensus.name -}}
 {{- else -}}
 {{- printf "%s-consensus-store" ( include "global.fullname" . ) -}}
 {{- end -}}

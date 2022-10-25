@@ -75,18 +75,18 @@ onos-topo image name
 {{/*
 onos-topo consensus image name
 */}}
-{{- define "onos-topo.atomix.store.multiRaft.imagename" -}}
-{{- if or .Values.atomix.store.multiRaft.image.tag .Values.global.atomix.store.multiRaft.image.tag -}}
-{{- if .Values.global.atomix.store.multiRaft.image.registry -}}
-{{- printf "%s/" .Values.global.atomix.store.multiRaft.image.registry -}}
-{{- else if .Values.atomix.store.multiRaft.image.registry -}}
-{{- printf "%s/" .Values.atomix.store.multiRaft.image.registry -}}
+{{- define "onos-topo.atomix.store.consensus.imagename" -}}
+{{- if or .Values.atomix.store.consensus.image.tag .Values.global.atomix.store.consensus.image.tag -}}
+{{- if .Values.global.atomix.store.consensus.image.registry -}}
+{{- printf "%s/" .Values.global.atomix.store.consensus.image.registry -}}
+{{- else if .Values.atomix.store.consensus.image.registry -}}
+{{- printf "%s/" .Values.atomix.store.consensus.image.registry -}}
 {{- end -}}
-{{- printf "%s:" .Values.atomix.store.multiRaft.image.repository -}}
-{{- if .Values.global.atomix.store.multiRaft.image.tag -}}
-{{- .Values.global.atomix.store.multiRaft.image.tag -}}
+{{- printf "%s:" .Values.atomix.store.consensus.image.repository -}}
+{{- if .Values.global.atomix.store.consensus.image.tag -}}
+{{- .Values.global.atomix.store.consensus.image.tag -}}
 {{- else -}}
-{{- .Values.atomix.store.multiRaft.image.tag -}}
+{{- .Values.atomix.store.consensus.image.tag -}}
 {{- end -}}
 {{- else -}}
 ""
@@ -96,16 +96,16 @@ onos-topo consensus image name
 {{/*
 onos-topo consensus store name
 */}}
-{{- define "onos-topo.atomix.store.multiRaft.name" -}}
-{{- if .Values.global.atomix.store.multiRaft.enabled -}}
-{{- if .Values.global.atomix.store.multiRaft.name -}}
-{{- printf "%s" .Values.global.atomix.store.multiRaft.name -}}
+{{- define "onos-topo.atomix.store.consensus.name" -}}
+{{- if .Values.global.atomix.store.consensus.enabled -}}
+{{- if .Values.global.atomix.store.consensus.name -}}
+{{- printf "%s" .Values.global.atomix.store.consensus.name -}}
 {{- else -}}
 {{- printf "%s-consensus-store" ( include "global.fullname" . ) -}}
 {{- end -}}
 {{- else -}}
-{{- if .Values.atomix.store.multiRaft.name -}}
-{{- printf "%s" .Values.atomix.store.multiRaft.name -}}
+{{- if .Values.atomix.store.consensus.name -}}
+{{- printf "%s" .Values.atomix.store.consensus.name -}}
 {{- else -}}
 {{- printf "%s-consensus-store" ( include "onos-topo.fullname" . ) -}}
 {{- end -}}

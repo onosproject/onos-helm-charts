@@ -11,12 +11,12 @@ global:
   nameOverride: ""
   atomix:
     store:
-      multiRaft:
+      consensus:
         enabled: true
         name: ""
         image:
           registry: ""
-          repository: atomix/multi-raft-node
+          repository: atomix/consensus-node
           tag: ""
           pullPolicy: ""
           pullSecrets: []
@@ -62,14 +62,14 @@ import:
 onos-topo:
   atomix:
     store:
-      multiRaft:
+      consensus:
         enabled: false
 
 # ONOS-CONFIG
 onos-config:
   atomix:
     store:
-      multiRaft:
+      consensus:
         enabled: false
 
 # ONOS-GUI

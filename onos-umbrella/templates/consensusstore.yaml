@@ -1,0 +1,46 @@
+# SPDX-FileCopyrightText: 2022 2020-present Open Networking Foundation <info@opennetworking.org>
+#
+# SPDX-License-Identifier: Apache-2.0
+
+{{- if .Values.global.atomix.store.consensus.enabled }}
+apiVersion: consensus.atomix.io/v1beta1
+kind: ConsensusStore
+metadata:
+  name: {{ template "global.atomix.store.consensus.name" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    name: {{ template "global.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  replicas: {{ .Values.global.atomix.store.consensus.replicas }}
+  groups: {{ .Values.global.atomix.store.consensus.partitions }}
+  {{- if .Values.global.atomix.store.consensus.image.tag }}
+  image: "{{ .Values.global.atomix.store.consensus.image.repository }}:{{ .Values.global.atomix.store.consensus.image.tag }}"
+  {{- end }}
+  {{- with .Values.global.atomix.store.consensus.image.pullPolicy }}
+  imagePullPolicy: {{ . }}
+  {{- end }}
+  {{- with .Values.global.atomix.store.consensus.image.pullSecrets }}
+  imagePullSecrets:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with .Values.global.atomix.store.consensus.securityContext }}
+  securityContext:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- if .Values.global.atomix.store.consensus.log.storageClass }}
+  volumeClaimTemplate:
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      storageClassName: {{ .Values.global.atomix.store.consensus.log.storageClass | quote }}
+      {{- with .Values.global.atomix.store.consensus.log.resources }}
+      resources:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  {{- end }}
+  config:
+    {{- toYaml .Values.global.atomix.store.consensus.config | nindent 4 }}
+{{- end }}
