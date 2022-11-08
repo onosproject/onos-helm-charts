@@ -113,7 +113,7 @@ atomix:
                   sink: stdout
           sinks:
             stdout:
-              stdout: { }
+              stdout: {}
       log:
         storageClass: ""
         resources:
