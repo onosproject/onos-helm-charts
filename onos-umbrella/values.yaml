@@ -9,22 +9,38 @@
 global:
   fullnameOverride: "onos"
   nameOverride: ""
-  store:
-    consensus:
-      enabled: true
-      name: ""
-      image:
-        registry: ""
-        repository: atomix/atomix-raft-storage-node
-        tag: ""
-        pullPolicy: IfNotPresent
-        pullSecrets: []
-      replicas: 1
-      partitions: 1
-      raft: {}
-      persistence:
-        storageClass: ""
-        storageSize: 1Gi
+  atomix:
+    store:
+      consensus:
+        enabled: true
+        name: ""
+        image:
+          registry: ""
+          repository: atomix/consensus-node
+          tag: ""
+          pullPolicy: ""
+          pullSecrets: []
+        replicas: 3
+        partitions: 30
+        config:
+          server: {}
+          raft: {}
+          logging:
+            loggers:
+              root:
+                level: info
+                output:
+                  stdout:
+                    sink: stdout
+            sinks:
+              stdout:
+                stdout: {}
+        log:
+          storageClass: ""
+          resources:
+            requests:
+              storage: 1Gi
+        securityContext: {}
 
 import:
   onos-topo:
@@ -44,15 +60,17 @@ import:
 
 # ONOS-TOPO
 onos-topo:
-  store:
-    consensus:
-      enabled: false
+  atomix:
+    store:
+      consensus:
+        enabled: false
 
 # ONOS-CONFIG
 onos-config:
-  store:
-    consensus:
-      enabled: false
+  atomix:
+    store:
+      consensus:
+        enabled: false
 
 # ONOS-GUI
 onos-gui: {}

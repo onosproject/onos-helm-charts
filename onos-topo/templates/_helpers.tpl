@@ -75,18 +75,18 @@ onos-topo image name
 {{/*
 onos-topo consensus image name
 */}}
-{{- define "onos-topo.store.consensus.imagename" -}}
-{{- if or .Values.store.consensus.image.tag .Values.global.store.consensus.image.tag -}}
-{{- if .Values.global.store.consensus.image.registry -}}
-{{- printf "%s/" .Values.global.store.consensus.image.registry -}}
-{{- else if .Values.store.consensus.image.registry -}}
-{{- printf "%s/" .Values.store.consensus.image.registry -}}
+{{- define "onos-topo.atomix.store.consensus.imagename" -}}
+{{- if or .Values.atomix.store.consensus.image.tag .Values.global.atomix.store.consensus.image.tag -}}
+{{- if .Values.global.atomix.store.consensus.image.registry -}}
+{{- printf "%s/" .Values.global.atomix.store.consensus.image.registry -}}
+{{- else if .Values.atomix.store.consensus.image.registry -}}
+{{- printf "%s/" .Values.atomix.store.consensus.image.registry -}}
 {{- end -}}
-{{- printf "%s:" .Values.store.consensus.image.repository -}}
-{{- if .Values.global.store.consensus.image.tag -}}
-{{- .Values.global.store.consensus.image.tag -}}
+{{- printf "%s:" .Values.atomix.store.consensus.image.repository -}}
+{{- if .Values.global.atomix.store.consensus.image.tag -}}
+{{- .Values.global.atomix.store.consensus.image.tag -}}
 {{- else -}}
-{{- .Values.store.consensus.image.tag -}}
+{{- .Values.atomix.store.consensus.image.tag -}}
 {{- end -}}
 {{- else -}}
 ""
@@ -96,10 +96,18 @@ onos-topo consensus image name
 {{/*
 onos-topo consensus store name
 */}}
-{{- define "onos-topo.store.consensus.name" -}}
-{{- if .Values.store.consensus.name -}}
-{{- printf "%s" .Values.store.consensus.name -}}
+{{- define "onos-topo.atomix.store.consensus.name" -}}
+{{- if .Values.global.atomix.store.consensus.enabled -}}
+{{- if .Values.global.atomix.store.consensus.name -}}
+{{- printf "%s" .Values.global.atomix.store.consensus.name -}}
+{{- else -}}
+{{- printf "%s-consensus-store" ( include "global.fullname" . ) -}}
+{{- end -}}
+{{- else -}}
+{{- if .Values.atomix.store.consensus.name -}}
+{{- printf "%s" .Values.atomix.store.consensus.name -}}
 {{- else -}}
 {{- printf "%s-consensus-store" ( include "onos-topo.fullname" . ) -}}
+{{- end -}}
 {{- end -}}
 {{- end -}}

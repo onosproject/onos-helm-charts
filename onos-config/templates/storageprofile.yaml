@@ -1,0 +1,31 @@
+# SPDX-FileCopyrightText: 2022 2020-present Open Networking Foundation <info@opennetworking.org>
+#
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: atomix.io/v3beta3
+kind: StorageProfile
+metadata:
+  name: {{ template "onos-config.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    name: {{ template "onos-config.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  proxy:
+    {{- if .Values.atomix.proxy.image.tag }}
+    image: "{{ .Values.atomix.proxy.image.repository }}:{{ .Values.atomix.proxy.image.tag }}"
+    {{- end }}
+    {{- with .Values.atomix.proxy.image.pullPolicy }}
+    imagePullPolicy: {{ . }}
+    {{- end }}
+    {{- with .Values.atomix.proxy.securityContext }}
+    securityContext:
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
+    config:
+      {{- toYaml .Values.atomix.proxy.config | nindent 6 }}
+  bindings:
+    - store:
+        name: {{ template "onos-config.atomix.store.consensus.name" . }}
