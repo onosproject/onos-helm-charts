@@ -131,6 +131,7 @@ spec:
             secretName: {{.Values.certManager.secretName}}
           {{- else }}
             secretName: {{ template "onos-topo.fullname" . }}-secret
+          {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
