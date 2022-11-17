@@ -20,6 +20,21 @@ global:
 
 replicaCount: 1
 
+grpcLogger:
+  enabled: false
+  golog_verbosity: "99"
+  severity: "info"
+  trace: "all"
+  verbosity: "debug"
+
+certManager:
+  enabled: false
+  name: onos-topo-cert
+  secretName: onos-topo-secret
+
+issuer:
+  name: ca-common-issuer
+
 image:
   registry: ""
   repository: onosproject/onos-topo

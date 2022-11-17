@@ -4,7 +4,7 @@
 
 apiVersion: v2
 name: onos-config
-version: 1.8.0
+version: 1.8.1
 kubeVersion: ">=1.17.0"
 appVersion: v0.11.0
 description: ONOS Config Manager
