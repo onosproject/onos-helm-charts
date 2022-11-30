@@ -6,7 +6,7 @@ SPDX-License-Identifier: Apache-2.0
 
 ## µONOS Umbrella chart
 
-Provides a [Helm] chart for deploying ONOS-TOPO, ONOS-CONFIG and ONOS-GUI to [Kubernetes].
+Provides a [Helm] chart for deploying ONOS-TOPO, ONOS-CONFIG and ONOS-CLI to [Kubernetes].
 See the [documentation] for more info.
 
 [Kubernetes]: https://kubernetes.io/
