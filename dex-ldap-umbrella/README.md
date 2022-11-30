@@ -52,7 +52,7 @@ The password for each is `password`
 
 To use this service with `onos-umbrella` chart, deploy in Helm with the following flags:
 ```
-helm -n micro-onos install onos-umbrella onosproject/onos-umbrella --set onos-config.openidc.issuer=http://dex-ldap-umbrella:5556 --set onos-gui.openidc.issuer=http://dex-ldap-umbrella:5556
+helm -n micro-onos install onos-umbrella onosproject/onos-umbrella --set onos-config.openidc.issuer=http://dex-ldap-umbrella:5556
 ```
 
 ## Adding an organization

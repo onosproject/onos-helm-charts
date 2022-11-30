@@ -47,8 +47,6 @@ import:
     enabled: true
   onos-config:
     enabled: true
-  onos-gui:
-    enabled: false
   onos-cli:
     enabled: true
   wcmp-app:
@@ -71,9 +69,6 @@ onos-config:
     store:
       consensus:
         enabled: false
-
-# ONOS-GUI
-onos-gui: {}
 
 # ONOS-CLI
 onos-cli: {}

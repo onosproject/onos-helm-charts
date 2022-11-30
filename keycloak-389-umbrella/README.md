@@ -60,7 +60,7 @@ The password for each is `password`
 
 To use this service with `onos-umbrella` chart, deploy in Helm with the following flags:
 ```
-helm -n micro-onos install onos-umbrella onosproject/onos-umbrella --set onos-config.openidc.issuer=http://k3u-keycloak:80/auth/realms/master --set onos-gui.openidc.issuer=http://k3u-keycloak:5557/auth/realms/master
+helm -n micro-onos install onos-umbrella onosproject/onos-umbrella --set onos-config.openidc.issuer=http://k3u-keycloak:80/auth/realms/master
 ```
 > Note the different port numbers - for `onos-config` to access Keycloak, port 80 must be used, because
 Keycloak is inside the cluster with this local deployment

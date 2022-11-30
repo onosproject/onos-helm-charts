@@ -209,13 +209,6 @@ dex:
       allowedOrigins: ['*']
 
     staticClients:
-      - id: onos-gui
-        redirectURIs:
-          - 'http://localhost:4200'
-          - 'http://localhost:8182'
-        name: 'ONOS GUI'
-        public: true
-
       - id: example-app
         redirectURIs:
           - 'http://127.0.0.1:5555/callback'

@@ -32,7 +32,6 @@ func (s *OnosUmbrellaSuite) TestInstall(t *testing.T) {
 	onos := helm.Chart("onos-umbrella", onostest.OnosChartRepo).
 		Release("onos-umbrella").
 		WithTimeout(15*time.Minute).
-		Set("import.onos-gui.enabled", false).
 		Set("import.onos-cli.enabled", false).
 		Set("global.image.registry", registry)
 
