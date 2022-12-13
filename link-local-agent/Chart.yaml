@@ -1,14 +1,14 @@
-# SPDX-FileCopyrightText: 2020-present Open Networking Foundation <info@opennetworking.org>
+# SPDX-FileCopyrightText: 2022-present Intel Corporation
 #
 # SPDX-License-Identifier: Apache-2.0
 
 apiVersion: v2
-name: onos-topo
-description: ONOS Topology service
+name: link-local-agent
+description: Link Local Agent
 kubeVersion: ">=1.17.0"
 type: application
-version: 1.4.1
-appVersion: v0.10.4
+version: 0.0.1
+appVersion: 0.0.1
 keywords:
   - onos
   - sdn

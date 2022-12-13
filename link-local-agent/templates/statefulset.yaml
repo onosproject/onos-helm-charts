@@ -1,0 +1,65 @@
+# SPDX-FileCopyrightText: 2022-present Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ template "link-local-agent.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: link-local-agent
+      release: {{ .Release.Name }}
+  serviceName: {{ template "link-local-agent.fullname" . }}
+  replicas: {{ .Values.agent.count }}
+  template:
+    metadata:
+      namespace: {{ .Release.Namespace }}
+      labels:
+        app: link-local-agent
+        release: {{ .Release.Name }}
+        resource: {{ template "link-local-agent.fullname" . }}
+    spec:
+      restartPolicy: Always
+      serviceAccountName: {{ .Values.serviceAccountName | quote }}
+      initContainers:
+        - name: init-link-local-agent-config
+          image: bash:alpine3.15
+          args:
+            - bash
+            - -c
+            - "[[ `hostname` =~ -([0-9]+)$ ]] &&
+               ordinal=${BASH_REMATCH[1]} &&
+               bindPort=$(({{ .Values.agent.basePort }} + $ordinal)) &&
+               stratumPort=$(({{ .Values.stratum.basePort }} + $ordinal)) &&
+               echo \"${bindPort} fabric-sim:${stratumPort}\" > /etc/link-agent/args"
+          volumeMounts:
+            - name: shared
+              mountPath: /etc/link-agent
+              readOnly: false
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+          volumeMounts:
+            - name: shared
+              mountPath: /etc/link-agent/
+              readOnly: false
+      volumes:
+        - name: shared
+          emptyDir: {}
