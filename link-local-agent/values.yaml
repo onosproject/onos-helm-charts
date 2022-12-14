@@ -18,7 +18,7 @@ resources: {}
 agent:
   count: 1
   uuid: 0
-  basePort: 30000
+  port: 30000
 
 stratum:
   basePort: 20000

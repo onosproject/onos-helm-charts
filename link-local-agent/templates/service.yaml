@@ -14,4 +14,4 @@ spec:
     release: {{ .Release.Name }}
   ports:
     - name: gnmi
-      port: {{ .Values.agent.basePort }}
+      port: {{ .Values.agent.port }}

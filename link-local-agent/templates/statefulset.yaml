@@ -32,9 +32,8 @@ spec:
             - -c
             - "[[ `hostname` =~ -([0-9]+)$ ]] &&
                ordinal=${BASH_REMATCH[1]} &&
-               bindPort=$(({{ .Values.agent.basePort }} + $ordinal)) &&
                stratumPort=$(({{ .Values.stratum.basePort }} + $ordinal)) &&
-               echo \"${bindPort} fabric-sim:${stratumPort}\" > /etc/link-agent/args"
+               echo \"{{ .Values.agent.basePort }} fabric-sim:${stratumPort}\" > /etc/link-agent/args"
           volumeMounts:
             - name: shared
               mountPath: /etc/link-agent
