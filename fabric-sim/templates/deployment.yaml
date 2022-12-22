@@ -62,10 +62,6 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
-          args:
-#            - "--caPath=/etc/onos/certs/tls.cacrt"
-#            - "--keyPath=/etc/onos/certs/tls.key"
-#            - "--certPath=/etc/onos/certs/tls.crt"
           ports:
             - name: grpc
               containerPort: 5150
@@ -98,9 +94,6 @@ spec:
             - name: config
               mountPath: /etc/onos/config
               readOnly: true
-            - name: secret
-              mountPath: /etc/onos/certs
-              readOnly: true
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           # Enable ptrace for debugging
@@ -114,9 +107,6 @@ spec:
         - name: config
           configMap:
             name: {{ template "fabric-sim.fullname" . }}-config
-        - name: secret
-          secret:
-            secretName: {{ template "fabric-sim.fullname" . }}-secret
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
