@@ -76,12 +76,12 @@ spec:
                   fieldPath: spec.nodeName
           args:
             {{- if .Values.certManager.enabled }}
-            - "-caPath=/etc/onos/certs/ca.crt"
+            - "--tls-ca-cert-path=/etc/onos/certs/ca.crt"
             {{- else}}
-            - "-caPath=/etc/onos/certs/tls.cacrt"
+            - "--tls-ca-cert-path=/etc/onos/certs/tls.cacrt"
             {{- end }}
-            - "-keyPath=/etc/onos/certs/tls.key"
-            - "-certPath=/etc/onos/certs/tls.crt"
+            - "--tls-key-path=/etc/onos/certs/tls.key"
+            - "--tls-cert-path=/etc/onos/certs/tls.crt"
           ports:
             - name: grpc
               containerPort: 5150
