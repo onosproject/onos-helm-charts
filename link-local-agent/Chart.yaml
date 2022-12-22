@@ -7,8 +7,8 @@ name: link-local-agent
 description: Link Local Agent
 kubeVersion: ">=1.17.0"
 type: application
-version: 0.0.2
-appVersion: 0.0.1
+version: 0.1.5
+appVersion: v0.1.5
 keywords:
   - onos
   - sdn
