@@ -2,48 +2,34 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-
-# Default values for device-provisioner.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
 global:
   image:
     registry: ""
     tag: ""
-  store:
-    consensus:
-      name: ""
-      image:
-        registry: ""
-        tag: ""
-
-
-store:
-  raft:
-    replicas: 1
-    partitions: 1
-    image:
-      repository: atomix/multi-raft-node
-      tag: latest
-      pullPolicy: ""
-      pullSecrets: []
-    config: {}
-    log:
-      storageClass: ""
-      resources:
-        requests:
-          storage: 2Gi
-    securityContext: {}
+  atomix:
+    store:
+      consensus:
+        name: ""
+        image:
+          registry: ""
+          tag: ""
 
 replicaCount: 1
 
-p4Plugins:
-  - name: middleblock
-    version: 1.0.0
-  - name: basic
-    version: 1.0.0
+grpcLogger:
+  enabled: false
+  golog_verbosity: "99"
+  severity: "info"
+  trace: "all"
+  verbosity: "debug"
 
+certManager:
+  enabled: false
+  name: device-provisioner-cert
+  secretName: device-provisioner-secret
+
+issuer:
+  name: ca-common-issuer
 
 image:
   registry: ""
@@ -58,46 +44,60 @@ fullnameOverride: "device-provisioner"
 
 debug: false
 
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
-
-podAnnotations: {}
-
-podSecurityContext: {}
-# fsGroup: 2000
-
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-# runAsUser: 1000
+atomix:
+  proxy:
+    image:
+      repository: atomix/runtime-proxy
+      tag: ""
+      pullPolicy: ""
+    config:
+      server: {}
+      logging:
+        loggers:
+          root:
+            level: info
+            output:
+              stdout:
+                sink: stdout
+        sinks:
+          stdout:
+            stdout: {}
+  store:
+    consensus:
+      enabled: true
+      name: ""
+      image:
+        registry: ""
+        repository: atomix/consensus-node
+        tag: ""
+        pullPolicy: ""
+        pullSecrets: []
+      replicas: 3
+      partitions: 30
+      config:
+        server: {}
+        raft: {}
+        logging:
+          loggers:
+            root:
+              level: info
+              output:
+                stdout:
+                  sink: stdout
+          sinks:
+            stdout:
+              stdout: {}
+      log:
+        storageClass: ""
+        resources:
+          requests:
+            storage: 1Gi
+      securityContext: {}
 
 resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-#   memory: 128Mi
 
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
+service:
+  type: ClusterIP
 
 nodeSelector: {}
 
@@ -112,13 +112,16 @@ logging:
       output:
         stdout:
           sink: stdout
-    onos/grpc/retry:
-      level: error
-    atomix/grpc/retry:
-      level: error
   sinks:
     stdout:
       type: stdout
       stdout: {}
 
+# Enable by giving a value like http://dex:32000
+# make sure this is reachable at http://dex:32000/.well-known/openid-configuration
+openidc:
+  issuer:
 
+podSecurityContext:
+  seccompProfile:
+    type: "Unconfined"

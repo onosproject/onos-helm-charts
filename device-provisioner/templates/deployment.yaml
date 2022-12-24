@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2022-present Intel Corporation
+# SPDX-FileCopyrightText: 2022 2020-present Open Networking Foundation <info@opennetworking.org>
 #
 # SPDX-License-Identifier: Apache-2.0
 
@@ -8,27 +8,27 @@ metadata:
   name: {{ template "device-provisioner.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-     {{- include "device-provisioner.labels" . | nindent 4 }}
+    {{- include "device-provisioner.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       name: {{ template "device-provisioner.fullname" . }}
       app: onos
-      type: device-provisioner
+      type: provisioner
       resource: {{ template "device-provisioner.fullname" . }}
-        {{- include "device-provisioner.selectorLabels" . | nindent 6 }}
+      {{- include "device-provisioner.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
         name: {{ template "device-provisioner.fullname" . }}
         app: onos
-        type: device-provisioner
+        type: provisioner
         resource: {{ template "device-provisioner.fullname" . }}
-          {{- include "device-provisioner.selectorLabels" . | nindent 8 }}
+        {{- include "device-provisioner.selectorLabels" . | nindent 8 }}
       annotations:
-        proxy.storage.atomix.io/inject: "true"
-        proxy.storage.atomix.io/profile: {{ template "device-provisioner.fullname" . }}
+        proxy.atomix.io/inject: "true"
+        proxy.atomix.io/profile: {{ template "device-provisioner.fullname" . }}
     spec:
       serviceAccountName: {{ template "device-provisioner.fullname" . }}
       securityContext:
@@ -44,18 +44,20 @@ spec:
           env:
             # *_NAMESPACE and *_NAME environment variables are recognized by onos-lib-go utilities.
             # These variables should always be defined.
+          {{ if .Values.grpcLogger.enabled }}
+            - name: GRPC_GO_LOG_VERBOSITY_LEVEL
+              value: {{ .Values.grpcLogger.golog_verbosity }}
+            - name: GRPC_GO_LOG_SEVERITY_LEVEL
+              value: {{ .Values.grpcLogger.severity }}
+            - name: GRPC_TRACE
+              value: {{ .Values.grpcLogger.trace }}
+            - name: GRPC_VERBOSITY
+              value: {{ .Values.grpcLogger.verbosity }}
+          {{- end }}
             - name: POD_NAMESPACE
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
-            - name: POD_ID
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name
-            - name: POD_IP
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.podIP
             - name: POD_NAME
               valueFrom:
                 fieldRef:
@@ -64,27 +66,33 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
-
+            - name: OIDC_SERVER_URL
+              value: {{ .Values.openidc.issuer }}
             - name: SERVICE_NAME
               value: {{ template "device-provisioner.fullname" . }}
-            - name: NODE_ID
+            - name: NODE_NAME
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
-
           args:
-            - "--caPath=/etc/onos/certs/tls.cacrt"
-            - "--keyPath=/etc/onos/certs/tls.key"
-            - "--certPath=/etc/onos/certs/tls.crt"
-              {{- if .Values.topoEndpoint }}
-            - {{ printf "--topoEndpoint=%s" .Values.topoEndpoint }}
-              {{- end }}
-              {{- range $key, $smplugin := .Values.p4Plugins }}
-            - {{ printf "--p4Plugin=/var/device-provisioner/plugins/%s.%s.so" $smplugin.name $smplugin.version }}
-             {{- end }}
+            {{- if .Values.certManager.enabled }}
+            - "--tls-ca-cert-path=/etc/onos/certs/ca.crt"
+            {{- else}}
+            - "--tls-ca-cert-path=/etc/onos/certs/tls.cacrt"
+            {{- end }}
+            - "--tls-key-path=/etc/onos/certs/tls.key"
+            - "--tls-cert-path=/etc/onos/certs/tls.crt"
+            {{- if .Values.topoAddress }}
+            - "--topo-address={{ .Values.topoAddress }}"
+            {{- end }}
           ports:
             - name: grpc
               containerPort: 5150
+            {{- if .Values.debug }}
+            - name: debug
+              containerPort: 40000
+              protocol: TCP
+            {{- end }}
           startupProbe:
             tcpSocket:
               port: 5150
@@ -102,13 +110,13 @@ spec:
             periodSeconds: 10
           volumeMounts:
             - name: config
-              mountPath: /etc/onos/device-provisioner
+              mountPath: /etc/onos/config
               readOnly: true
             - name: secret
               mountPath: /etc/onos/certs
               readOnly: true
-            - name: shared-data
-              mountPath: /usr/local/lib/shared
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
           # Enable ptrace for debugging
           securityContext:
             {{- if .Values.debug }}
@@ -116,25 +124,26 @@ spec:
               add:
                 - SYS_PTRACE
             {{- end }}
-      # Mount volumes
       volumes:
         - name: config
           configMap:
             name: {{ template "device-provisioner.fullname" . }}-config
         - name: secret
           secret:
+          {{- if .Values.certManager.enabled }}
+            secretName: {{.Values.certManager.secretName}}
+          {{- else }}
             secretName: {{ template "device-provisioner.fullname" . }}-secret
-        - name: shared-data
-          emptyDir: {}
-    {{- with .Values.nodeSelector }}
+          {{- end }}
+      {{- with .Values.nodeSelector }}
       nodeSelector:
-      {{- toYaml . | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.affinity }}
       affinity:
-      {{- toYaml . | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.tolerations }}
       tolerations:
-      {{- toYaml . | nindent 8 }}
-    {{- end }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

@@ -1,25 +1,25 @@
-# SPDX-FileCopyrightText: 2022-present Intel Corporation
+# SPDX-FileCopyrightText: 2022 2020-present Open Networking Foundation <info@opennetworking.org>
 #
 # SPDX-License-Identifier: Apache-2.0
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "device-provisioner.fullname" . }}
+  name: {{ include "device-provisioner.fullname" . }}
   labels:
     app: {{ template "device-provisioner.fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
-      {{- include "device-provisioner.labels" . | nindent 4 }}
+    {{- include "device-provisioner.labels" . | nindent 4 }}
 spec:
-  type: ClusterIP
+  type: {{ .Values.service.type }}
   selector:
     name: {{ template "device-provisioner.fullname" . }}
     app: onos
-    type: device-provisioner
+    type: provisioner
     resource: {{ template "device-provisioner.fullname" . }}
-      {{- include "device-provisioner.selectorLabels" . | nindent 4 }}
+    {{- include "device-provisioner.selectorLabels" . | nindent 4 }}
   ports:
     - name: grpc
       port: 5150
