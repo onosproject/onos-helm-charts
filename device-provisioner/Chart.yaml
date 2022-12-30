@@ -4,8 +4,14 @@
 
 apiVersion: v2
 name: device-provisioner
-description: device-provisioner Helm chart for Kubernetes
+description: ONOS Device P4 pipeline and chassis provisioning service
 type: application
-version: 0.0.7
-appVersion: "v0.0.13"
-
+version: 0.2.0
+appVersion: v0.2.0
+keywords:
+  - onos
+  - sdn
+home: https://onosproject.org
+maintainers:
+  - name: ONOS Support
+    email: support@opennetworking.org
