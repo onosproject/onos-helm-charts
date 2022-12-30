@@ -110,7 +110,7 @@ spec:
             periodSeconds: 10
           volumeMounts:
             - name: config
-              mountPath: /etc/onos/config
+              mountPath: /etc/onos/configs
               readOnly: true
             - name: secret
               mountPath: /etc/onos/certs
