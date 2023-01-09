@@ -10,8 +10,10 @@ build-tools:=$(shell if [ ! -d "./build/build-tools" ]; then cd build && git clo
 include ./build/build-tools/make/onf-common.mk
 
 jenkins-test: jenkins_version_check deps # @HELP run the jenkins verification tests
-	docker pull quay.io/helmpack/chart-testing:v2.4.0
-	docker run --rm --name ct --volume `pwd`:/charts quay.io/helmpack/chart-testing:v3.0.0-beta.1 sh -c "ct lint --charts charts/onos-config,charts/onos-topo,charts/onos-cli,charts/device-simulator --debug --validate-maintainers=false"
+	docker pull quay.io/helmpack/chart-testing:v3.7.0
+	docker run --rm --name ct --volume `pwd`:/charts quay.io/helmpack/chart-testing:v3.7.0 sh -c "ct lint \
+	--charts charts/onos-config,charts/onos-topo,charts/onos-cli,charts/onos-umbrella,charts/device-simulator \
+	--debug --validate-maintainers=false"
 
 test: # @HELP run the integration tests
 test: version_check deps
