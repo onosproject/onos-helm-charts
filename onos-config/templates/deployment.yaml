@@ -87,6 +87,8 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
+            - name: GNMI_SET_SIZE_LIMIT
+              value: {{ .Values.gnmiSet.sizeLimit | quote }}
 
           args:
             {{- if .Values.certManager.enabled }}
