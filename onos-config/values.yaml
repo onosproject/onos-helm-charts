@@ -183,4 +183,4 @@ openpolicyagent:
   loglevel: info
 
 gnmiSet:
-  sizeLimit: 1000 # max number of updates + deletes in a gNMI Set
+  sizeLimit: 1000  # max number of updates + deletes in a gNMI Set
