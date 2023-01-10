@@ -7,7 +7,7 @@ name: onos-topo
 description: ONOS Topology service
 kubeVersion: ">=1.17.0"
 type: application
-version: 1.4.4
+version: 1.4.5
 appVersion: v0.10.11
 keywords:
   - onos

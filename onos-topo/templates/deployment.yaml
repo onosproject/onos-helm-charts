@@ -25,6 +25,8 @@ spec:
         app: onos
         type: topo
         resource: {{ template "onos-topo.fullname" . }}
+        proxy.atomix.io/inject: "true"
+        proxy.atomix.io/profile: {{ template "onos-topo.fullname" . }}
         {{- include "onos-topo.selectorLabels" . | nindent 8 }}
       annotations:
         proxy.atomix.io/inject: "true"

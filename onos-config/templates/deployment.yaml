@@ -25,6 +25,8 @@ spec:
         app: onos
         type: config
         resource: {{ template "onos-config.fullname" . }}
+        proxy.atomix.io/inject: "true"
+        proxy.atomix.io/profile: {{ template "onos-config.fullname" . }}
         {{- include "onos-config.selectorLabels" . | nindent 8 }}
       annotations:
         proxy.atomix.io/inject: "true"
