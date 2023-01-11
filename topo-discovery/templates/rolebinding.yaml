@@ -1,0 +1,16 @@
+# SPDX-FileCopyrightText: 2023-present Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ template "topo-discovery.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+subjects:
+- kind: ServiceAccount
+  name: {{ template "topo-discovery.fullname" . }}
+roleRef:
+  kind: Role
+  name: {{ template "topo-discovery.fullname" . }}
+  apiGroup: rbac.authorization.k8s.io

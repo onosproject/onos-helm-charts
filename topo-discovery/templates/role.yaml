@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2022-present Open Networking Foundation <info@opennetworking.org>
+# SPDX-FileCopyrightText: 2023-present Intel Corporation
 #
 # SPDX-License-Identifier: Apache-2.0
 
@@ -6,7 +6,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   creationTimestamp: null
-  name: {{ template "device-provisioner.fullname" . }}
+  name: {{ template "topo-discovery.fullname" . }}
   namespace: {{ .Release.Namespace }}
 rules:
 - apiGroups:
@@ -14,6 +14,6 @@ rules:
   resources:
   - '*'
   resourceNames:
-  - {{ template "device-provisioner.fullname" . }}-objects
+  - {{ template "topo-discovery.fullname" . }}-objects
   verbs:
   - '*'
