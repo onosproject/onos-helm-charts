@@ -17,7 +17,7 @@ spec:
   selector:
     name: {{ template "topo-discovery.fullname" . }}
     app: onos
-    type: topo-discovery
+    type: discovery
     resource: {{ template "topo-discovery.fullname" . }}
       {{- include "topo-discovery.selectorLabels" . | nindent 4 }}
   ports:
