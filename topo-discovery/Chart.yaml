@@ -4,8 +4,14 @@
 
 apiVersion: v2
 name: topo-discovery
-description: topo-discovery Helm chart for Kubernetes
+description: ONOS Topology Discovery service
 type: application
-version: 0.0.4
-appVersion: "v0.0.7"
-
+version: 0.2.1
+appVersion: v0.2.0
+keywords:
+  - onos
+  - sdn
+home: https://onosproject.org
+maintainers:
+  - name: ONOS Support
+    email: support@opennetworking.org
