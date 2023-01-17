@@ -6,8 +6,8 @@ apiVersion: v2
 name: topo-discovery
 description: ONOS Topology Discovery service
 type: application
-version: 0.2.2
-appVersion: v0.2.0
+version: 1.1.2
+appVersion: v1.1.2
 keywords:
   - onos
   - sdn
