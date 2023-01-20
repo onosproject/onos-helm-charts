@@ -24,7 +24,7 @@ dependencies:
   - name: onos-config
     condition: import.onos-config.enabled
     repository: file://../onos-config
-    version: 1.8.5
+    version: 1.8.6
   - name: onos-cli
     condition: import.onos-cli.enabled
     repository: file://../onos-cli
