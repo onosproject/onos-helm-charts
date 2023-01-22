@@ -73,7 +73,7 @@ atomix:
         tag: ""
         pullPolicy: ""
         pullSecrets: []
-      replicas: 3
+      replicas: 1
       partitions: 30
       config:
         server: {}
