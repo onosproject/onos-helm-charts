@@ -25,6 +25,8 @@ spec:
         app: onos
         type: provisioner
         resource: {{ template "device-provisioner.fullname" . }}
+        proxy.atomix.io/inject: "true"
+        proxy.atomix.io/profile: {{ template "device-provisioner.fullname" . }}
         {{- include "device-provisioner.selectorLabels" . | nindent 8 }}
       annotations:
         proxy.atomix.io/inject: "true"
