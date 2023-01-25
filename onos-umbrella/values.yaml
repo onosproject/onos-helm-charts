@@ -49,8 +49,6 @@ import:
     enabled: true
   onos-cli:
     enabled: true
-  wcmp-app:
-    enabled: false
   device-provisioner:
     enabled: false
   topo-discovery:
