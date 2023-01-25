@@ -68,5 +68,12 @@ onos-config:
       consensus:
         enabled: false
 
+device-provisioner:
+  atomix:
+    store:
+      consensus:
+        enabled: false
+
+
 # ONOS-CLI
 onos-cli: {}
