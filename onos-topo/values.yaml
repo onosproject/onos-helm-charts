@@ -171,5 +171,3 @@ openidc:
 podSecurityContext:
   seccompProfile:
     type: "Unconfined"
-
-app_label: onos-topo

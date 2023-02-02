@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2023-present Intel Corporation
+# SPDX-FileCopyrightText: 2022-present Intel Corporation
 #
 # SPDX-License-Identifier: Apache-2.0
 
@@ -8,7 +8,6 @@ metadata:
   name: {{ template "onos-topo.fullname" . }}-consensus
   namespace: {{ .Release.Namespace }}
   labels:
-    app: "{{ .Values.app_label }}-consensus"
     name: {{ template "onos-topo.fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: "{{ .Release.Name }}"
