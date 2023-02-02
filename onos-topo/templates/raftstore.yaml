@@ -33,3 +33,4 @@ spec:
   {{- with .Values.atomix.store.consensus.config.raft.maxInMemLogSize }}
   maxInMemLogSize: {{ . }}
   {{- end }}
+  {{- end }}
