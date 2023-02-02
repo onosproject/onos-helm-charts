@@ -93,25 +93,6 @@ onos-topo consensus image name
 {{- end -}}
 {{- end -}}
 
-{{/*
-onos-topo consensus store name
-*/}}
-{{- define "onos-topo.atomix.store.consensus.name" -}}
-{{- if .Values.global.atomix.store.consensus.enabled -}}
-{{- if .Values.global.atomix.store.consensus.name -}}
-{{- printf "%s" .Values.global.atomix.store.consensus.name -}}
-{{- else -}}
-{{- printf "%s-consensus-store" ( include "global.fullname" . ) -}}
-{{- end -}}
-{{- else -}}
-{{- if .Values.atomix.store.consensus.name -}}
-{{- printf "%s" .Values.atomix.store.consensus.name -}}
-{{- else -}}
-{{- printf "%s-consensus-store" ( include "onos-topo.fullname" . ) -}}
-{{- end -}}
-{{- end -}}
-{{- end -}}
-
 
 {{- define "onos-topo.atomix.consensus.cluster.name" -}}
 {{- if .Values.global.atomix.store.consensus.enabled -}}

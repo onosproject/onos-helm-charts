@@ -94,24 +94,6 @@ onos-config consensus image name
 {{- end -}}
 {{- end -}}
 
-{{/*
-onos-config consensus store name
-*/}}
-{{- define "onos-config.atomix.store.consensus.name" -}}
-{{- if .Values.global.atomix.store.consensus.enabled -}}
-{{- if .Values.global.atomix.store.consensus.name -}}
-{{- printf "%s" .Values.global.atomix.store.consensus.name -}}
-{{- else -}}
-{{- printf "%s-consensus-store" ( include "global.fullname" . ) -}}
-{{- end -}}
-{{- else -}}
-{{- if .Values.atomix.store.consensus.name -}}
-{{- printf "%s" .Values.atomix.store.consensus.name -}}
-{{- else -}}
-{{- printf "%s-consensus-store" ( include "onos-config.fullname" . ) -}}
-{{- end -}}
-{{- end -}}
-{{- end -}}
 
 {{/*
 openpolicyagent image name
