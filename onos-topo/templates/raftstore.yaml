@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+{{- if .Values.atomix.store.consensus.enabled }}
 apiVersion: raft.atomix.io/v1beta3
 kind: RaftStore
 metadata:

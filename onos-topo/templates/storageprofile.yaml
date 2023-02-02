@@ -15,12 +15,6 @@ metadata:
 spec:
   routes:
     - store:
-        name: {{ template "onos-topo.fullname" . }}-cache
-      {{- with .Values.atomix.store.sharedMemory.rules }}
-      rules:
-        {{ . | toYaml | nindent 8 }}
-      {{- end }}
-    - store:
         name: {{ template "onos-topo.fullname" . }}-consensus
       {{- with .Values.atomix.store.consensus.rules }}
       rules:

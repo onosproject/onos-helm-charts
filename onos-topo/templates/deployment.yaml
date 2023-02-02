@@ -25,7 +25,7 @@ spec:
         app: onos
         type: topo
         resource: {{ template "onos-topo.fullname" . }}
-        runtime.atomix.io/inject: "true"
+        sidecar.atomix.io/inject: "true"
         runtime.atomix.io/profile: {{ template "onos-topo.fullname" . }}
         {{- include "onos-topo.selectorLabels" . | nindent 8 }}
       annotations:

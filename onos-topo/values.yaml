@@ -68,59 +68,6 @@ atomix:
         level: info
 
   store:
-    sharedMemory:
-      enabled: true
-      name: ""
-      image:
-        registry: ""
-        repository: atomix/shared-memory-node
-        tag: ""
-        pullPolicy: ""
-        pullSecrets: []
-      # An array of routing rules for the consensus store route.
-      # Examples:
-      #
-      #     # Route only primitives named "foo" or "bar" to this store
-      #     - names:
-      #         - foo
-      #         - bar
-      #
-      #     # Route only primitives tagged "volatile" to this store
-      #     - tags:
-      #         - volatile
-      #
-      #     # Route only Value primitives to this store
-      #     - kind: Value
-      #       apiVersion: v1
-      #
-      #     # Route all primitives to this store and enable caching for all maps in the store
-      #     - names:
-      #         - '*'
-      #     - kind: Map
-      #       apiVersion: v1
-      #       config:
-      #         cache:
-      #           enabled: true
-      rules:
-        - tags:
-            - volatile
-      config:
-        server: {}
-        logging:
-          # The encoding is the format of the logging output:
-          # console: standard formatted text logging
-          # json: JSON encoded structured logging
-          encoding: console
-          # The default log level for all loggers. Only messages logged at this level or higher severity will be
-          # output to the logger sinks. Log levels in order of severity (least to greatest):
-          # - debug
-          # - info
-          # - warn
-          # - error
-          # - fatal
-          level: info
-          loggers:
-            github.com/atomix/atomix/runtime/pkg/utils/grpc/interceptors: error
     consensus:
       enabled: true
       name: ""
