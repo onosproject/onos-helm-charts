@@ -2,13 +2,14 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+{{- if .Values.atomix.store.consensus.enabled }}
 apiVersion: raft.atomix.io/v1beta3
 kind: RaftCluster
 metadata:
-  name: {{ template "onos-topo.fullname" . }}-consensus
+  name: {{ template "onos-topo.atomix.consensus.cluster.name" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    name: {{ template "onos-topo.fullname" . }}
+    name: {{ template "onos-topo.atomix.consensus.cluster.name" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
@@ -30,12 +31,13 @@ spec:
   {{- end }}
   persistence: {{- .Values.atomix.store.consensus.persistence | toYaml | nindent 4 }}
   logging:
-    encoding: {{ .Values.atomix.store.consensus.config.logging.encoding }}
-    rootLevel: {{ .Values.atomix.store.consensus.config.logging.level }}
-    {{- if .Values.atomix.store.consensus.config.logging.loggers }}
+    encoding: {{ .Values.atomix.store.consensus.logging.encoding }}
+    rootLevel: {{ .Values.atomix.store.consensus.logging.level }}
+    {{- if .Values.atomix.store.consensus.logging.loggers }}
     loggers:
-      {{- range $key, $value := .Values.atomix.store.consensus.config.logging.loggers }}
+      {{- range $key, $value := .Values.atomix.store.consensus.logging.loggers }}
       - name: {{ $key }}
         level: {{ $value }}
       {{- end }}
     {{- end }}
+  {{- end }}

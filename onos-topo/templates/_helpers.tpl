@@ -111,3 +111,20 @@ onos-topo consensus store name
 {{- end -}}
 {{- end -}}
 {{- end -}}
+
+
+{{- define "onos-topo.atomix.consensus.cluster.name" -}}
+{{- if .Values.global.atomix.store.consensus.enabled -}}
+{{- include "global.atomix.consensus.cluster.name" . -}}
+{{- else -}}
+{{- printf "%s-consensus" .Release.Name -}}
+{{- end -}}
+{{- end -}}
+
+{{- define "onos-topo.atomix.consensus.store.name" -}}
+{{- printf "%s-consensus" ( include "onos-topo.fullname" . ) -}}
+{{- end -}}
+
+{{- define "onos-topo.atomix.cache.store.name" -}}
+{{- printf "%s-cache" ( include "onos-topo.fullname" . ) -}}
+{{- end -}}

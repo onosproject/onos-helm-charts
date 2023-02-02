@@ -10,13 +10,11 @@ global:
   image:
     registry: ""
     tag: ""
+  nameOverride: ""
   atomix:
     store:
       consensus:
-        name: ""
-        image:
-          registry: ""
-          tag: ""
+        enabled: false
 
 replicaCount: 1
 
@@ -102,35 +100,34 @@ atomix:
       #         cache:
       #           enabled: true
       rules: []
+      server: {}
       config:
-        server: {}
-        raft:
-          # The estimated round trip time for a heartbeat from the Raft leader to a follower.
-          # This should approximate the round trip time of an RPC from one pod to another in the Kubernetes cluster.
-          heartbeatRTT:
-          # The number of heartbeatRTTs to wait after last hearing from the current leader before electing a new leader.
-          electionRTT:
-          # The number of entries after which Raft nodes should take a snapshot and compact their logs.
-          snapshotEntries:
-          # The number of entries to retain following log compaction to avoid snapshot replication to slow followers.
-          compactionOverhead:
-          # The maximum size of the in-memory write-ahead Raft log, (e.g. 1Gi, 500Mi, etc).
-          maxInMemLogSize:
-        logging:
-          # The encoding is the format of the logging output:
-          # console: standard formatted text logging
-          # json: JSON encoded structured logging
-          encoding: console
-          # The default log level for all loggers. Only messages logged at this level or higher severity will be
-          # output to the logger sinks. Log levels in order of severity (least to greatest):
-          # - debug
-          # - info
-          # - warn
-          # - error
-          # - fatal
-          level: info
-          loggers:
-            github.com/atomix/atomix/runtime/pkg/utils/grpc/interceptors: error
+        # The estimated round trip time for a heartbeat from the Raft leader to a follower.
+        # This should approximate the round trip time of an RPC from one pod to another in the Kubernetes cluster.
+        heartbeatRTT:
+        # The number of heartbeatRTTs to wait after last hearing from the current leader before electing a new leader.
+        electionRTT:
+        # The number of entries after which Raft nodes should take a snapshot and compact their logs.
+        snapshotEntries:
+        # The number of entries to retain following log compaction to avoid snapshot replication to slow followers.
+        compactionOverhead:
+        # The maximum size of the in-memory write-ahead Raft log, (e.g. 1Gi, 500Mi, etc).
+        maxInMemLogSize:
+      logging:
+        # The encoding is the format of the logging output:
+        # console: standard formatted text logging
+        # json: JSON encoded structured logging
+        encoding: console
+        # The default log level for all loggers. Only messages logged at this level or higher severity will be
+        # output to the logger sinks. Log levels in order of severity (least to greatest):
+        # - debug
+        # - info
+        # - warn
+        # - error
+        # - fatal
+        level: info
+        loggers:
+          github.com/atomix/atomix/runtime/pkg/utils/grpc/interceptors: error
       persistence:
         # enabled: false
         # storageClass: ""
@@ -139,6 +136,7 @@ atomix:
         size: 8Gi
       securityContext:
         runAsUser: 0
+
 
 resources: {}
 

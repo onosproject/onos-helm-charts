@@ -15,7 +15,7 @@ metadata:
 spec:
   routes:
     - store:
-        name: {{ template "onos-config.fullname" . }}-consensus
+        name: {{ template "onos-config.atomix.consensus.store.name" . }}
       {{- with .Values.atomix.store.consensus.rules }}
       rules:
         {{ . | toYaml | nindent 8 }}

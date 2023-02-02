@@ -2,34 +2,32 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-{{- if .Values.atomix.store.consensus.enabled }}
 apiVersion: raft.atomix.io/v1beta3
 kind: RaftStore
 metadata:
-  name: {{ template "onos-config.fullname" . }}-consensus
+  name: {{ template "onos-config.atomix.consensus.store.name" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    name: {{ template "onos-config.fullname" . }}
+    name: {{ template "onos-config.atomix.consensus.store.name" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 spec:
   cluster:
-    name: {{ template "onos-config.fullname" . }}-consensus
+    name: {{ template "onos-config.atomix.consensus.cluster.name" . }}
   partitions: {{ .Values.atomix.store.consensus.partitions }}
-  {{- with .Values.atomix.store.consensus.config.raft.electionRTT }}
+  {{- with .Values.atomix.store.consensus.config.electionRTT }}
   electionRTT: {{ . }}
   {{- end }}
-  {{- with .Values.atomix.store.consensus.config.raft.heartbeatRTT }}
+  {{- with .Values.atomix.store.consensus.config.heartbeatRTT }}
   heartbeatRTT: {{ . }}
   {{- end }}
-  {{- with .Values.atomix.store.consensus.config.raft.snapshotEntries }}
+  {{- with .Values.atomix.store.consensus.config.snapshotEntries }}
   snapshotEntries: {{ . }}
   {{- end }}
-  {{- with .Values.atomix.store.consensus.config.raft.compactionOverhead }}
+  {{- with .Values.atomix.store.consensus.config.compactionOverhead }}
   compactionOverhead: {{ . }}
   {{- end }}
-  {{- with .Values.atomix.store.consensus.config.raft.maxInMemLogSize }}
+  {{- with .Values.atomix.store.consensus.config.maxInMemLogSize }}
   maxInMemLogSize: {{ . }}
-  {{- end }}
   {{- end }}
