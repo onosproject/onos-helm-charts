@@ -49,8 +49,6 @@ fullnameOverride: "onos-topo"
 debug: false
 
 atomix:
-  replicas: 0
-
   sidecar:
     image:
       repository: atomix/sidecar
