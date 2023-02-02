@@ -25,12 +25,20 @@ spec:
         app: onos
         type: topo
         resource: {{ template "onos-topo.fullname" . }}
-        proxy.atomix.io/inject: "true"
-        proxy.atomix.io/profile: {{ template "onos-topo.fullname" . }}
+        runtime.atomix.io/inject: "true"
+        runtime.atomix.io/profile: {{ template "onos-topo.fullname" . }}
         {{- include "onos-topo.selectorLabels" . | nindent 8 }}
       annotations:
-        proxy.atomix.io/inject: "true"
-        proxy.atomix.io/profile: {{ template "onos-topo.fullname" . }}
+        {{- if .Values.atomix.sidecar.image.tag }}
+        sidecar.atomix.io/image: "{{ .Values.atomix.sidecar.image.repository }}:{{ .Values.atomix.sidecar.image.tag }}"
+        {{- end }}
+        {{- if .Values.atomix.sidecar.image.pullPolicy }}
+        sidecar.atomix.io/imagePullPolicy: "{{ .Values.atomix.sidecar.image.pullPolicy }}"
+        {{- end }}
+        sidecar.atomix.io/logLevel: {{ .Values.atomix.sidecar.config.logging.level }}
+        {{- with .Values.annotations }}
+        {{ toYaml . | nindent 8 }}
+        {{- end }}
     spec:
       serviceAccountName: {{ template "onos-topo.fullname" . }}
       securityContext:
