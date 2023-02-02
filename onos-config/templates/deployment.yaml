@@ -25,14 +25,19 @@ spec:
         app: onos
         type: config
         resource: {{ template "onos-config.fullname" . }}
-        proxy.atomix.io/inject: "true"
-        proxy.atomix.io/profile: {{ template "onos-config.fullname" . }}
+        sidecar.atomix.io/inject: "true"
+        runtime.atomix.io/profile: {{ template "onos-config.fullname" . }}
         {{- include "onos-config.selectorLabels" . | nindent 8 }}
       annotations:
-        proxy.atomix.io/inject: "true"
-        proxy.atomix.io/profile: {{ template "onos-config.fullname" . }}
-        {{- range $key, $value := .Values.annotations }}
-        {{ $key }}: {{ $value }}
+        {{- if .Values.atomix.sidecar.image.tag }}
+        sidecar.atomix.io/image: "{{ .Values.atomix.sidecar.image.repository }}:{{ .Values.atomix.sidecar.image.tag }}"
+        {{- end }}
+        {{- if .Values.atomix.sidecar.image.pullPolicy }}
+        sidecar.atomix.io/imagePullPolicy: "{{ .Values.atomix.sidecar.image.pullPolicy }}"
+        {{- end }}
+        sidecar.atomix.io/logLevel: {{ .Values.atomix.sidecar.config.logging.level }}
+        {{- with .Values.annotations }}
+        {{ toYaml . | nindent 8 }}
         {{- end }}
     spec:
       serviceAccountName: {{ template "onos-config.fullname" . }}
