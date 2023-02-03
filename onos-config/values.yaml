@@ -138,7 +138,19 @@ atomix:
       #       config:
       #         cache:
       #           enabled: true
-      rules: []
+      rules:
+        - names:
+           - '*'
+        - kind: Map
+            apiVersion: v1
+            config:
+              cache:
+                enabled: true
+        - kind: IndexedMap
+            apiVersion: v1
+            config:
+              cache:
+              enabled: true
       server: {}
       config:
         # The estimated round trip time for a heartbeat from the Raft leader to a follower.
