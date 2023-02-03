@@ -144,12 +144,12 @@ atomix:
         - kind: Map
           apiVersion: v1
           config:
-              cache:
-                enabled: true
+            cache:
+              enabled: true
         - kind: IndexedMap
           apiVersion: v1
           config:
-              cache:
+            cache:
               enabled: true
       server: {}
       config:
