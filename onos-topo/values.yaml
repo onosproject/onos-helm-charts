@@ -74,7 +74,7 @@ atomix:
         pullPolicy: ""
         pullSecrets: []
       replicas: 3
-      partitions: 30
+      partitions: 10
       # An array of routing rules for the consensus store route.
       # Examples:
       #
