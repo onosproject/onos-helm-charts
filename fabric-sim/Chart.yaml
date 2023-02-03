@@ -7,8 +7,8 @@ name: fabric-sim
 description: ONOS Fabric Simulator service
 kubeVersion: ">=1.17.0"
 type: application
-version: 1.0.1
-appVersion: v1.0.1
+version: 1.0.3
+appVersion: v1.0.2
 keywords:
   - onos
   - sdn
