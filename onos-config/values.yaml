@@ -140,15 +140,15 @@ atomix:
       #           enabled: true
       rules:
         - names:
-           - '*'
+            - '*'
         - kind: Map
-            apiVersion: v1
-            config:
+          apiVersion: v1
+          config:
               cache:
                 enabled: true
         - kind: IndexedMap
-            apiVersion: v1
-            config:
+          apiVersion: v1
+          config:
               cache:
               enabled: true
       server: {}
