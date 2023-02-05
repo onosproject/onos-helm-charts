@@ -1,0 +1,33 @@
+# SPDX-FileCopyrightText: 2022-present Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: raft.atomix.io/v1beta3
+kind: RaftStore
+metadata:
+  name: {{ template "onos-topo.atomix.consensus.store.name" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    name: {{ template "onos-topo.atomix.consensus.store.name" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  cluster:
+    name: {{ template "onos-topo.atomix.consensus.cluster.name" . }}
+  partitions: {{ .Values.atomix.store.consensus.partitions }}
+  {{- with .Values.atomix.store.consensus.config.electionRTT }}
+  electionRTT: {{ . }}
+  {{- end }}
+  {{- with .Values.atomix.store.consensus.config.heartbeatRTT }}
+  heartbeatRTT: {{ . }}
+  {{- end }}
+  {{- with .Values.atomix.store.consensus.config.snapshotEntries }}
+  snapshotEntries: {{ . }}
+  {{- end }}
+  {{- with .Values.atomix.store.consensus.config.compactionOverhead }}
+  compactionOverhead: {{ . }}
+  {{- end }}
+  {{- with .Values.atomix.store.consensus.config.maxInMemLogSize }}
+  maxInMemLogSize: {{ . }}
+  {{- end }}

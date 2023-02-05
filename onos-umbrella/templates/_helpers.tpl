@@ -70,13 +70,12 @@ global consensus image name
 {{- end -}}
 {{- end -}}
 
-{{/*
-global consensus store name
-*/}}
-{{- define "global.atomix.store.consensus.name" -}}
-{{- if .Values.global.atomix.store.consensus.name -}}
-{{- printf "%s" .Values.global.atomix.store.consensus.name -}}
+
+
+{{- define "global.atomix.consensus.cluster.name" -}}
+{{- with .Values.global.atomix.store.consensus.name -}}
+{{- . -}}
 {{- else -}}
-{{- printf "%s-consensus-store" ( include "global.fullname" . ) -}}
+{{- printf "%s-consensus" .Release.Name -}}
 {{- end -}}
 {{- end -}}

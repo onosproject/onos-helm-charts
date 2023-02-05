@@ -1,0 +1,43 @@
+# SPDX-FileCopyrightText: 2022-present Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+  {{- if .Values.atomix.store.consensus.enabled }}
+apiVersion: raft.atomix.io/v1beta3
+kind: RaftCluster
+metadata:
+  name: {{ template "onos-config.atomix.consensus.cluster.name" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    name: {{ template "onos-config.atomix.consensus.cluster.name" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  replicas: {{ .Values.atomix.store.consensus.replicas }}
+  {{- if .Values.atomix.store.consensus.image.tag }}
+  image: "{{ .Values.atomix.store.consensus.image.repository }}:{{ .Values.atomix.store.consensus.image.tag }}"
+  {{- end }}
+  {{- with .Values.atomix.store.consensus.image.pullPolicy }}
+  imagePullPolicy: {{ . }}
+  {{- end }}
+  {{- with .Values.atomix.store.consensus.image.pullSecrets }}
+  imagePullSecrets:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with .Values.atomix.store.consensus.securityContext }}
+  securityContext:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  persistence: {{- .Values.atomix.store.consensus.persistence | toYaml | nindent 4 }}
+  logging:
+    encoding: {{ .Values.atomix.store.consensus.logging.encoding }}
+    rootLevel: {{ .Values.atomix.store.consensus.logging.level }}
+    {{- if .Values.atomix.store.consensus.logging.loggers }}
+    loggers:
+      {{- range $key, $value := .Values.atomix.store.consensus.logging.loggers }}
+      - name: {{ $key }}
+        level: {{ $value }}
+      {{- end }}
+    {{- end }}
+  {{- end }}

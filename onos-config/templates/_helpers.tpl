@@ -94,24 +94,6 @@ onos-config consensus image name
 {{- end -}}
 {{- end -}}
 
-{{/*
-onos-config consensus store name
-*/}}
-{{- define "onos-config.atomix.store.consensus.name" -}}
-{{- if .Values.global.atomix.store.consensus.enabled -}}
-{{- if .Values.global.atomix.store.consensus.name -}}
-{{- printf "%s" .Values.global.atomix.store.consensus.name -}}
-{{- else -}}
-{{- printf "%s-consensus-store" ( include "global.fullname" . ) -}}
-{{- end -}}
-{{- else -}}
-{{- if .Values.atomix.store.consensus.name -}}
-{{- printf "%s" .Values.atomix.store.consensus.name -}}
-{{- else -}}
-{{- printf "%s-consensus-store" ( include "onos-config.fullname" . ) -}}
-{{- end -}}
-{{- end -}}
-{{- end -}}
 
 {{/*
 openpolicyagent image name
@@ -141,4 +123,21 @@ openpolicyagent image name
 {{- printf "%s/" .Values.image.registry -}}
 {{- end -}}
 {{- printf "%s" .image -}}
+{{- end -}}
+
+
+{{- define "onos-config.atomix.consensus.cluster.name" -}}
+{{- if .Values.global.atomix.store.consensus.enabled -}}
+{{- include "global.atomix.consensus.cluster.name" . -}}
+{{- else -}}
+{{- printf "%s-consensus" .Release.Name -}}
+{{- end -}}
+{{- end -}}
+
+{{- define "onos-config.atomix.consensus.store.name" -}}
+{{- printf "%s-consensus" ( include "onos-config.fullname" . ) -}}
+{{- end -}}
+
+{{- define "onos-config.atomix.cache.store.name" -}}
+{{- printf "%s-cache" ( include "onos-config.fullname" . ) -}}
 {{- end -}}

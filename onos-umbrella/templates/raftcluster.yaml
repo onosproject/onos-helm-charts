@@ -1,21 +1,20 @@
-# SPDX-FileCopyrightText: 2022 2020-present Open Networking Foundation <info@opennetworking.org>
+# SPDX-FileCopyrightText: 2022-present Intel Corporation
 #
 # SPDX-License-Identifier: Apache-2.0
 
-{{- if .Values.atomix.store.consensus.enabled }}
-apiVersion: consensus.atomix.io/v1beta1
-kind: ConsensusStore
+
+apiVersion: raft.atomix.io/v1beta3
+kind: RaftCluster
 metadata:
-  name: {{ template "onos-config.atomix.store.consensus.name" . }}
+  name: {{ template "global.atomix.consensus.cluster.name" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    name: {{ template "onos-config.fullname" . }}
+    name: {{ template "global.atomix.consensus.cluster.name" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 spec:
   replicas: {{ .Values.atomix.store.consensus.replicas }}
-  groups: {{ .Values.atomix.store.consensus.partitions }}
   {{- if .Values.atomix.store.consensus.image.tag }}
   image: "{{ .Values.atomix.store.consensus.image.repository }}:{{ .Values.atomix.store.consensus.image.tag }}"
   {{- end }}
@@ -30,17 +29,14 @@ spec:
   securityContext:
     {{- toYaml . | nindent 4 }}
   {{- end }}
-  {{- if .Values.atomix.store.consensus.log.storageClass }}
-  volumeClaimTemplate:
-    spec:
-      accessModes:
-        - ReadWriteOnce
-      storageClassName: {{ .Values.atomix.store.consensus.log.storageClass | quote }}
-      {{- with .Values.atomix.store.consensus.log.resources }}
-      resources:
-        {{- toYaml . | nindent 8 }}
+  persistence: {{- .Values.atomix.store.consensus.persistence | toYaml | nindent 4 }}
+  logging:
+    encoding: {{ .Values.atomix.store.consensus.logging.encoding }}
+    rootLevel: {{ .Values.atomix.store.consensus.logging.level }}
+    {{- if .Values.atomix.store.consensus.logging.loggers }}
+    loggers:
+      {{- range $key, $value := .Values.atomix.store.consensus.logging.loggers }}
+      - name: {{ $key }}
+        level: {{ $value }}
       {{- end }}
-  {{- end }}
-  config:
-    {{- toYaml .Values.atomix.store.consensus.config | nindent 4 }}
-{{- end }}
+    {{- end }}
