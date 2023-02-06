@@ -20,7 +20,7 @@ dependencies:
   - name: onos-topo
     condition: import.onos-topo.enabled
     repository: file://../onos-topo
-    version: 1.1.14
+    version: 1.5.0
   - name: onos-config
     condition: import.onos-config.enabled
     repository: file://../onos-config
