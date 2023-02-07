@@ -5,12 +5,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "link-local-agent.fullname" . }}
+  name: {{ include "discovery-agent.fullname" . }}
   namespace: {{ .Release.Namespace }}
 spec:
   type: {{ .Values.service.type }}
   selector:
-    app: link-local-agent
+    app: discovery-agent
     release: {{ .Release.Name }}
   ports:
     - name: gnmi

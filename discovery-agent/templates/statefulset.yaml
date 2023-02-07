@@ -5,27 +5,27 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ template "link-local-agent.fullname" . }}
+  name: {{ template "discovery-agent.fullname" . }}
   namespace: {{ .Release.Namespace }}
 spec:
   selector:
     matchLabels:
-      app: link-local-agent
+      app: discovery-agent
       release: {{ .Release.Name }}
-  serviceName: {{ template "link-local-agent.fullname" . }}
+  serviceName: {{ template "discovery-agent.fullname" . }}
   replicas: {{ .Values.agent.count }}
   template:
     metadata:
       namespace: {{ .Release.Namespace }}
       labels:
-        app: link-local-agent
+        app: discovery-agent
         release: {{ .Release.Name }}
-        resource: {{ template "link-local-agent.fullname" . }}
+        resource: {{ template "discovery-agent.fullname" . }}
     spec:
       restartPolicy: Always
       serviceAccountName: {{ .Values.serviceAccountName | quote }}
       initContainers:
-        - name: init-link-local-agent-config
+        - name: init-discovery-agent-config
           image: bash:alpine3.15
           args:
             - bash
@@ -33,10 +33,10 @@ spec:
             - "[[ `hostname` =~ -([0-9]+)$ ]] &&
                ordinal=${BASH_REMATCH[1]} &&
                stratumPort=$(({{ .Values.stratum.basePort }} + $ordinal)) &&
-               echo \"{{ .Values.agent.port }} fabric-sim:${stratumPort}\" > /etc/link-agent/args"
+               echo \"{{ .Values.agent.port }} fabric-sim:${stratumPort}\" > /etc/discovery-agent/args"
           volumeMounts:
             - name: shared
-              mountPath: /etc/link-agent
+              mountPath: /etc/discovery-agent
               readOnly: false
       containers:
         - name: {{ .Chart.Name }}
@@ -57,7 +57,7 @@ spec:
                   fieldPath: spec.nodeName
           volumeMounts:
             - name: shared
-              mountPath: /etc/link-agent/
+              mountPath: /etc/discovery-agent/
               readOnly: false
       volumes:
         - name: shared
