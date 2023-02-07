@@ -28,4 +28,4 @@ spec:
       {{- toYaml .Values.atomix.proxy.config | nindent 6 }}
   bindings:
     - store:
-        name: {{ template "device-provisioner.atomix.store.consensus.name" . }}
+        name: {{ template "device-provisioner.atomix.consensus.store.name" . }}
