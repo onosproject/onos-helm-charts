@@ -9,10 +9,7 @@ global:
   atomix:
     store:
       consensus:
-        name: ""
-        image:
-          registry: ""
-          tag: ""
+        enabled: false
 
 replicaCount: 1
 
@@ -44,56 +41,110 @@ fullnameOverride: "device-provisioner"
 
 debug: false
 
-
 atomix:
-  proxy:
+  sidecar:
     image:
-      repository: atomix/runtime-proxy
+      repository: atomix/sidecar
       tag: ""
       pullPolicy: ""
     config:
-      server: {}
       logging:
-        loggers:
-          root:
-            level: info
-            output:
-              stdout:
-                sink: stdout
-        sinks:
-          stdout:
-            stdout: {}
+        # The default log level for all loggers. Only messages logged at this level or higher severity will be
+        # output to the logger sinks. Log levels in order of severity (least to greatest):
+        # - debug
+        # - info
+        # - warn
+        # - error
+        # - fatal
+        level: info
+
   store:
     consensus:
       enabled: true
       name: ""
       image:
         registry: ""
-        repository: atomix/consensus-node
+        repository: atomix/raft-node
         tag: ""
         pullPolicy: ""
         pullSecrets: []
-      replicas: 1
-      partitions: 30
+      replicas: 3
+      partitions: 3
+      # An array of routing rules for the consensus store route.
+      # Examples:
+      #
+      #     # Route only primitives named "foo" or "bar" to this store
+      #     - names:
+      #         - foo
+      #         - bar
+      #
+      #     # Route only primitives tagged "persistent" to this store
+      #     - tags:
+      #         - persistent
+      #
+      #     # Route only LeaderElection primitives to this store
+      #     - kind: LeaderElection
+      #       apiVersion: v1
+      #
+      #     # Route all primitives to this store and enable caching for all maps in the store
+      #     - names:
+      #         - '*'
+      #     - kind: Map
+      #       apiVersion: v1
+      #       config:
+      #         cache:
+      #           enabled: true
+      rules:
+        - names:
+            - '*'
+        - kind: Map
+          apiVersion: v1
+          config:
+            cache:
+              enabled: true
+        - kind: IndexedMap
+          apiVersion: v1
+          config:
+            cache:
+              enabled: true
+      server: {}
       config:
-        server: {}
-        raft: {}
-        logging:
-          loggers:
-            root:
-              level: info
-              output:
-                stdout:
-                  sink: stdout
-          sinks:
-            stdout:
-              stdout: {}
-      log:
-        storageClass: ""
-        resources:
-          requests:
-            storage: 1Gi
-      securityContext: {}
+        # The estimated round trip time for a heartbeat from the Raft leader to a follower.
+        # This should approximate the round trip time of an RPC from one pod to another in the Kubernetes cluster.
+        heartbeatRTT:
+        # The number of heartbeatRTTs to wait after last hearing from the current leader before electing a new leader.
+        electionRTT:
+        # The number of entries after which Raft nodes should take a snapshot and compact their logs.
+        snapshotEntries:
+        # The number of entries to retain following log compaction to avoid snapshot replication to slow followers.
+        compactionOverhead:
+        # The maximum size of the in-memory write-ahead Raft log, (e.g. 1Gi, 500Mi, etc).
+        maxInMemLogSize:
+      logging:
+        # The encoding is the format of the logging output:
+        # console: standard formatted text logging
+        # json: JSON encoded structured logging
+        encoding: console
+        # The default log level for all loggers. Only messages logged at this level or higher severity will be
+        # output to the logger sinks. Log levels in order of severity (least to greatest):
+        # - debug
+        # - info
+        # - warn
+        # - error
+        # - fatal
+        level: info
+        loggers:
+          github.com/atomix/atomix/runtime/pkg/utils/grpc/interceptors: error
+      persistence:
+        # enabled: false
+        # storageClass: ""
+        accessModes:
+          - ReadWriteOnce
+        size: 8Gi
+      securityContext:
+        runAsUser: 0
+
+
 
 resources: {}
 
