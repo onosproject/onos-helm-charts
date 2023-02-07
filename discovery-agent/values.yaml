@@ -4,14 +4,14 @@
 
 image:
   registry: ""
-  repository: onosproject/link-agent
+  repository: onosproject/discovery-agent
   tag: '{{ .Chart.AppVersion }}'
   pullPolicy: IfNotPresent
   pullSecrets: []
 
 imagePullSecrets: []
 nameOverride: ""
-fullnameOverride: "link-local-agent"
+fullnameOverride: "discovery-agent"
 
 resources: {}
 
