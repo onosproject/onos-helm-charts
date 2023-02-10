@@ -62,9 +62,9 @@ import:
   onos-cli:
     enabled: true
   device-provisioner:
-    enabled: false
+    enabled: true
   topo-discovery:
-    enabled: false
+    enabled: true
 
 # ONOS-TOPO
 onos-topo:
