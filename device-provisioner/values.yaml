@@ -37,7 +37,6 @@ image:
 
 imagePullSecrets: []
 nameOverride: ""
-fullnameOverride: "device-provisioner"
 
 debug: false
 

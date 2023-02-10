@@ -40,7 +40,6 @@ image:
 
 imagePullSecrets: []
 nameOverride: ""
-fullnameOverride: "topo-discovery"
 
 debug: false
 
