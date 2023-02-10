@@ -28,7 +28,6 @@ image:
 
 imagePullSecrets: []
 nameOverride: ""
-fullnameOverride: "fabric-sim"
 
 debug: false
 
