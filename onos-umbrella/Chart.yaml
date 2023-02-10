@@ -32,8 +32,8 @@ dependencies:
   - name: device-provisioner
     condition: import.device-provisioner.enabled
     repository: file://../device-provisioner
-    version: 1.2.12
+    version: 1.2.13
   - name: topo-discovery
     condition: import.topo-discovery.enabled
     repository: file://../topo-discovery
-    version: 1.1.5
+    version: 1.1.6
