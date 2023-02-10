@@ -1,0 +1,15 @@
+# SPDX-FileCopyrightText: 2023-present Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+# Default values for the simulated data centre POD deployment
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+global:
+  fullnameOverride: "scale-sim"
+  nameOverride: ""
+
+discovery-agent:
+  agent:
+    count: 4

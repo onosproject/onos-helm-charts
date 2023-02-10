@@ -37,4 +37,5 @@ clean:: # @HELP clean up temporary files.
 deps: # @HELP build dependencies for local charts.
 deps: clean license
 	helm dep build onos-umbrella
+	helm dep build scale-sim
 

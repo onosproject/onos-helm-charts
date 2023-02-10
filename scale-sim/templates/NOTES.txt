@@ -1,0 +1,6 @@
+Thank you for installing {{ .Chart.Name }} Helm chart.
+
+Your release is named {{ .Release.Name }} in namespace {{.Release.Namespace}}.
+See https://docs.onosproject.org/developers/deploy_with_helm/
+
+More information to follow...
