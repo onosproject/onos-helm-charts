@@ -138,8 +138,6 @@ atomix:
       securityContext:
         runAsUser: 0
 
-openidc:
-  issuer:
 
 resources: {}
 

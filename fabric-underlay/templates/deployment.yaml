@@ -76,8 +76,6 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
-            - name: OIDC_SERVER_URL
-              value: {{ .Values.openidc.issuer }}
             - name: SERVICE_NAME
               value: {{ template "fabric-underlay.fullname" . }}
             - name: NODE_NAME
