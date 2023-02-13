@@ -65,6 +65,8 @@ import:
     enabled: true
   topo-discovery:
     enabled: true
+  fabric-underlay:
+    enabled: false
 
 # ONOS-TOPO
 onos-topo:
@@ -81,6 +83,12 @@ onos-config:
         enabled: false
 
 device-provisioner:
+  atomix:
+    store:
+      consensus:
+        enabled: false
+
+fabric-underlay:
   atomix:
     store:
       consensus:

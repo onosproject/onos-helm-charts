@@ -1,0 +1,157 @@
+# SPDX-FileCopyrightText: 2022-present Open Networking Foundation <info@opennetworking.org>
+#
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "fabric-underlay.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "fabric-underlay.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      name: {{ template "fabric-underlay.fullname" . }}
+      app: onos
+      type: app
+      resource: {{ template "fabric-underlay.fullname" . }}
+      {{- include "fabric-underlay.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        name: {{ template "fabric-underlay.fullname" . }}
+        app: onos
+        type: app
+        resource: {{ template "fabric-underlay.fullname" . }}
+        sidecar.atomix.io/inject: "true"
+        runtime.atomix.io/profile: {{ template "fabric-underlay.fullname" . }}
+        {{- include "fabric-underlay.selectorLabels" . | nindent 8 }}
+      annotations:
+        {{- if .Values.atomix.sidecar.image.tag }}
+        sidecar.atomix.io/image: "{{ .Values.atomix.sidecar.image.repository }}:{{ .Values.atomix.sidecar.image.tag }}"
+         {{- end }}
+         {{- if .Values.atomix.sidecar.image.pullPolicy }}
+        sidecar.atomix.io/imagePullPolicy: "{{ .Values.atomix.sidecar.image.pullPolicy }}"
+         {{- end }}
+        sidecar.atomix.io/logLevel: {{ .Values.atomix.sidecar.config.logging.level }}
+         {{- with .Values.annotations }}
+         {{ toYaml . | nindent 8 }}
+         {{- end }}
+    spec:
+      serviceAccountName: {{ template "fabric-underlay.fullname" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ include "fabric-underlay.imagename" . | quote }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            # *_NAMESPACE and *_NAME environment variables are recognized by onos-lib-go utilities.
+            # These variables should always be defined.
+          {{ if .Values.grpcLogger.enabled }}
+            - name: GRPC_GO_LOG_VERBOSITY_LEVEL
+              value: {{ .Values.grpcLogger.golog_verbosity }}
+            - name: GRPC_GO_LOG_SEVERITY_LEVEL
+              value: {{ .Values.grpcLogger.severity }}
+            - name: GRPC_TRACE
+              value: {{ .Values.grpcLogger.trace }}
+            - name: GRPC_VERBOSITY
+              value: {{ .Values.grpcLogger.verbosity }}
+          {{- end }}
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: SERVICE_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: SERVICE_NAME
+              value: {{ template "fabric-underlay.fullname" . }}
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+          args:
+            {{- if .Values.certManager.enabled }}
+            - "--tls-ca-cert-path=/etc/onos/certs/ca.crt"
+            {{- else}}
+            - "--tls-ca-cert-path=/etc/onos/certs/tls.cacrt"
+            {{- end }}
+            - "--tls-key-path=/etc/onos/certs/tls.key"
+            - "--tls-cert-path=/etc/onos/certs/tls.crt"
+            {{- if .Values.topoAddress }}
+            - "--topo-address={{ .Values.topoAddress }}"
+            {{- end }}
+          ports:
+            - name: grpc
+              containerPort: 5150
+            {{- if .Values.debug }}
+            - name: debug
+              containerPort: 40000
+              protocol: TCP
+            {{- end }}
+          startupProbe:
+            tcpSocket:
+              port: 5150
+            periodSeconds: 5
+            failureThreshold: 60
+          readinessProbe:
+            tcpSocket:
+              port: 5150
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 5150
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          volumeMounts:
+            - name: config
+              mountPath: /etc/onos/configs
+              readOnly: true
+            - name: secret
+              mountPath: /etc/onos/certs
+              readOnly: true
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          # Enable ptrace for debugging
+          securityContext:
+            {{- if .Values.debug }}
+            capabilities:
+              add:
+                - SYS_PTRACE
+            {{- end }}
+      volumes:
+        - name: config
+          configMap:
+            name: {{ template "fabric-underlay.fullname" . }}-config
+        - name: secret
+          secret:
+          {{- if .Values.certManager.enabled }}
+            secretName: {{.Values.certManager.secretName}}
+          {{- else }}
+            secretName: {{ template "fabric-underlay.fullname" . }}-secret
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
