@@ -1,0 +1,17 @@
+# SPDX-FileCopyrightText: 2022-present Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "fabric-underlay.fullname" . }}-config
+  labels:
+    app: {{ template "fabric-underlay.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+data:
+  onos.yaml: ""
+  logging.yaml: |-
+    {{ toYaml .Values.logging | nindent 4 }}

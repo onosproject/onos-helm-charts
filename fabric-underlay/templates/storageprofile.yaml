@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: 2022-present Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: atomix.io/v3beta4
+kind: StorageProfile
+metadata:
+  name: {{ template "fabric-underlay.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    name: {{ template "fabric-underlay.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  routes:
+    - store:
+        name: {{ template "fabric-underlay.atomix.consensus.store.name" . }}
+      {{- with .Values.atomix.store.consensus.rules }}
+      rules:
+        {{ . | toYaml | nindent 8 }}
+      {{- end }}
