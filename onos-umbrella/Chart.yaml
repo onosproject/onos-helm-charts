@@ -41,4 +41,3 @@ dependencies:
     condition: import.fabric-underlay.enabled
     repository: file://../fabric-underlay
     version: 0.1.0
-
