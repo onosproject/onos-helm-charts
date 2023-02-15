@@ -1,0 +1,14 @@
+# SPDX-FileCopyrightText: 2023-present Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+# Recipe for creating pod fabric topology
+
+# Recipe for 4 superspine tier for 16 pods
+superspine_tier:
+  superspines: 4
+  superspines_domain: superspine-tier-sim
+  superspine_port_count: 64
+  pods: 16
+  pods_domain: pod%02d-tier-sim
+  pod_spines: 2

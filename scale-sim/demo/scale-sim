@@ -1,0 +1,228 @@
+#!/bin/bash
+# SPDX-FileCopyrightText: 2023-present Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+# Simple script to help orchestrate the scale demonstration environment
+
+ONOS_NAMESPACE=${ONOS_NAMESPACE:-test}
+TOPOLOGIES=$(dirname $0)/topologies
+CONFIGS=$(dirname $0)/configs
+PORT=20001
+TOPO_PREFIX="${TOPOLOGIES}/small_"
+
+SIM_OPTS="--set fabric-sim.image.tag=latest"
+
+function usage {
+  echo "usage: $(basename $1) [-f]" && exit 1
+}
+
+while getopts "fscn" arg; do
+  case $arg in
+    f) TOPO_PREFIX="${TOPOLOGIES}/small_";;
+    n) doNamespace=true;;
+    s) doSim=true;;
+    c) doControl=true;;
+    *) usage $0;;
+  esac
+done
+shift $((OPTIND-1))
+[ -n "$1" ] && usage $0
+
+# If neither simulation nor control are requested, assume both are
+[ -z "$doSim" -a -z "$doControl" ] && doSim=true && doControl=true && doNamespace=true
+
+if [ -n "$doNamespace" ]; then
+  kubectl delete ns ${ONOS_NAMESPACE}
+  kubectl create ns ${ONOS_NAMESPACE}
+fi
+
+k="kubectl -n ${ONOS_NAMESPACE}"
+h="helm -n ${ONOS_NAMESPACE}"
+cli="$k exec --stdin deploy/onos-cli -- /usr/local/bin/onos"
+
+# Prime environment variables using stuff scraped from the recipes
+eval $(grep -E "^  " ${TOPO_PREFIX}pod_recipe.yaml ${TOPO_PREFIX}superspine_recipe.yaml | cut -d: -f2- | tr -d '  ' | tr : =)
+
+# Deploy simulation environments for the superspine tier and all pods
+function deploySim {
+  let agentCount=$spines+$leaves+$leaves*$hosts_per_leaf
+  $h install superspine-tier-sim scale-sim --set discovery-agent.agent.count=$superspines \
+      --set discovery-agent.stratum.serviceName=superspine-tier-sim-fabric-sim $SIM_OPTS
+  for pod in $(seq 1 ${pods}); do
+    podRelease=$(printf "pod%02d-sim" $pod)
+    $h install $podRelease scale-sim --set discovery-agent.agent.count=$agentCount  \
+        --set discovery-agent.stratum.serviceName=${podRelease}-fabric-sim $SIM_OPTS
+  done
+}
+
+# Prime simulation environments for the superspine tier and all pods
+function primeSim {
+  echo "Loading simulation for $superspines superspines..."
+  $k rollout status deployment superspine-tier-sim-fabric-sim
+  sleep 5
+
+  $k exec --stdin deploy/superspine-tier-sim-fabric-sim -- \
+              /usr/local/bin/fabric-sim-topo load --service-address superspine-tier-sim-fabric-sim:5150 --no-tls \
+              < ${TOPO_PREFIX}superspine.yaml
+  for pod in $(seq 1 ${pods}); do
+    podID=$(printf "pod%02d" $pod)
+    echo "Loading simulation for $podID..."
+    $k rollout status deployment ${podID}-sim-fabric-sim
+    sleep 5
+    $k exec --stdin deploy/${podID}-sim-fabric-sim -- \
+                /usr/local/bin/fabric-sim-topo load --service-address ${podID}-sim-fabric-sim:5150 --no-tls \
+                < ${TOPO_PREFIX}pod.yaml
+    $k exec --stdin deploy/${podRelease}-fabric-sim -- \
+                /usr/local/bin/fabric-sim-topo load --service-address ${podID}-sim-fabric-sim:5150 --no-tls \
+                < ${TOPO_PREFIX}superspine-${podID}.yaml
+  done
+}
+
+# Deploy control domains for the superspine tier and all pods
+function deployControl {
+  $h install superspine-tier onos-umbrella \
+    --set import.onos-config.enabled=false \
+    --set topo-discovery.realm.value=superspines \
+    --set onos-cli.image.tag=latest \
+    --set device-provisioner.image.tag=latest
+
+  for pod in $(seq 1 ${pods}); do
+    podID=$(printf "pod%02d" $pod)
+    $h install $podID onos-umbrella \
+        --set topo-discovery.realm.value=${podID} \
+        --set import.onos-topo.enabled=false \
+        --set import.onos-config.enabled=false \
+        --set import.onos-cli.enabled=false \
+        --set import.device-provisioner.enabled=false
+  done
+}
+
+# Add pipeline and chassis configurations for all device types
+function addConfigs {
+  $k rollout status deployment onos-cli
+  $k rollout status deployment superspine-tier-device-provisioner
+  sleep 5
+  pcli="$cli provisioner --service-address superspine-tier-device-provisioner:5150"
+
+  # For demo we're using single set of artifacts for all
+  for t in superspine spine leaf ipu; do
+    echo "Adding configs for ${t}..."
+    $pcli add ${t}-fabric --kind pipeline < ${CONFIGS}/pipeline.tgz
+    $pcli add ${t}-chassis --kind chassis < ${CONFIGS}/chassis.tgz
+  done
+}
+
+# Prime superspine devices discovery
+function primeSuperspinesDiscovery {
+  $k rollout status deployment superspine-tier-topo-discovery
+  sleep 10
+
+  dcli="$cli discovery --service-address superspine-tier-topo-discovery:5150"
+
+  let port=20000
+  let agent=0
+
+  for superspine in $(seq 1 ${superspines}); do
+    ssID=$(printf "superspine%d" $superspine)
+    echo "Adding $ssID to discovery..."
+    $dcli add switch $ssID --realm superspines --role superspine \
+      --chassis-config "superspine-chassis" \
+      --pipeline-config "superspine-fabric" \
+      --gnmi-endpoint "superspine-tier-sim-fabric-sim:$port" \
+      --p4rt-endpoint "superspine-tier-sim-fabric-sim:$port" \
+      --host-agent-endpoint "superspine-tier-sim-discovery-agent-$agent.superspine-tier-sim-discovery-agent:30000" \
+      --link-agent-endpoint "superspine-tier-sim-discovery-agent-$agent.superspine-tier-sim-discovery-agent:30000"
+    let port=port+1
+    let agent=agent+1
+  done
+}
+
+# Prime pod devices discovery
+function primePodDiscovery {
+  pod=$1
+  podID=$(printf "pod%02d" $pod)
+
+  $k rollout status deployment ${podID}-topo-discovery
+  sleep 10
+
+  dcli="$cli discovery --service-address ${podID}-topo-discovery:5150"
+
+  # Add pod and rack entities first
+  $dcli add pod ${podID}
+  for rack in $(seq 1 ${leaves}); do
+    $dcli add rack $(printf "rack%02d-%d" $pod $rack) --pod ${podID}
+  done
+
+  let port=20000
+  let agent=0
+
+  # Now add all spines
+  for spine in $(seq 1 ${spines}); do
+    spineID=$(printf "spine%02d-%d" $pod $spine)
+    rackID=$(printf "rack%02d-%d" $pod $spine)
+    echo "Adding $spineID to discovery..."
+    $dcli add switch $spineID --realm $podID --role spine --pod $podID --rack $rackID \
+      --chassis-config "spine-chassis" \
+      --pipeline-config "spine-fabric" \
+      --gnmi-endpoint "${podID}-sim-fabric-sim:$port" \
+      --p4rt-endpoint "${podID}-sim-fabric-sim:$port" \
+      --host-agent-endpoint "${podID}-sim-discovery-agent-$agent.${podID}-sim-discovery-agent:30000" \
+      --link-agent-endpoint "${podID}-sim-discovery-agent-$agent.${podID}-sim-discovery-agent:30000"
+    let port=port+1
+    let agent=agent+1
+  done
+
+  # Now add all leaves and server IPUS per each rack
+  for leaf in $(seq 1 ${leaves}); do
+    leafID=$(printf "leaf%02d-%d" $pod $leaf)
+    rackID=$(printf "rack%02d-%d" $pod $leaf)
+    echo "Adding $leafID to discovery..."
+    $dcli add switch $leafID --realm $podID --role leaf --pod $podID --rack $rackID \
+      --chassis-config "leaf-chassis" \
+      --pipeline-config "leaf-fabric" \
+      --gnmi-endpoint "${podID}-sim-fabric-sim:$port" \
+      --p4rt-endpoint "${podID}-sim-fabric-sim:$port" \
+      --host-agent-endpoint "${podID}-sim-discovery-agent-$agent.${podID}-sim-discovery-agent:30000" \
+      --link-agent-endpoint "${podID}-sim-discovery-agent-$agent.${podID}-sim-discovery-agent:30000"
+    let port=port+1
+    let agent=agent+1
+
+    for server in $(seq 1 ${hosts_per_leaf}); do
+      serverID=$(printf "server%02d-%d-%02d" $pod $leaf $server)
+      echo "Adding $serverID to discovery..."
+      $dcli add ipu $serverID --realm $podID --role server --rack $rackID \
+        --pipeline-config "ipu-fabric" \
+        --gnmi-endpoint "${podID}-sim-fabric-sim:$port" \
+        --p4rt-endpoint "${podID}-sim-fabric-sim:$port" \
+        --host-agent-endpoint "${podID}-sim-discovery-agent-$agent.${podID}-sim-discovery-agent:30000" \
+        --link-agent-endpoint "${podID}-sim-discovery-agent-$agent.${podID}-sim-discovery-agent:30000"
+      let port=port+1
+      let agent=agent+1
+    done
+  done
+}
+
+# Prime control domains for the superspine tier and all pods
+function primeControl {
+  echo "Priming control domains"
+
+  # Let's wait until topo is ready before doing anything else...
+  $k rollout status deployment onos-topo
+
+  # Upload pipeline and chassis configs
+  addConfigs
+
+  # Create pods, racks, superspines, spines, leaves and servers with IPUs
+  primeSuperspinesDiscovery
+  for pod in $(seq 1 ${pods}); do
+    primePodDiscovery $pod
+  done
+}
+
+[ -n "$doSim" ] && deploySim
+[ -n "$doControl" ] && deployControl
+
+[ -n "$doSim" ] && primeSim
+[ -n "$doControl" ] && primeControl
+

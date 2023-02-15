@@ -1,0 +1,155 @@
+description: "Leaf 1A"
+chassis: <
+  platform: PLT_GENERIC_BAREFOOT_TOFINO
+  name: "Leaf 1A"
+>
+nodes: <
+  id: 1
+  slot: 1
+  index: 1
+>
+singleton_ports: <
+  id: 1
+  name: "Port 1/0"
+  slot: 1
+  port: 1
+  speed_bps: 100000000000
+  node: 1
+  config_params: <
+    admin_state: ADMIN_STATE_DISABLED
+    autoneg: TRI_STATE_FALSE
+  >
+>
+singleton_ports: <
+  id: 2
+  name: "Port 2/0"
+  slot: 1
+  port: 2
+  speed_bps: 100000000000
+  node: 1
+  config_params: <
+    admin_state: ADMIN_STATE_DISABLED
+    autoneg: TRI_STATE_FALSE
+  >
+>
+singleton_ports: <
+  id: 3
+  name: "Port 3/0"
+  slot: 1
+  port: 3
+  speed_bps: 100000000000
+  node: 1
+  config_params: <
+    admin_state: ADMIN_STATE_DISABLED
+    autoneg: TRI_STATE_FALSE
+  >
+>
+singleton_ports: <
+  id: 5
+  name: "Port 5/0"
+  slot: 1
+  port: 5
+  speed_bps: 100000000000
+  node: 1
+  config_params: <
+    admin_state: ADMIN_STATE_DISABLED
+    autoneg: TRI_STATE_FALSE
+  >
+>
+singleton_ports: <
+  id: 6
+  name: "Port 6/0"
+  slot: 1
+  port: 6
+  speed_bps: 100000000000
+  node: 1
+  config_params: <
+    admin_state: ADMIN_STATE_DISABLED
+    autoneg: TRI_STATE_FALSE
+  >
+>
+singleton_ports: <
+  id: 7
+  name: "Port 7/0"
+  slot: 1
+  port: 7
+  speed_bps: 100000000000
+  node: 1
+  config_params: <
+    admin_state: ADMIN_STATE_DISABLED
+    autoneg: TRI_STATE_FALSE
+  >
+>
+singleton_ports: <
+  id: 9
+  name: "Port 9/0"
+  slot: 1
+  port: 9
+  speed_bps: 100000000000
+  node: 1
+  config_params: <
+    admin_state: ADMIN_STATE_DISABLED
+    autoneg: TRI_STATE_FALSE
+  >
+>
+singleton_ports: <
+  id: 10
+  name: "Port 10/0"
+  slot: 1
+  port: 10
+  speed_bps: 100000000000
+  node: 1
+  config_params: <
+    admin_state: ADMIN_STATE_DISABLED
+    autoneg: TRI_STATE_FALSE
+  >
+>
+singleton_ports: <
+  id: 11
+  name: "Port 11/0"
+  slot: 1
+  port: 11
+  speed_bps: 100000000000
+  node: 1
+  config_params: <
+    admin_state: ADMIN_STATE_DISABLED
+    autoneg: TRI_STATE_FALSE
+  >
+>
+singleton_ports: <
+  id: 12
+  name: "Port 12/0"
+  slot: 1
+  port: 12
+  speed_bps: 100000000000
+  node: 1
+  config_params: <
+    admin_state: ADMIN_STATE_DISABLED
+    autoneg: TRI_STATE_FALSE
+  >
+>
+singleton_ports: <
+  id: 25
+  name: "Port 25/0"
+  slot: 1
+  port: 25
+  speed_bps: 100000000000
+  node: 1
+  config_params: <
+    admin_state: ADMIN_STATE_DISABLED
+    autoneg: TRI_STATE_FALSE
+  >
+>
+singleton_ports: <
+  id: 26
+  name: "Port 26/0"
+  slot: 1
+  port: 26
+  speed_bps: 100000000000
+  node: 1
+  config_params: <
+    admin_state: ADMIN_STATE_DISABLED
+    autoneg: TRI_STATE_FALSE
+  >
+>
+

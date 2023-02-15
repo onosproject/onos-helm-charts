@@ -1,0 +1,1499 @@
+{ ofni_gkp
+"ant" :hcra  
+}
+{ selbat
+{ elbmaerp  
+01809614 :di    
+"swolf.stats.ssergnIcirbaF" :eman    
+"swolf.stats.ssergnIcirbaF" :saila    
+}  
+{ sdleif_hctam  
+1 :di    
+"crs_4vpi" :eman    
+23 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+2 :di    
+"tsd_4vpi" :eman    
+23 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+3 :di    
+"otorp_pi" :eman    
+8 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+4 :di    
+"trops_4l" :eman    
+61 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+5 :di    
+"tropd_4l" :eman    
+61 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+6 :di    
+"trop_gi" :eman    
+23 :htdiwtib    
+TCAXE :epyt_hctam    
+{ eman_epyt    
+"t_dItroPcirbaF" :eman      
+}    
+}  
+{ sfer_noitca  
+88792912 :di    
+}  
+88792912 :di_noitca_tluafed_tsnoc  
+174202233 :sdi_ecruoser_tcerid  
+4201 :ezis  
+}
+{ selbat
+{ elbmaerp  
+47053824 :di    
+"ofni_hctiws_gi.oi_tkp.ssergnIcirbaF" :eman    
+"ofni_hctiws_gi" :saila    
+}  
+{ sfer_noitca  
+37512181 :di    
+}  
+{ sfer_noitca  
+64358482 :di    
+"ylnotluafed@" :snoitatonna    
+YLNO_TLUAFED :epocs    
+}  
+1 :ezis  
+}
+{ selbat
+{ elbmaerp  
+32885724 :di    
+"nalv_trop_ssergni.gniretlif.ssergnIcirbaF" :eman    
+"nalv_trop_ssergni" :saila    
+}  
+{ sdleif_hctam  
+1 :di    
+"trop_gi" :eman    
+23 :htdiwtib    
+TCAXE :epyt_hctam    
+{ eman_epyt    
+"t_dItroPcirbaF" :eman      
+}    
+}  
+{ sdleif_hctam  
+2 :di    
+"dilav_si_nalv" :eman    
+1 :htdiwtib    
+TCAXE :epyt_hctam    
+}  
+{ sdleif_hctam  
+3 :di    
+"di_nalv" :eman    
+21 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sfer_noitca  
+76146171 :di    
+}  
+{ sfer_noitca  
+86285142 :di    
+}  
+{ sfer_noitca  
+51066242 :di    
+}  
+76146171 :di_noitca_tluafed_tsnoc  
+375251033 :sdi_ecruoser_tcerid  
+4201 :ezis  
+}
+{ selbat
+{ elbmaerp  
+29885474 :di    
+"reifissalc_dwf.gniretlif.ssergnIcirbaF" :eman    
+"reifissalc_dwf" :saila    
+}  
+{ sdleif_hctam  
+1 :di    
+"trop_gi" :eman    
+23 :htdiwtib    
+TCAXE :epyt_hctam    
+{ eman_epyt    
+"t_dItroPcirbaF" :eman      
+}    
+}  
+{ sdleif_hctam  
+2 :di    
+"tsd_hte" :eman    
+84 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+3 :di    
+"epyt_hte" :eman    
+61 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+4 :di    
+"epyt_hte_pi" :eman    
+61 :htdiwtib    
+TCAXE :epyt_hctam    
+}  
+{ sfer_noitca  
+12923052 :di    
+}  
+12923052 :di_noitca_tluafed_tsnoc  
+827786333 :sdi_ecruoser_tcerid  
+4201 :ezis  
+}
+{ selbat
+{ elbmaerp  
+87940163 :di    
+"gnigdirb.gnidrawrof.ssergnIcirbaF" :eman    
+"gnigdirb" :saila    
+}  
+{ sdleif_hctam  
+1 :di    
+"di_nalv" :eman    
+21 :htdiwtib    
+TCAXE :epyt_hctam    
+}  
+{ sdleif_hctam  
+2 :di    
+"tsd_hte" :eman    
+84 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sfer_noitca  
+84719712 :di    
+}  
+{ sfer_noitca  
+64358482 :di    
+"ylnotluafed@" :snoitatonna    
+YLNO_TLUAFED :epocs    
+}  
+64358482 :di_noitca_tluafed_tsnoc  
+910513433 :sdi_ecruoser_tcerid  
+4201 :ezis  
+}
+{ selbat
+{ elbmaerp  
+38001743 :di    
+"slpm.gnidrawrof.ssergnIcirbaF" :eman    
+"slpm" :saila    
+}  
+{ sdleif_hctam  
+1 :di    
+"lebal_slpm" :eman    
+02 :htdiwtib    
+TCAXE :epyt_hctam    
+}  
+{ sfer_noitca  
+03066003 :di    
+}  
+{ sfer_noitca  
+64358482 :di    
+"ylnotluafed@" :snoitatonna    
+YLNO_TLUAFED :epocs    
+}  
+64358482 :di_noitca_tluafed_tsnoc  
+809041023 :sdi_ecruoser_tcerid  
+4201 :ezis  
+}
+{ selbat
+{ elbmaerp  
+18800354 :di    
+"4v_gnituor.gnidrawrof.ssergnIcirbaF" :eman    
+"4v_gnituor" :saila    
+}  
+{ sdleif_hctam  
+1 :di    
+"tsd_4vpi" :eman    
+23 :htdiwtib    
+MPL :epyt_hctam    
+}  
+{ sfer_noitca  
+09029791 :di    
+}  
+{ sfer_noitca  
+55942192 :di    
+}  
+{ sfer_noitca  
+79593671 :di    
+}  
+{ sfer_noitca  
+64358482 :di    
+"ylnotluafed@" :snoitatonna    
+YLNO_TLUAFED :epocs    
+}  
+4201 :ezis  
+}
+{ selbat
+{ elbmaerp  
+30902254 :di    
+"6v_gnituor.gnidrawrof.ssergnIcirbaF" :eman    
+"6v_gnituor" :saila    
+}  
+{ sdleif_hctam  
+1 :di    
+"tsd_6vpi" :eman    
+821 :htdiwtib    
+MPL :epyt_hctam    
+}  
+{ sfer_noitca  
+32065812 :di    
+}  
+{ sfer_noitca  
+23564642 :di    
+}  
+{ sfer_noitca  
+64358482 :di    
+"ylnotluafed@" :snoitatonna    
+YLNO_TLUAFED :epocs    
+}  
+4201 :ezis  
+}
+{ selbat
+{ elbmaerp  
+97285374 :di    
+"slpm_txen.txen_erp.ssergnIcirbaF" :eman    
+"slpm_txen" :saila    
+}  
+{ sdleif_hctam  
+1 :di    
+"di_txen" :eman    
+23 :htdiwtib    
+TCAXE :epyt_hctam    
+}  
+{ sfer_noitca  
+42956722 :di    
+}  
+{ sfer_noitca  
+64358482 :di    
+"ylnotluafed@" :snoitatonna    
+YLNO_TLUAFED :epocs    
+}  
+64358482 :di_noitca_tluafed_tsnoc  
+197523023 :sdi_ecruoser_tcerid  
+4201 :ezis  
+}
+{ selbat
+{ elbmaerp  
+75635604 :di    
+"nalv_txen.txen_erp.ssergnIcirbaF" :eman    
+"nalv_txen" :saila    
+}  
+{ sdleif_hctam  
+1 :di    
+"di_txen" :eman    
+23 :htdiwtib    
+TCAXE :epyt_hctam    
+}  
+{ sfer_noitca  
+87357433 :di    
+}  
+{ sfer_noitca  
+64358482 :di    
+"ylnotluafed@" :snoitatonna    
+YLNO_TLUAFED :epocs    
+}  
+64358482 :di_noitca_tluafed_tsnoc  
+077478133 :sdi_ecruoser_tcerid  
+4201 :ezis  
+}
+{ selbat
+{ elbmaerp  
+05810693 :di    
+"lca.lca.ssergnIcirbaF" :eman    
+"lca" :saila    
+}  
+{ sdleif_hctam  
+1 :di    
+"trop_gi" :eman    
+23 :htdiwtib    
+YRANRET :epyt_hctam    
+{ eman_epyt    
+"t_dItroPcirbaF" :eman      
+}    
+}  
+{ sdleif_hctam  
+2 :di    
+"tsd_hte" :eman    
+84 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+3 :di    
+"crs_hte" :eman    
+84 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+4 :di    
+"di_nalv" :eman    
+21 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+5 :di    
+"epyt_hte" :eman    
+61 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+6 :di    
+"crs_4vpi" :eman    
+23 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+7 :di    
+"tsd_4vpi" :eman    
+23 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+8 :di    
+"otorp_pi" :eman    
+8 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+9 :di    
+"epyt_pmci" :eman    
+8 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+01 :di    
+"edoc_pmci" :eman    
+8 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+11 :di    
+"trops_4l" :eman    
+61 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+21 :di    
+"tropd_4l" :eman    
+61 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+31 :di    
+"epyt_trop_gi" :eman    
+2 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sfer_noitca  
+62132632 :di    
+}  
+{ sfer_noitca  
+29897532 :di    
+}  
+{ sfer_noitca  
+33116112 :di    
+}  
+{ sfer_noitca  
+37907532 :di    
+}  
+{ sfer_noitca  
+49470542 :di    
+}  
+{ sfer_noitca  
+41270692 :di    
+}  
+41270692 :di_noitca_tluafed_tsnoc  
+196565523 :sdi_ecruoser_tcerid  
+4201 :ezis  
+}
+{ selbat
+{ elbmaerp  
+60784924 :di    
+"dehsah.txen.ssergnIcirbaF" :eman    
+"dehsah" :saila    
+}  
+{ sdleif_hctam  
+1 :di    
+"di_txen" :eman    
+23 :htdiwtib    
+TCAXE :epyt_hctam    
+}  
+{ sfer_noitca  
+71110372 :di    
+}  
+{ sfer_noitca  
+60758902 :di    
+}  
+{ sfer_noitca  
+64358482 :di    
+"ylnotluafed@" :snoitatonna    
+YLNO_TLUAFED :epocs    
+}  
+64358482 :di_noitca_tluafed_tsnoc  
+155155882 :di_noitatnemelpmi  
+259773533 :sdi_ecruoser_tcerid  
+4201 :ezis  
+}
+{ selbat
+{ elbmaerp  
+90697573 :di    
+"tsacitlum.txen.ssergnIcirbaF" :eman    
+"tsacitlum" :saila    
+}  
+{ sdleif_hctam  
+1 :di    
+"di_txen" :eman    
+23 :htdiwtib    
+TCAXE :epyt_hctam    
+}  
+{ sfer_noitca  
+18592612 :di    
+}  
+{ sfer_noitca  
+70773632 :di    
+"ylnotluafed@" :snoitatonna    
+YLNO_TLUAFED :epocs    
+}  
+70773632 :di_noitca_tluafed_tsnoc  
+638254023 :sdi_ecruoser_tcerid  
+4201 :ezis  
+}
+{ selbat
+{ elbmaerp  
+79943363 :di    
+"reifissalc.reifissalc_ct_ecils.ssergnIcirbaF" :eman    
+"reifissalc" :saila    
+}  
+{ sdleif_hctam  
+1 :di    
+"trop_gi" :eman    
+23 :htdiwtib    
+YRANRET :epyt_hctam    
+{ eman_epyt    
+"t_dItroPcirbaF" :eman      
+}    
+}  
+{ sdleif_hctam  
+2 :di    
+"crs_4vpi" :eman    
+23 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+3 :di    
+"tsd_4vpi" :eman    
+23 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+4 :di    
+"otorp_pi" :eman    
+8 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+5 :di    
+"trops_4l" :eman    
+61 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+6 :di    
+"tropd_4l" :eman    
+61 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sfer_noitca  
+67368732 :di    
+}  
+{ sfer_noitca  
+61538952 :di    
+}  
+{ sfer_noitca  
+80111103 :di    
+"ylnotluafed@" :snoitatonna    
+YLNO_TLUAFED :epocs    
+}  
+80111103 :di_noitca_tluafed_tsnoc  
+763713913 :sdi_ecruoser_tcerid  
+215 :ezis  
+}
+{ selbat
+{ elbmaerp  
+27519864 :di    
+"seueuq.soq.ssergnIcirbaF" :eman    
+"seueuq" :saila    
+}  
+{ sdleif_hctam  
+1 :di    
+"ct_ecils" :eman    
+6 :htdiwtib    
+TCAXE :epyt_hctam    
+}  
+{ sdleif_hctam  
+2 :di    
+"roloc" :eman    
+2 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sfer_noitca  
+81961123 :di    
+}  
+{ sfer_noitca  
+15341282 :di    
+}  
+81961123 :di_noitca_tluafed_tsnoc  
+770853423 :sdi_ecruoser_tcerid  
+821 :ezis  
+}
+{ selbat
+{ elbmaerp  
+47283944 :di    
+"ct_tluafed.soq.ssergnIcirbaF" :eman    
+"ct_tluafed" :saila    
+}  
+{ sdleif_hctam  
+1 :di    
+"ct_ecils" :eman    
+6 :htdiwtib    
+YRANRET :epyt_hctam    
+}  
+{ sdleif_hctam  
+2 :di    
+"nwonknu_ct" :eman    
+1 :htdiwtib    
+TCAXE :epyt_hctam    
+}  
+{ sfer_noitca  
+90978532 :di    
+}  
+{ sfer_noitca  
+64358482 :di    
+"ylnotluafed@" :snoitatonna    
+YLNO_TLUAFED :epocs    
+}  
+64358482 :di_noitca_tluafed_tsnoc  
+61 :ezis  
+}
+{ selbat
+{ elbmaerp  
+88886483 :di    
+"swolf.stats.ssergEcirbaF" :eman    
+"swolf.stats.ssergEcirbaF" :saila    
+}  
+{ sdleif_hctam  
+1 :di    
+"di_wolf_stats" :eman    
+01 :htdiwtib    
+TCAXE :epyt_hctam    
+}  
+{ sdleif_hctam  
+2 :di    
+"trop_ge" :eman    
+23 :htdiwtib    
+TCAXE :epyt_hctam    
+{ eman_epyt    
+"t_dItroPcirbaF" :eman      
+}    
+}  
+{ sfer_noitca  
+42783862 :di    
+}  
+42783862 :di_noitca_tluafed_tsnoc  
+904304523 :sdi_ecruoser_tcerid  
+4201 :ezis  
+}
+{ selbat
+{ elbmaerp  
+64247173 :di    
+"ofni_hctiws.sserge_oi_tkp.ssergEcirbaF" :eman    
+"ofni_hctiws" :saila    
+}  
+{ sfer_noitca  
+28340823 :di    
+}  
+{ sfer_noitca  
+64358482 :di    
+"ylnotluafed@" :snoitatonna    
+YLNO_TLUAFED :epocs    
+}  
+1 :ezis  
+}
+{ selbat
+{ elbmaerp  
+51117204 :di    
+"nalv_sserge.txen_sserge.ssergEcirbaF" :eman    
+"nalv_sserge" :saila    
+}  
+{ sdleif_hctam  
+1 :di    
+"di_nalv" :eman    
+21 :htdiwtib    
+TCAXE :epyt_hctam    
+}  
+{ sdleif_hctam  
+2 :di    
+"trop_ge" :eman    
+23 :htdiwtib    
+TCAXE :epyt_hctam    
+{ eman_epyt    
+"t_dItroPcirbaF" :eman      
+}    
+}  
+{ sfer_noitca  
+55770303 :di    
+}  
+{ sfer_noitca  
+64238171 :di    
+}  
+{ sfer_noitca  
+24521803 :di    
+"ylnotluafed@" :snoitatonna    
+YLNO_TLUAFED :epocs    
+}  
+24521803 :di_noitca_tluafed_tsnoc  
+335831133 :sdi_ecruoser_tcerid  
+4201 :ezis  
+}
+{ selbat
+{ elbmaerp  
+95994883 :di    
+"retirwer.retirwer_pcsd.ssergEcirbaF" :eman    
+"retirwer" :saila    
+}  
+{ sdleif_hctam  
+1 :di    
+"trop_ge" :eman    
+23 :htdiwtib    
+TCAXE :epyt_hctam    
+{ eman_epyt    
+"t_dItroPcirbaF" :eman      
+}    
+}  
+{ sfer_noitca  
+78215972 :di    
+}  
+{ sfer_noitca  
+54502142 :di    
+}  
+{ sfer_noitca  
+64358482 :di    
+"ylnotluafed@" :snoitatonna    
+YLNO_TLUAFED :epocs    
+}  
+64358482 :di_noitca_tluafed_tsnoc  
+215 :ezis  
+}
+{ snoitca
+{ elbmaerp  
+64358482 :di    
+"pon" :eman    
+"pon" :saila    
+}  
+}
+{ snoitca
+{ elbmaerp  
+51075212 :di    
+"noitcAoN" :eman    
+"noitcAoN" :saila    
+")"\desunu"\(nraWon@" :snoitatonna    
+}  
+}
+{ snoitca
+{ elbmaerp  
+88792912 :di    
+"tnuoc.stats.ssergnIcirbaF" :eman    
+"tnuoc.stats.ssergnIcirbaF" :saila    
+}  
+{ smarap  
+1 :di    
+"di_wolf" :eman    
+01 :htdiwtib    
+}  
+}
+{ snoitca
+{ elbmaerp  
+37512181 :di    
+"ofni_hctiws_tes.oi_tkp.ssergnIcirbaF" :eman    
+"ofni_hctiws_tes.oi_tkp" :saila    
+}  
+{ smarap  
+1 :di    
+"trop_upc_hte" :eman    
+23 :htdiwtib    
+{ eman_epyt    
+"t_dItroPcirbaF" :eman      
+}    
+}  
+}
+{ snoitca
+{ elbmaerp  
+76146171 :di    
+"yned.gniretlif.ssergnIcirbaF" :eman    
+"yned" :saila    
+}  
+}
+{ snoitca
+{ elbmaerp  
+86285142 :di    
+"timrep.gniretlif.ssergnIcirbaF" :eman    
+"timrep" :saila    
+}  
+{ smarap  
+1 :di    
+"epyt_trop" :eman    
+2 :htdiwtib    
+}  
+}
+{ snoitca
+{ elbmaerp  
+51066242 :di    
+"nalv_lanretni_htiw_timrep.gniretlif.ssergnIcirbaF" :eman    
+"nalv_lanretni_htiw_timrep" :saila    
+}  
+{ smarap  
+1 :di    
+"di_nalv" :eman    
+21 :htdiwtib    
+}  
+{ smarap  
+2 :di    
+"epyt_trop" :eman    
+2 :htdiwtib    
+}  
+}
+{ snoitca
+{ elbmaerp  
+12923052 :di    
+"epyt_gnidrawrof_tes.gniretlif.ssergnIcirbaF" :eman    
+"epyt_gnidrawrof_tes" :saila    
+}  
+{ smarap  
+1 :di    
+"epyt_dwf" :eman    
+3 :htdiwtib    
+}  
+}
+{ snoitca
+{ elbmaerp  
+84719712 :di    
+"gnigdirb_di_txen_tes.gnidrawrof.ssergnIcirbaF" :eman    
+"gnigdirb_di_txen_tes" :saila    
+}  
+{ smarap  
+1 :di    
+"di_txen" :eman    
+23 :htdiwtib    
+}  
+}
+{ snoitca
+{ elbmaerp  
+03066003 :di    
+"txen_dna_slpm_pop.gnidrawrof.ssergnIcirbaF" :eman    
+"txen_dna_slpm_pop" :saila    
+}  
+{ smarap  
+1 :di    
+"di_txen" :eman    
+23 :htdiwtib    
+}  
+}
+{ snoitca
+{ elbmaerp  
+09029791 :di    
+"4v_gnituor_di_txen_tes.gnidrawrof.ssergnIcirbaF" :eman    
+"4v_gnituor_di_txen_tes" :saila    
+}  
+{ smarap  
+1 :di    
+"di_txen" :eman    
+23 :htdiwtib    
+}  
+}
+{ snoitca
+{ elbmaerp  
+55942192 :di    
+"4v_gnituor_pon.gnidrawrof.ssergnIcirbaF" :eman    
+"4v_gnituor_pon" :saila    
+}  
+}
+{ snoitca
+{ elbmaerp  
+79593671 :di    
+"4v_gnituor_pord.gnidrawrof.ssergnIcirbaF" :eman    
+"4v_gnituor_pord" :saila    
+}  
+}
+{ snoitca
+{ elbmaerp  
+32065812 :di    
+"6v_gnituor_di_txen_tes.gnidrawrof.ssergnIcirbaF" :eman    
+"6v_gnituor_di_txen_tes" :saila    
+}  
+{ smarap  
+1 :di    
+"di_txen" :eman    
+23 :htdiwtib    
+}  
+}
+{ snoitca
+{ elbmaerp  
+23564642 :di    
+"6v_gnituor_pord.gnidrawrof.ssergnIcirbaF" :eman    
+"6v_gnituor_pord" :saila    
+}  
+}
+{ snoitca
+{ elbmaerp  
+42956722 :di    
+"lebal_slpm_tes.txen_erp.ssergnIcirbaF" :eman    
+"lebal_slpm_tes" :saila    
+}  
+{ smarap  
+1 :di    
+"lebal" :eman    
+02 :htdiwtib    
+}  
+}
+{ snoitca
+{ elbmaerp  
+87357433 :di    
+"nalv_tes.txen_erp.ssergnIcirbaF" :eman    
+"nalv_tes" :saila    
+}  
+{ smarap  
+1 :di    
+"di_nalv" :eman    
+21 :htdiwtib    
+}  
+}
+{ snoitca
+{ elbmaerp  
+62132632 :di    
+"lca_di_txen_tes.lca.ssergnIcirbaF" :eman    
+"lca_di_txen_tes" :saila    
+}  
+{ smarap  
+1 :di    
+"di_txen" :eman    
+23 :htdiwtib    
+}  
+}
+{ snoitca
+{ elbmaerp  
+33116112 :di    
+"upc_ot_ypoc.lca.ssergnIcirbaF" :eman    
+"upc_ot_ypoc" :saila    
+}  
+{ smarap  
+1 :di    
+"di_tnega_elor_tes" :eman    
+4 :htdiwtib    
+}  
+}
+{ snoitca
+{ elbmaerp  
+29897532 :di    
+"upc_ot_tnup.lca.ssergnIcirbaF" :eman    
+"upc_ot_tnup" :saila    
+}  
+{ smarap  
+1 :di    
+"di_tnega_elor_tes" :eman    
+4 :htdiwtib    
+}  
+}
+{ snoitca
+{ elbmaerp  
+37907532 :di    
+"pord.lca.ssergnIcirbaF" :eman    
+"pord.lca" :saila    
+}  
+}
+{ snoitca
+{ elbmaerp  
+49470542 :di    
+"trop_tuptuo_tes.lca.ssergnIcirbaF" :eman    
+"trop_tuptuo_tes" :saila    
+}  
+{ smarap  
+1 :di    
+"mun_trop" :eman    
+23 :htdiwtib    
+{ eman_epyt    
+"t_dItroPcirbaF" :eman      
+}    
+}  
+}
+{ snoitca
+{ elbmaerp  
+41270692 :di    
+"lca_pon.lca.ssergnIcirbaF" :eman    
+"lca_pon" :saila    
+}  
+}
+{ snoitca
+{ elbmaerp  
+71110372 :di    
+"dehsah_tuptuo.txen.ssergnIcirbaF" :eman    
+"dehsah_tuptuo" :saila    
+}  
+{ smarap  
+1 :di    
+"mun_trop" :eman    
+23 :htdiwtib    
+{ eman_epyt    
+"t_dItroPcirbaF" :eman      
+}    
+}  
+}
+{ snoitca
+{ elbmaerp  
+60758902 :di    
+"dehsah_gnituor.txen.ssergnIcirbaF" :eman    
+"dehsah_gnituor" :saila    
+}  
+{ smarap  
+1 :di    
+"mun_trop" :eman    
+23 :htdiwtib    
+{ eman_epyt    
+"t_dItroPcirbaF" :eman      
+}    
+}  
+{ smarap  
+2 :di    
+"cams" :eman    
+84 :htdiwtib    
+}  
+{ smarap  
+3 :di    
+"camd" :eman    
+84 :htdiwtib    
+}  
+}
+{ snoitca
+{ elbmaerp  
+18592612 :di    
+"di_puorg_tsacm_tes.txen.ssergnIcirbaF" :eman    
+"di_puorg_tsacm_tes" :saila    
+}  
+{ smarap  
+1 :di    
+"di_puorg" :eman    
+61 :htdiwtib    
+}  
+}
+{ snoitca
+{ elbmaerp  
+70773632 :di    
+"di_puorg_tsacm_teser.txen.ssergnIcirbaF" :eman    
+"di_puorg_tsacm_teser" :saila    
+}  
+}
+{ snoitca
+{ elbmaerp  
+67368732 :di    
+"ct_di_ecils_tes.reifissalc_ct_ecils.ssergnIcirbaF" :eman    
+"ct_di_ecils_tes" :saila    
+}  
+{ smarap  
+1 :di    
+"di_ecils" :eman    
+4 :htdiwtib    
+}  
+{ smarap  
+2 :di    
+"ct" :eman    
+2 :htdiwtib    
+}  
+}
+{ snoitca
+{ elbmaerp  
+80111103 :di    
+"noitacifissalc_on.reifissalc_ct_ecils.ssergnIcirbaF" :eman    
+"noitacifissalc_on" :saila    
+}  
+}
+{ snoitca
+{ elbmaerp  
+61538952 :di    
+"pcsd_tsurt.reifissalc_ct_ecils.ssergnIcirbaF" :eman    
+"pcsd_tsurt" :saila    
+}  
+}
+{ snoitca
+{ elbmaerp  
+81961123 :di    
+"eueuq_tes.soq.ssergnIcirbaF" :eman    
+"eueuq_tes" :saila    
+}  
+{ smarap  
+1 :di    
+"diq" :eman    
+5 :htdiwtib    
+}  
+}
+{ snoitca
+{ elbmaerp  
+15341282 :di    
+"pord_retem.soq.ssergnIcirbaF" :eman    
+"pord_retem" :saila    
+}  
+}
+{ snoitca
+{ elbmaerp  
+90978532 :di    
+"ct_tluafed_tes.soq.ssergnIcirbaF" :eman    
+"ct_tluafed_tes" :saila    
+}  
+{ smarap  
+1 :di    
+"ct" :eman    
+2 :htdiwtib    
+}  
+}
+{ snoitca
+{ elbmaerp  
+42783862 :di    
+"tnuoc.stats.ssergEcirbaF" :eman    
+"tnuoc.stats.ssergEcirbaF" :saila    
+}  
+}
+{ snoitca
+{ elbmaerp  
+28340823 :di    
+"ofni_hctiws_tes.sserge_oi_tkp.ssergEcirbaF" :eman    
+"ofni_hctiws_tes.sserge_oi_tkp" :saila    
+}  
+{ smarap  
+1 :di    
+"trop_upc" :eman    
+23 :htdiwtib    
+{ eman_epyt    
+"t_dItroPcirbaF" :eman      
+}    
+}  
+}
+{ snoitca
+{ elbmaerp  
+55770303 :di    
+"nalv_hsup.txen_sserge.ssergEcirbaF" :eman    
+"nalv_hsup" :saila    
+}  
+}
+{ snoitca
+{ elbmaerp  
+64238171 :di    
+"nalv_pop.txen_sserge.ssergEcirbaF" :eman    
+"nalv_pop" :saila    
+}  
+}
+{ snoitca
+{ elbmaerp  
+24521803 :di    
+"pord.txen_sserge.ssergEcirbaF" :eman    
+"pord.txen_sserge" :saila    
+}  
+}
+{ snoitca
+{ elbmaerp  
+78215972 :di    
+"etirwer.retirwer_pcsd.ssergEcirbaF" :eman    
+"etirwer" :saila    
+}  
+}
+{ snoitca
+{ elbmaerp  
+54502142 :di    
+"raelc.retirwer_pcsd.ssergEcirbaF" :eman    
+"raelc" :saila    
+}  
+}
+{ seliforp_noitca
+{ elbmaerp  
+155155882 :di    
+"eliforp_dehsah.txen.ssergnIcirbaF" :eman    
+"eliforp_dehsah" :saila    
+}  
+60784924 :sdi_elbat  
+eurt :rotceles_htiw  
+4201 :ezis  
+61 :ezis_puorg_xam  
+}
+{ sretnuoc_tcerid
+{ elbmaerp  
+174202233 :di    
+"retnuoc_wolf.stats.ssergnIcirbaF" :eman    
+"retnuoc_wolf.stats.ssergnIcirbaF" :saila    
+}  
+{ ceps  
+HTOB :tinu    
+}  
+01809614 :di_elbat_tcerid  
+}
+{ sretnuoc_tcerid
+{ elbmaerp  
+375251033 :di    
+"retnuoc_nalv_trop_ssergni.gniretlif.ssergnIcirbaF" :eman    
+"retnuoc_nalv_trop_ssergni" :saila    
+}  
+{ ceps  
+HTOB :tinu    
+}  
+32885724 :di_elbat_tcerid  
+}
+{ sretnuoc_tcerid
+{ elbmaerp  
+827786333 :di    
+"retnuoc_reifissalc_dwf.gniretlif.ssergnIcirbaF" :eman    
+"retnuoc_reifissalc_dwf" :saila    
+}  
+{ ceps  
+HTOB :tinu    
+}  
+29885474 :di_elbat_tcerid  
+}
+{ sretnuoc_tcerid
+{ elbmaerp  
+910513433 :di    
+"retnuoc_gnigdirb.gnidrawrof.ssergnIcirbaF" :eman    
+"retnuoc_gnigdirb" :saila    
+}  
+{ ceps  
+HTOB :tinu    
+}  
+87940163 :di_elbat_tcerid  
+}
+{ sretnuoc_tcerid
+{ elbmaerp  
+809041023 :di    
+"retnuoc_slpm.gnidrawrof.ssergnIcirbaF" :eman    
+"retnuoc_slpm" :saila    
+}  
+{ ceps  
+HTOB :tinu    
+}  
+38001743 :di_elbat_tcerid  
+}
+{ sretnuoc_tcerid
+{ elbmaerp  
+197523023 :di    
+"retnuoc_slpm_txen.txen_erp.ssergnIcirbaF" :eman    
+"retnuoc_slpm_txen" :saila    
+}  
+{ ceps  
+HTOB :tinu    
+}  
+97285374 :di_elbat_tcerid  
+}
+{ sretnuoc_tcerid
+{ elbmaerp  
+077478133 :di    
+"retnuoc_nalv_txen.txen_erp.ssergnIcirbaF" :eman    
+"retnuoc_nalv_txen" :saila    
+}  
+{ ceps  
+HTOB :tinu    
+}  
+75635604 :di_elbat_tcerid  
+}
+{ sretnuoc_tcerid
+{ elbmaerp  
+196565523 :di    
+"retnuoc_lca.lca.ssergnIcirbaF" :eman    
+"retnuoc_lca" :saila    
+}  
+{ ceps  
+HTOB :tinu    
+}  
+05810693 :di_elbat_tcerid  
+}
+{ sretnuoc_tcerid
+{ elbmaerp  
+259773533 :di    
+"retnuoc_dehsah.txen.ssergnIcirbaF" :eman    
+"retnuoc_dehsah" :saila    
+}  
+{ ceps  
+HTOB :tinu    
+}  
+60784924 :di_elbat_tcerid  
+}
+{ sretnuoc_tcerid
+{ elbmaerp  
+638254023 :di    
+"retnuoc_tsacitlum.txen.ssergnIcirbaF" :eman    
+"retnuoc_tsacitlum" :saila    
+}  
+{ ceps  
+HTOB :tinu    
+}  
+90697573 :di_elbat_tcerid  
+}
+{ sretnuoc_tcerid
+{ elbmaerp  
+763713913 :di    
+"stats_reifissalc.reifissalc_ct_ecils.ssergnIcirbaF" :eman    
+"stats_reifissalc" :saila    
+}  
+{ ceps  
+STEKCAP :tinu    
+}  
+79943363 :di_elbat_tcerid  
+}
+{ sretnuoc_tcerid
+{ elbmaerp  
+770853423 :di    
+"stats_seueuq.soq.ssergnIcirbaF" :eman    
+"stats_seueuq" :saila    
+}  
+{ ceps  
+STEKCAP :tinu    
+}  
+27519864 :di_elbat_tcerid  
+}
+{ sretnuoc_tcerid
+{ elbmaerp  
+904304523 :di    
+"retnuoc_wolf.stats.ssergEcirbaF" :eman    
+"retnuoc_wolf.stats.ssergEcirbaF" :saila    
+}  
+{ ceps  
+HTOB :tinu    
+}  
+88886483 :di_elbat_tcerid  
+}
+{ sretnuoc_tcerid
+{ elbmaerp  
+335831133 :di    
+"retnuoc_nalv_sserge.txen_sserge.ssergEcirbaF" :eman    
+"retnuoc_nalv_sserge" :saila    
+}  
+{ ceps  
+HTOB :tinu    
+}  
+51117204 :di_elbat_tcerid  
+}
+{ sretem
+{ elbmaerp  
+311262843 :di    
+"retem_ct_ecils.soq.ssergnIcirbaF" :eman    
+"retem_ct_ecils" :saila    
+}  
+{ ceps  
+SETYB :tinu    
+}  
+46 :ezis  
+}
+{ atadatem_tekcap_rellortnoc
+{ elbmaerp  
+39262818 :di    
+"ni_tekcap" :eman    
+"ni_tekcap" :saila    
+")"\ni_tekcap"\(redaeh_rellortnoc@" :snoitatonna    
+}  
+{ atadatem  
+1 :di    
+"0dap_" :eman    
+7 :htdiwtib    
+}  
+{ atadatem  
+2 :di    
+"trop_ssergni" :eman    
+23 :htdiwtib    
+{ eman_epyt    
+"t_dItroPcirbaF" :eman      
+}    
+}  
+{ atadatem  
+3 :di    
+"1dap_" :eman    
+4 :htdiwtib    
+}  
+{ atadatem  
+4 :di    
+"di_tnega_elor" :eman    
+4 :htdiwtib    
+}  
+}
+{ atadatem_tekcap_rellortnoc
+{ elbmaerp  
+99798667 :di    
+"tuo_tekcap" :eman    
+"tuo_tekcap" :saila    
+")"\tuo_tekcap"\(redaeh_rellortnoc@" :snoitatonna    
+}  
+{ atadatem  
+1 :di    
+"0dap" :eman    
+"gniddap@" :snoitatonna    
+7 :htdiwtib    
+}  
+{ atadatem  
+2 :di    
+"trop_sserge" :eman    
+23 :htdiwtib    
+{ eman_epyt    
+"t_dItroPcirbaF" :eman      
+}    
+}  
+{ atadatem  
+3 :di    
+"1dap" :eman    
+"gniddap@" :snoitatonna    
+3 :htdiwtib    
+}  
+{ atadatem  
+4 :di    
+"di_eueuq" :eman    
+5 :htdiwtib    
+}  
+{ atadatem  
+5 :di    
+"2dap" :eman    
+"gniddap@" :snoitatonna    
+5 :htdiwtib    
+}  
+{ atadatem  
+6 :di    
+"edom_kcabpool_upc" :eman    
+2 :htdiwtib    
+}  
+{ atadatem  
+7 :di    
+"gnidrawrof_od" :eman    
+1 :htdiwtib    
+}  
+{ atadatem  
+8 :di    
+"3dap" :eman    
+"gniddap@" :snoitatonna    
+6 :htdiwtib    
+}  
+{ atadatem  
+9 :di    
+"ssergni_edirrevo" :eman    
+1 :htdiwtib    
+}  
+{ atadatem  
+01 :di    
+"trop_ssergni" :eman    
+23 :htdiwtib    
+{ eman_epyt    
+"t_dItroPcirbaF" :eman      
+}    
+}  
+{ atadatem  
+11 :di    
+"4dap" :eman    
+"gniddap@" :snoitatonna    
+84 :htdiwtib    
+}  
+{ atadatem  
+21 :di    
+"epyt_rehte" :eman    
+61 :htdiwtib    
+}  
+}
+{ snretxe
+441 :di_epyt_nretxe  
+"atadateMtroP" :eman_epyt_nretxe  
+{ secnatsni  
+{ elbmaerp    
+8666595142 :di      
+"ATADATEM_TROP$.resraPssergnIcirbaF" :eman      
+"ATADATEM_TROP$" :saila      
+}    
+{ ofni    
+"atadateMtroP.tooferab/moc.sipaelgoog.epyt" :lru_epyt      
+"trop_ssergni.dm_rtni_gi" :eulav      
+}    
+}  
+}
+{ ofni_epyt
+{ smune_elbazilaires  
+"t_edoMkcabpooLupC" :yek    
+{ eulav    
+{ epyt_gniylrednu      
+2 :htdiwtib        
+}      
+{ srebmem      
+"DELBASID" :eman        
+"000\" :eulav        
+}      
+{ srebmem      
+"TCERID" :eman        
+"100\" :eulav        
+}      
+{ srebmem      
+"SSERGNI" :eman        
+"200\" :eulav        
+}      
+}    
+}  
+{ smune_elbazilaires  
+"t_epyTtroP" :yek    
+{ eulav    
+{ epyt_gniylrednu      
+2 :htdiwtib        
+}      
+{ srebmem      
+"NWONKNU" :eman        
+"000\" :eulav        
+}      
+{ srebmem      
+"EGDE" :eman        
+"100\" :eulav        
+}      
+{ srebmem      
+"ARFNI" :eman        
+"200\" :eulav        
+}      
+{ srebmem      
+"LANRETNI" :eman        
+"300\" :eulav        
+}      
+}    
+}  
+{ smune_elbazilaires  
+"t_dItnegAeloR" :yek    
+{ eulav    
+{ epyt_gniylrednu      
+4 :htdiwtib        
+}      
+{ srebmem      
+"DEVRESER" :eman        
+"000\" :eulav        
+}      
+{ srebmem      
+"SONO" :eman        
+"100\" :eulav        
+}      
+{ srebmem      
+"TNEGA_LACOL_TSOH" :eman        
+"200\" :eulav        
+}      
+{ srebmem      
+"TNEGA_LACOL_TAN" :eman        
+"300\" :eulav        
+}      
+}    
+}  
+{ sepyt_wen  
+"t_dItroPcirbaF" :yek    
+{ eulav    
+{ epyt_detalsnart      
+"t_dItroP/ant" :iru        
+23 :htdiwtib_nds        
+}      
+}    
+}  
+}

@@ -21,6 +21,7 @@ agent:
 
 stratum:
   basePort: 20000
+  serviceName: fabric-sim
 
 service:
   type: ClusterIP
