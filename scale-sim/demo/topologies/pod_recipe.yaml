@@ -1,0 +1,20 @@
+# SPDX-FileCopyrightText: 2023-present Intel Corporation
+#
+# SPDX-License-Identifier: Apache-2.0
+
+# Recipe for creating pod fabric topology
+
+# Recipe for 2x6 plain fabric with host IPUs and 8 reserved uplink ports to 4 superspines
+plain_fabric:
+  spines: 2
+  spine_port_count: 64
+  reserved_uplink_count: 8
+
+  leaves: 6
+  leaf_port_count: 32
+
+  spine_trunk: 4
+
+  hosts_per_leaf: 12
+  hosts_have_ipu: true
+  vms_per_ipu: 20

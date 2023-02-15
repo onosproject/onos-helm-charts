@@ -33,7 +33,7 @@ spec:
             - "[[ `hostname` =~ -([0-9]+)$ ]] &&
                ordinal=${BASH_REMATCH[1]} &&
                stratumPort=$(({{ .Values.stratum.basePort }} + $ordinal)) &&
-               echo \"{{ .Values.agent.port }} fabric-sim:${stratumPort}\" > /etc/discovery-agent/args"
+               echo \"{{ .Values.agent.port }} {{ tpl .Values.stratum.serviceName . }}:${stratumPort}\" > /etc/discovery-agent/args"
           volumeMounts:
             - name: shared
               mountPath: /etc/discovery-agent

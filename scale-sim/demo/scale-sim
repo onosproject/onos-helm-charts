@@ -1,0 +1,93 @@
+#!/bin/bash
+# Simple script to help orchestrate the scale demonstration environment
+
+ONOS_NAMESPACE=${ONOS_NAMESPACE:-test}
+TOPOLOGIES=$(dirname $0)/topologies
+PORT=20001
+TOPO_PREFIX="${TOPOLOGIES}/small_"
+
+SIM_OPTS="--set fabric-sim.image.tag=latest"
+
+function usage {
+  echo "usage: $(basename $1) [-f]" && exit 1
+}
+
+while getopts "f" arg; do
+  case $arg in
+    f) TOPO_PREFIX="${TOPOLOGIES}/small_";;
+    *) usage $0;;
+  esac
+done
+shift $((OPTIND-1))
+[ -n "$1" ] && usage $0
+
+kubectl delete ns ${ONOS_NAMESPACE}
+kubectl create ns ${ONOS_NAMESPACE}
+
+k="kubectl -n ${ONOS_NAMESPACE}"
+h="helm -n ${ONOS_NAMESPACE}"
+
+# Prime environment variables using stuff scraped from the recipes
+eval $(grep -E "^  " ${TOPO_PREFIX}pod_recipe.yaml ${TOPO_PREFIX}superspine_recipe.yaml | cut -d: -f2- | tr -d '  ' | tr : =)
+
+# Deploy simulation environments for the superspine tier and all pods
+function deploySim {
+  let agentCount=$spines+$leaves+$leaves*$hosts_per_leaf
+  $h install superspine-tier-sim scale-sim --set discovery-agent.agent.count=$superspines \
+      --set discovery-agent.stratum.serviceName=superspine-tier-sim-fabric-sim $SIM_OPTS
+  for pod in $(seq 1 ${pods}); do
+    podRelease=$(printf "pod%02d-sim" $pod)
+    $h install $podRelease scale-sim --set discovery-agent.agent.count=$agentCount  \
+        --set discovery-agent.stratum.serviceName=${podRelease}-fabric-sim $SIM_OPTS
+  done
+}
+
+# Prime simulation environments for the superspine tier and all pods
+function primeSim {
+  echo "Loading simulation for $superspines superspines..."
+  $k rollout status deployment superspine-tier-sim-fabric-sim
+  sleep 5
+  $k exec --stdin deploy/superspine-tier-sim-fabric-sim -- \
+              /usr/local/bin/fabric-sim-topo load --service-address superspine-tier-sim-fabric-sim:5150 --no-tls \
+              < ${TOPO_PREFIX}superspine.yaml
+  for pod in $(seq 1 ${pods}); do
+    podRelease=$(printf "pod%02d-sim" $pod)
+    podID=$(printf "pod%02d" $pod)
+    echo "Loading simulation for $podID..."
+    $k rollout status deployment ${podRelease}-fabric-sim
+    sleep 5
+    $k exec --stdin deploy/${podRelease}-fabric-sim -- \
+                /usr/local/bin/fabric-sim-topo load --service-address ${podRelease}-fabric-sim:5150 --no-tls \
+                < ${TOPO_PREFIX}pod.yaml
+    $k exec --stdin deploy/${podRelease}-fabric-sim -- \
+                /usr/local/bin/fabric-sim-topo load --service-address ${podRelease}-fabric-sim:5150 --no-tls \
+                < ${TOPO_PREFIX}superspine-${podID}.yaml
+  done
+}
+
+# Deploy control domains for the superspine tier and all pods
+function deployControl {
+  $h install superspine-tier onos-umbrella
+  for pod in $(seq 1 ${pods}); do
+    podID=$(printf "pod%02d" $pod)
+    $h install $podID onos-umbrella \
+        --set import.onos-topo.enabled=false \
+        --set import.onos-config.enabled=false \
+        --set import.onos-cli.enabled=false \
+        --set import.device-provisioner.enabled=false
+  done
+}
+
+# Prime control domains for the superspine tier and all pods
+function primeControl {
+  echo "Priming control domains"
+  # Upload pipeline and chassis configs
+  # Create pods, racks, superspines, spines, leaves and servers with IPUs
+}
+
+deploySim
+deployControl
+
+primeSim
+#primeControl
+

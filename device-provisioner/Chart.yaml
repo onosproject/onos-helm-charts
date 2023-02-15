@@ -6,8 +6,8 @@ apiVersion: v2
 name: device-provisioner
 description: ONOS Device P4 pipeline and chassis provisioning service
 type: application
-version: 1.2.13
-appVersion: v1.2.10
+version: 1.2.14
+appVersion: v1.2.11
 keywords:
   - onos
   - sdn
