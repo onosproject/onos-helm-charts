@@ -74,3 +74,10 @@ openidc:
 podSecurityContext:
   seccompProfile:
     type: "Unconfined"
+
+topo:
+  address: onos-topo:5150
+
+realm:
+  label: realm
+  value: "*"

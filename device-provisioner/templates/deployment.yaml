@@ -92,8 +92,14 @@ spec:
             {{- end }}
             - "--tls-key-path=/etc/onos/certs/tls.key"
             - "--tls-cert-path=/etc/onos/certs/tls.crt"
-            {{- if .Values.topoAddress }}
-            - "--topo-address={{ .Values.topoAddress }}"
+            {{- if .Values.topo.address }}
+            - "--topo-address={{ .Values.topo.address }}"
+            {{- end }}
+            {{- if .Values.realm.label }}
+            - "--realm-label={{ .Values.realm.label }}"
+            {{- end }}
+            {{- if .Values.realm.value }}
+            - "--realm-value={{ .Values.realm.value }}"
             {{- end }}
           ports:
             - name: grpc

@@ -16,17 +16,25 @@ function usage {
   echo "usage: $(basename $1) [-f]" && exit 1
 }
 
-while getopts "f" arg; do
+while getopts "fscn" arg; do
   case $arg in
     f) TOPO_PREFIX="${TOPOLOGIES}/small_";;
+    n) doNamespace=true;;
+    s) doSim=true;;
+    c) doControl=true;;
     *) usage $0;;
   esac
 done
 shift $((OPTIND-1))
 [ -n "$1" ] && usage $0
 
-kubectl delete ns ${ONOS_NAMESPACE}
-kubectl create ns ${ONOS_NAMESPACE}
+# If neither simulation nor control are requested, assume both are
+[ -z "$doSim" -a -z "$doControl" ] && doSim=true && doControl=true && doNamespace=true
+
+if [ -n "$doNamespace" ]; then
+  kubectl delete ns ${ONOS_NAMESPACE}
+  kubectl create ns ${ONOS_NAMESPACE}
+fi
 
 k="kubectl -n ${ONOS_NAMESPACE}"
 h="helm -n ${ONOS_NAMESPACE}"
@@ -71,10 +79,11 @@ function primeSim {
 
 # Deploy control domains for the superspine tier and all pods
 function deployControl {
-  $h install superspine-tier onos-umbrella
+  $h install superspine-tier onos-umbrella --set topo-discovery.realm.value=superspines
   for pod in $(seq 1 ${pods}); do
     podID=$(printf "pod%02d" $pod)
     $h install $podID onos-umbrella \
+        --set topo-discovery.realm.value=${podID} \
         --set import.onos-topo.enabled=false \
         --set import.onos-config.enabled=false \
         --set import.onos-cli.enabled=false \
@@ -89,9 +98,9 @@ function primeControl {
   # Create pods, racks, superspines, spines, leaves and servers with IPUs
 }
 
-deploySim
-deployControl
+[ -n "$doSim" ] && deploySim
+[ -n "$doControl" ] && deployControl
 
-primeSim
-#primeControl
+[ -n "$doSim" ] && primeSim
+[ -n "$doControl" ] && primeControl
 
