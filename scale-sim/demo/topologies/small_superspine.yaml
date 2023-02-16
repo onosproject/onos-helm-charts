@@ -406,50 +406,50 @@ devices:
 hosts: []
 links:
 - src: superspine1/1
-  tgt: pod01-tier-sim::spine1/1
+  tgt: pod01-sim-fabric-sim:5150::spine1/1
   unidirectional: true
 - src: superspine1/2
-  tgt: pod01-tier-sim::spine1/2
+  tgt: pod01-sim-fabric-sim:5150::spine1/2
   unidirectional: true
 - src: superspine2/1
-  tgt: pod01-tier-sim::spine1/3
+  tgt: pod01-sim-fabric-sim:5150::spine1/3
   unidirectional: true
 - src: superspine2/2
-  tgt: pod01-tier-sim::spine1/4
+  tgt: pod01-sim-fabric-sim:5150::spine1/4
   unidirectional: true
 - src: superspine1/3
-  tgt: pod01-tier-sim::spine2/1
+  tgt: pod01-sim-fabric-sim:5150::spine2/1
   unidirectional: true
 - src: superspine1/4
-  tgt: pod01-tier-sim::spine2/2
+  tgt: pod01-sim-fabric-sim:5150::spine2/2
   unidirectional: true
 - src: superspine2/3
-  tgt: pod01-tier-sim::spine2/3
+  tgt: pod01-sim-fabric-sim:5150::spine2/3
   unidirectional: true
 - src: superspine2/4
-  tgt: pod01-tier-sim::spine2/4
+  tgt: pod01-sim-fabric-sim:5150::spine2/4
   unidirectional: true
 - src: superspine1/5
-  tgt: pod02-tier-sim::spine1/1
+  tgt: pod02-sim-fabric-sim:5150::spine1/1
   unidirectional: true
 - src: superspine1/6
-  tgt: pod02-tier-sim::spine1/2
+  tgt: pod02-sim-fabric-sim:5150::spine1/2
   unidirectional: true
 - src: superspine2/5
-  tgt: pod02-tier-sim::spine1/3
+  tgt: pod02-sim-fabric-sim:5150::spine1/3
   unidirectional: true
 - src: superspine2/6
-  tgt: pod02-tier-sim::spine1/4
+  tgt: pod02-sim-fabric-sim:5150::spine1/4
   unidirectional: true
 - src: superspine1/7
-  tgt: pod02-tier-sim::spine2/1
+  tgt: pod02-sim-fabric-sim:5150::spine2/1
   unidirectional: true
 - src: superspine1/8
-  tgt: pod02-tier-sim::spine2/2
+  tgt: pod02-sim-fabric-sim:5150::spine2/2
   unidirectional: true
 - src: superspine2/7
-  tgt: pod02-tier-sim::spine2/3
+  tgt: pod02-sim-fabric-sim:5150::spine2/3
   unidirectional: true
 - src: superspine2/8
-  tgt: pod02-tier-sim::spine2/4
+  tgt: pod02-sim-fabric-sim:5150::spine2/4
   unidirectional: true

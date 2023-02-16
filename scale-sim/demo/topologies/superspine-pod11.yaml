@@ -4,50 +4,50 @@ devices: []
 hosts: []
 links:
 - src: spine1/1
-  tgt: superspine-tier-sim::superspine1/41
+  tgt: superspine-tier-sim-fabric-sim:5150::superspine1/41
   unidirectional: true
 - src: spine1/2
-  tgt: superspine-tier-sim::superspine1/42
+  tgt: superspine-tier-sim-fabric-sim:5150::superspine1/42
   unidirectional: true
 - src: spine1/3
-  tgt: superspine-tier-sim::superspine2/41
+  tgt: superspine-tier-sim-fabric-sim:5150::superspine2/41
   unidirectional: true
 - src: spine1/4
-  tgt: superspine-tier-sim::superspine2/42
+  tgt: superspine-tier-sim-fabric-sim:5150::superspine2/42
   unidirectional: true
 - src: spine1/5
-  tgt: superspine-tier-sim::superspine3/41
+  tgt: superspine-tier-sim-fabric-sim:5150::superspine3/41
   unidirectional: true
 - src: spine1/6
-  tgt: superspine-tier-sim::superspine3/42
+  tgt: superspine-tier-sim-fabric-sim:5150::superspine3/42
   unidirectional: true
 - src: spine1/7
-  tgt: superspine-tier-sim::superspine4/41
+  tgt: superspine-tier-sim-fabric-sim:5150::superspine4/41
   unidirectional: true
 - src: spine1/8
-  tgt: superspine-tier-sim::superspine4/42
+  tgt: superspine-tier-sim-fabric-sim:5150::superspine4/42
   unidirectional: true
 - src: spine2/1
-  tgt: superspine-tier-sim::superspine1/43
+  tgt: superspine-tier-sim-fabric-sim:5150::superspine1/43
   unidirectional: true
 - src: spine2/2
-  tgt: superspine-tier-sim::superspine1/44
+  tgt: superspine-tier-sim-fabric-sim:5150::superspine1/44
   unidirectional: true
 - src: spine2/3
-  tgt: superspine-tier-sim::superspine2/43
+  tgt: superspine-tier-sim-fabric-sim:5150::superspine2/43
   unidirectional: true
 - src: spine2/4
-  tgt: superspine-tier-sim::superspine2/44
+  tgt: superspine-tier-sim-fabric-sim:5150::superspine2/44
   unidirectional: true
 - src: spine2/5
-  tgt: superspine-tier-sim::superspine3/43
+  tgt: superspine-tier-sim-fabric-sim:5150::superspine3/43
   unidirectional: true
 - src: spine2/6
-  tgt: superspine-tier-sim::superspine3/44
+  tgt: superspine-tier-sim-fabric-sim:5150::superspine3/44
   unidirectional: true
 - src: spine2/7
-  tgt: superspine-tier-sim::superspine4/43
+  tgt: superspine-tier-sim-fabric-sim:5150::superspine4/43
   unidirectional: true
 - src: spine2/8
-  tgt: superspine-tier-sim::superspine4/44
+  tgt: superspine-tier-sim-fabric-sim:5150::superspine4/44
   unidirectional: true
