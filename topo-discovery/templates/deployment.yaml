@@ -88,6 +88,12 @@ spec:
             {{- if .Values.realm.value }}
             - "--realm-value={{ .Values.realm.value }}"
             {{- end }}
+            {{- if .Values.neighborRealm.label }}
+            - "--neighbor-realm-label={{ .Values.neighborRealm.label }}"
+            {{- end }}
+            {{- if .Values.neighborRealm.value }}
+            - "--neighbor-realm-value={{ .Values.neighborRealm.value }}"
+            {{- end }}
           ports:
             - name: grpc
               containerPort: 5150
