@@ -7,8 +7,8 @@
 # Recipe for 2 superspine tier for 2 pods
 superspine_tier:
   superspines: 2
-  superspines_domain: superspine-tier-sim
+  superspines_domain: superspine-tier-sim-fabric-sim:5150
   superspine_port_count: 64
   pods: 2
-  pods_domain: pod%02d-tier-sim
+  pods_domain: pod%02d-sim-fabric-sim:5150
   pod_spines: 2
