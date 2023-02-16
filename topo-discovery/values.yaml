@@ -81,3 +81,8 @@ topo:
 realm:
   label: realm
   value: "*"
+
+neighborRealm:
+  label: "role"
+  value: ""
+
