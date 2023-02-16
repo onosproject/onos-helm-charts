@@ -56,11 +56,15 @@ function deploySim {
   done
 }
 
+function waitFor {
+  $k rollout status deployment $1
+  sleep ${2:-10}
+}
+
 # Prime simulation environments for the superspine tier and all pods
 function primeSim {
   echo "Loading simulation for $superspines superspines..."
-  $k rollout status deployment superspine-tier-sim-fabric-sim
-  sleep 5
+  waitFor superspine-tier-sim-fabric-sim
 
   $k exec --stdin deploy/superspine-tier-sim-fabric-sim -- \
               /usr/local/bin/fabric-sim-topo load --service-address superspine-tier-sim-fabric-sim:5150 --no-tls \
@@ -68,8 +72,7 @@ function primeSim {
   for pod in $(seq 1 ${pods}); do
     podID=$(printf "pod%02d" $pod)
     echo "Loading simulation for $podID..."
-    $k rollout status deployment ${podID}-sim-fabric-sim
-    sleep 5
+    waitFor ${podID}-sim-fabric-sim
     $k exec --stdin deploy/${podID}-sim-fabric-sim -- \
                 /usr/local/bin/fabric-sim-topo load --service-address ${podID}-sim-fabric-sim:5150 --no-tls \
                 < ${TOPO_PREFIX}pod.yaml
@@ -83,9 +86,7 @@ function primeSim {
 function deployControl {
   $h install superspine-tier onos-umbrella \
     --set import.onos-config.enabled=false \
-    --set topo-discovery.realm.value=superspines \
-    --set onos-cli.image.tag=latest \
-    --set device-provisioner.image.tag=latest
+    --set topo-discovery.realm.value=superspines
 
   for pod in $(seq 1 ${pods}); do
     podID=$(printf "pod%02d" $pod)
@@ -100,9 +101,8 @@ function deployControl {
 
 # Add pipeline and chassis configurations for all device types
 function addConfigs {
-  $k rollout status deployment onos-cli
-  $k rollout status deployment superspine-tier-device-provisioner
-  sleep 5
+  waitFor onos-cli 1
+  waitFor superspine-tier-device-provisioner
   pcli="$cli provisioner --service-address superspine-tier-device-provisioner:5150"
 
   # For demo we're using single set of artifacts for all
@@ -115,9 +115,7 @@ function addConfigs {
 
 # Prime superspine devices discovery
 function primeSuperspinesDiscovery {
-  $k rollout status deployment superspine-tier-topo-discovery
-  sleep 10
-
+  waitFor superspine-tier-topo-discovery
   dcli="$cli discovery --service-address superspine-tier-topo-discovery:5150"
 
   let port=20000
@@ -143,9 +141,7 @@ function primePodDiscovery {
   pod=$1
   podID=$(printf "pod%02d" $pod)
 
-  $k rollout status deployment ${podID}-topo-discovery
-  sleep 10
-
+  waitFor ${podID}-topo-discovery
   dcli="$cli discovery --service-address ${podID}-topo-discovery:5150"
 
   # Add pod and rack entities first
@@ -208,7 +204,7 @@ function primeControl {
   echo "Priming control domains"
 
   # Let's wait until topo is ready before doing anything else...
-  $k rollout status deployment onos-topo
+  waitFor onos-topo
 
   # Upload pipeline and chassis configs
   addConfigs
@@ -225,4 +221,3 @@ function primeControl {
 
 [ -n "$doSim" ] && primeSim
 [ -n "$doControl" ] && primeControl
-
