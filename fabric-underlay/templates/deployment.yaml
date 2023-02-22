@@ -93,6 +93,12 @@ spec:
             {{- if .Values.topoAddress }}
             - "--topo-address={{ .Values.topoAddress }}"
             {{- end }}
+            {{- if .Values.realm.label }}
+            - "--realm-label={{ .Values.realm.label }}"
+            {{- end }}
+            {{- if .Values.realm.value }}
+            - "--realm-value={{ .Values.realm.value }}"
+            {{- end }}
           ports:
             - name: grpc
               containerPort: 5150
