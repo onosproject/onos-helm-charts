@@ -7,7 +7,7 @@ name: scale-sim
 description: Umbrella chart to deploy fabric-sim and a required number of discovery-agent instances
 kubeVersion: ">=1.17.0"
 type: application
-version: 1.0.6
+version: 1.0.7
 appVersion: v1.0.0
 keywords:
   - onos
@@ -19,7 +19,7 @@ maintainers:
 dependencies:
   - name: fabric-sim
     repository: file://../fabric-sim
-    version: 1.0.7
+    version: 1.0.8
   - name: discovery-agent
     repository: file://../discovery-agent
     version: 1.1.6
