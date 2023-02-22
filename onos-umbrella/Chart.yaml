@@ -40,4 +40,4 @@ dependencies:
   - name: fabric-underlay
     condition: import.fabric-underlay.enabled
     repository: file://../fabric-underlay
-    version: 0.1.0
+    version: 0.1.1
