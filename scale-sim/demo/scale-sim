@@ -5,15 +5,18 @@
 
 # Simple script to help orchestrate the scale demonstration environment
 
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+cd $SCRIPT_DIR/../..
+
 ONOS_NAMESPACE=${ONOS_NAMESPACE:-test}
-TOPOLOGIES=$(dirname $0)/topologies
-CONFIGS=$(dirname $0)/configs
+TOPOLOGIES=$SCRIPT_DIR/topologies
+CONFIGS=$SCRIPT_DIR/configs
 PORT=20001
 TOPO_PREFIX="${TOPOLOGIES}/small_"
 
 # Override these as necessary...
 #DEBUG_SIM_OPTS="--set fabric-sim.image.tag=latest"
-#DEBUG_OPTS="--set topo-discovery.image.tag=latest"
+DEBUG_OPTS="--set topo-discovery.image.tag=latest"
 
 function usage {
   cat <<-EOF >&2
