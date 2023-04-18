@@ -212,7 +212,7 @@ spec:
         {{- if .Values.openpolicyagent.enabled }}
         - name: openpolicyagent
           configMap:
-            name: {{ .Values.openpolicyagent.regoConfigMap }}
+            name: {{ tpl .Values.openpolicyagent.regoConfigMap . }}
         {{- end}}
       {{- with .Values.nodeSelector }}
       nodeSelector:
