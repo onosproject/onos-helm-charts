@@ -58,15 +58,15 @@ devices: []
 
 modelPlugins:
   - name: devicesim-1
-    image: onosproject/devicesim:0.5.15-devicesim-1.0.0
+    image: onosproject/devicesim:0.6.0-devicesim-1.0.x
     endpoint: localhost
     port: 5152
   - name: testdevice-1
-    image: onosproject/testdevice-1.0.x:0.5.16-testdevice-1.0.x
+    image: onosproject/testdevice-1.0.x:0.6.0-testdevice-1.0.x
     endpoint: localhost
     port: 5153
   - name: testdevice-2
-    image: onosproject/testdevice-2.0.x:0.5.14-testdevice-2.0.x
+    image: onosproject/testdevice-2.0.x:0.6.0-testdevice-2.0.x
     endpoint: localhost
     port: 5154
 
