@@ -4,7 +4,7 @@
 
 apiVersion: v2
 name: app-operator
-version: 0.5.4
+version: 0.5.5
 kubeVersion: ">=1.17.0"
 appVersion: v0.5.1
 description: µONOS App Operator
