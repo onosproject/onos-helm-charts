@@ -10,3 +10,4 @@ staging/
 requirements.lock
 **/charts/*
 build/build-tools
+venv
