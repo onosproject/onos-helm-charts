@@ -2,34 +2,20 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-.PHONY: all test clean
+.PHONY: all test clean version-check
 
-all: test
+COMPARISON_BRANCH ?= master
 
-build-tools:=$(shell if [ ! -d "./build/build-tools" ]; then cd build && git clone https://github.com/onosproject/build-tools.git; fi)
-include ./build/build-tools/make/onf-common.mk
+all: deps
 
-jenkins-test: jenkins_version_check deps # @HELP run the jenkins verification tests
-	docker pull quay.io/helmpack/chart-testing:v3.7.0
-	docker run --rm --name ct --volume `pwd`:/charts quay.io/helmpack/chart-testing:v3.7.0 sh -c "ct lint \
-	--charts charts/onos-config,charts/onos-topo,charts/onos-cli,charts/onos-umbrella,charts/device-simulator \
-	--debug --validate-maintainers=false"
+lint: # @HELP run helm lint
+	./build/bin/helm_lint.sh
+
+check-version: # @HELP run the version checker on the charts
+	COMPARISON_BRANCH=${COMPARISON_BRANCH} ./build/bin/version_check.sh all
 
 test: # @HELP run the integration tests
-test: version_check deps
-	(kubectl delete ns onos-topo || exit 0) && kubectl create ns onos-topo && helmit test -n onos-topo ./test -c . --suite onos-topo
-	(kubectl delete ns onos-config || exit 0) && kubectl create ns onos-config && helmit test -n onos-config ./test -c . --suite onos-config
-	(kubectl delete ns onos-umbrella || exit 0) && kubectl create ns onos-umbrella && helmit test -n onos-umbrella ./test -c . --suite onos-umbrella
-
-version_check: # @HELP run the version checker on the charts
-	COMPARISON_BRANCH=master ./build/build-tools/chart_version_check
-
-jenkins_version_check: # @HELP run the version checker on the charts
-	export COMPARISON_BRANCH=origin/master && export WORKSPACE=`pwd` && ./build/build-tools/chart_version_check
-
-jenkins-publish: # @HELP publish version on github
-	cd .. && GO111MODULE=on go install github.com/mikefarah/yq/v4@v4.16.2
-	./build/build-tools/release-chart-merge-commit https://charts.onosproject.org ${WEBSITE_USER} ${WEBSITE_PASSWORD}
+test: deps license lint
 
 clean:: # @HELP clean up temporary files.
 	rm -rf onos-umbrella/charts onos-umbrella/Chart.lock
@@ -39,3 +25,10 @@ deps: clean license
 	helm dep build onos-umbrella
 	helm dep build scale-sim
 
+license: # @HELP run license checks
+	rm -rf venv
+	python3 -m venv venv
+	. ./venv/bin/activate;\
+	python3 -m pip install --upgrade pip;\
+	python3 -m pip install reuse;\
+	reuse lint
