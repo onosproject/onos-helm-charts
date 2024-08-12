@@ -6,7 +6,7 @@ apiVersion: v2
 name: onos-operator
 version: 0.5.8
 kubeVersion: ">=1.17.0"
-appVersion: v0.5.3
+appVersion: v0.5.5
 description: µONOS Operator
 keywords:
   - onos

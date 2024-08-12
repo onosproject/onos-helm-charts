@@ -8,7 +8,7 @@ description: ONOS Topology service
 kubeVersion: ">=1.17.0"
 type: application
 version: 1.5.1
-appVersion: v1.0.1
+appVersion: v1.0.3
 keywords:
   - onos
   - sdn
