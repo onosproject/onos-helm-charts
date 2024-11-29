@@ -19,7 +19,7 @@ data:
     # Wait for {{ .Values.probe_timeout }}s before timing out
     host=`hostname -s`
     id=onos-`hostname -s | awk -F '-' '{print $NF}'`
-    result=$(curl -m {{ .Values.probe_timeout }} -s -f http://$host:8181/onos/v1/cluster/$id --user onos:rocks)
+    result=$(curl --connect-timeout {{ .Values.probe_timeout }} -m {{ .Values.probe_timeout }} -s -f http://$host:8181/onos/v1/cluster/$id --user onos:rocks)
     echo $result
 
     if ! printf '%q' $result | grep -q -i "READY"; then
@@ -33,7 +33,7 @@ data:
     {{- end }}
 
     for app in ${apps[@]}; do
-      result=$(curl -m {{ .Values.probe_timeout }} -s -f http://$host:8181/onos/v1/applications/$app/health --user onos:rocks)
+      result=$(curl --connect-timeout {{ .Values.probe_timeout }} -m {{ .Values.probe_timeout }} -s -f http://$host:8181/onos/v1/applications/$app/health --user onos:rocks)
       echo $result
       if ! printf %q $result | grep -q -i "READY"; then
         echo "$app is not yet ready"
