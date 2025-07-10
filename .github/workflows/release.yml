@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright 2024 Intel Corporation
 # Copyright 2024 Kyunghee University
+# Copyright 2025 The Linux Foundation
+
 name: Publish image and tag/release code
 
 on:
@@ -9,93 +11,11 @@ on:
       - master
 
 jobs:
-  version-check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: check version
-        run: |
-          sudo snap install yq
-          export COMPARISON_BRANCH=origin/master
-          git branch -a
-          make check-version
-
-  tag_versions:
-    runs-on: ubuntu-latest
-    needs: version-check
+  release-helm-charts:
     if: github.repository_owner == 'onosproject'
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: create release using REST API
-        run: |
-          export COMPARISON_BRANCH=${{ github.event.before }}
-          sudo snap install yq
-          target_charts=$(./build/bin/version_check.sh get_changed_charts)
-          while IFS= read -r tc
-          do 
-            tc_ver=$(yq e '.version' $tc/Chart.yaml)
-            tag_name=$tc-$tc_ver
-            curl -L \
-            -X POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.GH_ONOS_PAT }}" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            https://api.github.com/repos/${{ github.repository }}/releases \
-            -d '{
-              "tag_name": "'"$tag_name"'",
-              "target_commitish": "${{ github.event.repository.default_branch }}",
-              "name": "'"$tag_name"'",
-              "draft": false,
-              "prerelease": false,
-              "generate_release_notes": true
-              }'
-          done <<< $target_charts
-
-  publish-charts:
-    runs-on: ubuntu-latest
-    needs: version-check
-    if: (github.repository_owner == 'onosproject')
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Set up Helm
-        uses: azure/setup-helm@v4
-        with:
-          version: latest
-          token: ${{ secrets.GH_ONOS_PAT }}
-      - name: build
-        run: make deps
-      - name: publish charts
-        run: |
-          export COMPARISON_BRANCH=${{ github.event.before }}
-          sudo snap install yq rsync
-          target_charts=$(./build/bin/version_check.sh get_changed_charts)
-          rm -rf staging && mkdir -p staging/onos-helm-charts
-          while IFS= read -r tc
-          do 
-            mkdir -p staging/onos-helm-charts/$tc
-            tc_ver=$(yq e '.version' $tc/Chart.yaml)
-            helm package $tc --destination staging/onos-helm-charts/$tc
-          done <<< $target_charts
-          cd staging
-          curl -o current-index.yaml https://charts.onosproject.org/index.yaml
-          helm repo index onos-helm-charts --url https://charts.onosproject.org/onos-helm-charts --merge current-index.yaml
-          rm -rf current-index.yaml
-          mv onos-helm-charts/index.yaml .
-          cd ..
-          chmod -R g+r staging/
-      - name: rsync deployments
-        uses: burnett01/rsync-deployments@7.0.1
-        with:
-          switches: -rvzh
-          path: staging/
-          remote_path: /srv/sites/charts.onosproject.org
-          remote_host: static.opennetworking.org
-          remote_user: ${{ secrets.JENKINS_USERNAME }}
-          remote_key: ${{ secrets.JENKINS_SSHKEY }}
-          remote_key_pass: ${{ secrets.JENKINS_PASSPHRASE }}
+    uses: onosproject/.github/.github/workflows/release-helm-charts.yml@main
+    with:
+      charts_repo_url: https://charts.onosproject.org
+      remote_host: static.opennetworking.org
+      remote_path: /srv/sites/charts.onosproject.org
+    secrets: inherit
