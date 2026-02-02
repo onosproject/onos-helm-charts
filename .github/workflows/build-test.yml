@@ -21,7 +21,6 @@ jobs:
         uses: azure/setup-helm@v4
         with:
           version: latest
-          token: ${{ secrets.GH_ONOS_PAT }}
       - name: build
         run: make deps
   test:

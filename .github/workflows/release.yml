@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - master
+      - update-release-workflow # For testing purposes
 
 jobs:
   version-check:
@@ -22,80 +23,63 @@ jobs:
           git branch -a
           make check-version
 
+  get_changed_charts:
+    needs: version-check
+    runs-on: ubuntu-latest
+    outputs:
+      changed_charts: ${{ steps.charts.outputs.changed_charts }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Get changed charts
+        id: charts
+        run: |
+          export COMPARISON_BRANCH=${{ github.event.before }}
+          target_charts=$(./build/bin/version_check.sh get_changed_charts)
+          json_array=$(echo "$target_charts" | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          echo "changed_charts=$json_array" >> $GITHUB_OUTPUT
+
   tag_versions:
     runs-on: ubuntu-latest
-    needs: version-check
-    if: github.repository_owner == 'onosproject'
+    needs: get_changed_charts
+    # if: github.repository_owner == 'onosproject'
+    strategy:
+      matrix:
+        chart: ${{ fromJson(needs.get_changed_charts.outputs.changed_charts) }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: create release using REST API
+      - name: Create release using REST API
         run: |
-          export COMPARISON_BRANCH=${{ github.event.before }}
           sudo snap install yq
-          target_charts=$(./build/bin/version_check.sh get_changed_charts)
-          while IFS= read -r tc
-          do 
-            tc_ver=$(yq e '.version' $tc/Chart.yaml)
-            tag_name=$tc-$tc_ver
-            curl -L \
-            -X POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.GH_ONOS_PAT }}" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            https://api.github.com/repos/${{ github.repository }}/releases \
-            -d '{
-              "tag_name": "'"$tag_name"'",
-              "target_commitish": "${{ github.event.repository.default_branch }}",
-              "name": "'"$tag_name"'",
-              "draft": false,
-              "prerelease": false,
-              "generate_release_notes": true
-              }'
-          done <<< $target_charts
+          tc_ver=$(yq e '.version' ${{ matrix.chart }}/Chart.yaml)
+          tag_name=${{ matrix.chart }}-$tc_ver
+          curl -L \
+          -X POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{ secrets.GH_ONOS_PAT }}" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          https://api.github.com/repos/${{ github.repository }}/releases \
+          -d '{
+            "tag_name": "'"$tag_name"'",
+            "target_commitish": "${{ github.event.repository.default_branch }}",
+            "name": "'"$tag_name"'",
+            "draft": false,
+            "prerelease": false,
+            "generate_release_notes": true
+          }'
 
-  publish-charts:
-    runs-on: ubuntu-latest
-    needs: version-check
-    if: (github.repository_owner == 'onosproject')
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Set up Helm
-        uses: azure/setup-helm@v4
-        with:
-          version: latest
-          token: ${{ secrets.GH_ONOS_PAT }}
-      - name: build
-        run: make deps
-      - name: publish charts
-        run: |
-          export COMPARISON_BRANCH=${{ github.event.before }}
-          sudo snap install yq rsync
-          target_charts=$(./build/bin/version_check.sh get_changed_charts)
-          rm -rf staging && mkdir -p staging/onos-helm-charts
-          while IFS= read -r tc
-          do 
-            mkdir -p staging/onos-helm-charts/$tc
-            tc_ver=$(yq e '.version' $tc/Chart.yaml)
-            helm package $tc --destination staging/onos-helm-charts/$tc
-          done <<< $target_charts
-          cd staging
-          curl -o current-index.yaml https://charts.onosproject.org/index.yaml
-          helm repo index onos-helm-charts --url https://charts.onosproject.org/onos-helm-charts --merge current-index.yaml
-          rm -rf current-index.yaml
-          mv onos-helm-charts/index.yaml .
-          cd ..
-          chmod -R g+r staging/
-      - name: rsync deployments
-        uses: burnett01/rsync-deployments@7.0.1
-        with:
-          switches: -rvzh
-          path: staging/
-          remote_path: /srv/sites/charts.onosproject.org
-          remote_host: static.opennetworking.org
-          remote_user: ${{ secrets.JENKINS_USERNAME }}
-          remote_key: ${{ secrets.JENKINS_SSHKEY }}
-          remote_key_pass: ${{ secrets.JENKINS_PASSPHRASE }}
+  publish:
+    needs: get_changed_charts
+    strategy:
+      matrix:
+        chart: ${{ fromJson(needs.get_changed_charts.outputs.changed_charts) }}
+    uses: onosproject/.github/.github/workflows/publish-chart-to-ghcr.yml@main
+    permissions:
+      contents: read
+      packages: write
+    with:
+      chart_path: ${{ matrix.chart }}
+  
