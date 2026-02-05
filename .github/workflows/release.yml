@@ -8,7 +8,6 @@ on:
   push:
     branches:
       - master
-      - fix-workflow-error     # For testing
 
 jobs:
   version-check:
