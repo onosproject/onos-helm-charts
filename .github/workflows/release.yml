@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - master
-      - update-release-workflow # For testing purposes
 
 jobs:
   version-check:
