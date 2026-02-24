@@ -10,7 +10,7 @@ global:
   scope: Cluster
   clusterDomain: ""
   image:
-    registry: ""
+    registry: "ghcr.io"  # Use GitHub Container Registry by default
     tag: ""
 
 topo-operator:
