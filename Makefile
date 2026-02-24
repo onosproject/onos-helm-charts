@@ -24,6 +24,7 @@ deps: # @HELP build dependencies for local charts.
 deps: clean license
 	helm dep build onos-umbrella
 	helm dep build scale-sim
+	helm dep build onos-operator
 
 license: # @HELP run license checks
 	rm -rf venv

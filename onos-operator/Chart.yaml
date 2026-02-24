@@ -4,9 +4,9 @@
 
 apiVersion: v2
 name: onos-operator
-version: 0.5.9
+version: 0.5.10
 kubeVersion: ">=1.17.0"
-appVersion: v0.5.5
+appVersion: v0.5.6
 description: µONOS Operator
 keywords:
   - onos
@@ -17,6 +17,6 @@ maintainers:
     email: support@opennetworking.org
 dependencies:
   - name: app-operator
-    version: 0.5.5
+    version: 0.5.6
   - name: topo-operator
-    version: 0.5.4
+    version: 0.5.6
