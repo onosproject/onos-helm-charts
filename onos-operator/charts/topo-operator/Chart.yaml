@@ -4,9 +4,9 @@
 
 apiVersion: v2
 name: topo-operator
-version: 0.5.4
+version: 0.5.6
 kubeVersion: ">=1.17.0"
-appVersion: v0.5.3
+appVersion: v0.5.6
 description: µONOS Topology Operator
 keywords:
   - onos
